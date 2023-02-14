@@ -6,11 +6,11 @@ A collection of various MTEX scripts and functions.
 
 
 ## C
-**crop** - Crops ebsd map data within a user-defined rectanglular, circular, polygonal or freehand area-based region of interest (ROI).
+**crop** - Crops ebsd map data from within a user-defined rectanglular, circular, polygonal or freehand area-based region of interest (ROI).
 
 
 ## S
-**stitch** - Stitches, combines or merges two ebsd maps together by defining a user-defined position (and offset) for map 2 relative to map 1.
+**stitch** - Stitches, combines or merges two ebsd maps togther by defining a user-specified position (and offset) for map 2 relative to map 1.
 
 
 
