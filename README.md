@@ -2,7 +2,7 @@
 A collection of various MTEX scripts and functions.
 
 ## A
-**align** - Re-aligns ebsd map data along a user-specified linear fiducial. The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products.
+**align**(https://github.com/AzdiarGazder/mtexTools/tree/main/align) - Re-aligns ebsd map data along a user-specified linear fiducial. The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products.
 
 
 ## C
