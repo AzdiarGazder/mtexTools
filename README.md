@@ -1,2 +1,2 @@
-# MTex-tools
-Mtex scripts and functions
+# MTEXtools
+A collection of various Mtex scripts and functions
