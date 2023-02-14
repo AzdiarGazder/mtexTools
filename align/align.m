@@ -1,8 +1,10 @@
 function outebsd = align(inebsd,varargin)
 %% Function description:
-% Re-aligns ebsd map data along a user-specified linear fiducial
-% The linear fiducial may correspond to a twin boundary, stacking fault, or 
-% any linear-shaped deformation or phase transformation products.
+% Re-aligns ebsd map data along a user-specified linear fiducial in case of
+% thermal drift during map acquisition.The linear fiducial may correspond 
+% to a twin boundary, stacking fault, or any linear-shaped deformation or 
+% phase transformation products.
+% Instructions on script use are provided in the window titlebar.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2022, azdiaratuowdotedudotau
@@ -37,14 +39,31 @@ numPixels = get_option(varargin,'pixels',15);
 % It is recommended to use the modified "gridify2.m" instead.
 [gebsd,~] = gridify2(inebsd);
 
-f = figure;
+
+mtexFig = newMtexFigure;
 plot(gebsd,gebsd.bc)
 colormap parula
+ax = gca;
+f = ancestor(ax,'figure');
 set(f,'Name',...
     'Band contrast map: Left-click to select two points defining a line along a linear map feature.',...
     'NumberTitle','on');
-hold all
-xy1 = ginput(2);
+% % https://au.mathworks.com/matlabcentral/answers/325754-how-to-stop-while-loop-by-right-mouse-button-click
+xy1 = [];
+hold(ax,'all');
+while true
+    in = ginput(1); % input using left-click
+    selectType = get(f,'SelectionType');
+    if strcmpi(selectType,'alt'); break; end % exit on right-click
+    scatter(in(1),in(2),...
+        'MarkerEdgeColor',[0 0 0],...
+        'MarkerFaceColor',[0 0 0]); % plot the point
+    xy1 = [xy1;in]; % add point to array
+    if size(xy1,1) == 2; break; end % exit after 2 points have been inputted by the user
+end
+
+% prevent further clicks by the user
+disableDefaultInteractivity(ax);
 
 % check for start and end y-coordinates
 % ensure the end y-coordinate is always larger than the start y-coordinate
