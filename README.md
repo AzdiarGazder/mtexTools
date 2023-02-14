@@ -1,5 +1,5 @@
 # mtexTools
-A collection of various Mtex scripts and functions
+A collection of various MTEX scripts and functions.
 
 ## A
 **align** - Re-aligns ebsd map data along a user-defined linear fiducial. The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products.
@@ -10,7 +10,7 @@ A collection of various Mtex scripts and functions
 
 
 ## S
-**stitch** - Combines 2 ebsd maps together by defining a user-defined position (and offset) for map 2 relative to map 1.
+**stitch** - Combines two ebsd maps together by defining a user-defined position (and offset) for map 2 relative to map 1.
 
 
 
