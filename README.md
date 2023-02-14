@@ -1,2 +1,2 @@
 # MTex-tools
-Additonal Mtex scripts &amp; functions
+Mtex scripts and functions
