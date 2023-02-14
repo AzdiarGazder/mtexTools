@@ -10,7 +10,7 @@ A collection of various MTEX scripts and functions.
 
 
 ## S
-[**stitch**](https://github.com/AzdiarGazder/mtexTools/tree/main/stitch) - Stitches, combines or merges two ebsd maps togther by defining a user-specified position (and offset) for map 2 relative to map 1.
+- [**stitch**](https://github.com/AzdiarGazder/mtexTools/tree/main/stitch) - Stitches, combines or merges two ebsd maps togther by defining a user-specified position (and offset) for map 2 relative to map 1.
 
 
 
