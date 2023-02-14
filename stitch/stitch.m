@@ -10,7 +10,8 @@ function outebsd = stitch(inebsd1,inebsd2,varargin)
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
 %
 %% Acknowledgements: 
-% Based on Dr. Filippe Ferreira's MTEX issue on GitHub.
+% Based on Dr. Filippe Ferreira's issue #362 on the MTEX GitHub Issues 
+% webpage.
 % https://github.com/mtex-toolbox/mtex/issues/362
 %
 %% Syntax:
