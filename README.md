@@ -1,14 +1,16 @@
 # mtexTools
 A collection of various Mtex scripts and functions
 
-## **A
-align - A tool to correct for thermal drift by aligning linear grain/twin boundaries.
+## A
+align - Re-aligns ebsd map data along a user-defined linear fiducial. The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products.
 
-## **C
-crop - A tool to crop maps in various shapes or by defining a free-hand region.
+## C
+crop - Crops ebsd map data within a user-defined rectanglular, circular, polygonal or freehand area region of interest (ROI).
 
-## **S
-stitch - A tool to align and merge two maps together.
+
+## S
+stitch - Combines 2 ebsd maps together by defining a user-defined position (and offset) for map 2 relative to map 1.
+
 
 
 
