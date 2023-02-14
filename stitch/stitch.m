@@ -1,6 +1,6 @@
 function outebsd = stitch(inebsd1,inebsd2,varargin)
 %% Function description:
-% Combines 2 ebsd maps togther by defining a user-defined position 
+% Combines two ebsd maps togther by defining a user-defined position 
 % (and offset) for map 2 relative to map 1.
 %
 %% Note to users:
