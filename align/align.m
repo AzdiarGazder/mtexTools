@@ -1,6 +1,6 @@
 function outebsd = align(inebsd,varargin)
 %% Function description:
-% Re-aligns ebsd map data along a user-defined linear fiducial
+% Re-aligns ebsd map data along a user-specified linear fiducial
 % The linear fiducial may correspond to a twin boundary, stacking fault, or 
 % any linear-shaped deformation or phase transformation products.
 %
