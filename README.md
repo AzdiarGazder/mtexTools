@@ -10,7 +10,7 @@ A collection of various MTEX scripts and functions.
 
 
 ## S
-**stitch** - Combines two ebsd maps together by defining a user-defined position (and offset) for map 2 relative to map 1.
+**stitch** - Stitches, combines or merges two ebsd maps together by defining a user-defined position (and offset) for map 2 relative to map 1.
 
 
 
