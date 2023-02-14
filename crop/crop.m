@@ -1,7 +1,7 @@
 function outebsd = crop(inebsd,varargin)
 %% Function description:
 % Crops ebsd map data within a user-defined rectanglular, circular,
-% polygonal or freehand area region of interest (ROI).
+% polygonal or freehand area-based region of interest (ROI).
 %
 %% Note to users:
 % Gridify the "outebsd" variable of irregularly cropped maps before saving
