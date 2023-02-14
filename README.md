@@ -8,7 +8,7 @@ A collection of various MTEX scripts and functions.
 - [**crop**](https://github.com/AzdiarGazder/mtexTools/tree/main/crop): Crop, cut-out or make a subset of ebsd map data from within a user-specified rectangular, circular, polygonal or freehand area-based region of interest (ROI). Instructions on script use are provided in the window titlebar.
 
 ## S
-- [**stitch**](https://github.com/AzdiarGazder/mtexTools/tree/main/stitch): Stitches, combines or merges two ebsd maps togther by defining a user-specified position (and offset) for map 2 relative to map 1.
+- [**stitch**](https://github.com/AzdiarGazder/mtexTools/tree/main/stitch): Stitch, combine or merge two ebsd maps togther by defining a user-specified position (and offset) for map 2 relative to map 1.
 
 
 
