@@ -6,7 +6,7 @@ A collection of various MTEX scripts and functions.
 
 
 ## C
-**crop** - Crops ebsd map data within a user-defined rectanglular, circular, polygonal or freehand area region of interest (ROI).
+**crop** - Crops ebsd map data within a user-defined rectanglular, circular, polygonal or freehand area-based region of interest (ROI).
 
 
 ## S
