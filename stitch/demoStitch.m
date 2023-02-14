@@ -27,6 +27,7 @@ startup_mtex
 % figure;
 % plot(ebsd,ebsd.iq)
 % 
+% %-----------------
 % return
 % [grains,ebsd.grainId,~] = calcGrains(ebsd,'angle',15*degree,'unitCell');
 % gB = grains.boundary;
@@ -62,6 +63,7 @@ ebsd = stitch(ebsdL,ebsdR,'east',[99,0]);
 figure;
 plot(ebsd,ebsd.bc);
 
+%-----------------
 return
 [grains,ebsd.grainId,~] = calcGrains(ebsd,'angle',15*degree,'unitCell');
 gB = grains.boundary;
@@ -71,3 +73,10 @@ hold all;
 plot(gB('Iron bcc (old)'),'LineWidth',0.5);
 
 
+
+%-----------------
+return
+gebsd1 = gridify(ebsd);
+currentFolder = pwd;
+pfName = [currentFolder,'\stitchedMap.ctf']
+export_ctf(gebsd1,pfName)
