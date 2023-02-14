@@ -2,7 +2,7 @@
 A collection of various MTEX scripts and functions.
 
 ## A
-- [**align**](https://github.com/AzdiarGazder/mtexTools/tree/main/align): Re-aligns ebsd map data along a user-specified linear fiducial in case of thermal drift during map acquisition.The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products. Instructions on script use are provided in the window titlebar.
+- [**align**](https://github.com/AzdiarGazder/mtexTools/tree/main/align): Re-align ebsd map data along a user-specified linear fiducial in case of thermal drift during map acquisition.The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products. Instructions on script use are provided in the window titlebar.
 
 ## C
 - [**crop**](https://github.com/AzdiarGazder/mtexTools/tree/main/crop): Crop, cut-out or make a subset of ebsd map data from within a user-specified rectangular, circular, polygonal or freehand area-based region of interest (ROI). Instructions on script use are provided in the window titlebar.
