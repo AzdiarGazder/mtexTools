@@ -1,9 +1,9 @@
 function outebsd = align(inebsd,varargin)
 %% Function description:
-% Re-align ebsd map data along a user-specified linear fiducial in case of
-% scanning coil thermal drift during acquisition. The linear fiducial 
-% may correspond to a twin boundary, stacking fault, or any linear-shaped 
-% deformation or phase transformation products.
+% Align ebsd map data along a user-specified linear fiducial in case of 
+% thermal drift caused by the scanning coil electronics during acquisition. 
+% The linear fiducial may correspond to a twin boundary, stacking fault, or
+% any linear-shaped deformation or phase transformation products.
 % Instructions on script use are provided in the window titlebar.
 %
 %% Author:
