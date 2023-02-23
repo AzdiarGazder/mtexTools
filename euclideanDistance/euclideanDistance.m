@@ -3,7 +3,7 @@ function [outebsd] = euclideanDistance(inebsd,varargin)
 % Calculates the 2D Euclidean distance in pixels (default) or map scan 
 % units for supported distance methods for each pixel within a grain.
 % The default 2D Euclidean distance measurement is from the grain center to
-% the grain boundary or when specified by the user, vice-versa. 
+% the grain boundary, or vice-versa when specified by the user. 
 % Additional outputs include the 2D Euclidean distance in pixels or map 
 % scan units as a function of the normalised grain diameter (ECD) and grain 
 % area.
