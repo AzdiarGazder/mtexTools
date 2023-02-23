@@ -1,5 +1,4 @@
 function [outebsd] = euclideanDistance(inebsd,varargin)
-
 %% Function description:
 % Calculates the 2D Euclidean distance in pixels (default) or map scan 
 % units for supported distance methods for each pixel within a grain.
@@ -11,7 +10,11 @@ function [outebsd] = euclideanDistance(inebsd,varargin)
 % The values are returned within the 'ebsd.prop.euclid', 
 % 'ebsd.prop.euclidDiameter' and 'ebsd.prop.euclidArea' structure 
 % variables.
-% 
+%
+%% Note to users:
+% This function uses the function "bwdist" from the MATLAB Image Processing
+% Toolbox.
+%
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
 %
