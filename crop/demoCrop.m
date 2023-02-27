@@ -41,7 +41,7 @@ ebsd = ebsd('Mg');
 
 % ebsd1 = crop(ebsd,'rectangle','color',[1 0 0],'linestyle',':');
 % ebsd1 = crop(ebsd,'circle','color',[0 1 0],'linestyle','-.');
-ebsd1 = crop(ebsd,ebsd.bands,'polygon',3,'color',[0 0 1],'linestyle','-');
+ebsd1 = crop(ebsd,ebsd.bands,'polygon',8,'color',[0 0 1],'linestyle','-');
 % ebsd1 = crop(ebsd,'area','color',[0 1 0],'linestyle','-.');
 
 figure; 
