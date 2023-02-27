@@ -43,7 +43,7 @@ ebsd.CSList = CS;
 %% Do not edit below this line
 % % -----------------
 [grains,ebsd.grainId] = calcGrains(ebsd,'threshold',2*degree);
-% remove less than three pixel grains
+% remove grains less than three pixels
 ebsd(grains(grains.grainSize <= 3)) = [];
 % re-compute the grains
 [grains,ebsd.grainId] = calcGrains(ebsd,'threshold',2*degree);
