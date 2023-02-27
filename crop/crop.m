@@ -154,13 +154,13 @@ hold(ax,'all');
 while true
     in = ginput(1); % input using left-click
     selectType = get(f,'SelectionType');
-    if strcmpi(selectType,'alt'); return; end % exit on right-click
+    if strcmpi(selectType,'alt'); break; end % exit loop on right-click for freehand area ROIs
     scatter(in(1),in(2),...
         'MarkerEdgeColor',[0 0 0],...
         'MarkerFaceColor',[0 0 0],...
         'LineWidth',lineWidth); % plot the point
     xy = [xy;in]; % add point to array
-    if size(xy,1) == 2 && (cropType == "rectangle" || cropType == "circle" || cropType == "polygon"); break; end % exit for rectangular, circlular or polygonal ROIs
+    if size(xy,1) == 2 && (cropType == "rectangle" || cropType == "circle" || cropType == "polygon"); break; end % exit loop for rectangular, circlular or polygonal ROIs
 end
 
 % prevent further clicks by the user
