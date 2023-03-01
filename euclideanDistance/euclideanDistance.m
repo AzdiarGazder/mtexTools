@@ -39,7 +39,8 @@ function [outebsd] = euclideanDistance(inebsd,varargin)
 %                        transform method.
 %  'scanUnit'         -  @char, return the 2D Euclidean distances in map 
 %                        scanUnits instead of pixels.
-%  'invert'           -  @char, invert the 2D Euclidean distance values.
+%  'invert'           -  @char, invert the 2D Euclidean distance values 
+%                        from grain boundary to the grain center.
 %%
 
 gebsd = gridify(inebsd);
