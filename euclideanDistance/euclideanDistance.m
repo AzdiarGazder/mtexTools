@@ -113,12 +113,6 @@ end
 % reshape array row-wise into a single column array 
 outebsd.prop.euclid = reshape(outebsd.prop.euclid,[],1);
 
-% % calculate the normalised grain diameter and area
-% grainDiameter = grains.diameter; % ECD
-% grainArea = grains.area;
-% normgrainDiameter = grainArea./max(grainDiameter);
-% normgrainArea = grainArea./max(grainArea);
-
 % check if the 2D Euclidean distance is to be outputted for: 
 % Case 1: grain boundaries to grain centers, or
 % Case 2: grain centers to grain boundaries. 
@@ -139,8 +133,6 @@ elseif isempty(varargin) || (~isempty(varargin) && ~check_option(varargin,'inver
         % % Since minEuclid is always 1, the equation is simplified to:
         euclidDistance = maxEuclid - euclidDistance; 
         outebsd.prop.euclid(idx,1) = euclidDistance;
-%         outebsd.prop.euclidDiameter(idx,1) = euclidDistance./normgrainDiameter(ii);
-%         outebsd.prop.euclidArea(idx,1) = euclidDistance./normgrainArea(ii);
         
         % update progress
         progress(ii,length(grains));
@@ -161,8 +153,6 @@ if ~isempty(varargin) && check_option(varargin,'scanUnit')
         stepSize = sqrt(unitPixelArea);
     end
     outebsd.prop.euclid = outebsd.prop.euclid.*stepSize;
-%     outebsd.prop.euclidDiameter = outebsd.prop.euclidDiameter.*stepSize;
-%     outebsd.prop.euclidArea = outebsd.prop.euclidArea.*stepSize;
 end
 
 
