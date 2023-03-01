@@ -53,68 +53,87 @@ grains = smooth(grains,5);
 F = halfQuadraticFilter;
 ebsd = smooth(ebsd,F,grains,'fill');
 
-figure; plot(ebsd,ebsd.orientations)
+% plot the orientation map
+figure; 
+plot(ebsd,ebsd.orientations)
 hold all
-plot(grains.boundary,'lineWidth',1)
+plot(grains.boundary,'lineWidth',1.5)
 hold off
 
 % compute the 2D Euclidean distances
 ebsd = euclideanDistance(ebsd,'angle',2*degree,'euclidean');
 % ebsd = euclideanDistance(ebsd,'angle',2*degree,'euclidean','scanUnit');
-% plot
-figure; plot(ebsd,ebsd.euclid);
+
+% plot the 2D euclidean distance map
+figure; 
+plot(ebsd,ebsd.euclid);
 mtexColorbar('title','2D Euclidean distance in pixels')
 % mtexColorbar('title','2D Euclidean distance in um')
 mtexColorMap jet
 
 % re-compute the grains
-[grains,ebsd.grainId] = calcGrains(ebsd);
+[grains,ebsd.grainId] = calcGrains(ebsd,'threshold',2*degree);
 
-% plot the kernel average misorientation (KAM)
-figure; plot(ebsd,ebsd.KAM('threshold',2*degree)./degree)
-caxis([0,2])
+% compute the kernel average misorientation (KAM)
+kam = ebsd.KAM./degree;
+
+% plot the KAM map
+figure; 
+plot(ebsd,kam);
+caxis([0,round(max(ebsd.KAM./degree)/5)*5]);
 mtexColorbar('title','Kernel average misorientation (KAM) in degrees')
 mtexColorMap parula
 hold all
-plot(grains.boundary,'lineWidth',1)
+plot(grains.boundary,'lineWidth',1.5)
 hold off
 
-% compute the KAM as a function of the 2D Euclidean distance
-KAM_euclid = (ebsd.KAM('threshold',2*degree)./degree)./ebsd.euclid;
-% plot
-figure; plot(ebsd,KAM_euclid)
-caxis([0,2])
-mtexColorbar('title','KAM as a function of 2D Euclidean distance [°/pixel]')
-% mtexColorbar('title','KAM per 2D Euclidean distance in degrees/um')
-mtexColorMap LaboTeX
-hold all
-plot(grains.boundary,'lineWidth',1)
-hold off
-
+% define the bins for the 2D Euclidean distance
+numBins = 0:1:round(max(ebsd.euclid)/5)*5;
+% find the bin indices for the 2D Euclidean distance array
+[~,~,binIdx] = histcounts(ebsd.euclid,numBins);
+% apply the bin indices of the 2D Euclidean distance array to the KAM array
+for ii = 0:1:round(max(ebsd.euclid)/5)*5
+    ro = find(binIdx == ii);
+    temp = kam(ro,1); % may contain NaNs
+    values_KAMperBin{ii+1} = temp(~isnan(temp)); % ignore NaNs
+    counts_KAMperbin(ii+1,1) = size(values_KAMperBin{ii+1},1);
+    mean_KAMperBin(ii+1,1) = mean(values_KAMperBin{ii+1});
+    std_KAMperBin(ii+1,1) = std(values_KAMperBin{ii+1});
+    max_KAMperBin(ii+1,1) = max(values_KAMperBin{ii+1});
+    min_KAMperBin(ii+1,1) = min(values_KAMperBin{ii+1});
+end
 
 % plot the KAM as a function of the 2D Euclidean distance
 figure;
 yyaxis left
-plot(ebsd.euclid,KAM_euclid,'.')
-ylabel('\bf KAM as a function of 2D Euclidean distance [°/pixel]');
-hold all
+plot(0:1:25,max_KAMperBin,'-ob','MarkerFaceColor','b','LineWidth',2);
+hold on
+plot(0:1:25,min_KAMperBin,'-og','MarkerFaceColor','g','LineWidth',2);
+hold on
+ylabel('KAM [\circ, max = blue, min = green]')
 yyaxis right
-%--- Calculate the counts in each class interval
-numBins = 0:1:round(max(ebsd.euclid)/5)*5;
-[counts,binCenters] = hist(KAM_euclid,numBins);
-%--- Normalise the absolute counts in each class interval
-normCounts = 1.*(counts./sum(counts));
-h = area(binCenters, normCounts,...
-    'linewidth',0.5,'edgecolor',[0 0 0], 'facecolor',[1 0 0], 'facealpha',0.25);
-ylabel('\bf Relative frequency [f(g)]');
-xlabel('\bf 2D Euclidean distance [um]','FontSize',14);
-hold off;
+bar(0:1:25,mean_KAMperBin,'FaceColor','r');
+hold on
+errhigh = mean_KAMperBin+std_KAMperBin;
+errlow  = mean_KAMperBin-std_KAMperBin;
+er = errorbar(0:1:25,mean_KAMperBin,errlow,errhigh);
+er.Color = [0 0 0];                            
+er.LineStyle = 'none';  
+ylabel('Mean KAM [\circ, mean = red, err = black]')
+hold off
+title('KAM as a function of the 2D Euclidean distance')
+xlabel('2D Euclidean distance [pixels]')
+ax = gca;
+ax.YAxis(1).Color = 'k';
+ax.YAxis(2).Color = 'k';
+% xlim([0 25])
 
 
 % compute the grain reference orientation deviation (GROD)
 GROD = ebsd.calcGROD(grains);
 % plot
-figure; plot(ebsd,GROD.angle./degree)
+figure;
+plot(ebsd,GROD.angle./degree)
 mtexColorbar('title','Grain reference orientation deviation (GROD) in degrees')
 mtexColorMap cool
 hold all
@@ -133,27 +152,17 @@ color = colorKey.direction2color(axCrystal);
 % set the transperency from the misorientation angle as a function of
 % the 2D Euclidean distance
 alpha = min(ebsd.euclid,1);
-% plot
-figure; plot(ebsd,color,'faceAlpha',alpha);
-hold all
-plot(grains.boundary,'lineWidth',1)
-hold off
 
-
-return
-KAM_euclidArea = (ebsd.KAM('threshold',2*degree)./degree)./ebsd.euclidArea;
-% plot
-figure; plot(ebsd,KAM_euclidArea)
-caxis([0,2])
-mtexColorbar('title','KAM as a function of 2D Euclidean distance [°/pixel]')
-% mtexColorbar('title','KAM per 2D Euclidean distance in degrees/um')
-mtexColorMap LaboTeX
-hold all
-plot(grains.boundary,'lineWidth',1)
-hold off
-
+% plot the IPF map as function of the 2D Euclidean distance (shown as transparency)
 figure;
-plot(ebsd.euclid,KAM_euclidArea,'.')
+plot(ebsd,color,'faceAlpha',alpha);
+hold all
+[grains,ebsd.grainId] = calcGrains(ebsd,'threshold',[1 15]*degree);
+plot(grains.boundary,'lineWidth',1.5);
+% plot the subgrain boundaries
+plot(grains.innerBoundary,'linewidth',1,'linecolor',[0.5 0.5 0.5]);
+hold off
+
 
 
 
