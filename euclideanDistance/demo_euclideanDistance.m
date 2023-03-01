@@ -106,17 +106,17 @@ end
 % plot the KAM as a function of the 2D Euclidean distance
 figure;
 yyaxis left
-plot(0:1:25,max_KAMperBin,'-ob','MarkerFaceColor','b','LineWidth',2);
+plot(0:1:round(max(ebsd.euclid)/5)*5,max_KAMperBin,'-ob','MarkerFaceColor','b','LineWidth',2);
 hold on
-plot(0:1:25,min_KAMperBin,'-og','MarkerFaceColor','g','LineWidth',2);
+plot(0:1:round(max(ebsd.euclid)/5)*5,min_KAMperBin,'-og','MarkerFaceColor','g','LineWidth',2);
 hold on
 ylabel('KAM [\circ, max = blue, min = green]')
 yyaxis right
-bar(0:1:25,mean_KAMperBin,'FaceColor','r');
+bar(0:1:round(max(ebsd.euclid)/5)*5,mean_KAMperBin,'FaceColor','r');
 hold on
 errhigh = mean_KAMperBin+std_KAMperBin;
 errlow  = mean_KAMperBin-std_KAMperBin;
-er = errorbar(0:1:25,mean_KAMperBin,errlow,errhigh);
+er = errorbar(0:1:round(max(ebsd.euclid)/5)*5,mean_KAMperBin,errlow,errhigh);
 er.Color = [0 0 0];                            
 er.LineStyle = 'none';  
 ylabel('Mean KAM [\circ, mean = red, err = black]')
