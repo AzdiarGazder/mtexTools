@@ -132,9 +132,11 @@ ax.YAxis(2).Color = 'k';
 
 % plot the image quality or band contrast as a function of the 2D 
 % Euclidean distance
-% in this example: up to 5 pixels (with 1 pixel = 1 bin)
+% in this example: up to 3 pixels from the grain center 
+% (with 1 pixel = 1 bin)
+ebsd.prop.iq = (255/max(ebsd.prop.iq)).*ebsd.prop.iq;
 euclidIQ = NaN(size(ebsd.prop.iq));
-ro = find(binIdx <= 5);
+ro = find(binIdx <= 3);
 euclidIQ(ro,1) = ebsd.prop.iq(ro,1);
 figure;
 plot(ebsd,euclidIQ)
