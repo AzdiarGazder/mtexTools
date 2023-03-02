@@ -88,6 +88,7 @@ plot(grains.boundary,'lineWidth',1.5)
 hold off
 
 % define the bins for the 2D Euclidean distance
+% in this example: 1 pixel = 1 bin
 numBins = 0:1:round(max(ebsd.euclid)/5)*5;
 % find the bin indices for the 2D Euclidean distance array
 [~,~,binIdx] = histcounts(ebsd.euclid,numBins);
@@ -129,6 +130,22 @@ ax.YAxis(2).Color = 'k';
 % xlim([0 25])
 
 
+% plot the image quality or band contrast as a function of the 2D 
+% Euclidean distance
+% in this example: up to 5 pixels (with 1 pixel = 1 bin)
+euclidIQ = NaN(size(ebsd.prop.iq));
+ro = find(binIdx <= 5);
+euclidIQ(ro,1) = ebsd.prop.iq(ro,1);
+figure;
+plot(ebsd,euclidIQ)
+caxis([0,255])
+mtexColorbar
+mtexColorMap LaboTeX
+hold on
+plot(grains.boundary,'lineWidth',1)
+hold off
+
+
 % compute the grain reference orientation deviation (GROD)
 GROD = ebsd.calcGROD(grains);
 % plot
@@ -162,7 +179,5 @@ plot(grains.boundary,'lineWidth',1.5);
 % plot the subgrain boundaries
 plot(grains.innerBoundary,'linewidth',1,'linecolor',[0.5 0.5 0.5]);
 hold off
-
-
 
 
