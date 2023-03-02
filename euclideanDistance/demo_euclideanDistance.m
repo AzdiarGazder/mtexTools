@@ -89,7 +89,7 @@ hold off
 
 % define the bins for the 2D Euclidean distance
 % in this example: 1 pixel = 1 bin
-numBins = 0:1:round(max(ebsd.euclid)/5)*5;
+numBins = 0:1:round(max(ebsd.euclid)/5)*5; % for max, round to the nearest 5
 % find the bin indices for the 2D Euclidean distance array
 [~,~,binIdx] = histcounts(ebsd.euclid,numBins);
 % apply the bin indices of the 2D Euclidean distance array to the KAM array
