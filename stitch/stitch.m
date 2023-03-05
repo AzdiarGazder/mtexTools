@@ -20,11 +20,11 @@ function outebsd = stitch(inebsd1,inebsd2,varargin)
 %% Input:
 %  ebsd1       - @EBSD
 %  ebsd2       - @EBSD
-%  arg         - char defining position of ebsd2 relative to ebsd1.
+%  arg         - @char, defines the position of inebsd2 relative to inebsd1.
 %                Options = 'north', 'south', 'east', 'west',
 %                'northeast', 'southeast', 'northwest', 'southwest'
-%  array       - numeric array defining an [x,y] offset in pixels for
-%                ebsd2 relative to ebsd1.
+%  array       - @numeric, an array defining an [x,y] offset and/or overlay
+%                in pixels for ebsd2 relative to ebsd1.
 %% Output:
 %  ebsd        - @EBSD
 %%
