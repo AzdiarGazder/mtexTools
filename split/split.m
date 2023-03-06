@@ -5,8 +5,8 @@ function split(inebsd,varargin)
 % inputs include the ability to overlap a length fraction along both, 
 % horizontal and vertical submap directions. The submaps are returned to 
 % the main MATLAB workspace as individual ebsd variables. The location of 
-% each sub-map is denoted by the row and column number. 
-% For example: ebsd23 = sub-map from row 2, column 3 of the ebsd map.
+% each submap is denoted by the row and column number. 
+% For example: ebsd23 = a submap from row 2, column 3 of the ebsd map.
 %
 %% Note to users:
 % Gridify the sub-map variables before saving sub-maps as a *.ctf file.
@@ -103,7 +103,7 @@ XX = gebsd.prop.x;
 YY = gebsd.prop.y;
 
 
-%% Example of the logic used in the algorithm to split the map:
+%% example of the logic used in the algorithm to split the map:
 %
 % Task =  Split 100 pixels into 4 columns such that:
 % submap 1 = submap 1 + right overlap...
@@ -141,7 +141,7 @@ YY = gebsd.prop.y;
 %%
 
 
-%% Split rows as per alogorithm logic
+%% split columns as per alogorithm logic
 % nominal number of rows for a submap
 % note: the number of rows for the first & last submap vary from those
 % in-between as the former two only have one overlap each
@@ -151,13 +151,17 @@ submap_yy = round(linspace(0,mapSize_Y,(numRo+1)));
 submap_yy = [1, submap_yy(2:end)]';
 % compute overlap as a fraction of the nominal number of rows for a submap
 submapOverlap_Y = round(overlapRo*submapSize_Y);
+% check if the overlap is the same size as the submap
+if submapOverlap_Y >= submapSize_Y
+    submapOverlap_Y = submapOverlap_Y - 1; % ensure the overlap is smaller than the submap size
+end
 % define the top & bottom row indices for each submap
 submap_yyTop = [submap_yy(1,1); (submap_yy(2:end-1,1)-submapOverlap_Y)];
 submap_yyBottom = [(submap_yy(2:end-1,1)+submapOverlap_Y); submap_yy(end,1)];
 %%
 
 
-%% split columns as per alogorithm logic
+%% split rows as per alogorithm logic
 % nominal number of columns for a submap
 % note: the number of columns for the last submap may vary
 submapSize_X = round(mapSize_X/numCol);
@@ -166,6 +170,10 @@ submap_xx = round(linspace(0,mapSize_X,(numCol+1)));
 submap_xx = [1, submap_xx(2:end)]';
 % compute overlap as a fraction of the nominal number of columns for a submap
 submapOverlap_X = round(overlapCol*submapSize_X);
+% check if the overlap is the same size as the submap
+if submapOverlap_X >= submapSize_X
+    submapOverlap_X = submapOverlap_X - 1; % ensure the overlap is smaller than the submap size
+end
 % define the left & right column indices for each submap
 submap_xxLeft = [submap_xx(1,1); (submap_xx(2:end-1,1)-submapOverlap_X)];
 submap_xxRight = [(submap_xx(2:end-1,1)+submapOverlap_X); submap_xx(end,1)];
