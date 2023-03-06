@@ -58,7 +58,7 @@ end
 if check_option(varargin,'matrix')
     splitMatrix = num2cell(get_option(varargin,'matrix'));
     if ~isequal(size(splitMatrix), [1 2])
-        error('\nThe matrix must be a 1 x 2 array.');
+        error(sprintf('\nThe matrix must be a 1 x 2 array.'));
         return;
     end
     [numRo,numCol] = deal(splitMatrix{:});
@@ -78,7 +78,7 @@ end
 if check_option(varargin,'overlap')
     overlapFactors = num2cell(get_option(varargin,'overlap'));
         if ~isequal(size(overlapFactors), [1 2])
-        error('\nThe overlap must be a 1 x 2 array.');
+        error(sprintf('\nThe overlap must be a 1 x 2 array.'));
         return;
     end
     [overlapFactor_Ro,overlapFactor_Col] = deal(overlapFactors{:});
