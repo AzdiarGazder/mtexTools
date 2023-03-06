@@ -4,9 +4,7 @@ The functions are directly incorporated into MTEX and can be seamlessly and read
 
 Visitors to this site may download and implement the entire library or may download individual scripts related to specific tools. 
 
-If this software contributes in any way to published works, acknowledgements adn citations are always welcome. 
-
-If you found some of these scripts and tools useful, please consider citing the following reference:
+If these scripts and tools prove useful and contributes to published works in any way, please consider acknowledgements and citations via the following reference:
 
 **A.A. Gazder, mtexTools: A collated library of addtional MTEX functions and their demonstration scripts, Github, accessed Date-Month-Year, <https://github.com/AzdiarGazder/mtexTools>.**
 
