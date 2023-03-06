@@ -1,4 +1,8 @@
 # [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
+[**MTEX**](https://mtex-toolbox.github.io/) is a free-to-download Matlab toolbox for analysing electron back-scattering diffraction (EBSD) map data. The toolbox is used by researchers from around the world who are interested in script-based microstructure and crystallographic analyses.
+
+[**MTEX**](https://mtex-toolbox.github.io/) is fully capable of interrogating, processing, and manipulating EBDS map data obtained in several configurations from different OEM vendors. Perhaps its single most powerful attribute is that the toolbox itself is fully scriptable. This allows users to develop scripts (or codes or programs) to add functionality where needed. It enables a fully customisable analytical experience and unlike commercial OEM software suites, provides for an ever evolving library of niche capabilities.
+
 This webpage is a collated library of additional MTEX functions and their demonstration scripts. The functions are directly incorporated into MTEX and can be seamlessly and readily used without modification. 
 
 ---
