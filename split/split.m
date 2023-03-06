@@ -34,11 +34,13 @@ function split(inebsd,varargin)
 %  str        - structure variable containing @EBSD
 %
 %% Options:
-%  'matrix'            -  @numeric, an array defining the number of rows
-%                         and columns to split the ebsd map into sub-maps.
-%  'overlap'           -  @numeric, an array defining the factor by which
-%                         to overlap subsets along the susbet maps along
-%                         the horizontal and vertical sub-map directions.
+%  'matrix'            -  @numeric, a 1 x 2 array defining the number of 
+%                         rows and columns to split the ebsd map into 
+%                         submaps.
+%  'overlap'           -  @numeric, a 1 x 2 array defining the factor 
+%                         (ranging between 0.01 and 0.99) by which to 
+%                         overlap subsets along the susbet maps along the 
+%                         horizontal and vertical sub-map directions.
 %%
 
 % grid the ebsd map
@@ -79,7 +81,7 @@ if check_option(varargin,'overlap')
 
 else
     % if the user has not specified the overlap factor values
-    warning(sprintf('\nNo overlap specified by the user.'));
+    warning(sprintf('\nNo overlap factors specified by the user.'));
     overlapFactor_Ro = 0; overlapFactor_Col = 0;
 end
 
