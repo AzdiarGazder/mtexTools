@@ -71,8 +71,8 @@ end
 % check for the overlap values
 if check_option(varargin,'overlap')
     overlapMatrix = num2cell(get_option(varargin,'overlap'));
-    [overlapRo,overlapCol] = deal(overlapMatrix{:});
-    if overlapCol < 0.01 || overlapCol > 0.99  || overlapRo < 0.01 || overlapRo > 0.99
+    [overlapfraction_Ro,overlapfraction_Col] = deal(overlapMatrix{:});
+    if overlapfraction_Col < 0.01 || overlapfraction_Col > 0.99  || overlapfraction_Ro < 0.01 || overlapfraction_Ro > 0.99
         error(sprintf('\nThe overlap value(s) must range between 0.01 and 0.99.'));
         return;
     end
@@ -80,12 +80,12 @@ if check_option(varargin,'overlap')
 else
     % if the user has not specified the matrix values
     warning(sprintf('\nNo overlap specified by the user.'));
-    overlapRo = 0; overlapCol = 0;
+    overlapfraction_Ro = 0; overlapfraction_Col = 0;
 end
 
 % check for the overlap value when user specifies only 1 row or column
-if numRo == 1; overlapRo = 0; end
-if numCol == 1; overlapCol = 0; end
+if numRo == 1; overlapfraction_Ro = 0; end
+if numCol == 1; overlapfraction_Col = 0; end
 
 % calculate the step size of the ebsd map
 xx = [inebsd.unitCell(:,1);inebsd.unitCell(1,1)]; % repeat the 1st x co-ordinate to close the unit pixel shape
@@ -150,10 +150,10 @@ submapSize_Y = round(mapSize_Y/numRo);
 submap_yy = round(linspace(0,mapSize_Y,(numRo+1)));
 submap_yy = [1, submap_yy(2:end)]';
 % compute overlap as a fraction of the nominal number of rows for a submap
-submapOverlap_Y = round(overlapRo*submapSize_Y);
+submapOverlap_Y = round(overlapfraction_Ro*submapSize_Y);
 % check if the overlap is the same size as the submap
 if submapOverlap_Y >= submapSize_Y
-    submapOverlap_Y = submapOverlap_Y - 1; % ensure the overlap is smaller than the submap size
+    submapOverlap_Y = submapOverlap_Y - 1; % ensure the overlap is always smaller than the submap size
 end
 % define the top & bottom row indices for each submap
 submap_yyTop = [submap_yy(1,1); (submap_yy(2:end-1,1)-submapOverlap_Y)];
@@ -169,10 +169,10 @@ submapSize_X = round(mapSize_X/numCol);
 submap_xx = round(linspace(0,mapSize_X,(numCol+1)));
 submap_xx = [1, submap_xx(2:end)]';
 % compute overlap as a fraction of the nominal number of columns for a submap
-submapOverlap_X = round(overlapCol*submapSize_X);
+submapOverlap_X = round(overlapfraction_Col*submapSize_X);
 % check if the overlap is the same size as the submap
 if submapOverlap_X >= submapSize_X
-    submapOverlap_X = submapOverlap_X - 1; % ensure the overlap is smaller than the submap size
+    submapOverlap_X = submapOverlap_X - 1; % ensure the overlap is always smaller than the submap size
 end
 % define the left & right column indices for each submap
 submap_xxLeft = [submap_xx(1,1); (submap_xx(2:end-1,1)-submapOverlap_X)];
