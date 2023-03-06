@@ -1,5 +1,5 @@
 # [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
-This is a collated library of additional MTEX functions and their demonstration scripts. The functions are directly incorporated into MTEX and can be seamlessly and readily used without modification. 
+This webpage is a collated library of additional MTEX functions and their demonstration scripts. The functions are directly incorporated into MTEX and can be seamlessly and readily used without modification. 
 
 ---
 
