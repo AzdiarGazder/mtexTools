@@ -9,6 +9,8 @@ If these scripts and tools prove useful and contributes to published works in an
 
 **A.A. Gazder, mtexTools: A collated library of addtional MTEX functions and their demonstration scripts, Github, accessed Date-Month-Year, <https://github.com/AzdiarGazder/mtexTools>.**
 
+If users wish to modify any of these scripts, they are welcome to do so. If modified software is redistributed, please include attribution(s) to the original author(s).
+
 
 ## A
 - [**align**](https://github.com/AzdiarGazder/mtexTools/tree/main/align): Align ebsd map data along a user-specified linear fiducial in case of drift caused by the thermal cycling of scanning coil electronics during acquisition. The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products. Instructions on script use are provided in the window titlebar.
