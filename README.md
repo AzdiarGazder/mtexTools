@@ -1,15 +1,14 @@
 # [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
-This is a collated library of addtional MTEX functions and their demonstration scripts.
-The functions are directly incorporated into MTEX and can be seamlessly and readily used without modification. 
+This is a collated library of addtional MTEX functions and their demonstration scripts. The functions are directly incorporated into MTEX and can be seamlessly and readily used without modification. 
 
 Visitors to this site may download and implement the entire library or may download individual scripts related to specific tools. 
 
 ## How to cite mtexTools
-If these scripts and tools prove useful and contributes to published works in any way, please consider an acknowledgement by citing the following reference:
+- If these scripts and tools prove useful and contributes to published works in any way, please consider an acknowledgement by citing the following reference:
 
 **A.A. Gazder, mtexTools: A collated library of addtional MTEX functions and their demonstration scripts, Github, accessed Date-Month-Year, <https://github.com/AzdiarGazder/mtexTools>.**
 
-If users wish to modify any of these scripts, they are welcome to do so. If modified software is redistributed, please include attribution(s) to the original author(s).
+- If users wish to modify any of these scripts, they are welcome to do so. If modified software is redistributed, please include attribution(s) to the original author(s).
 
 
 ## A
