@@ -11,6 +11,8 @@ A collection of various MTEX scripts and functions.
 - [**euclideanDistance**](https://github.com/AzdiarGazder/mtexTools/tree/main/euclideanDistance): Calculates the 2D Euclidean distance in pixels (default) or map scan units for supported distance methods for each pixel within a grain. The default 2D Euclidean distance measurement is from the grain center to the grain boundary in pixels or map scan units. The 2D Euclidean distance measurement from the grain boundary to the grain center is available but only when specified by the user. The values are returned within the 'ebsd.prop.euclid' structure variable.
 
 ## S
+- [**split**](https://github.com/AzdiarGazder/mtexTools/tree/main/split): Splits an ebsd map into a matrix (with a user-specified number of rows and columns) of submaps. Additional inputs include the ability to overlap a length fraction along both, horizontal and vertical submap directions. The submaps are returned to the main MATLAB workspace as individual ebsd variables. The location of each sub-map is denoted by the row and column number. For example: ebsd23 = sub-map from row 2, column 3 of the ebsd map.
+
 - [**stitch**](https://github.com/AzdiarGazder/mtexTools/tree/main/stitch): Stitch, combine or merge two ebsd maps togther by defining a user-specified position (and offset) for map 2 relative to map 1.
 
 
