@@ -68,22 +68,22 @@ else
 end
 
 
-% check for the overlap fraction values
+% check for the overlap factor values
 if check_option(varargin,'overlap')
-    overlapFactorMatrix = num2cell(get_option(varargin,'overlap'));
-    [overlapFactor_Ro,overlapFactor_Col] = deal(overlapFactorMatrix{:});
+    overlapFactors = num2cell(get_option(varargin,'overlap'));
+    [overlapFactor_Ro,overlapFactor_Col] = deal(overlapFactors{:});
     if overlapFactor_Col < 0.01 || overlapFactor_Col > 0.99  || overlapFactor_Ro < 0.01 || overlapFactor_Ro > 0.99
         error(sprintf('\nThe overlap value(s) must range between 0.01 and 0.99.'));
         return;
     end
 
 else
-    % if the user has not specified the matrix values
+    % if the user has not specified the overlap factor values
     warning(sprintf('\nNo overlap specified by the user.'));
     overlapFactor_Ro = 0; overlapFactor_Col = 0;
 end
 
-% check for the overlap fraction value when the user also specifies only 
+% check for the overlap factor value when the user also specifies only 
 % 1 row or column
 if numRo == 1; overlapFactor_Ro = 0; end
 if numCol == 1; overlapFactor_Col = 0; end
