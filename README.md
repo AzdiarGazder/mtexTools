@@ -1,7 +1,7 @@
 # [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
 This is a collated library of additional MTEX functions and their demonstration scripts. The functions are directly incorporated into MTEX and can be seamlessly and readily used without modification. 
 
-Visitors to this site may download and implement the entire library or may download individual scripts related to specific tools. Please report any issues with the scripts or webpage to the author (in your email program, please replace the dots in the author's email address to make it work).
+Visitors to this site may download and implement the entire library or may download individual scripts related to specific tools. Please report any issues with the scripts or webpage to the author using the discussion section or directly via email (for a valid email address, please replace the dots in the author's email address).
 
 ---
 
