@@ -1,6 +1,6 @@
 function outebsd = stitch(inebsd1,inebsd2,varargin)
 %% Function description:
-% Stitch, combine or merge two ebsd maps togther by defining a 
+% Stitch, combine or merge two ebsd maps togther by defining a
 % user-specified position (and offset) for map 2 relative to map 1.
 %
 %% Note to users:
@@ -9,8 +9,8 @@ function outebsd = stitch(inebsd1,inebsd2,varargin)
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
 %
-%% Acknowledgements: 
-% Based on Dr. Filippe Ferreira's issue #362 on the MTEX GitHub Issues 
+%% Acknowledgements:
+% Based on Dr. Filippe Ferreira's issue #362 on the MTEX GitHub Issues
 % webpage.
 % https://github.com/mtex-toolbox/mtex/issues/362
 %
@@ -23,8 +23,8 @@ function outebsd = stitch(inebsd1,inebsd2,varargin)
 %  arg         - @char, defines the position of inebsd2 relative to inebsd1.
 %                Options = 'north', 'south', 'east', 'west',
 %                'northeast', 'southeast', 'northwest', 'southwest'
-%  array       - @numeric, an array defining an [x,y] offset and/or overlay
-%                in pixels for ebsd2 relative to ebsd1.
+%  array       - @numeric, a 1 x 2 array defining an [x,y] offset and/or
+%                overlay in pixels for ebsd2 relative to ebsd1.
 %% Output:
 %  ebsd        - @EBSD
 %%
@@ -39,10 +39,10 @@ if any(strcmpi(varargin,'north')) ||...
         any(strcmpi(varargin,'northwest')) ||...
         any(strcmpi(varargin,'southwest'))
 
-%     figure
-%     plot(inebsd1,inebsd1.bc);
-%     figure
-%     plot(inebsd2,inebsd2.bc);
+    %     figure
+    %     plot(inebsd1,inebsd1.bc);
+    %     figure
+    %     plot(inebsd2,inebsd2.bc);
 
     bounds1 = inebsd1.extend; % [xmin, xmax, ymin, ymax]
     bounds2 = inebsd2.extend; % [xmin, xmax, ymin, ymax]
@@ -50,16 +50,17 @@ if any(strcmpi(varargin,'north')) ||...
     xMapDir = getMTEXpref('xAxisDirection');
     zMapDir = getMTEXpref('zAxisDirection');
 
-
     if strcmpi(xMapDir,'north') && strcmpi(zMapDir,'intoPlane')
         warning(sprintf('\nMap 1 origin = south-west corner.\n+ve x-values = moves map 2 left relative to map 1.\n+ve y-values = moves map 2 down relative to map 1.'));
 
         if ~isempty(varargin) && check_option(varargin,'north')
             pixelShift = get_option(varargin,'north',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(bounds1(2)-pixelShift(1,2)), (0-pixelShift(1,1))];
 
         elseif ~isempty(varargin) && check_option(varargin,'south')
             pixelShift = get_option(varargin,'south',[0,0]);
+            arraySize(pixelShift);
             if bounds1(2) <= bounds2(2)
                 inebsd2 = inebsd2 + [(-bounds2(2)-pixelShift(1,2)), (0-pixelShift(1,1)) ];
             else
@@ -68,10 +69,12 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'east')
             pixelShift = get_option(varargin,'east',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(0-pixelShift(1,2)),(bounds1(4)-pixelShift(1,1))];
 
         elseif ~isempty(varargin) && check_option(varargin,'west')
             pixelShift = get_option(varargin,'west',[0,0]);
+            arraySize(pixelShift);
             if bounds1(4) <= bounds2(4)
                 inebsd2 = inebsd2 + [(0-pixelShift(1,2)), (-bounds1(4)-pixelShift(1,1))];
             else
@@ -80,11 +83,13 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'northeast')
             pixelShift = get_option(varargin,'northeast',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(bounds1(2)-pixelShift(1,2)), (0-pixelShift(1,1))]; % north
             inebsd2 = inebsd2 + [(0-pixelShift(1,2)),(bounds1(4)-pixelShift(1,1))]; % east
 
         elseif ~isempty(varargin) && check_option(varargin,'southeast')
             pixelShift = get_option(varargin,'southeast',[0,0]);
+            arraySize(pixelShift);
             if bounds1(2) <= bounds2(2) % south
                 inebsd2 = inebsd2 + [(-bounds2(2)-pixelShift(1,2)), (0-pixelShift(1,1)) ];
             else
@@ -94,6 +99,7 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'northwest')
             pixelShift = get_option(varargin,'northwest',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(bounds1(2)-pixelShift(1,2)), (0-pixelShift(1,1))]; % north
             if bounds1(4) <= bounds2(4) % west
                 inebsd2 = inebsd2 + [(0-pixelShift(1,2)), (-bounds1(4)-pixelShift(1,1))];
@@ -103,6 +109,7 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'southwest')
             pixelShift = get_option(varargin,'southwest',[0,0]);
+            arraySize(pixelShift);
             if bounds1(2) <= bounds2(2) % south
                 inebsd2 = inebsd2 + [(-bounds2(2)-pixelShift(1,2)), (0-pixelShift(1,1)) ];
             else
@@ -123,10 +130,12 @@ if any(strcmpi(varargin,'north')) ||...
 
         if ~isempty(varargin) && check_option(varargin,'north')
             pixelShift = get_option(varargin,'north',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(bounds1(2)-pixelShift(1,2)), (0-pixelShift(1,1))];
 
         elseif ~isempty(varargin) && check_option(varargin,'south')
             pixelShift = get_option(varargin,'south',[0,0]);
+            arraySize(pixelShift);
             if bounds1(2) <= bounds2(2)
                 inebsd2 = inebsd2 + [(-bounds2(2)-pixelShift(1,2)), (0-pixelShift(1,1)) ];
             else
@@ -135,6 +144,7 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'east')
             pixelShift = get_option(varargin,'east',[0,0]);
+            arraySize(pixelShift);
             if bounds1(4) <= bounds2(4)
                 inebsd2 = inebsd2 + [(0-pixelShift(1,2)),(-bounds1(4)-pixelShift(1,1))];
             else
@@ -143,10 +153,12 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'west')
             pixelShift = get_option(varargin,'west',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(0-pixelShift(1,2)),(bounds1(4)-pixelShift(1,1))];
 
         elseif ~isempty(varargin) && check_option(varargin,'northeast')
             pixelShift = get_option(varargin,'northeast',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(bounds1(2)-pixelShift(1,2)), (0-pixelShift(1,1))]; % north
             if bounds1(4) <= bounds2(4) % east
                 inebsd2 = inebsd2 + [(0-pixelShift(1,2)),(-bounds1(4)-pixelShift(1,1))];
@@ -156,6 +168,7 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'southeast')
             pixelShift = get_option(varargin,'southeast',[0,0]);
+            arraySize(pixelShift);
             if bounds1(2) <= bounds2(2) % south
                 inebsd2 = inebsd2 + [(-bounds2(2)-pixelShift(1,2)), (0-pixelShift(1,1)) ];
             else
@@ -169,11 +182,13 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'northwest')
             pixelShift = get_option(varargin,'northwest',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(bounds1(2)-pixelShift(1,2)), (0-pixelShift(1,1))]; % north
             inebsd2 = inebsd2 + [(0-pixelShift(1,2)),(bounds1(4)-pixelShift(1,1))]; % west
 
         elseif ~isempty(varargin) && check_option(varargin,'southwest')
             pixelShift = get_option(varargin,'southwest',[0,0]);
+            arraySize(pixelShift);
             if bounds1(2) <= bounds2(2) % south
                 inebsd2 = inebsd2 + [(-bounds2(2)-pixelShift(1,2)), (0-pixelShift(1,1)) ];
             else
@@ -189,6 +204,7 @@ if any(strcmpi(varargin,'north')) ||...
         warning(sprintf('\nMap 1 origin = north-west corner.\n+ve x-values = moves map 2 left relative to map 1.\n+ve y-values = moves map 2 up relative to map 1.'));
         if ~isempty(varargin) && check_option(varargin,'north')
             pixelShift = get_option(varargin,'north',[0,0]);
+            arraySize(pixelShift);
             if bounds1(4) >= bounds2(4)
                 inebsd2 = inebsd2 + [(0-pixelShift(1,1)), (-bounds2(4)-pixelShift(1,2))];
             else
@@ -197,14 +213,17 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'south')
             pixelShift = get_option(varargin,'north',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(0-pixelShift(1,1)), (bounds1(4)-pixelShift(1,2))];
 
         elseif ~isempty(varargin) && check_option(varargin,'east')
             pixelShift = get_option(varargin,'east',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(bounds1(2)-pixelShift(1,1)), (0-pixelShift(1,2))];
 
         elseif ~isempty(varargin) && check_option(varargin,'west')
             pixelShift = get_option(varargin,'west',[0,0]);
+            arraySize(pixelShift);
             if bounds1(2) >= bounds2(2)
                 inebsd2 = inebsd2 + [(-bounds1(2)-pixelShift(1,1)), (0-pixelShift(1,2))];
             else
@@ -213,6 +232,7 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'northeast')
             pixelShift = get_option(varargin,'northeast',[0,0]);
+            arraySize(pixelShift);
             if bounds1(4) >= bounds2(4) % north
                 inebsd2 = inebsd2 + [(0-pixelShift(1,1)), (-bounds2(4)-pixelShift(1,2))];
             else
@@ -222,11 +242,13 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'southeast')
             pixelShift = get_option(varargin,'southeast',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(0-pixelShift(1,1)), (bounds1(4)-pixelShift(1,2))]; % south
             inebsd2 = inebsd2 + [(bounds1(2)-pixelShift(1,1)), (0-pixelShift(1,2))]; % east
 
         elseif ~isempty(varargin) && check_option(varargin,'northwest')
             pixelShift = get_option(varargin,'northwest',[0,0]);
+            arraySize(pixelShift);
             if bounds1(4) >= bounds2(4) % north
                 inebsd2 = inebsd2 + [(0-pixelShift(1,1)), (-bounds2(4)-pixelShift(1,2))];
             else
@@ -240,6 +262,7 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'southwest')
             pixelShift = get_option(varargin,'southwest',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(0-pixelShift(1,1)), (bounds1(4)-pixelShift(1,2))]; % south
             if bounds1(2) >= bounds2(2) % west
                 inebsd2 = inebsd2 + [(-bounds1(2)-pixelShift(1,1)), (0-pixelShift(1,2))];
@@ -256,10 +279,12 @@ if any(strcmpi(varargin,'north')) ||...
 
         if ~isempty(varargin) && check_option(varargin,'north')
             pixelShift = get_option(varargin,'north',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(0-pixelShift(1,1)), (bounds1(4)-pixelShift(1,2))];
 
         elseif ~isempty(varargin) && check_option(varargin,'south')
             pixelShift = get_option(varargin,'south',[0,0]);
+            arraySize(pixelShift);
             if bounds1(4) >= bounds2(4)
                 inebsd2 = inebsd2 + [(0-pixelShift(1,1)), (-bounds2(4)-pixelShift(1,2))];
             else
@@ -268,10 +293,12 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'east')
             pixelShift = get_option(varargin,'east',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(bounds1(2)-pixelShift(1,1)), (0-pixelShift(1,2))];
 
         elseif ~isempty(varargin) && check_option(varargin,'west')
             pixelShift = get_option(varargin,'west',[0,0]);
+            arraySize(pixelShift);
             if bounds1(2) >= bounds2(2)
                 inebsd2 = inebsd2 + [(-bounds1(2)-pixelShift(1,1)), (0-pixelShift(1,2))];
             else
@@ -280,11 +307,13 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'northeast')
             pixelShift = get_option(varargin,'northeast',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(0-pixelShift(1,1)), (bounds1(4)-pixelShift(1,2))]; % north
             inebsd2 = inebsd2 + [(bounds1(2)-pixelShift(1,1)), (0-pixelShift(1,2))]; % east
 
         elseif ~isempty(varargin) && check_option(varargin,'southeast')
             pixelShift = get_option(varargin,'southeast',[0,0]);
+            arraySize(pixelShift);
             if bounds1(4) >= bounds2(4) % south
                 inebsd2 = inebsd2 + [(0-pixelShift(1,1)), (-bounds2(4)-pixelShift(1,2))];
             else
@@ -294,6 +323,7 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'northwest')
             pixelShift = get_option(varargin,'northwest',[0,0]);
+            arraySize(pixelShift);
             inebsd2 = inebsd2 + [(0-pixelShift(1,1)), (bounds1(4)-pixelShift(1,2))]; %north
             if bounds1(2) >= bounds2(2) %west
                 inebsd2 = inebsd2 + [(-bounds1(2)-pixelShift(1,1)), (0-pixelShift(1,2))];
@@ -303,6 +333,7 @@ if any(strcmpi(varargin,'north')) ||...
 
         elseif ~isempty(varargin) && check_option(varargin,'southwest')
             pixelShift = get_option(varargin,'southwest',[0,0]);
+            arraySize(pixelShift);
             if bounds1(4) >= bounds2(4) % south
                 inebsd2 = inebsd2 + [(0-pixelShift(1,1)), (-bounds2(4)-pixelShift(1,2))];
             else
@@ -348,11 +379,17 @@ if any(strcmpi(varargin,'north')) ||...
     % return to a uniform ebsd variable
     outebsd = EBSD(gebsd);
 
-%     figure;
-%     plot(outebsd,outebsd.bc)
-
 else
     error('Incorrect direction specified.')
     return
+end
+end
+
+
+%% Check for the size of the offset/overlay array
+function arraySize(inArray)
+if ~isequal(size(inArray), [1 2])
+    error(sprintf('The offset/overlay must be a 1 x 2 array.'));
+    return;
 end
 end
