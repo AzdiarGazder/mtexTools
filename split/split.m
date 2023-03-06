@@ -15,8 +15,13 @@ function split(inebsd,varargin)
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
 %
 %% Acknowledgements:
-% Dr. Christopher Daniel
-% For the original concept applied to a texture block analysis script uploaded to:
+% For the original concept described in:
+% A.L. Pilchak, A.R. Shiveley, J.S. Tiley, D.L. Ballard, AnyStitch: a tool
+% for combining electron backscatter diffraction data sets, Journal of 
+% Microscopy, 2011, Vol. 244, pp. 38–44.
+% doi: 10.1111/j.1365-2818.2011.03496.x
+% and by:
+% Dr. Christopher Daniel for the texture block analysis script uploaded to:
 % https://github.com/LightForm-group/MTEX-texture-block-analysis/blob/main/texture_block_analysis.m
 %
 %% Syntax:
