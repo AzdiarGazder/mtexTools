@@ -57,6 +57,10 @@ end
 % check for the matrix values
 if check_option(varargin,'matrix')
     splitMatrix = num2cell(get_option(varargin,'matrix'));
+    if ~isequal(size(splitMatrix), [1 2])
+        error('\nThe matrix must be a 1 x 2 array.');
+        return;
+    end
     [numRo,numCol] = deal(splitMatrix{:});
     if isInteger(numRo) ~=1 || isInteger(numCol) ~=1
         error(sprintf('\nThe matrix value(s) must be positive integer(s).'));
@@ -73,6 +77,10 @@ end
 % check for the overlap factor values
 if check_option(varargin,'overlap')
     overlapFactors = num2cell(get_option(varargin,'overlap'));
+        if ~isequal(size(overlapFactors), [1 2])
+        error('\nThe overlap must be a 1 x 2 array.');
+        return;
+    end
     [overlapFactor_Ro,overlapFactor_Col] = deal(overlapFactors{:});
     if overlapFactor_Col < 0.01 || overlapFactor_Col > 0.99  || overlapFactor_Ro < 0.01 || overlapFactor_Ro > 0.99
         error(sprintf('\nThe overlap value(s) must range between 0.01 and 0.99.'));
