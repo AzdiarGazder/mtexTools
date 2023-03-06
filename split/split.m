@@ -1,12 +1,12 @@
 function split(inebsd,varargin)
 %% Function description:
-% Splits an ebsd map into a matrix (with a user-specified number of rows
-% and columns) of submaps. Additional inputs include the ability to
-% overlap a length fraction along both, horizontal and vertical submap
-% directions. The submaps are returned to the main MATLAB workspace as 
-% individual ebsd variables. The location of each sub-map is denoted by the
-% row and column number. For example: ebsd23 = sub-map from row 2, column 3
-% of the ebsd map.
+% Splits or sub-divides an ebsd map into a regular, rectangular matrix of 
+% submaps with a user-specified number of rows and columns. Additional 
+% inputs include the ability to overlap a length fraction along both, 
+% horizontal and vertical submap directions. The submaps are returned to 
+% the main MATLAB workspace as individual ebsd variables. The location of 
+% each sub-map is denoted by the row and column number. 
+% For example: ebsd23 = sub-map from row 2, column 3 of the ebsd map.
 %
 %% Note to users:
 % Gridify the sub-map variables before saving sub-maps as a *.ctf file.
