@@ -7,7 +7,8 @@ Visitors to this site may download and implement the entire library or may downl
 If this software contributes in any way to published works, acknowledgements adn citations are always welcome. 
 
 If you found some of these scripts and tools useful, please consider citing the following reference:
-A.A. Gazder, mtexTools: A collated library of addtional MTEX functions and their demonstration scripts, Github, accessed Date-Month-Year, <https://github.com/AzdiarGazder/mtexTools>.
+
+**A.A. Gazder, mtexTools: A collated library of addtional MTEX functions and their demonstration scripts, Github, accessed Date-Month-Year, <https://github.com/AzdiarGazder/mtexTools>.**
 
 
 ## A
