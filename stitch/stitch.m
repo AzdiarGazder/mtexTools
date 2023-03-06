@@ -39,17 +39,15 @@ if any(strcmpi(varargin,'north')) ||...
         any(strcmpi(varargin,'northwest')) ||...
         any(strcmpi(varargin,'southwest'))
 
-    %     figure
-    %     plot(inebsd1,inebsd1.bc);
-    %     figure
-    %     plot(inebsd2,inebsd2.bc);
-
+    % find the map bounds
     bounds1 = inebsd1.extend; % [xmin, xmax, ymin, ymax]
     bounds2 = inebsd2.extend; % [xmin, xmax, ymin, ymax]
 
+    % find the map origin
     xMapDir = getMTEXpref('xAxisDirection');
     zMapDir = getMTEXpref('zAxisDirection');
 
+    %% Define map2's bounds with respect to the map origin and user-specified offset/overlay
     if strcmpi(xMapDir,'north') && strcmpi(zMapDir,'intoPlane')
         warning(sprintf('\nMap 1 origin = south-west corner.\n+ve x-values = moves map 2 left relative to map 1.\n+ve y-values = moves map 2 down relative to map 1.'));
 
