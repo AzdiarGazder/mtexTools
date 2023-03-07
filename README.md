@@ -8,7 +8,7 @@ This [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) webpage is a col
 ---
 
 ## How to use [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
-Visitors to this webpage may download and implement the entire library or may download individual scripts related to specific tools. Please report any issues with the scripts or webpage to the author using the discussion section or directly via email (for a valid email address, please replace the word "dots" with periods).
+Visitors to this webpage may download and implement the entire library or individual scripts related to specific tools. Please report any issues with the scripts or webpage to the author using the discussion section or directly via email (for a valid email address, please replace the word "dots" with periods).
 
 ---
 
