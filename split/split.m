@@ -226,8 +226,10 @@ end
 
 
 %% Loop over the map to split it into the user specified matrix
-for ii = 1:length(submap_yyTop)
-    for jj = 1:length(submap_xxLeft)
+iiMax = length(submap_yyTop);
+jjMax = length(submap_xxLeft);
+for ii = 1:iiMax
+    for jj = 1:jjMax
         
         xx = [submap_xxLeft(jj); submap_xxRight(jj)].*stepSize;
         yy = [submap_yyTop(ii); submap_yyBottom(ii)].*stepSize;
@@ -241,15 +243,20 @@ for ii = 1:length(submap_yyTop)
         % un-gridify the split ebsd map data
         outebsd = EBSD(temp_outebsd);
 
-        % define a variable name
+        % define a split map variable name
         if numberOrder  %numberOrder == 1
             variableName_subMap = ['ebsd',num2str(ii,'%1.0f'),num2str(jj,'%1.0f')];
         else  %numberOrder == 0
             variableName_subMap = ['ebsd',num2str(jj,'%1.0f'),num2str(ii,'%1.0f')];
         end
+        
         % assign the split map variable (and data) to the base MATLAB
         % workspace
         assignin('base',variableName_subMap,outebsd);
+        
+        % update progress
+        progress(((ii-1)*jjMax)+jj,(iiMax*jjMax));
+        pause(0.0001);
     end
 end
 %%
