@@ -15,7 +15,7 @@ function outObj = recolor(inObj,varargin)
 % Dr. Frank Niessen to include recoloring of ebsd or grains variables.
 %
 %% Version(s):
-% The first version of this function was originally posted in:
+% The first version of this function was posted in:
 % https://github.com/ORTools4MTEX/ORTools/blob/develop/src/recolorPhases.m
 %
 %% Syntax:
