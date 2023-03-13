@@ -43,6 +43,8 @@ Visitors to this webpage may download and implement the entire library or indivi
 ## R
 - [**recolor**](https://github.com/AzdiarGazder/mtexTools/tree/main/recolor): Recolor phases using the ebsd or grains variables interactively via a GUI or via scripting.
 
+- [**rename**](https://github.com/AzdiarGazder/mtexTools/tree/main/rename): Rename phases using the ebsd or grains variables interactively via a GUI or via scripting.
+
 
 
 ## S
