@@ -62,7 +62,7 @@ if numInput == 0 % the interactive GUI option to recolor phases
         try
             cRGB = uisetcolor([outObj.CSList{ii}.color],promptString); % show the selected color
             if cRGB == 0 % if the "Cancel" or "Close" buttons are clicked
-                warning('Keeping previous phase color(s).');
+                warning('Keeping original phase color(s).');
                 return;
             else % recolor the phase
                 outObj.CSList{ii}.color = cRGB;
@@ -99,7 +99,7 @@ elseif numInput == 1 % the cell array option to recolor phases
 
     fprintf('Recoloring phases:\n');
     for ii = 2:numPhases % note: the first "phase" comprises unindexed pixels
-        if logicalCellArray(ii-1)
+        if logicalCellArray(ii-1) &&  ~isequal(cRGB(ii-1,:),NaN(1,3))
             fprintf('    - ''%s''\n',phaseName(ii,:))
             outObj.CSList{ii}.color = cRGB(ii-1,:);
         end
