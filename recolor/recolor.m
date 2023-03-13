@@ -19,8 +19,8 @@ function outObj = recolor(inObj,varargin)
 % https://github.com/ORTools4MTEX/ORTools/blob/develop/src/recolorPhases.m
 %
 %% Syntax:
-%  ebsd   = recolorPhases(ebsd,varargin)
-%  grains = recolorPhases(grains,varargin)
+%  ebsd   = recolor(ebsd,varargin)
+%  grains = recolor(grains,varargin)
 %
 %% Input:
 %  ebsd             - @EBSD
