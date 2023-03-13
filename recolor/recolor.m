@@ -1,6 +1,6 @@
 function outObj = recolor(inObj,varargin)
 %% Function description:
-% Re-color phases using the ebsd or grains variables interactively via a 
+% Recolor phases using the ebsd or grains variables interactively via a 
 % GUI or via scripting.
 %
 %% Note to users:
