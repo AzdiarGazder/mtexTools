@@ -26,17 +26,18 @@ function outObj = rename(inObj,varargin)
 %  grains           - @grains
 %
 %% Options:
-% {'newName1','newName2',...} - @cell containing @char arrays of the phase
-%                               name(s). The number of @char arrays in the 
-%                               cell must match the number of phases in a 
-%                               map. Use an empty char array to leave phase
-%                               names as-is.
-%  'oldName','newName'        - @char of the old phase name and a @char
-%                               array of the new phase name.
-%  ebsd.CSList{},'newName'    - @crystalSymmetry for the phase and
-%                               a @char of the new phase name.
-%  CS{},'newName'             - @crystalSymmetry for the phase and a @char
-%                               of the new phase name.
+% {'newName1','','newName3',...}  - @cell containing @char arrays of the 
+%                                   phase name(s). The number of @char 
+%                                   arrays in the cell must match the 
+%                                   number of phases in a map. Use an 
+%                                   empty char array to leave phase names
+%                                   as-is.
+%  'oldName','newName'            - @char of the old phase name and a @char
+%                                   array of the new phase name.
+%  ebsd.CSList{},'newName'        - @crystalSymmetry for the phase and
+%                                   a @char of the new phase name.
+%  CS{},'newName'                 - @crystalSymmetry for the phase and a 
+%                                   @char of the new phase name.
 %%
 
 outObj = inObj;
