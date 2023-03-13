@@ -38,8 +38,10 @@ plot(ebsd)
 % ebsd = recolor(ebsd); 
 
 % % recolor phases using a cell array
-ebsd = recolor(ebsd,{[0.65 0.25 0.55],[0.8 0.9 1],[],[],[0.6 0 0.3],[],[],[]});
+ebsd = recolor(grains,{[0.65 0.25 0.55],[0.8 0.9 1],[],[],[0.6 0 0.3],[],[],[]});
 % ebsd = recolor(ebsd,num2cell(colormap(jet(8)),2)');
+% grains = calcGrains(ebsd,'angle',10*degree);
+% grains = recolor(grains,{[0.65 0.25 0.55],[0.8 0.9 1],[],[],[0.6 0 0.3],[],[],[]});
 
 % % recolor phases using phase names
 % ebsd = recolor(ebsd,'zircon',[0 0.5 0.5],'anorthite',[0.75 0.15 0.35]);
