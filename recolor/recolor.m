@@ -37,7 +37,7 @@ function outObj = recolor(inObj,varargin)
 %  ebsd.CSList{},[R G B]     -  @crystalSymmetry for the phase and 
 %                               a 1 x 3 double array for the phase color.
 %  CS{},[R G B]              -  @crystalSymmetry for the phase and
-%                               a 1 x 3 array for the phase color.
+%                               a 1 x 3 double array for the phase color.
 %%
 
 outObj = inObj;
