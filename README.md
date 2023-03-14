@@ -17,7 +17,7 @@ The recommended method, which helps keep functions and scripts up-to-date, is as
 4. In the **"Local path"** dialog, specify a subfolder within your Matlab work path (usually "C:\Users\userName\Documents\MATLAB\GitHub" (without quotes)).
 5. Click **"Clone"**. All files in this repository will then be available within the subfolder "C:\Users\userName\Documents\MATLAB\GitHub\MtexTools".
 6. Add the subfolder (and its subfolders) in pt. 5 to your Matlab work path and all functions should be available for use when Matlab is restarted.
-7. Remember to return to the GitHub Desktop weekly/monthly and click on **"Fetch origin"** to pull any updates/edits/changes from the repository to your local subfolder. 
+7. Remember to return to the GitHub Desktop on a weekly/monthly basis and click on **"Fetch origin"** to pull any updates/edits/changes from the repository to your local subfolder. 
 
 ---
 
