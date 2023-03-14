@@ -45,7 +45,7 @@ Visitors to this webpage may download and implement the entire library or indivi
 
 ## O
 
-- [**orientationMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/orientationMaker): Creates an ideal crystallographic orientation with a user specified half-width and exports the data as a VPSC file for later use.
+- [**orientationMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/orientationMaker): Creates an ideal crystallographic orientation from a unimodal ODF with a user specified half-width and exports the data as a VPSC file for later use.
 
 
 
