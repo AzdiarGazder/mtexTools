@@ -5,4 +5,4 @@ close all; clc; clear all; clear hidden;
 startup_mtex;
 setMTEXpref('FontSize',14);
 set(0,'DefaultFigureWindowStyle','normal');
-setLabels2Latex;
+setInterp2Latex;
