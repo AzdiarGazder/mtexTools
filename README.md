@@ -57,7 +57,7 @@ Visitors to this webpage may download and implement the entire library or indivi
 
 
 ## S
-- [**saveImage**](https://github.com/AzdiarGazder/mtexTools/tree/main/saveImage): Saves all open figures that are located either in separate GUI windows or grouped togther in tabs. The user inputs a file name and the program automatically adds the suffix _XX comprising the figure number while saving the various figure(s). 
+- [**saveImage**](https://github.com/AzdiarGazder/mtexTools/tree/main/saveImage): Saves all open figures that are located either in separate GUI windows or grouped togther in tabs. The user inputs a file name and the program automatically adds a suffix comprising an underscore symbol and the figure number while saving the various figure(s). 
 
 
 - [**setInterp2Latex**](https://github.com/AzdiarGazder/mtexTools/tree/main/setInterp2Latex): Changes all MATLAB text interpreters from 'tex' to 'latex' in all subsequent figures, plots, and graphs.
