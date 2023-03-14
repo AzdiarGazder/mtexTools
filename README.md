@@ -40,7 +40,7 @@ Visitors to this webpage may download and implement the entire library or indivi
 
 
 ## F
-- [**fibreMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/fibreMaker): Creates an ideal crystallographic fibre ODF with a user specified half-width and exports the data as a VPSC file for later use.
+- [**fibreMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/fibreMaker): Creates an ideal crystallographic fibre with a user specified half-width and exports the data as a VPSC file for later use.
 
 
 ## O
