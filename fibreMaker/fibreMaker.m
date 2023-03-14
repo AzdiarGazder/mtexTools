@@ -1,6 +1,6 @@
 function fibreMaker(crystalDirection,sampleDirection,sampleSymmetry,varargin)
 %% Function description:
-% Creates an ideal crystallographic fibre ODF with a user specified 
+% Creates an ideal crystallographic fibre with a user specified 
 % half-width and exports the data as a VPSC file for later use.
 %
 %% Author:
