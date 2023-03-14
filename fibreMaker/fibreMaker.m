@@ -15,8 +15,9 @@ function fibreMaker(crystalDirection,sampleDirection,sampleSymmetry,varargin)
 %
 %% Input:
 %  crystalDirection     - @Miller
-%  specimenDirection    - @vector3d
-%
+%  sampleDirection      - @vector3d
+%  sampleSymmetry       - @specimenSymmetry
+%  
 %% Options:
 %  halfwidth    - halfwidth for the ODF calculation
 %  points       - number of points (discrete orientations) in the VPSC file
