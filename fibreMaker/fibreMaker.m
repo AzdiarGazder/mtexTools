@@ -6,6 +6,9 @@ function fibreMaker(crystalDirection,sampleDirection,sampleSymmetry,varargin)
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
 %
+%% Modified by:
+% Dr. Frank Niessen to include varargin.
+%      
 %% Version(s):
 % The first version of this function was posted in:
 % https://github.com/ORTools4MTEX/ORTools/blob/develop/fibreMaker.m
