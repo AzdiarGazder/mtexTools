@@ -1,9 +1,9 @@
 # [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
-[**MTEX**](https://mtex-toolbox.github.io/) is a free-to-download Matlab toolbox for analysing electron back-scattering diffraction (EBSD) map data. The toolbox is used by researchers from around the world who are interested in script-based microstructure and crystallographic analyses.
+[**MTEX**](https://mtex-toolbox.github.io/) is a free-to-download **Matlab**(https://au.mathworks.com/products/matlab.html) toolbox for analysing electron back-scattering diffraction (EBSD) map data. The toolbox is used by researchers from around the world who are interested in script-based microstructure and crystallographic analyses.
 
 MTEX is fully capable of interrogating, processing, and manipulating EBSD map data obtained in several configurations from different OEM vendors. Perhaps its single most powerful attribute is that the toolbox itself is fully scriptable. This allows users to develop scripts (or codes or programs) to add functionality where needed. It enables a fully customisable analytical experience and unlike commercial OEM software suites, provides for an ever-evolving library of niche capabilities.
 
-This [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) webpage is a collated library of additional MTEX functions and their demonstration scripts. The functions are directly incorporated into the latest version of MTEX and can be seamlessly and readily used without modification. 
+This [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) webpage is a collated library of additional MTEX functions and their demonstration scripts. Some are original scripts by the author whereas others are modifications gleaned from various sources with increased/improved general functionality. In the latter case, attributions to the original author have been stated within the acknowledgements section of the script. Regardles of their antecedent(s), all functions in this library are directly incorporated into the latest version of MTEX and can be seamlessly and readily used without modification. 
 
 ---
 
