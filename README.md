@@ -11,7 +11,7 @@ This [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) webpage is a col
 Visitors to this webpage may download and implement the entire library or individual scripts related to specific tools. Please report any issues with the scripts or webpage to the author using the discussion section or directly via email (for a valid email address, please replace the word "dots" with periods).
 
 The recommended method, which helps keep functions and scripts up-to-date, is as follows: 
-1. Download and install the [**GitHub Desktop**][https://desktop.github.com/].
+1. Download and install the [**GitHub Desktop**](https://desktop.github.com/).
 2. Within the GitHub Desktop, click on Files -> Clone a repository -> URL
 3. In the "Repository URL or GitHub username and repository" dialog, type in "https://github.com/AzdiarGazder/mtexTools" (without quotes).
 4. In the "Local path" dialog, specify a subfolder within your Matlab work path (usually "C:\Users\userName\Documents\MATLAB\GitHub" (without quotes)).
