@@ -41,8 +41,38 @@ RD = xvector; TD = yvector; ND = zvector;
 
 
 %% UN-REMARK EACH SECTION AND RUN SEPARATELY
+% %-----------------
+% Example 1: Calculate the fcc beta fibre
+%
+% This fibre can be simplified as <110> directions tilted 60° from ND 
+% towards TD 
+%
+% step 2: Define a nominal fcc crystal system
+CS = crystalSymmetry('SpaceId', 225, [3.6 3.6 3.6], [90 90 90]*degree, 'mineral', 'copper');
+% step 3: Define a crystallographic direction
+cD = Miller({1,1,0},CS,'uvw');
+% step 4: Define a sample direction tilted 60° from ND towards TD
+rotN = rotation('Euler',90*degree,60*degree,0*degree);
+sD = rotN * ND;
+% step 5: Define the sample symmetry
+sS = specimenSymmetry('orthorhombic');
+% step 6: Call the fibreMaker function
+fibreMaker(cD,sD,sS,'halfwidth',2.5*degree,'points',1000,'export','fcc_beta.Tex')
+% step 7: Pre-define settings to plot the pole figure(s) & ODF of the fibre
+pfName = 'fcc_beta.Tex';
+hwidth = 2.5*degree;
+hpf = {Miller(1,1,1,CS),...
+  Miller(2,0,0,CS),...
+  Miller(2,2,0,CS)};
+pfColormap = colormap(hot);
+odfSections = [0 45 65]*degree;
+odfColormap = colormap(hot);
+% %-----------------
+
+
+
 % % %-----------------
-% % Example 1: Calculate the bcc {h 1 1} <1/h 1 2> fibre 
+% % Example 2: Calculate the bcc {h 1 1} <1/h 1 2> fibre 
 % %
 % % This fibre can be simplified as a nominal bcc alpha -fibre 
 % % whose <110> is tilted 20° from RD towards ND 
@@ -69,36 +99,6 @@ RD = xvector; TD = yvector; ND = zvector;
 % odfSections = [0 45 90]*degree;
 % odfColormap = colormap(jet);
 % % %-----------------
-
-
-
-% %-----------------
-% Example 2: Calculate the fcc beta fibre
-%
-% This fibre can be simplified as <110> directions tilted 60° from ND 
-% towards TD 
-%
-% step 2: Define a nominal fcc crystal system
-CS = crystalSymmetry('SpaceId', 225, [3.6 3.6 3.6], [90 90 90]*degree, 'mineral', 'copper');
-% step 3: Define a crystallographic direction
-cD = Miller({1,1,0},CS,'uvw');
-% step 4: Define a sample direction tilted 60° from ND towards TD
-rotN = rotation('Euler',90*degree,60*degree,0*degree);
-sD = rotN * ND;
-% step 5: Define the sample symmetry
-sS = specimenSymmetry('orthorhombic');
-% step 6: Call the fibreMaker function
-fibreMaker(cD,sD,sS,'halfwidth',2.5*degree,'points',1000,'export','fcc_beta.Tex')
-% step 7: Pre-define settings to plot the pole figure(s) & ODF of the fibre
-pfName = 'fcc_beta.Tex';
-hwidth = 2.5*degree;
-hpf = {Miller(1,1,1,CS),...
-  Miller(2,0,0,CS),...
-  Miller(2,2,0,CS)};
-pfColormap = colormap(hot);
-odfSections = [0 45 65]*degree;
-odfColormap = colormap(hot);
-% %-----------------
 %%
 
 
