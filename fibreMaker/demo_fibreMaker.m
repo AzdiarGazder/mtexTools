@@ -27,7 +27,7 @@ startup_mtex
 
 
 % List of common fibres for hcp materials:
-% % <0 0 0 1>         -fibre = <0 0 0 1> || ND
+% % <0 0 0 1>         -fibre = <0 0 0 1>  || ND
 % % <1 1 -2 0>        -fibre = <1 1 -2 0> || RD
 % % <1 0 -1 0>        -fibre = <1 0 -1 0> || ND
 % % hkil              -fibre = <0 0 0 1> tilted 20° from ND towards RD
@@ -78,11 +78,11 @@ RD = xvector; TD = yvector; ND = zvector;
 % This fibre can be simplified as <110> directions tilted 60° from ND 
 % towards TD 
 %
-% step 1: Define a nominal fcc crystal system
+% step 2: Define a nominal fcc crystal system
 CS = crystalSymmetry('SpaceId', 225, [3.6 3.6 3.6], [90 90 90]*degree, 'mineral', 'copper');
-% step 2: Define a crystallographic direction
+% step 3: Define a crystallographic direction
 cD = Miller({1,1,0},CS,'uvw');
-% step 3: Define a sample direction tilted 60° from ND towards TD
+% step 4: Define a sample direction tilted 60° from ND towards TD
 rotN = rotation('Euler',90*degree,60*degree,0*degree);
 sD = rotN * ND;
 % step 5: Define the sample symmetry
