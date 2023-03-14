@@ -3,7 +3,7 @@ startup_mtex
 
 %% -----------------
 % NOTES TO USERS
-%% Common ideal orientations for fcc materials
+% % Common ideal orientations for fcc materials:
 % % Cube (C):              phi1 = 45; PHI = 0;  phi2 = 45;
 % % Cube-RD (C_RD):        phi1 = 22; PHI = 0;  phi2 = 0;
 % % Cube-ND (C_ND):        phi1 = 0;  PHI = 22; phi2 = 0;
@@ -23,7 +23,7 @@ startup_mtex
 % % E:                     phi1 = 0;  PHI = 55; phi2 = 45;
 
 
-%% Common ideal orientations for bcc materials
+% % Common ideal orientations for bcc materials:
 % % (0 0 1)[1-1 0]:        phi1 = 0;  PHI = 0;  phi2 = 45;
 % % (1 1 4)[1-1 0]:        phi1 = 0;  PHI = 19; phi2 = 45;
 % % (1 1 2)[1-1 0]:        phi1 = 0;  PHI = 35; phi2 = 45;
