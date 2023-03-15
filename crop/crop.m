@@ -81,43 +81,31 @@ lineStyle = get_option(varargin,'lineStyle','-');
 [gebsd,~] = gridify(inebsd);
 
 
-% % plot an image quality or band contrast map
-% mtexFig = newMtexFigure;
-% if size(inebsd.unitCell,1) == 6 %hexGrid
-%     if ~exist('inebsd.prop.iq','var') || isempty(inebsd.prop.iq)
-%         plot(gebsd,gebsd.imagequality)
-%     else
-%         plot(gebsd,gebsd.iq)
-%     end
-%
-% else %squareGrid
-%     plot(gebsd,gebsd.bc)
-% end
-% colormap parula
-
-
-
 % create a new user-defined plot
 mtexFig = newMtexFigure;
 
-if nargin>1 && isa(varargin{1},'logical')
+if nargin>=1 && isa(varargin{1},'logical')
 %     disp('logical');
     varargin{1} = double(varargin{1});
 end
 
-if nargin>1 && isa(varargin{1},'orientation')
+if nargin>=1 && isa(varargin{1},'orientation')
 %     disp('orientation');
     plot(gebsd,gebsd.orientations);
 
-elseif nargin>1 && isa(varargin{1},'crystalShape')
+elseif nargin>=1 && isa(varargin{1},'crystalShape')
 %     disp('crystalShape');
     cS = varargin{1};
     plot(gebsd.prop.x,gebsd.prop.y,zUpDown * cS.diameter,gebsd.orientations * cS,varargin{2:end});
 
-elseif nargin>1 && isnumeric(varargin{1})
+elseif nargin>=1 && isnumeric(varargin{1})
 %     disp('numeric');
     % when map data input only contains information on 'indexed' pixels
+    if exist('gebsd.prop.oldId','var')
     idxMatrix = reshape(gebsd.prop.oldId',[],1); % reshape indices row-wise into a single column array 
+    else
+        idxMatrix = reshape(gebsd.prop.grainId',[],1); % reshape indices row-wise into a single column array
+    end
     gebsdProperty = nan(size(idxMatrix)); % define an array of NaNs
     gebsdProperty(~isnan(idxMatrix)) = varargin{1}; % replace numeric values into the NaN array
     gebsdProperty = reshape(gebsdProperty,size(gebsd,2),size(gebsd,1)).'; % reshape NaN-numeric array row-wise
