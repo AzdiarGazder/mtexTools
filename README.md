@@ -55,12 +55,11 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 ## L
-- [**lineProfile**](https://github.com/AzdiarGazder/mtexTools/tree/main/lineProfile): Interactively plots a EBSD map property line profile along a user specified linear fiducial.
+- [**lineProfile**](https://github.com/AzdiarGazder/mtexTools/tree/main/lineProfile): Interactively plots a EBSD map property (numeric, logical, or misorientation) line profile along a user specified linear fiducial.
 
 
 
 ## O
-
 - [**orientationMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/orientationMaker): Creates an ideal crystallographic orientation from a unimodal ODF with a user specified half-width and exports the data as a VPSC file for later use.
 
 
