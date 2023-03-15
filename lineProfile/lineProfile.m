@@ -1,17 +1,21 @@
 function lineProfile(inebsd,varargin)
 %% Function description:
-% Interactively plots a EBSD map property line profile along a user
-% specified linear fiducial.
+% Interactively plots a EBSD map property (numeric, logical, or
+% misorientation) line profile along a user specified linear fiducial.
 % Instructions on script use are provided in the window titlebar.
 %
 %% Note to users:
-% Currently does not work for hexagonal grids. Function use is restricted 
+% Currently does not work for hexagonal grids. Function use is restricted
 % to square grids only.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
 %
-%% Syntax
+%% Version(s):
+% A version describing this functionality was posted in:
+% https://mtex-toolbox.github.io/EBSDProfile.html
+%
+%% Syntax:
 %  plotprofile(ebsd,varargin)
 %
 %% Input:
@@ -39,7 +43,6 @@ lineStyle = get_option(varargin,'lineStyle','-');
 % Nan pixels.
 % It is recommended to use the modified "gridify2.m" instead.
 [gebsd,~] = gridify2(inebsd);
-% assignin('base','gebsd',gebsd);
 
 % create a new user-defined plot
 figure(1);
@@ -62,8 +65,8 @@ elseif nargin>=1 && isnumeric(varargin{1})
         dataType = 'numeric';
     end
     % when map data input only contains information on 'indexed' pixels
-        if exist('gebsd.prop.oldId','var')
-    idxMatrix = reshape(gebsd.prop.oldId',[],1); % reshape indices row-wise into a single column array 
+    if exist('gebsd.prop.oldId','var')
+        idxMatrix = reshape(gebsd.prop.oldId',[],1); % reshape indices row-wise into a single column array
     else
         idxMatrix = reshape(gebsd.prop.grainId',[],1); % reshape indices row-wise into a single column array
     end
@@ -135,15 +138,13 @@ while true
         end
 
 
-        % plot the fiducial line
+        % plot the fiducial decribing the line profile
         line(xy(:,1),xy(:,2),'color',[lineColor 0.5],'linewidth',lineWidth,'linestyle',lineStyle);
-        hold all
 
         % get ebsd data along the line profile
         [ebsdLine,distLine] = spatialProfile(gebsd,[xy(:,1),xy(:,2)]);
-        %         assignin('base','ebsdL',ebsdLine);
-        figure(2);
 
+        % plot the profiles based on the map data type
         switch dataType
             case {'logical','numeric'}
                 gebsdProp = reshape(gebsdProperty',[],1);
@@ -153,6 +154,7 @@ while true
                 gebsdPropLine = gebsdProp(idx);
 
                 % plot the property gradient
+                figure(2);
                 plot(distLine,gebsdPropLine,...
                     '-o','MarkerSize',5,'MarkerFaceColor',[1 0 0],'MarkerEdgeColor',[0 0 0],...
                     'color',[1 0 0],'linewidth',1.5);
@@ -167,7 +169,22 @@ while true
                 ylabel('EBSD map property')
 
             case 'orientation'
+                % % define the window settings for a set of docked figures
+                % % Ref: https://au.mathworks.com/matlabcentral/answers/157355-grouping-figures-separately-into-windows-and-tabs
+                warning off
+                desktop = com.mathworks.mde.desk.MLDesktop.getInstance;
+                % % Define a unique group name for the dock using the function name
+                % % and the system timestamp
+                dockGroupName = ['lineProfile_',char(datetime('now','Format','yyyyMMdd_HHmmSS'))];
+                desktop.setGroupDocked(dockGroupName,0);
+                bakWarn = warning('off','MATLAB:HandleGraphics:ObsoletedProperty:JavaFrame');
+
                 % plot the misorientation gradient
+                drawnow;
+                figH = gobjects(1);
+                figH = figure('WindowStyle','docked');
+                set(get(handle(figH),'javaframe'),'GroupName',dockGroupName);
+                drawnow;
                 plot(0.5*(distLine(1:end-1)+distLine(2:end)),...
                     angle(ebsdLine(1:end-1).orientations,ebsdLine(2:end).orientations)/degree,...
                     '-o','MarkerSize',5,'MarkerFaceColor',[1 0 0],'MarkerEdgeColor',[0 0 0],...
@@ -188,6 +205,22 @@ while true
                 xlabel('Distance [um]');
                 ylabel('Misorientation angle [º]')
                 legend('gradient','wrt 1st pt.')
+                drawnow;
+
+
+                drawnow;
+                figH = gobjects(1);
+                figH = figure('WindowStyle','docked');
+                set(get(handle(figH),'javaframe'),'GroupName',dockGroupName);
+                drawnow;
+                plotIPDF(ebsdLine.orientations,[xvector,yvector,zvector],...
+                    'property',distLine,'markersize',20,'antipodal')
+                cb = mtexColorbar(parula);
+                ylabel(cb,'Distance [um]','FontSize',14);
+                cbh = get( ancestor(handle,'axes'), 'Colorbar');
+                cbh.Label.Position(1) = 3;
+                drawnow;
+
         end
         % Place first figure on top and return
         allfigh = findall(0,'type','figure');
