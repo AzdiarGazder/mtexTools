@@ -5,8 +5,8 @@ function lineProfile(inebsd,varargin)
 % Instructions on script use are provided in the window titlebar.
 %
 %% Note to users:
-% Currently does not work for hexagonal grids. Function use is restricted
-% to square grids only.
+% Function use is currently restricted to single phase, square grid maps 
+% only.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
@@ -217,18 +217,18 @@ while true
                     'property',distLine,'markersize',20,'antipodal')
                 cb = mtexColorbar(parula);
                 ylabel(cb,'Distance [um]','FontSize',14);
-                cbh = get( ancestor(handle,'axes'), 'Colorbar');
+                cbh = get(gca,'Colorbar');
                 cbh.Label.Position(1) = 3;
                 drawnow;
 
         end
-        % Place first figure on top and return
-        allfigh = findall(0,'type','figure');
-        if length(allfigh) > 1
-            figure(length(allfigh)-1);
-        else
+        % place the first figure on top
+%         allfigh = findall(0,'type','figure')
+%         if length(allfigh) > 1
+%             figure(length(allfigh)-2);
+%         else
             figure(1);
-        end
+%         end
     end
 end
 
