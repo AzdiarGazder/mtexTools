@@ -1,6 +1,11 @@
 close all; clc; clear all; clear hidden;
 startup_mtex
 
+% ***** NOTE TO USER *****
+% Function use is currently restricted to single phase, square grid maps 
+% only.
+% *****
+
 % %-----------------
 % % hexGrid
 % % define the crystal system
