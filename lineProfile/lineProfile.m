@@ -4,9 +4,11 @@ function lineProfile(inebsd,varargin)
 % misorientation) line profile along a user specified linear fiducial.
 % Instructions on script use are provided in the window titlebar.
 %
-%% Note to users:
-% Function use is currently restricted to single phase, square grid maps 
-% only.
+%% Notes to users:
+% 1. This function is currently restricted to single phase maps only.
+% 2. MTex's function: "C:\mtex\EBSDAnalysis\@EBSD\spatialProfile.m"
+% cannot be used as it does not account for the type of ebsd variable 
+% introduced to it.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
@@ -38,11 +40,23 @@ lineWidth = get_option(varargin,'lineWidth',2);
 lineStyle = get_option(varargin,'lineStyle','-');
 
 
+% calculate the map step size
+xx = [inebsd.unitCell(:,1);inebsd.unitCell(1,1)]; % repeat the 1st x co-ordinate to close the unit pixel shape
+yy = [inebsd.unitCell(:,2);inebsd.unitCell(1,2)]; % repeat the 1st y co-ordinate to close the unit pixel shape
+unitPixelArea = polyarea(xx,yy);
+if size(inebsd.unitCell,1) == 6 % hexGrid
+    stepSize = sqrt(unitPixelArea/sind(60));
+else % squareGrid
+    stepSize = sqrt(unitPixelArea);
+end
+
+
 % grid ebsd map data
 % While MTex's default "gridify.m" can be used here, the command creates
 % Nan pixels.
 % It is recommended to use the modified "gridify2.m" instead.
 [gebsd,~] = gridify2(inebsd);
+% assignin('base','gebsd',gebsd);
 
 % create a new user-defined plot
 figure(1);
@@ -65,10 +79,31 @@ elseif nargin>=1 && isnumeric(varargin{1})
         dataType = 'numeric';
     end
     % when map data input only contains information on 'indexed' pixels
-    if exist('gebsd.prop.oldId','var')
-        idxMatrix = reshape(gebsd.prop.oldId',[],1); % reshape indices row-wise into a single column array
-    else
-        idxMatrix = reshape(gebsd.prop.grainId',[],1); % reshape indices row-wise into a single column array
+    % reshape indices row-wise into a single column array
+    if any(ismember(fields(gebsd.prop),'oldId'))
+        idxMatrix = reshape(gebsd.prop.oldId',[],1); 
+    elseif any(ismember(fields(gebsd.prop),'grainId'))
+        idxMatrix = reshape(gebsd.prop.grainId',[],1); 
+    elseif any(ismember(fields(gebsd.prop),'imagequality'))
+        idxMatrix = reshape(gebsd.prop.imagequality',[],1);
+    elseif any(ismember(fields(gebsd.prop),'iq'))
+        idxMatrix = reshape(gebsd.prop.iq',[],1);
+    elseif any(ismember(fields(gebsd.prop),'confidenceindex'))
+        idxMatrix = reshape(gebsd.prop.confidenceindex',[],1);
+    elseif any(ismember(fields(gebsd.prop),'ci'))
+        idxMatrix = reshape(gebsd.prop.ci',[],1);
+    elseif any(ismember(fields(gebsd.prop),'fit'))
+        idxMatrix = reshape(gebsd.prop.fit',[],1);
+    elseif any(ismember(fields(gebsd.prop),'semsignal'))
+        idxMatrix = reshape(gebsd.prop.semsignal',[],1);
+    elseif any(ismember(fields(gebsd.prop),'bc'))
+        idxMatrix = reshape(gebsd.prop.bc',[],1);
+    elseif any(ismember(fields(gebsd.prop),'bs'))
+        idxMatrix = reshape(gebsd.prop.bs',[],1);
+    elseif any(ismember(fields(gebsd.prop),'mad'))
+        idxMatrix = reshape(gebsd.prop.mad',[],1);
+    elseif any(ismember(fields(gebsd.prop),'error'))
+        idxMatrix = reshape(gebsd.prop.error',[],1);
     end
     gebsdProperty = nan(size(idxMatrix)); % define an array of NaNs
     gebsdProperty(~isnan(idxMatrix)) = varargin{1}; % replace numeric values into the NaN array
@@ -121,8 +156,8 @@ while true
             xy((xy(:,2)>=gebsd.opt.ymax),2) = gebsd.opt.ymax;
 
             % calculate the closest multiple of xy values based on the map step size
-            stepSizeX = gebsd.dx;
-            stepSizeY = gebsd.dy;
+            stepSizeX = stepSize;%gebsd.dx;
+            stepSizeY = stepSize;%gebsd.dy;
             xy(:,1) = stepSizeX.*round(xy(:,1)./stepSizeX);
             xy(:,2) = stepSizeY.*round(xy(:,2)./stepSizeY);
 
@@ -142,7 +177,7 @@ while true
         line(xy(:,1),xy(:,2),'color',[lineColor 0.5],'linewidth',lineWidth,'linestyle',lineStyle);
 
         % get ebsd data along the line profile
-        [ebsdLine,distLine] = spatialProfile(gebsd,[xy(:,1),xy(:,2)]);
+        [ebsdLine,distLine] = spatialProfile2(gebsd,[xy(:,1),xy(:,2)]);
 
         % plot the profiles based on the map data type
         switch dataType
