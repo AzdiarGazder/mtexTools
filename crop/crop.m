@@ -101,10 +101,31 @@ elseif nargin>=1 && isa(varargin{1},'crystalShape')
 elseif nargin>=1 && isnumeric(varargin{1})
 %     disp('numeric');
     % when map data input only contains information on 'indexed' pixels
-    if exist('gebsd.prop.oldId','var')
-    idxMatrix = reshape(gebsd.prop.oldId',[],1); % reshape indices row-wise into a single column array 
-    else
-        idxMatrix = reshape(gebsd.prop.grainId',[],1); % reshape indices row-wise into a single column array
+    % reshape indices row-wise into a single column array
+    if any(ismember(fields(gebsd.prop),'oldId'))
+        idxMatrix = reshape(gebsd.prop.oldId',[],1); 
+    elseif any(ismember(fields(gebsd.prop),'grainId'))
+        idxMatrix = reshape(gebsd.prop.grainId',[],1); 
+    elseif any(ismember(fields(gebsd.prop),'imagequality'))
+        idxMatrix = reshape(gebsd.prop.imagequality',[],1);
+    elseif any(ismember(fields(gebsd.prop),'iq'))
+        idxMatrix = reshape(gebsd.prop.iq',[],1);
+    elseif any(ismember(fields(gebsd.prop),'confidenceindex'))
+        idxMatrix = reshape(gebsd.prop.confidenceindex',[],1);
+    elseif any(ismember(fields(gebsd.prop),'ci'))
+        idxMatrix = reshape(gebsd.prop.ci',[],1);
+    elseif any(ismember(fields(gebsd.prop),'fit'))
+        idxMatrix = reshape(gebsd.prop.fit',[],1);
+    elseif any(ismember(fields(gebsd.prop),'semsignal'))
+        idxMatrix = reshape(gebsd.prop.semsignal',[],1);
+    elseif any(ismember(fields(gebsd.prop),'bc'))
+        idxMatrix = reshape(gebsd.prop.bc',[],1);
+    elseif any(ismember(fields(gebsd.prop),'bs'))
+        idxMatrix = reshape(gebsd.prop.bs',[],1);
+    elseif any(ismember(fields(gebsd.prop),'mad'))
+        idxMatrix = reshape(gebsd.prop.mad',[],1);
+    elseif any(ismember(fields(gebsd.prop),'error'))
+        idxMatrix = reshape(gebsd.prop.error',[],1);
     end
     gebsdProperty = nan(size(idxMatrix)); % define an array of NaNs
     gebsdProperty(~isnan(idxMatrix)) = varargin{1}; % replace numeric values into the NaN array
