@@ -40,6 +40,17 @@ if ~isa(inebsd,'EBSD')
     return;
 end
 
+% calculate the map step size
+xx = [inebsd.unitCell(:,1);inebsd.unitCell(1,1)]; % repeat the 1st x co-ordinate to close the unit pixel shape
+yy = [inebsd.unitCell(:,2);inebsd.unitCell(1,2)]; % repeat the 1st y co-ordinate to close the unit pixel shape
+unitPixelArea = polyarea(xx,yy);
+if size(inebsd.unitCell,1) == 6 % hexGrid
+    stepSize = sqrt(unitPixelArea/sind(60));
+else % squareGrid
+    stepSize = sqrt(unitPixelArea);
+end
+
+
 polySides = [];
 if ~isempty(varargin) && check_option(varargin,'rectangle')
     cropType = "rectangle";
@@ -194,8 +205,8 @@ if size(inebsd.unitCell,1) == 6 %hexGrid
     xy((xy(:,2)>=gebsd.opt.ymax),2) = gebsd.opt.ymax;
 
     % calculate the closest multiple of xy values based on the map step size
-    stepSizeX = gebsd.dx;
-    stepSizeY = gebsd.dy;
+    stepSizeX = stepSize; %gebsd.dx;
+    stepSizeY = stepSize; %gebsd.dy;
     xy(:,1) = stepSizeX.*round(xy(:,1)./stepSizeX);
     xy(:,2) = stepSizeY.*round(xy(:,2)./stepSizeY);
 
@@ -206,7 +217,7 @@ else %squareGrid
     xy((xy(:,2)>=gebsd.ymax),2) = gebsd.ymax;
 
     % calculate the closest multiple of xy values based on the map step size
-    stepSize = gebsd.dx;
+%     stepSize = gebsd.dx;
     xy = stepSize.*round(xy./stepSize);
 end
 
