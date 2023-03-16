@@ -1,7 +1,7 @@
 close all; clc; clear all; clear hidden;
 startup_mtex
 
-% ***** NOTE TO USER *****
+% ***** NOTE TO USERS *****
 % Function use is currently restricted to single phase, square grid maps 
 % only.
 % *****
