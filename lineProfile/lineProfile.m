@@ -1,6 +1,6 @@
 function lineProfile(inebsd,varargin)
 %% Function description:
-% Interactively plots a EBSD map property (numeric, logical, or
+% Interactively plots an EBSD map property (numeric, logical, or
 % misorientation) line profile along a user specified linear fiducial.
 % Instructions on script use are provided in the window titlebar.
 %
