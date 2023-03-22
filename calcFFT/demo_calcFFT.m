@@ -1,6 +1,7 @@
 close all; clc; clear all; clear hidden;
 startup_mtex
 
+%% UN-REMARK EACH SECTION BELOW AND RUN SEPARATELY
 %-----------------
 % hexGrid
 % define the crystal system
@@ -47,10 +48,12 @@ grainId = 176;
 % % select a grain of interest
 % grainId = 53;
 % %-----------------
+%%
 
 
-
-% complute the ffts of individual grains
+%% PLEASE DO NOT MODIFY BELOW THIS LINE 
+%-----------------
+% compute the ffts of individual grains
 grains = calcFFT(ebsd,grains);
 
 figure; % plot the grain map
