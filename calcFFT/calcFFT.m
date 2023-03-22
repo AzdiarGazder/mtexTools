@@ -1,7 +1,7 @@
 function outgrains = calcFFT(inebsd,ingrains)
 %% Function description:
 % Returns the Fast Fourier Transforms (FFTs) of individual grains.
-% The real and complex FFTs are returned in grided format within the 
+% The real and complex FFTs are returned in grid format within the 
 % 'grains.prop.fftReal' and 'grains.prop.fftComplex' structure variables.
 %
 %% Author:
