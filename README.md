@@ -38,7 +38,8 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 ## C
-- [**calcGrainsFFT**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcGrainsFFT): Returns the Fast Fourier Transforms (FFTs) of individual grains. The real and complex FFTs are returned in grid format within the 'grains.prop.fftReal' and 'grains.prop.fftComplex' structure variables.
+- [**calcGrainsFFT**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcGrainsFFT): Returns the Fast Fourier Transforms (FFTs) of individual grains. Unless
+specified otherwise, the FFTs are calculated after padding the binary grain map/image to its nearest square. The real and complex FFTs are returned in grid format within the 'grains.prop.fftReal' and 'grains.prop.fftComplex' structure variables.
 
 - [**crop**](https://github.com/AzdiarGazder/mtexTools/tree/main/crop): Crop, cut-out or make a subset of ebsd map data from within a user-specified rectangular, circular, polygonal or freehand area-based region of interest (ROI). Instructions on script use are provided in the window titlebar.
 
