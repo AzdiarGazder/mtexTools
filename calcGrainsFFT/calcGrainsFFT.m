@@ -24,12 +24,12 @@ function outgrains = calcFFT(inebsd,ingrains,varargin)
 %%
 
 
-% check for variable content
+% check for input variables contents
 if isempty(inebsd) || isempty(ingrains)
     return;
 end
 
-% check for variable type
+% check for input variable types
 if ~isa(inebsd,'EBSD')
     error('To create FFTs, first input must be an EBSD variable.');
     return;
@@ -43,7 +43,7 @@ end
 % check for padding of the binary grain map/image before FFT
 if ~isempty(varargin) && check_option(varargin,'noPad')
     padLogic = false;
-else
+elseif isempty(varargin) || (~isempty(varargin) && ~check_option(varargin,'noPad'))
     padLogic = true;
 end
 
@@ -109,12 +109,13 @@ for ii = 1:length(outgrains)
         else
             binaryImg = padarray(binaryImg, [0 (nrows-ncols)/2]);
         end
+        disp('fuck')
     end
 
     % fft of the greyscale grain (complex)
-    fftComplex = fftshift(fft2((binaryImg)));
+    fftComplex = fftshift(fft2(binaryImg));
 
-    % fft of the binarised grain (real)
+    % fft of the binarised grain (real, 2D power spectrum)
     binaryImg(binaryImg>0) =  1;
     fftReal = abs(log2(fftshift(fft2(binaryImg))));
 
