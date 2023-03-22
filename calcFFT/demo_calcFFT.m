@@ -55,6 +55,8 @@ grainId = 176;
 %-----------------
 % compute the ffts of individual grains
 grains = calcFFT(ebsd,grains);
+% grains = calcFFT(ebsd,grains,'noPad');
+
 
 figure; % plot the grain map
 plot(grains,grains.meanOrientation)
