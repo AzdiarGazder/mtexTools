@@ -109,7 +109,6 @@ for ii = 1:length(outgrains)
         else
             binaryImg = padarray(binaryImg, [0 (nrows-ncols)/2]);
         end
-        disp('fuck')
     end
 
     % fft of the greyscale grain (complex)
