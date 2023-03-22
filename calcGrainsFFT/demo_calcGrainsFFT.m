@@ -54,8 +54,8 @@ grainId = 176;
 %% PLEASE DO NOT MODIFY BELOW THIS LINE 
 %-----------------
 % compute the ffts of individual grains
-grains = calcGrainsFFT(ebsd,grains);
-% grains = calcFFT(ebsd,grains,'noPad');
+% grains = calcGrainsFFT(ebsd,grains);
+grains = calcGrainsFFT(ebsd,grains,'noPad');
 
 
 figure; % plot the grain map
