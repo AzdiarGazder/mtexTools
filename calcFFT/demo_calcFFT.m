@@ -50,7 +50,7 @@ grainId = 176;
 
 
 
-
+% complute the ffts of individual grains
 grains = calcFFT(ebsd,grains);
 
 figure; % plot the grain map
