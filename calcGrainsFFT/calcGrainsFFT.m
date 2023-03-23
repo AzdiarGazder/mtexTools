@@ -1,11 +1,11 @@
 function outgrains = calcFFT(inebsd,ingrains,varargin)
 %% Function description:
 % Returns the Fast Fourier Transforms (FFTs) of individual grains. Unless
-% specified otherwise, the FFTs are calculated after padding each binary
-% grain map/image to its nearest square.
-% The real (from binary data) and complex (from grayscale data) FFTs are 
-% returned in grid format within the 'grains.prop.fftReal' and 
-% 'grains.prop.fftComplex' structure variables.
+% specified otherwise, the FFTs are calculated after padding each 
+% grayscale/binary grain map to its nearest square. 
+% The FFTs from grayscale and binary data are returned in grid format 
+% within the 'grains.prop.fftGray' and 'grains.prop.fftBinary' structure 
+% variables.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
@@ -58,17 +58,17 @@ for ii = 1:length(outgrains)
 
     % create a grid of the grain
     if any(ismember(fields(ggrain.prop),'imagequality'))
-        binaryImg = ggrain.prop.imagequality;
+        grainImg = ggrain.prop.imagequality;
     elseif any(ismember(fields(ggrain.prop),'iq'))
-        binaryImg = ggrain.prop.iq;
+        grainImg = ggrain.prop.iq;
     elseif any(ismember(fields(ggrain.prop),'bandcontrast'))
-        binaryImg = ggrain.prop.bandcontrast;
+        grainImg = ggrain.prop.bandcontrast;
     elseif any(ismember(fields(ggrain.prop),'bc'))
-        binaryImg = ggrain.prop.bc;
+        grainImg = ggrain.prop.bc;
     elseif any(ismember(fields(ggrain.prop),'bandslope'))
-        binaryImg = ggrain.prop.bandslope;
+        grainImg = ggrain.prop.bandslope;
     elseif any(ismember(fields(ggrain.prop),'bs'))
-        binaryImg = ggrain.prop.bs;
+        grainImg = ggrain.prop.bs;
         %     elseif any(ismember(fields(ggrain.prop),'oldId'))
         %         binaryImg = ggrain.prop.oldId;
         %     elseif any(ismember(fields(ggrain.prop),'grainId'))
@@ -88,40 +88,42 @@ for ii = 1:length(outgrains)
     end
 
     % replace NaNs with zeros
-    binaryImg(isnan(binaryImg)) =  0;
+    % here the grainImg comprises the band contrast values surrounded by 0
+    grainImg(isnan(grainImg)) =  0;
 
     if padLogic == true
         % pad binary image to the nearest square
         % From https://au.mathworks.com/matlabcentral/answers/1853683-change-an-image-from-rectangular-to-square-by-adding-white-area
-        nrows = size(binaryImg,1);
-        ncols = size(binaryImg,2);
+        nrows = size(grainImg,1);
+        ncols = size(grainImg,2);
         d = abs(ncols-nrows);    % find the difference between ncols and nrows
         if(mod(d,2) == 1)        % if the difference is an odd number
             if (ncols > nrows)   % add a row at the end
-                binaryImg = [binaryImg; zeros(1, ncols)];
+                grainImg = [grainImg; zeros(1, ncols)];
                 nrows = nrows + 1;
             else                 % add a col at the end
-                binaryImg = [binaryImg zeros(nrows, 1)];
+                grainImg = [grainImg zeros(nrows, 1)];
                 ncols = ncols + 1;
             end
         end
         if ncols > nrows
-            binaryImg = padarray(binaryImg, [(ncols-nrows)/2 0]);
+            grainImg = padarray(grainImg, [(ncols-nrows)/2 0]);
         else
-            binaryImg = padarray(binaryImg, [0 (nrows-ncols)/2]);
+            grainImg = padarray(grainImg, [0 (nrows-ncols)/2]);
         end
     end
 
-    % fft of the greyscale grain (complex)
-    fftComplex = fftshift(fft2(binaryImg));
+    % fft of the greyscale data (2D power spectrum)
+    fftGray = abs(log2(fftshift(fft2(grainImg))));
 
-    % fft of the binarised grain (real, 2D power spectrum)
-    binaryImg(binaryImg>0) =  1;
-    fftReal = abs(log2(fftshift(fft2(binaryImg))));
+    % fft of the binarised data (2D power spectrum)
+    % here the grainImg comprises all band contrast values = 1 and surrounded by 0
+    grainImg(grainImg>0) =  1;
+    fftBinary = abs(log2(fftshift(fft2(grainImg))));
 
     % save the ffts to the grain variable
-    outgrains.prop.fftComplex{ii,1} = fftComplex;
-    outgrains.prop.fftReal{ii,1} = fftReal;
+    outgrains.prop.fftGray{ii,1} = fftGray;
+    outgrains.prop.fftBinary{ii,1} = fftBinary;
 
     % update progress
     progress(ii,length(outgrains));
