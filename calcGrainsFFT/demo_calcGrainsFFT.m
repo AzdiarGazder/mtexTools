@@ -54,8 +54,8 @@ grainId = 176;
 %% PLEASE DO NOT MODIFY BELOW THIS LINE 
 %-----------------
 % compute the ffts of individual grains
-% grains = calcGrainsFFT(ebsd,grains);
-grains = calcGrainsFFT(ebsd,grains,'noPad');
+grains = calcGrainsFFT(ebsd,grains);
+% grains = calcGrainsFFT(ebsd,grains,'noPad');
 
 
 figure; % plot the grain map
@@ -65,15 +65,15 @@ figure; % plot the grain of interest
 plot(grains(grainId),grains(grainId).meanOrientation)
 
 figure; % show the fft
-imagesc(grains.fftReal{grainId});
+imagesc(grains.fftBinary{grainId});
 axis tight
 
 % Applying a 2D Gaussian smoothing kernel to the FFT 
 % Note: the standard deviation is used here
-smooth_fftReal = imgaussfilt(grains.fftReal{grainId},...
-    std(reshape(grains.fftReal{grainId},[size(grains.fftReal{grainId},1)*size(grains.fftReal{grainId},2),1])),...
+smooth_fftBinary = imgaussfilt(grains.fftBinary{grainId},...
+    std(reshape(grains.fftBinary{grainId},[size(grains.fftBinary{grainId},1)*size(grains.fftBinary{grainId},2),1])),...
     'FilterDomain','spatial');
 figure; % show the smoothed fft
-imagesc(smooth_fftReal);
+imagesc(smooth_fftBinary);
 axis tight
 %-----------------
