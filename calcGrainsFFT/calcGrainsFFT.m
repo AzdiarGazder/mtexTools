@@ -91,9 +91,9 @@ for ii = 1:length(outgrains)
     % here the grainImg comprises the band contrast values surrounded by 0
     grainImg(isnan(grainImg)) =  0;
 
+    % pad binary image to the nearest square (unless specified otherwise)
+    % From https://au.mathworks.com/matlabcentral/answers/1853683-change-an-image-from-rectangular-to-square-by-adding-white-area
     if padLogic == true
-        % pad binary image to the nearest square
-        % From https://au.mathworks.com/matlabcentral/answers/1853683-change-an-image-from-rectangular-to-square-by-adding-white-area
         nrows = size(grainImg,1);
         ncols = size(grainImg,2);
         d = abs(ncols-nrows);    % find the difference between ncols and nrows
