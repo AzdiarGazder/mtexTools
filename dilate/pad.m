@@ -1,8 +1,8 @@
 function outMap = pad(inMap,padArray,varargin)
 %% Function description:
-% Pad a binary map with ones or zeros based on a user specified padding 
-% array. The padding array specifies the number of pixels to add on the top
-% & bottom and left & right sides of the input map.
+% Pads a binary map with ones or zeros based on a user specified [1 x 2] 
+% padding array. The padding array defines the number of pixels to add to 
+% the [(top & bottom) , (left & right)], respectively, of the input map.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
