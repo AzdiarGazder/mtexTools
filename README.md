@@ -68,7 +68,7 @@ specified otherwise, the FFTs are calculated after padding each grayscale/binary
 
 
 ## L
-- [**lineProfile**](https://github.com/AzdiarGazder/mtexTools/tree/main/lineProfile): Interactively plots an EBSD map property (numeric, logical, or misorientation) line profile along a user specified linear fiducial.
+- [**lineProfile**](https://github.com/AzdiarGazder/mtexTools/tree/main/lineProfile): Interactively plots an EBSD map property (numeric, logical, or misorientation) profile along a user specified line or linear fiducial.
 
 
 
