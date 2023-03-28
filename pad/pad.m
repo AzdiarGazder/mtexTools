@@ -20,11 +20,15 @@ function outMap = pad(inMap,padArray,varargin)
 %
 %% Output:
 %  outMap         - @logical
+%
+%% Options:
+%  'ones'  or
+%  'zeros'        -  @char, specifies what to pad binary map with
 %%
 
 % check for map padding array size
 if ~isequal(size(padArray), [1 2])
-    error('Padding is defined as a 1 x 2 array.');
+    error('Pixels to pad the map is defined with a [1 x 2] numeric array.');
     return;
 end
 padRows = padArray(1,1);
