@@ -32,8 +32,13 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 ---
 ## Alphabetical list of scripts in the [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) library
 
+
+
 ## A
 - [**align**](https://github.com/AzdiarGazder/mtexTools/tree/main/align): Align ebsd map data along a user-specified linear fiducial in case of drift caused by the thermal cycling of scanning coil electronics during acquisition. The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products. Instructions on script use are provided in the window titlebar.
+
+
+- [**autpPad**](https://github.com/AzdiarGazder/mtexTools/tree/main/autoPad): Automatically pads a binary map with ones or zeros to prevent map data from getting clipped during subsequent map rotation. 
 
 
 
