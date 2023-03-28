@@ -45,8 +45,8 @@ ebsd(grains(grains.grainSize < 5)) = [];
 [grains,ebsd.grainId] = calcGrains(ebsd,'angle',2*degree);
 % smooth the grain boundaries
 grains = smooth(grains,5);
-% select a grain of interest
-grainId = 53;
+% select a grain(s) of interest
+grainId = [53, 44, 40];
 %-----------------
 %%
 
@@ -68,6 +68,4 @@ ebsd1 = dilate(ebsd,grains(grainId));
 figure; % plot the grain of interest
 plot(ebsd1,ebsd1.orientations)
 %-----------------
-
-
 
