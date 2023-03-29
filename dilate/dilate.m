@@ -1,7 +1,7 @@
 function outebsd = dilate(inebsd,ingrain)
 %% Function description:
-% Dilates the ebsd data surrounding individual grains of interest by one
-% pixel.
+% Dilates the ebsd data surrounding individual, multiple contiguous or 
+% multiple discrete grains of interest by one pixel.
 %
 %% Note to users:
 % Requires the pad.m function to run.
