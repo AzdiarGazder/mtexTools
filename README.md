@@ -38,9 +38,6 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 - [**align**](https://github.com/AzdiarGazder/mtexTools/tree/main/align): Align ebsd map data along a user-specified linear fiducial in case of drift caused by the thermal cycling of scanning coil electronics during acquisition. The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products. Instructions on script use are provided in the window titlebar.
 
 
-- [**autoPad**](https://github.com/AzdiarGazder/mtexTools/tree/main/autoPad): Automatically pads a binary map with ones or zeros to prevent map data from getting clipped during subsequent map rotation. 
-
-
 
 ## C
 - [**calcGrainsFFT**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcGrainsFFT): Returns the Fast Fourier Transforms (FFTs) of individual grains. Unless
@@ -83,7 +80,7 @@ specified otherwise, the FFTs are calculated after padding each grayscale/binary
 
 
 ## P
-- [**pad**](https://github.com/AzdiarGazder/mtexTools/tree/main/pad): Pads a binary map with ones or zeros based on a user specified [1 x 2] padding array. The padding array defines the number of pixels to add to the [(top & bottom) , (left & right)], respectively, of the input map.
+- [**pad**](https://github.com/AzdiarGazder/mtexTools/tree/main/pad): Pads a binary map with ones or zeros. Options include: (i) Padding to a size based on a user specified [1 x 2] padding array. The padding array defines the number of rows and columns to add to the [(top & bottom) , (left & right)], respectively, of the input map. (ii) Paddding to the nearest square. (iii) Padding automatcially to a size that prevents map data from getting clipped during subsequent map rotation.
 
 
 
