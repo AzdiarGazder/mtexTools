@@ -20,8 +20,10 @@ startup_mtex
 % [grains,ebsd.grainId] = calcGrains(ebsd,'angle',2*degree);
 % % smooth the grain boundaries
 % grains = smooth(grains,5);
-% % select a grain of interest
-% grainId = 176;
+% % select one or multiple grain(s) of interest
+% % grainId = 176; % CASE 1: for one grain
+% % grainId = [139, 71, 98]; % CASE 2: for multiple contiguous grains
+% grainId = [168, 208, 24]; % CASE 3: for multiple discrete grains
 % %-----------------
 
 
@@ -45,8 +47,10 @@ ebsd(grains(grains.grainSize < 5)) = [];
 [grains,ebsd.grainId] = calcGrains(ebsd,'angle',2*degree);
 % smooth the grain boundaries
 grains = smooth(grains,5);
-% select a grain(s) of interest
-grainId = [53, 44, 40];
+% select one or multiple grain(s) of interest
+% grainId = 51; % CASE 1: for one grain
+% grainId = [53, 44, 40]; % CASE 2: for multiple contiguous grains
+grainId = [53, 20, 28]; % CASE 3: for multiple discrete grains
 %-----------------
 %%
 
@@ -61,11 +65,20 @@ plot(grains,grains.meanOrientation)
 
 figure; % plot the ebsd data of the grain of interest
 plot(ebsd(grains(grainId)),ebsd(grains(grainId)).orientations)
+    
+% % FOR CASE 1 and CASE 2: for one grain or multiple contiguous grains
+% % dilate the grain(s) of interest as a group
+% ebsd1 = dilate(ebsd,grains(grainId(1))); 
+% figure; % plot the grain(s) of interest
+% plot(ebsd1,ebsd1.orientations);
 
-% dilate the grain of interest
-ebsd1 = dilate(ebsd,grains(grainId));
-
-figure; % plot the grain of interest
-plot(ebsd1,ebsd1.orientations)
+% FOR CASE 3: for multiple discrete grains
+% dilate the grain(s) of interest individually
+ebsd1 = dilate(ebsd,grains(grainId(1))); 
+ebsd2 = dilate(ebsd,grains(grainId(2)));
+ebsd3 = dilate(ebsd,grains(grainId(3)));
+ebsd123 = [ebsd1 ebsd2 ebsd3]; % group them together
+figure; % plot the grain(s) of interest
+plot(ebsd123,ebsd123.orientations);
 %-----------------
 
