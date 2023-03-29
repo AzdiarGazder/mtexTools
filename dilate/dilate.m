@@ -104,7 +104,8 @@ padMap = pad(grainMap,[1 1],'zeros');
 % figure; imagesc(padMap)
 
 % define a structuring element array for dilation
-strucElement = [1 1 1; 1 1 1; 1 1 1];
+% strucElement = [1 1 1; 1 1 1; 1 1 1];
+strucElement = [0 1 0; 1 1 1; 0 1 0];
 
 % define a blank grainMap for dilation
 dilateMap = false(size(grainMap));
