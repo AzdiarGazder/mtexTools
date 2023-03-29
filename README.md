@@ -54,7 +54,7 @@ specified otherwise, the FFTs are calculated after padding each grayscale/binary
 
 
 ## D
-- [**dilate**](https://github.com/AzdiarGazder/mtexTools/tree/main/dilate): Dilates the ebsd data surrounding individual grains of interest by one pixel.
+- [**dilate**](https://github.com/AzdiarGazder/mtexTools/tree/main/dilate): Dilates the ebsd data surrounding individual, multiple contiguous or multiple discrete grains of interest by one pixel.
 
 
 
