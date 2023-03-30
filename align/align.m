@@ -77,7 +77,7 @@ xy1((xy1(:,2)<=gebsd.ymin),2) = gebsd.ymin;
 xy1((xy1(:,2)>=gebsd.ymax),2) = gebsd.ymax;
 
 % calculate the closest multiple of xy values based on the map step size
-stepSize = gebsd.dx;
+stepSize = calcStepSize(inebsd);
 xy1 = stepSize.*round(xy1./stepSize);
 
 % plot the fiducial line
