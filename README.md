@@ -4,7 +4,7 @@
 
 **MTEX Versions 5.9 and higher = use "ebsd.extent"** 
 
-**MTEX Versions 5.8 and lower = use "ebsd.extend"** 
+**MTEX Versions 5.8 and lower  = use "ebsd.extend"** 
 
 ---
 
