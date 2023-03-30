@@ -3,9 +3,6 @@ function outebsd = dilate(inebsd,ingrain)
 % Dilates the ebsd data surrounding individual, multiple contiguous or 
 % multiple discrete grains of interest by one pixel.
 %
-%% Note to users:
-% Requires the calcStepSize.m, ebsd2binary.m and pad.m functions to run.
-%
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
 %
