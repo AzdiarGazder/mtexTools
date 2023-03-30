@@ -31,12 +31,12 @@ end
 
 % check for input variable types
 if ~isa(inebsd,'EBSD')
-    error('First input must be an EBSD variable.');
+    error('Input must be @ebsd and @grain2d variable.');
     return;
 end
 
 if ~isa(ingrain,'grain2d')
-    error('Second input must be a grain2d variable.');
+    error('Input must be @ebsd and @grain2d variable.');
     return;
 end
 
@@ -61,47 +61,11 @@ ggrain = gridify(gebsd(ingrain));
 xGrain = stepSize.*floor(ggrain.prop.x./stepSize);
 yGrain = stepSize.*floor(ggrain.prop.y./stepSize);
 
-% create a gridded map using any property of the grain of interest
-if any(ismember(fields(ggrain.prop),'imagequality'))
-    grainMap = ggrain.prop.imagequality;
-elseif any(ismember(fields(ggrain.prop),'iq'))
-    grainMap = ggrain.prop.iq;
-elseif any(ismember(fields(ggrain.prop),'bandcontrast'))
-    grainMap = ggrain.prop.bandcontrast;
-elseif any(ismember(fields(ggrain.prop),'bc'))
-    grainMap = ggrain.prop.bc;
-elseif any(ismember(fields(ggrain.prop),'bandslope'))
-    grainMap = ggrain.prop.bandslope;
-elseif any(ismember(fields(ggrain.prop),'bs'))
-    grainMap = ggrain.prop.bs;
-elseif any(ismember(fields(ggrain.prop),'oldId'))
-    grainMap = ggrain.prop.oldId;
-elseif any(ismember(fields(ggrain.prop),'grainId'))
-    grainMap = ggrain.prop.grainId;
-elseif any(ismember(fields(ggrain.prop),'confidenceindex'))
-    grainMap = ggrain.prop.confidenceindex;
-elseif any(ismember(fields(ggrain.prop),'ci'))
-    grainMap = ggrain.prop.ci;
-elseif any(ismember(fields(ggrain.prop),'fit'))
-    grainMap = ggrain.prop.fit;
-elseif any(ismember(fields(ggrain.prop),'semsignal'))
-    grainMap = ggrain.prop.semsignal;
-elseif any(ismember(fields(ggrain.prop),'mad'))
-    grainMap = ggrain.prop.mad;
-elseif any(ismember(fields(ggrain.prop),'error'))
-    grainMap = ggrain.prop.error;
-end
+% binarise the gridded ebsd data of the grain
+grainMap = ebsd2binary(ggrain,'ones');
 
-% replace NaNs with 0s in the grainMap
-% now the grainMap comprises the grain property values surrounded by 0
-grainMap(isnan(grainMap)) =  0;
-% replace grain property values with 1s in the grainMap
-% now the grainMap becomes a binary map
-grainMap(grainMap > 0) =  1;
-
-% pad the grainMap with zeros on all the four sides
-padMap = pad(grainMap,[1 1],'zeros');
-% figure; imagesc(padMap)
+% pad the grainMap with a row and column of zeros on all the four sides
+padMap = pad(grainMap,'size',[1 1],'zeros');
 
 % define a structuring element array for dilation
 % strucElement = [1 1 1; 1 1 1; 1 1 1];
