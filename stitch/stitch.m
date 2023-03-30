@@ -350,14 +350,7 @@ if any(strcmpi(varargin,'north')) ||...
     XY2 = [inebsd2.prop.x,inebsd2.prop.y];
 
     % calculate the step size for map 2
-    xx = [inebsd2.unitCell(:,1);inebsd2.unitCell(1,1)]; % repeat the 1st x co-ordinate to close the unit pixel shape
-    yy = [inebsd2.unitCell(:,2);inebsd2.unitCell(1,2)]; % repeat the 1st y co-ordinate to close the unit pixel shape
-    unitPixelArea = polyarea(xx,yy);
-    if size(inebsd2.unitCell,1) == 6 % hexGrid
-        stepSize = sqrt(unitPixelArea/sind(60));
-    else % squareGrid
-        stepSize = sqrt(unitPixelArea);
-    end
+    stepSize = calcStepSize(inebsd2);
 
     % set the tolerance to quarter of the step size
     tol = stepSize/4;
