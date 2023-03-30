@@ -43,7 +43,6 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 - [**calcGrainsFFT**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcGrainsFFT): Returns the Fast Fourier Transforms (FFTs) of individual grains. Unless
 specified otherwise, the FFTs are calculated after padding each grayscale/binary grain map to its nearest square. The FFTs from grayscale and binary data are returned in grid format within the 'grains.prop.fftGray' and 'grains.prop.fftBinary' structure variables.
 
-
 - [**crop**](https://github.com/AzdiarGazder/mtexTools/tree/main/crop): Crop, cut-out or make a subset of ebsd map data from within a user-specified rectangular, circular, polygonal or freehand area-based region of interest (ROI). Instructions on script use are provided in the window titlebar.
 
 - [**currentFolder**](https://github.com/AzdiarGazder/mtexTools/tree/main/currentFolder): Change MATLAB's current folder to the folder containing this function and add all of its sub-folders to the work path.
@@ -56,6 +55,8 @@ specified otherwise, the FFTs are calculated after padding each grayscale/binary
 
 
 ## E
+- [**ebsd2binary**](https://github.com/AzdiarGazder/mtexTools/tree/main/ebsd2binary): Converts ebsd data of a single grain to a grid of binary ones or zeros.
+
 - [**erode**](https://github.com/AzdiarGazder/mtexTools/tree/main/erode): Erodes the ebsd data surrounding individual grains of interest by one pixel.
 
 
@@ -93,7 +94,6 @@ specified otherwise, the FFTs are calculated after padding each grayscale/binary
 
 ## S
 - [**saveImage**](https://github.com/AzdiarGazder/mtexTools/tree/main/saveImage): Saves all open figures that are located either in separate GUI windows or grouped togther in tabs. The user inputs a file name and the program automatically adds a "__XX_" suffix comprising an underscore symbol and the figure number while saving the various figure(s). 
-
 
 - [**setInterp2Latex**](https://github.com/AzdiarGazder/mtexTools/tree/main/setInterp2Latex): Changes all MATLAB text interpreters from 'tex' to 'latex' in all subsequent figures, plots, and graphs.
 
