@@ -144,14 +144,7 @@ end
 if ~isempty(varargin) && check_option(varargin,'scanUnit')
     disp('- Calculating the 2D Euclidean distances in map scan units.')
     % calculate the map step size
-    xx = [outebsd.unitCell(:,1); outebsd.unitCell(1,1)]; % repeat the 1st x co-ordinate to close the unit pixel shape
-    yy = [outebsd.unitCell(:,2); outebsd.unitCell(1,2)]; % repeat the 1st y co-ordinate to close the unit pixel shape
-    unitPixelArea = polyarea(xx,yy);
-    if size(outebsd.unitCell,1) == 6 % hexGrid
-        stepSize = sqrt(unitPixelArea/sind(60));
-    else % squareGrid
-        stepSize = sqrt(unitPixelArea);
-    end
+    stepSize = calcStepSize(outebsd);
     outebsd.prop.euclid = outebsd.prop.euclid.*stepSize;
 end
 
