@@ -3,10 +3,6 @@ function outebsd = erode(inebsd,ingrain)
 % Erodes the ebsd data surrounding individual grains of interest by one
 % pixel.
 %
-%% Note to users:
-% Requires the calcStepSize.m, ebsd2binary.m and pad.m functions to run.
-%
-%
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
 %
