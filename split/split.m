@@ -99,14 +99,7 @@ if numRo == 1; overlapFactor_Ro = 0; end
 if numCol == 1; overlapFactor_Col = 0; end
 
 % calculate the step size of the ebsd map
-xx = [inebsd.unitCell(:,1);inebsd.unitCell(1,1)]; % repeat the 1st x co-ordinate to close the unit pixel shape
-yy = [inebsd.unitCell(:,2);inebsd.unitCell(1,2)]; % repeat the 1st y co-ordinate to close the unit pixel shape
-unitPixelArea = polyarea(xx,yy);
-if size(inebsd.unitCell,1) == 6 % hexGrid
-    stepSize = sqrt(unitPixelArea/sind(60));
-else % squareGrid
-    stepSize = sqrt(unitPixelArea);
-end
+stepSize = calcStepSize(inebsd);
 
 
 % X & Y co-ordinates of the gridded ebsd map
