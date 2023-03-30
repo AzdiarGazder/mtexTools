@@ -4,7 +4,7 @@ function outebsd = erode(inebsd,ingrain)
 % pixel.
 %
 %% Note to users:
-% Requires the ebsd2binary.m and pad.m functions to run.
+% Requires the calcStepSize.m, ebsd2binary.m and pad.m functions to run.
 %
 %
 %% Author:
@@ -43,14 +43,7 @@ end
 
 
 % calculate the ebsd map step size
-xx = [inebsd.unitCell(:,1);inebsd.unitCell(1,1)]; % repeat the 1st x co-ordinate to close the unit pixel shape
-yy = [inebsd.unitCell(:,2);inebsd.unitCell(1,2)]; % repeat the 1st y co-ordinate to close the unit pixel shape
-unitPixelArea = polyarea(xx,yy);
-if size(inebsd.unitCell,1) == 6 % hexGrid
-    stepSize = sqrt(unitPixelArea/sind(60));
-else % squareGrid
-    stepSize = sqrt(unitPixelArea);
-end
+stepSize = calcStepSize(inebsd);
 
 % gridify the ebsd map data
 gebsd = gridify(inebsd);
