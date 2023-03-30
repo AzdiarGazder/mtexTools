@@ -4,7 +4,7 @@ function outebsd = dilate(inebsd,ingrain)
 % multiple discrete grains of interest by one pixel.
 %
 %% Note to users:
-% Requires the pad.m function to run.
+% Requires the ebsd2binary.m and pad.m functions to run.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
