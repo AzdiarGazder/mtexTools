@@ -40,8 +40,22 @@ if any(strcmpi(varargin,'north')) ||...
         any(strcmpi(varargin,'southwest'))
 
     % find the map bounds
-    bounds1 = inebsd1.extend; % [xmin, xmax, ymin, ymax]
-    bounds2 = inebsd2.extend; % [xmin, xmax, ymin, ymax]
+    %     bounds1 = inebsd1.extend; % [xmin, xmax, ymin, ymax]
+    %     bounds2 = inebsd2.extend; % [xmin, xmax, ymin, ymax]
+    % check for MTEX version
+    currentVersion = 5.9;
+    fid = fopen('VERSION','r');
+    MTEXversion = fgetl(fid);
+    fclose(fid);
+    MTEXversion = str2double(MTEXversion(5:end-2));
+
+    if MTEXversion >= currentVersion
+        bounds1 = inebsd1.extent; % [xmin, xmax, ymin, ymax]
+        bounds2 = inebsd2.extent; % [xmin, xmax, ymin, ymax]
+    else
+        bounds1 = inebsd1.extend; % [xmin, xmax, ymin, ymax]
+        bounds2 = inebsd2.extend; % [xmin, xmax, ymin, ymax]
+    end
 
     % find the map origin
     xMapDir = getMTEXpref('xAxisDirection');
