@@ -57,9 +57,10 @@ sD = rotN * ND;
 % step 5: Define the sample symmetry
 sS = specimenSymmetry('orthorhombic');
 % step 6: Call the fibreMaker function
-fibreMaker(cD,sD,sS,'halfwidth',2.5*degree,'points',1000,'export','fcc_beta.Tex')
+fibreMaker(cD,sD,sS,'halfwidth',2.5*degree,'points',1000,'export','fcc_beta.txt')
+
 % step 7: Pre-define settings to plot the pole figure(s) & ODF of the fibre
-pfName = 'fcc_beta.Tex';
+pfName = 'fcc_beta.txt';
 hwidth = 2.5*degree;
 hpf = {Miller(1,1,1,CS),...
   Miller(2,0,0,CS),...
@@ -87,10 +88,10 @@ odfColormap = colormap(hot);
 % % step 5: Define the sample symmetry
 % sS = specimenSymmetry('orthorhombic');
 % % step 6: Call the fibreMaker function
-% fibreMaker(cD,sD,sS,'halfwidth',2.5*degree,'points',1000,'export','bcc_h11_1byh12.Tex')
+% fibreMaker(cD,sD,sS,'halfwidth',2.5*degree,'points',1000,'export','bcc_h11_1byh12.txt')
+
 % % step 7: Pre-define settings to plot the pole figure(s) & ODF of the fibre
-% % using the data in the VPSC file
-% pfName = 'bcc_h11_1byh12.Tex';
+% pfName = 'bcc_h11_1byh12.txt';
 % hwidth = 2.5*degree;
 % hpf = {Miller(1,1,0,CS),...
 %   Miller(2,0,0,CS),...
@@ -106,18 +107,34 @@ odfColormap = colormap(hot);
 
 
 %% DO NOT EDIT/MODIFY BELOW THIS LINE
-% This is code common to Example 1 and 2 to visualise the VPSC file data
+% This is code common to Example 1 and 2 to visualise the *.txt or *.Tex 
+% file data
 %
-%--- Import the VPSC ODF file into memory
-[ori,fileProp] = orientation.load(pfName,CS,sS,'interface','generic',...
-    'ColumnNames', {'phi1' 'Phi' 'phi2' 'weights'}, 'Columns', [1 2 3 4], 'Bunge'); 
-ori = ori(:);
-wts = fileProp.weights; 
-wts = wts(:);
-%---
+% check for MTEX version
+currentVersion = 5.9;
+fid = fopen('VERSION','r');
+MTEXversion = fgetl(fid);
+fclose(fid);
+MTEXversion = str2double(MTEXversion(5:end-2));
 
-%--- Calculate the orientation distribution function and define the specimen symmetry of the parent
-odf = calcDensity(ori,'weights',wts,'halfwidth',hwidth,'points','all');
+if MTEXversion >= currentVersion % for MTEX versions 5.9.0 and above
+    % %--- Import the  MTEX ASCII *.txt file into memory (lossless format)
+    odf = SO3Fun.load(pfName,'CS',CS,'resolution',hwidth,'Bunge',...
+        'ColumnNames',{'Euler 1','Euler 2','Euler 3'});
+
+else % for MTEX versions 5.8.2 and below
+    %--- Import the VPSC ODF *.Tex file into memory (lossy format)
+    [ori,fileProp] = orientation.load(pfName,CS,sS,'interface','generic',...
+        'ColumnNames', {'phi1' 'Phi' 'phi2' 'weights'}, 'Columns', [1 2 3 4], 'Bunge');
+    ori = ori(:);
+    wts = fileProp.weights;
+    wts = wts(:);
+    %---
+
+    %--- Calculate the orientation distribution function and define the specimen symmetry of the parent
+    odf = calcDensity(ori,'weights',wts,'halfwidth',hwidth,'points','all');
+end
+
 %--- Re-define the specimen symmetry
 odf.SS = specimenSymmetry('orthorhombic');
 %--- Calculate the value and orientation of the maximum f(g) in the ODF
