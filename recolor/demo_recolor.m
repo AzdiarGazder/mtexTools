@@ -30,6 +30,7 @@ ebsd = EBSD.load(pfname,CS,'interface','ctf',...
     'convertEuler2SpatialReferenceFrame');
 ebsd.CSList = CS;
 
+
 % plot the phase map using the originally specified colors
 figure;
 plot(ebsd)
@@ -37,9 +38,13 @@ plot(ebsd)
 % recolor phases using the interactive GUI
 % ebsd = recolor(ebsd); 
 
-% % recolor phases using a cell array
-ebsd = recolor(grains,{[0.65 0.25 0.55],[0.8 0.9 1],[],[],[0.6 0 0.3],[],[],[]});
+% recolor phases using the ebsd variable and a cell array
+ebsd = recolor(ebsd,{[0.65 0.25 0.55],[0.8 0.9 1],[],[],[0.6 0 0.3],[],[],[]});
+
+% % recolor phases using the ebsd variable and a colormap
 % ebsd = recolor(ebsd,num2cell(colormap(jet(8)),2)');
+
+% % recolor phases using the grain variable and a cell array
 % grains = calcGrains(ebsd,'angle',10*degree);
 % grains = recolor(grains,{[0.65 0.25 0.55],[0.8 0.9 1],[],[],[0.6 0 0.3],[],[],[]});
 
@@ -50,8 +55,7 @@ ebsd = recolor(grains,{[0.65 0.25 0.55],[0.8 0.9 1],[],[],[0.6 0 0.3],[],[],[]})
 % ebsd = recolor(ebsd,CS{2},[0 0.5 0.5],CS{3},[0.75 0.15 0.35]);
 % ebsd = recolor(ebsd,ebsd.CSList{2},[0 0.5 0.5],CS{3},[0.75 0.15 0.35]);
 
-
-% % recolor phases using phase names & crystal symmetries
+% % recolor phases using the ebsd variable, phase names & crystal symmetries
 % ebsd = recolor(ebsd,CS{2},[0 0.5 0.5],'Anorthite',[0.75 0.15 0.35]);
 
 % plot the phase map using the newly specified colors
