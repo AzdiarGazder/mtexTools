@@ -45,7 +45,22 @@ function [ebsdGrid,newId] = squarify(ebsd,varargin)
 
 % generate regular grid
 prop = ebsd.prop;
-ext = ebsd.extend;
+
+% ext = ebsd.extend;
+% check for MTEX version
+currentVersion = 5.9;
+fid = fopen('VERSION','r');
+MTEXversion = fgetl(fid);
+fclose(fid);
+MTEXversion = str2double(MTEXversion(5:end-2));
+
+if MTEXversion >= currentVersion
+    ext = ebsd.extent;
+else
+    ext = ebsd.extend;
+end
+
+
 dx = max(ebsd.unitCell(:,1))-min(ebsd.unitCell(:,1));
 dy = max(ebsd.unitCell(:,2))-min(ebsd.unitCell(:,2));
 [prop.x,prop.y] = meshgrid(linspace(ext(1),ext(2),1+round((ext(2)-ext(1))/dx)),...
@@ -83,6 +98,10 @@ ebsdGrid = EBSDsquare(rotation(quaternion(a,b,c,d)),phaseId(:),...
 
 end
 
+
+
+
+
 function [ebsdGrid,newId] = hexify(ebsd,varargin)
 
 prop = ebsd.prop;
@@ -98,7 +117,21 @@ isRowAlignment = diff(min(abs(ebsd.unitCell))) > 0;
 % number of rows and columns and offset
 % 1 means second row / column has positiv offset
 % -1 means second row / column has negativ offset
-ext = ebsd.extend;
+% ext = ebsd.extend;
+% check for MTEX version
+currentVersion = 5.9;
+fid = fopen('VERSION','r');
+MTEXversion = fgetl(fid);
+fclose(fid);
+MTEXversion = str2double(MTEXversion(5:end-2));
+
+if MTEXversion >= currentVersion
+    ext = ebsd.extent;
+else
+    ext = ebsd.extend;
+end
+
+
 
 if isRowAlignment
   
