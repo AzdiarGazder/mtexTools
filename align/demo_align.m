@@ -34,3 +34,16 @@ gebsd = gridify(ebsd);
 currentFolder = pwd;
 pfName = [currentFolder,'\alignedMap.ctf']
 export_ctf(gebsd,pfName)
+
+
+
+if verLessThan('MTEX','5.10.0')
+    error('Simulink 4.0 or higher is required.')
+end
+
+v = ver("MTEX")
+
+
+n = 'mtex';
+pat = '(?<=[\\/]toolbox[\\/])[^\\/]+';
+regexp(which(n), pat, 'match', 'once')
