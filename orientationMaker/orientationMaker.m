@@ -29,7 +29,6 @@ function orientationMaker(ori,sampleSymmetry,varargin)
 
 hwidth = get_option(varargin,'halfwidth',2.5*degree);
 numPoints = get_option(varargin,'points',1000);
-pfName_Out = get_option(varargin,'export','inputVPSC.Tex');
 
 % define the specimen symmetry to compute ODF
 sS = specimenSymmetry('triclinic');
@@ -43,20 +42,29 @@ fclose(fid);
 MTEXversion = str2double(MTEXversion(5:end-2));
 
 if MTEXversion >= currentVersion % for MTEX versions 5.9.0 and above
+    pfName_Out = get_option(varargin,'export','inputOrN.txt');
+
     psi = SO3DeLaValleePoussinKernel('halfwidth',hwidth);
     SO3F = SO3FunRBF(symmetrise(ori),psi);
     % re-define the ODF specimen symmetry based on the user specification
     SO3F.center.SS = sampleSymmetry;
-    % save a VPSC *.tex file
-    export_VPSC(SO3F.center,pfName_Out,'interface','VPSC','Bunge','points',numPoints);
+    % discretise the ODF based on user specification
+    ori = discreteSample(SO3F.center,numPoints);
+    % save an MTEX ASCII File *.txt file (lossless format)
+    export(ori,pfName_Out,'Bunge','interface','mtex');
+
+%     % save a VPSC *.tex file
+%     export_VPSC(SO3F.center,pfName_Out,'interface','VPSC','Bunge','points',numPoints);
 
 else % for MTEX versions 5.8.2 and below
+    pfName_Out = get_option(varargin,'export','inputOrN.Tex');
+
     % calculate a unimodal ODF
     odf = unimodalODF(symmetrise(ori),'de la Vallee Poussin',...
         'halfwidth',hwidth,'Fourier',22);
     % re-define the ODF specimen symmetry based on the user specification
     odf.SS = sampleSymmetry;
-    % save a VPSC *.tex file
+    % save a VPSC *.Tex file (lossy format)
     export_VPSC(odf,pfName_Out,'interface','VPSC','Bunge','points',numPoints);
 end
 
