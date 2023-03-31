@@ -1,3 +1,9 @@
 
 *.asv
+*.Tex
+*.txt
+*.png
+*.jpg
+*.tiff
+*.tif
 /TEST/
