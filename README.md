@@ -1,10 +1,8 @@
 ## ANNOUNCEMENTS
 
-**BUG FIX**
+**All scripts are fully functional up to MTEX Version 5.8.2** 
 
-**MTEX Versions 5.9 and higher = use "ebsd.extent"** 
-
-**MTEX Versions 5.8 and lower  = use "ebsd.extend"** 
+**Bug fixes for MTEX Version 5.9.0 currently underway**
 
 ---
 
