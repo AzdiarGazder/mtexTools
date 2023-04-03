@@ -1,8 +1,8 @@
 function outgrains = calcFFT(inebsd,ingrains,varargin)
 %% Function description:
-% Returns the Fast Fourier Transforms (FFTs) of individual grains. Unless
-% specified otherwise, the FFTs are calculated after padding each
-% grayscale/binary grain map to its nearest square.
+% Returns the Fast Fourier Transforms (FFTs) of individual grains. The FFTs
+% are calculated after padding each grayscale/binary grain map to its 
+% nearest square.
 % The FFTs from grayscale and binary data are returned in grid format
 % within the 'grains.prop.fftGray' and 'grains.prop.fftBinary' structure
 % variables.
