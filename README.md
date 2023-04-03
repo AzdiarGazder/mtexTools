@@ -1,13 +1,13 @@
 ## UPDATE
 
-**Up to MTEX Version 5.8.2 (released in Nov 2022):**
-- All scripts are fully functional.
-
 
 **For MTEX Version 5.9.0 (released in Mar 2023):**
-- Bug fixes have been implemented.
+- Bugs were tested and fixes have been implemented.
 - In case of any issues, please email the author.
 
+
+**For MTEX Version 5.8.2 (released in Nov 2022):**
+- All scripts are fully functional.
 
 
 ---
