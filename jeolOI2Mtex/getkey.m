@@ -1,4 +1,4 @@
-function [ch, tim] = getkey(N, nonascii)
+function [ch, tim] = getKey(N, nonascii)
 % GETKEY - get a keypress
 %   CH = GETKEY waits for a single keypress and returns the ASCII code. It
 %   accepts all ascii characters, including backspace (8), space (32),
