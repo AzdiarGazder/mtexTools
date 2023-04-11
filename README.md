@@ -95,7 +95,7 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 ## N
-- [**nestedLoopCounter**](https://github.com/AzdiarGazder/mtexTools/tree/main/nestedLoopCounter): Interactively plots an EBSD map property (numeric, logical, or misorientation) 
+- [**nestedLoopCounter**](https://github.com/AzdiarGazder/mtexTools/tree/main/nestedLoopCounter): Returns the current count (or specifically, the row index) for a series of running nested loops. The function currently employs three nested loops but can be reduced to two nested loops or extended to multiple nested loops.
 
 
 
