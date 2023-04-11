@@ -94,6 +94,11 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 
+## N
+- [**nestedLoopCounter**](https://github.com/AzdiarGazder/mtexTools/tree/main/nestedLoopCounter): Interactively plots an EBSD map property (numeric, logical, or misorientation) 
+
+
+
 ## O
 - [**orientationMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/orientationMaker): Creates an ideal crystallographic orientation from a unimodal ODF with a user specified half-width and exports the data as a VPSC file for later use.
 
