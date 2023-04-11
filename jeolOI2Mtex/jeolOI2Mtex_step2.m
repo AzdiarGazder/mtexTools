@@ -75,12 +75,12 @@ CS = {...
 
 %% Import the EBSD map data
 % directory path
-pname = 'C:\Users\azdiar\Documents\MATLAB\GitHub\mtexTools\TEST\';
+pname = 'C:\Users\azdiar\Documents\MATLAB\GitHub\mtexTools\jeolOI2Mtex\';
 % file name
-fname = 'MEA_ZrB2_60CR_1C.cpr';
-% fname = 'MEA_ZrB2_60CR_1C.ctf';
+% fname = 'MEA_60CR_1C.cpr';
+fname = 'MEA_60CR_1C.ctf';
 % create an EBSD variable containing the map data
-ebsd = EBSD.load([pname fname],CS,'interface','crc',...
+ebsd = EBSD.load([pname fname],CS,'interface','ctf',...
     'convertSpatial2EulerReferenceFrame');
 % use only indexed map data
 ebsd = ebsd('indexed');
@@ -140,6 +140,9 @@ rot2 = rotation.byAxisAngle(yvector,180*degree);
 
 
 %% DO NOT MODIFY BELOW THIS LINE
+% disp('--------')
+% disp('Press any key to choose the next combination of phi1, Phi and phi2.')
+% disp('Press the Esc key to exit the script.')
 
 for ii = 1:length(phi1)
     for jj = 1:length(Phi)
@@ -231,7 +234,7 @@ for ii = 1:length(phi1)
             drawnow;
             %---
 
-%             keyCode = getkey(1); % wait for user input
+%             [keyCode,~] = getKey(1); % wait for user input
 %             if keyCode == 27 % ascii code if the escape key is presssed
 %                 return % exit the loop
 %             else % continue the loop
