@@ -84,6 +84,9 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 
+
+
+
 ## L
 - [**lineProfile**](https://github.com/AzdiarGazder/mtexTools/tree/main/lineProfile): Interactively plots an EBSD map property (numeric, logical, or misorientation) profile along a user specified line or linear fiducial.
 
