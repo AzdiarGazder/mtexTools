@@ -2,7 +2,7 @@ function orientationMaker2(oriIn,sampleSymmetry,varargin)
 %% Function description:
 % Creates an ideal crystallographic orientation from a unimodal ODF with a
 % user specified half-width and exports the data as a lossless Mtex
-% file for later use.
+% *.txt file for later use.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
@@ -23,12 +23,10 @@ function orientationMaker2(oriIn,sampleSymmetry,varargin)
 %
 %% Options:
 %  halfwidth    - halfwidth for the ODF calculation
-%  points       - number of points (discrete orientations) in the VPSC file
 %  export       - (optional path) and name of the VPSC file
 %%
 
 hwidth = get_option(varargin,'halfwidth',2.5*degree);
-numPoints = get_option(varargin,'points',1000);
 
 % define the specimen symmetry to compute ODF
 sS = specimenSymmetry('triclinic');
@@ -43,7 +41,7 @@ odf = unimodalODF(symmetrise(oriIn),'halfwidth',hwidth);
 odf.SS = sampleSymmetry;
 
 % generate the user specified number of orientations from the ODF
-oriOut = odf.discreteSample(numPoints);
+oriOut = odf.discreteSample(length(odf.weights));
 
 % save an MTEX ASCII File *.txt file (lossless format)
 export(oriOut,pfName_Out,'Bunge','interface','mtex');
