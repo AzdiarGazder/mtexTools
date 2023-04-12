@@ -57,7 +57,7 @@ startup_mtex
 % % step 3: Define the sample symmetry
 % sS = specimenSymmetry('orthorhombic');
 % % step 4: Call the orientationMaker function
-% orientationMaker(ori,sS,'halfwidth',2.5*degree,'points',1000,'export','fcc_Br.Tex')
+% orientationMaker(ori,sS,'halfwidth',2.5*degree,'export','fcc_Br.Tex')
 % % step 5: Pre-define settings to plot the pole figure(s) & ODF of the
 % % orientation 
 % pfName = 'fcc_Br.Tex';
@@ -83,7 +83,7 @@ ori = orientation.byEuler(90*degree,61*degree,45*degree,CS);
 % step 3: Define the sample symmetry
 sS = specimenSymmetry('orthorhombic');
 % step 4: Call the orientationMaker function
-orientationMaker(ori,sS,'halfwidth',2.5*degree,'points',1000,'export','bcc_554_-2-25.txt')
+orientationMaker(ori,sS,'halfwidth',2.5*degree,'export','bcc_554_-2-25.txt')
 % step 5: Pre-define settings to plot the pole figure(s) & ODF of the fibre
 % using the data in the VPSC file
 pfName = 'bcc_554_-2-25.txt';
