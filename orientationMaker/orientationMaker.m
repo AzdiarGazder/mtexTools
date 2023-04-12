@@ -2,8 +2,7 @@ function orientationMaker2(oriIn,sampleSymmetry,varargin)
 %% Function description:
 % Creates an ideal crystallographic orientation from a unimodal ODF with a
 % user specified half-width and exports the data as a lossless Mtex
-% (version 5.9 onwards) or lossy VPSC (up to version 5.8.2) file for
-% later use.
+% file for later use.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
@@ -48,9 +47,6 @@ oriOut = odf.discreteSample(numPoints);
 
 % save an MTEX ASCII File *.txt file (lossless format)
 export(oriOut,pfName_Out,'Bunge','interface','mtex');
-
-% % save a VPSC *.Tex file (lossy format)
-% export_VPSC(odf,pfName_Out,'interface','VPSC','Bunge','points',numPoints);
 
 end
 
