@@ -22,19 +22,19 @@ function [ch, tim] = getKey(N, nonascii)
 %  
 %   Example 1 - get a single ascii key
 %      fprintf('\nPress any key: ') ;
-%      ch = getkey ;
+%      ch = getKey ;
 %      fprintf('%c\n',ch) ;
 %
 %   Example 2 - wait for a specific key
 %      fprintf('\nPress the Ctrl-key within 3 presses: ') ;
-%      ch = getkey(3,'non-ascii')
+%      ch = getKey(3,'non-ascii')
 %      if ismember('control', ch), fprintf('OK\n') ;
 %      else fprintf(' ... wrong keys ...\n') ; end
 %    
 %   Example 3 - Typing game
 %       S = 'abcdefghjiklm' ; 
 %       fprintf('Type "%s" as fast as possible ...\n', S) ;
-%       [C, T] = getkey(numel(S)) ;
+%       [C, T] = getKey(numel(S)) ;
 %       C = char(C) ; T = T(end)-T(1) ;
 %       if ~isequal(S, C), fprintf('OOPS!!! ') ; end
 %       fprintf('You typed "%s" in %.2f seconds.\n', C, T) ;
