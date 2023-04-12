@@ -1,4 +1,4 @@
-% function jeolOI2Mtex_step3
+function jeolOI2Mtex_step3
 
 %% USER NOTES:
 % It is implicitly assumed that:
@@ -249,7 +249,7 @@ for ii = 1:length(phi1)
         close all
     end
 end
-% end
+end
 
 
 
