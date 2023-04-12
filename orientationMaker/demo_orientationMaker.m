@@ -65,9 +65,9 @@ startup_mtex
 % hpf = {Miller(1,1,1,CS),...
 %   Miller(2,0,0,CS),...
 %   Miller(2,2,0,CS)};
-% pfColormap = colormap(hot);
+% pfColormap = flipud(colormap(hot));
 % odfSections = [0 45 65]*degree;
-% odfColormap = colormap(hot);
+% odfColormap = flipud(colormap(hot));
 % % %-----------------
 
 
