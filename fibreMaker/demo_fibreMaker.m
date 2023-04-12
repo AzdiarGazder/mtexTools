@@ -57,17 +57,17 @@ sD = rotN * ND;
 % step 5: Define the sample symmetry
 sS = specimenSymmetry('orthorhombic');
 % step 6: Call the fibreMaker function
-fibreMaker(cD,sD,sS,'halfwidth',2.5*degree,'points',1000,'export','fcc_beta.txt')
+fibreMaker(cD,sD,sS,'halfwidth',5*degree,'export','fcc_beta.txt')
 
 % step 7: Pre-define settings to plot the pole figure(s) & ODF of the fibre
 pfName = 'fcc_beta.txt';
-hwidth = 2.5*degree;
+hwidth = 5*degree;
 hpf = {Miller(1,1,1,CS),...
   Miller(2,0,0,CS),...
   Miller(2,2,0,CS)};
-pfColormap = colormap(hot);
+pfColormap = flipud(colormap(hot));
 odfSections = [0 45 65]*degree;
-odfColormap = colormap(hot);
+odfColormap = flipud(colormap(hot));
 % %-----------------
 
 
@@ -88,11 +88,11 @@ odfColormap = colormap(hot);
 % % step 5: Define the sample symmetry
 % sS = specimenSymmetry('orthorhombic');
 % % step 6: Call the fibreMaker function
-% fibreMaker(cD,sD,sS,'halfwidth',2.5*degree,'points',1000,'export','bcc_h11_1byh12.txt')
+% fibreMaker(cD,sD,sS,'halfwidth',5*degree,'export','bcc_h11_1byh12.txt')
 
 % % step 7: Pre-define settings to plot the pole figure(s) & ODF of the fibre
 % pfName = 'bcc_h11_1byh12.txt';
-% hwidth = 2.5*degree;
+% hwidth = 5*degree;
 % hpf = {Miller(1,1,0,CS),...
 %   Miller(2,0,0,CS),...
 %   Miller(2,1,1,CS)};
@@ -109,42 +109,22 @@ odfColormap = colormap(hot);
 %% DO NOT EDIT/MODIFY BELOW THIS LINE
 % This is code common to Example 1 and 2 to visualise the *.txt or *.Tex 
 % file data
-%
-% check for MTEX version
-currentVersion = 5.9;
-fid = fopen('VERSION','r');
-MTEXversion = fgetl(fid);
-fclose(fid);
-MTEXversion = str2double(MTEXversion(5:end-2));
-
-if MTEXversion >= currentVersion % for MTEX versions 5.9.0 and above
-    % %--- Import the  MTEX ASCII *.txt file into memory (lossless format)
-    odf = SO3Fun.load(pfName,'CS',CS,'resolution',hwidth,'Bunge',...
-        'ColumnNames',{'Euler 1','Euler 2','Euler 3'});
-
-else % for MTEX versions 5.8.2 and below
-    %--- Import the VPSC ODF *.Tex file into memory (lossy format)
-    [ori,fileProp] = orientation.load(pfName,CS,sS,'interface','generic',...
-        'ColumnNames', {'phi1' 'Phi' 'phi2' 'weights'}, 'Columns', [1 2 3 4], 'Bunge');
-    ori = ori(:);
-    wts = fileProp.weights;
-    wts = wts(:);
-    %---
-
-    %--- Calculate the orientation distribution function and define the specimen symmetry of the parent
-    odf = calcDensity(ori,'weights',wts,'halfwidth',hwidth,'points','all');
-end
+%--- Load the texture file as an ODF
+odf = SO3Fun.load(pfName,'CS',CS,'resolution',hwidth,'Bunge',...
+  'ColumnNames',{'Euler 1','Euler 2','Euler 3','weights'});
 
 %--- Re-define the specimen symmetry
 odf.SS = specimenSymmetry('orthorhombic');
 %--- Calculate the value and orientation of the maximum f(g) in the ODF
 [maxodf_value,maxodf_ori] = max(odf);
+maxodf_value = round(maxodf_value/5)*5;
 %---
 
 %--- Calculate the pole figures from the orientation distribution function 
 pf = calcPoleFigure(odf,hpf,regularS2Grid('resolution',hwidth),'antipodal');
 %--- Calculate the value of the maximum f(g) in the PF
 maxpf_value = max(max(pf));
+maxpf_value = round(maxpf_value/5)*5;
 %---
 
 %--- Plot the pole figures
@@ -154,14 +134,13 @@ plotPDF(odf,...
     hpf,...
     'points','all',...
     'equal','antipodal',...
-    'contourf',1:ceil(maxpf_value));
-pfColormap;
-% flipud(pfColormap); % option to flip the colorbar
-caxis([1 ceil(maxpf_value)]);
-% colorbar('location','eastOutSide','LineWidth',1.25,'TickLength', 0.01,...
-%     'YTick', [0:1:ceil(maxpf_value)],...
-%     'YTickLabel',num2str([0:1:ceil(maxpf_value)]'), 'YLim', [0 ceil(maxpf_value)],...
-%     'TickLabelInterpreter','latex','FontName','Helvetica','FontSize',14,'FontWeight','bold');
+    'contourf',1:ceil(maxpf_value/10):maxpf_value);
+colormap(pfColormap);
+caxis([1 maxpf_value]);
+colorbar('location','eastOutSide','LineWidth',1.25,'TickLength', 0.01,...
+    'YTick', [0:ceil(maxpf_value/10):maxpf_value],...
+    'YTickLabel',num2str([0:ceil(maxpf_value/10):maxpf_value]'), 'YLim', [0 maxpf_value],...
+    'TickLabelInterpreter','latex','FontName','Helvetica','FontSize',14,'FontWeight','bold');
 set(figH,'Name','Pole figure(s)','NumberTitle','on');
 drawnow;
 odf.SS = specimenSymmetry('orthorhombic');
@@ -172,14 +151,13 @@ figH = figure(2);
 plotSection(odf,...
     'phi2',odfSections,...
     'points','all','equal',...
-    'contourf',1:ceil(maxodf_value));    
-odfColormap;
-% flipud(odfColormap); % option to flip the colorbar
-caxis([1 ceil(maxodf_value)]);
-% colorbar('location','eastOutSide','LineWidth',1.25,'TickLength', 0.01,...
-%     'YTick', [0:5:ceil(maxodf_value)],...
-%     'YTickLabel',num2str([0:5:ceil(maxodf_value)]'), 'YLim', [0 ceil(maxodf_value)],...
-%     'TickLabelInterpreter','latex','FontName','Helvetica','FontSize',14,'FontWeight','bold');
+    'contourf',1:ceil(maxodf_value/10):maxodf_value);    
+colormap(odfColormap);
+caxis([1 maxodf_value]);
+colorbar('location','eastOutSide','LineWidth',1.25,'TickLength', 0.01,...
+    'YTick', [0:ceil(maxodf_value/10):maxodf_value],...
+    'YTickLabel',num2str([0:ceil(maxodf_value/10):maxodf_value]'), 'YLim', [0 maxodf_value],...
+    'TickLabelInterpreter','latex','FontName','Helvetica','FontSize',14,'FontWeight','bold');
 set(figH,'Name','Orientation distribution function (ODF)','NumberTitle','on');
 odf.SS = specimenSymmetry('triclinic');
 drawnow;
