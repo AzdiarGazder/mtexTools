@@ -23,7 +23,7 @@ startup_mtex
 % % {h 1 1} <1/h 1 2> -fibre
 % % REF:  https://doi.org/10.1002/adem.201000075
 % %  Notes: This fibre can be simplified as a nominal bcc alpha-fibre
-% % whose <110> is tilted 20° from RD towards ND 
+% % whose <110> is tilted 20° from RD towards ND
 
 
 % List of common fibres for hcp materials:
@@ -33,8 +33,8 @@ startup_mtex
 % % hkil              -fibre = <0 0 0 1> tilted 20° from ND towards RD
 %% ---------
 
-% step 1: The definition of the commmon fibres listed above is based on the 
-% following fixed specimen coordinate system of sample directions 
+% step 1: The definition of the commmon fibres listed above is based on the
+% following fixed specimen coordinate system of sample directions
 % parallel to the crystallographic directions:
 RD = xvector; TD = yvector; ND = zvector;
 
@@ -44,8 +44,8 @@ RD = xvector; TD = yvector; ND = zvector;
 % %-----------------
 % Example 1: Calculate the fcc beta fibre
 %
-% This fibre can be simplified as <110> directions tilted 60° from ND 
-% towards TD 
+% This fibre can be simplified as <110> directions tilted 60° from ND
+% towards TD
 %
 % step 2: Define a nominal fcc crystal system
 CS = crystalSymmetry('SpaceId', 225, [3.6 3.6 3.6], [90 90 90]*degree, 'mineral', 'copper');
@@ -63,8 +63,8 @@ fibreMaker(cD,sD,sS,'halfwidth',5*degree,'export','fcc_beta.txt')
 pfName = 'fcc_beta.txt';
 hwidth = 5*degree;
 hpf = {Miller(1,1,1,CS),...
-  Miller(2,0,0,CS),...
-  Miller(2,2,0,CS)};
+    Miller(2,0,0,CS),...
+    Miller(2,2,0,CS)};
 pfColormap = flipud(colormap(hot));
 odfSections = [0 45 65]*degree;
 odfColormap = flipud(colormap(hot));
@@ -73,16 +73,16 @@ odfColormap = flipud(colormap(hot));
 
 
 % % %-----------------
-% % Example 2: Calculate the bcc {h 1 1} <1/h 1 2> fibre 
+% % Example 2: Calculate the bcc {h 1 1} <1/h 1 2> fibre
 % %
-% % This fibre can be simplified as a nominal bcc alpha -fibre 
-% % whose <110> is tilted 20° from RD towards ND 
+% % This fibre can be simplified as a nominal bcc alpha -fibre
+% % whose <110> is tilted 20° from RD towards ND
 % %
 % % step 2: Define a nominal bcc crystal system
-% CS = crystalSymmetry('SpaceId', 229, [2.86 2.86 2.86], [90 90 90]*degree, 'mineral', 'iron'); 
+% CS = crystalSymmetry('SpaceId', 229, [2.86 2.86 2.86], [90 90 90]*degree, 'mineral', 'iron');
 % % step 3: Define a crystallographic direction
 % cD = Miller({1,1,0},CS,'uvw');
-% % step 4: Define a tilt away a specimen co-ordinate system direction 
+% % step 4: Define a tilt away a specimen co-ordinate system direction
 % rotN = rotation('Euler',-20*degree,0*degree,0*degree);
 % sD = rotN * RD;
 % % step 5: Define the sample symmetry
@@ -107,11 +107,26 @@ odfColormap = flipud(colormap(hot));
 
 
 %% DO NOT EDIT/MODIFY BELOW THIS LINE
-% This is code common to Example 1 and 2 to visualise the *.txt or *.Tex 
-% file data
-%--- Load the texture file as an ODF
-odf = SO3Fun.load(pfName,'CS',CS,'resolution',hwidth,'Bunge',...
-  'ColumnNames',{'Euler 1','Euler 2','Euler 3','weights'});
+% check for MTEX version
+currentVersion = 5.9;
+fid = fopen('VERSION','r');
+MTEXversion = fgetl(fid);
+fclose(fid);
+MTEXversion = str2double(MTEXversion(5:end-2));
+
+if MTEXversion >= currentVersion % for MTEX versions 5.9.0 and above
+    %--- Load the texture file as an ODF
+    odf = SO3Fun.load(pfName,'CS',CS,'resolution',hwidth,'Bunge',...
+        'ColumnNames',{'Euler 1','Euler 2','Euler 3','weights'});
+
+else % for MTEX versions 5.8.2 and below
+    %--- Load the texture file as discrete orientations
+    [ori,~] = orientation.load(pfName,CS,sS,'interface','generic',...
+        'ColumnNames', {'phi1' 'Phi' 'phi2'}, 'Columns', [1 2 3], 'Bunge');
+    ori = ori(:);
+    %--- Calculate the orientation distribution function and define the specimen symmetry of the parent
+    odf = calcDensity(ori,'halfwidth',hwidth,'points','all');
+end
 
 %--- Re-define the specimen symmetry
 odf.SS = specimenSymmetry('orthorhombic');
@@ -120,7 +135,7 @@ odf.SS = specimenSymmetry('orthorhombic');
 maxodf_value = round(maxodf_value/5)*5;
 %---
 
-%--- Calculate the pole figures from the orientation distribution function 
+%--- Calculate the pole figures from the orientation distribution function
 pf = calcPoleFigure(odf,hpf,regularS2Grid('resolution',hwidth),'antipodal');
 %--- Calculate the value of the maximum f(g) in the PF
 maxpf_value = max(max(pf));
@@ -151,7 +166,7 @@ figH = figure(2);
 plotSection(odf,...
     'phi2',odfSections,...
     'points','all','equal',...
-    'contourf',1:ceil(maxodf_value/10):maxodf_value);    
+    'contourf',1:ceil(maxodf_value/10):maxodf_value);
 colormap(odfColormap);
 caxis([1 maxodf_value]);
 colorbar('location','eastOutSide','LineWidth',1.25,'TickLength', 0.01,...
