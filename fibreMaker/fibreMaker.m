@@ -1,7 +1,8 @@
 function fibreMaker(crystalDirection,sampleDirection,sampleSymmetry,varargin)
 %% Function description:
 % Creates an ideal crystallographic fibre with a user specified
-% half-width and exports the data as a VPSC file for later use.
+% half-width and exports the data as a lossless Mtex (version 5.9 onwards) 
+% or lossy VPSC (up to version 5.8.2) file for later use.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
