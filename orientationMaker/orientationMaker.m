@@ -44,14 +44,22 @@ MTEXversion = str2double(MTEXversion(5:end-2));
 if MTEXversion >= currentVersion % for MTEX versions 5.9.0 and above
     pfName_Out = get_option(varargin,'export','inputOrN.txt');
 
-    psi = SO3DeLaValleePoussinKernel('halfwidth',hwidth);
-    SO3F = SO3FunRBF(symmetrise(ori),psi);
-    % re-define the ODF specimen symmetry based on the user specification
-    SO3F.center.SS = sampleSymmetry;
+    psi = SO3vonMisesFisherKernel('halfwidth',1.225*hwidth);
+    % calculate a unimodal ODF
+    odf = unimodalODF(symmetrise(oriIn),psi);
     % discretise the ODF based on user specification
-    ori = discreteSample(SO3F.center,numPoints);
+    oriOut = discreteSample(odf,numPoints);
     % save an MTEX ASCII File *.txt file (lossless format)
-    export(ori,pfName_Out,'Bunge','interface','mtex');
+    export(oriOut,pfName_Out,'Bunge','interface','mtex');
+
+%     psi = SO3DeLaValleePoussinKernel('halfwidth',hwidth);
+%     SO3F = SO3FunRBF(symmetrise(ori),psi);
+%     % re-define the ODF specimen symmetry based on the user specification
+%     SO3F.center.SS = sampleSymmetry;
+%     % discretise the ODF based on user specification
+%     ori = discreteSample(SO3F.center,numPoints);
+%     % save an MTEX ASCII File *.txt file (lossless format)
+%     export(ori,pfName_Out,'Bunge','interface','mtex');
 
 %     % save a VPSC *.tex file
 %     export_VPSC(SO3F.center,pfName_Out,'interface','VPSC','Bunge','points',numPoints);
