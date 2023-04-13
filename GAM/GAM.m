@@ -8,8 +8,9 @@ function gam = GAM(ebsd,varargin)
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
 %
 %% Acknowledgements: 
-% Dr. Rudiger Killian
-% For the commands to compute the grain-based GAM.
+% Dr. Rüdiger Killian
+% For the commands to compute the grain-based GAM at:
+% https://groups.google.com/g/mtexmail/c/x1oFYjh0Des
 %
 %% Version(s):
 % This is a modification of MTEX's in-built KAM scipt located at:
@@ -92,15 +93,14 @@ kam = reshape(full(sum(kam,2)./sum(kam>0,2)),size(ebsd));
 
 
 
-%% Script by Rudiger Killian to calculate the grain-based GAM
-% % https://groups.google.com/g/mtexmail/c/x1oFYjh0Des
+%% Commands by Rüdiger Killian to calculate the grain-based GAM
 [~,~,eindex] = unique(ebsd.grainId);
 tempGAM = accumarray(eindex,kam,[],@nanmean);
 %%
 
 
 
-%% Script by Azdiar Gazder to re-assign the GAM value to each map pixel
+%% Commands by Azdiar Gazder to re-assign the GAM value to each map pixel
 % gam = nan(size(ebsd.grainId));
 % for ii = 1:max(eindex)
 % gam(ebsd.grainId==ii) = tempGAM(ii);
