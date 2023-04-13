@@ -81,6 +81,12 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 - [**fibreMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/fibreMaker): Creates an ideal crystallographic fibre with a user specified half-width and exports the data as a lossless Mtex *.txt file (for version 5.9.0 and onwards) or as a lossy discretised Mtex *.txt file (for up to version 5.8.2) for later use.
 
 
+
+## G
+- [**GAM**](https://github.com/AzdiarGazder/mtexTools/tree/main/GAM): By modifying MTEX's in-built KAM script, this function calculates the intragranular grain average misorientation. The grain-based kernal average misorientation is averaged to return a single value per grain.
+
+
+
 ## J
 - [**jeolOI2Mtex**](https://github.com/AzdiarGazder/mtexTools/tree/main/jeolOI2Mtex): A set of three scripts to be run successively that enables novice users to find the settings needed to successfully and routinely import thair ebsd map data (collected using a combination of a JEOL scanning electron microscope (SEM) and Oxford Instruments (OI) EBSD(+EDS) system) into MTEX. This tool enables users to plot the ebsd orientation + spatial data and crystallographic texture in Mtex in formats that exactly match the output from OI Channel-5 and Aztec Crystal.
 
