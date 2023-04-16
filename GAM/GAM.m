@@ -1,7 +1,7 @@
 function gam = GAM(ebsd,varargin)
 %% Function description:
 % By modifying MTEX's in-built KAM script, this function calculates the 
-% intragranular grain average misorientation. The grain-based kernal 
+% intragranular grain average misorientation. The first neighbour kernal 
 % average misorientation is averaged to return a single value per grain.
 %
 %% Modified by:
