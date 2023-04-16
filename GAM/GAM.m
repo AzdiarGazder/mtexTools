@@ -17,11 +17,11 @@ function gam = GAM(ebsd,varargin)
 % ~\mtex\EBSDAnalysis\@EBSD
 %
 % This function also uses the following MTEX scripts in unmodified form:
-% spatialDecomposition.m & generateUnitCells.m
-% located at ~\mtex\EBSDAnalysis\@EBSD\private
+% spatialDecomposition.m & generateUnitCells.m located at
+% ~\mtex\EBSDAnalysis\@EBSD\private
 %
 %% Syntax:
-% plot(ebsd,ebsd.GAM ./ degree)
+% plot(ebsd,ebsd.GAM./degree)
 %
 % % ignore misorientation angles > threshold
 % gam = GAM(ebsd,'threshold',10*degree);
