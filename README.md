@@ -83,7 +83,7 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 ## G
-- [**GAM**](https://github.com/AzdiarGazder/mtexTools/tree/main/GAM): By modifying MTEX's in-built KAM script, this function calculates the intragranular grain average misorientation. The grain-based kernal average misorientation is averaged to return a single value per grain.
+- [**GAM**](https://github.com/AzdiarGazder/mtexTools/tree/main/GAM): By modifying MTEX's in-built KAM script, this function calculates the intragranular grain average misorientation. The first neighbour kernal average misorientation is averaged to return a single value per grain.
 
 
 
