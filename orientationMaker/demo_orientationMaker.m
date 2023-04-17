@@ -57,16 +57,16 @@ startup_mtex
 % % step 3: Define the sample symmetry
 % sS = specimenSymmetry('orthorhombic');
 % % step 4: Call the orientationMaker function
-% orientationMaker(ori,sS,'halfwidth',2.5*degree,'export','fcc_Br.Tex')
+% pfName = 'fcc_Br.Tex';
+% orientationMaker(ori,sS,'halfwidth',2.5*degree,'export',pfName)
 % % step 5: Pre-define settings to plot the pole figure(s) & ODF of the
 % % orientation 
-% pfName = 'fcc_Br.Tex';
 % hwidth = 2.5*degree;
 % hpf = {Miller(1,1,1,CS),...
 %   Miller(2,0,0,CS),...
 %   Miller(2,2,0,CS)};
 % pfColormap = flipud(colormap(hot));
-% odfSections = [0 45 65]*degree;
+% odfSections = [0 45 65].*degree;
 % odfColormap = flipud(colormap(hot));
 % % %-----------------
 
@@ -83,16 +83,16 @@ ori = orientation.byEuler(90*degree,61*degree,45*degree,CS);
 % step 3: Define the sample symmetry
 sS = specimenSymmetry('orthorhombic');
 % step 4: Call the orientationMaker function
-orientationMaker(ori,sS,'halfwidth',2.5*degree,'export','bcc_554_-2-25.txt')
+pfName = 'bcc_554_-2-25.txt';
+orientationMaker(ori,sS,'halfwidth',2.5*degree,'export',pfName)
 % step 5: Pre-define settings to plot the pole figure(s) & ODF of the fibre
 % using the data in the VPSC file
-pfName = 'bcc_554_-2-25.txt';
 hwidth = 2.5*degree;
 hpf = {Miller(1,1,0,CS),...
   Miller(2,0,0,CS),...
   Miller(2,1,1,CS)};
 pfColormap = colormap(jet);
-odfSections = [0 45 90]*degree;
+odfSections = [0 45 90].*degree;
 odfColormap = colormap(jet);
 % %-----------------
 %%
@@ -102,6 +102,7 @@ odfColormap = colormap(jet);
 
 
 %% DO NOT EDIT/MODIFY BELOW THIS LINE
+setInterp2Latex;
 % % This is code common to Example 1 and 2 to visualise the *.txt or *.Tex 
 % % file data
 %--- Load the texture file
@@ -150,7 +151,7 @@ figH = figure(2);
 plotSection(odf,...
     'phi2',odfSections,...
     'points','all','equal',...
-    'contourf',1:ceil(maxodf_value/10):maxodf_value);    
+    'contourf',1:ceil(maxodf_value/10):maxodf_value,'zeroRange');    
 colormap(odfColormap);
 caxis([1 maxodf_value]);
 colorbar('location','eastOutSide','LineWidth',1.25,'TickLength', 0.01,...
@@ -161,4 +162,5 @@ set(figH,'Name','Orientation distribution function (ODF)','NumberTitle','on');
 odf.SS = specimenSymmetry('triclinic');
 drawnow;
 %---
+setInterp2Tex;
 %%
