@@ -41,65 +41,68 @@ RD = xvector; TD = yvector; ND = zvector;
 
 
 %% UN-REMARK EACH SECTION AND RUN SEPARATELY
-% %-----------------
-% Example 1: Calculate the fcc beta fibre
-%
-% This fibre can be simplified as <110> directions tilted 60° from ND
-% towards TD
-%
-% step 2: Define a nominal fcc crystal system
-CS = crystalSymmetry('SpaceId', 225, [3.6 3.6 3.6], [90 90 90]*degree, 'mineral', 'copper');
-% step 3: Define a crystallographic direction
-cD = Miller({1,1,0},CS,'uvw');
-% step 4: Define a sample direction tilted 60° from ND towards TD
-rotN = rotation('Euler',90*degree,60*degree,0*degree);
-sD = rotN * ND;
-% step 5: Define the sample symmetry
-sS = specimenSymmetry('orthorhombic');
-% step 6: Call the fibreMaker function
-fibreMaker(cD,sD,sS,'halfwidth',5*degree,'export','fcc_beta.txt')
-
-% step 7: Pre-define settings to plot the pole figure(s) & ODF of the fibre
-pfName = 'fcc_beta.txt';
-hwidth = 5*degree;
-hpf = {Miller(1,1,1,CS),...
-    Miller(2,0,0,CS),...
-    Miller(2,2,0,CS)};
-pfColormap = flipud(colormap(hot));
-odfSections = [0 45 65]*degree;
-odfColormap = flipud(colormap(hot));
-% %-----------------
-
-
-
 % % %-----------------
-% % Example 2: Calculate the bcc {h 1 1} <1/h 1 2> fibre
+% % Example 1: Calculate the fcc beta fibre
 % %
-% % This fibre can be simplified as a nominal bcc alpha -fibre
-% % whose <110> is tilted 20° from RD towards ND
+% % This fibre can be simplified as <110> directions tilted 60° from ND
+% % towards TD
 % %
-% % step 2: Define a nominal bcc crystal system
-% CS = crystalSymmetry('SpaceId', 229, [2.86 2.86 2.86], [90 90 90]*degree, 'mineral', 'iron');
+% % step 2: Define a nominal fcc crystal system
+% CS = crystalSymmetry('SpaceId', 225, [3.6 3.6 3.6], [90 90 90]*degree, 'mineral', 'copper');
 % % step 3: Define a crystallographic direction
 % cD = Miller({1,1,0},CS,'uvw');
-% % step 4: Define a tilt away a specimen co-ordinate system direction
-% rotN = rotation('Euler',-20*degree,0*degree,0*degree);
-% sD = rotN * RD;
+% % step 4: Define a sample direction tilted 60° from ND towards TD
+% rotN = rotation('Euler',90*degree,60*degree,0*degree);
+% sD = rotN * ND;
 % % step 5: Define the sample symmetry
 % sS = specimenSymmetry('orthorhombic');
 % % step 6: Call the fibreMaker function
-% fibreMaker(cD,sD,sS,'halfwidth',5*degree,'export','bcc_h11_1byh12.txt')
-
+% fibreMaker(cD,sD,sS,'halfwidth',5*degree,'export','fcc_beta.txt')
+% 
 % % step 7: Pre-define settings to plot the pole figure(s) & ODF of the fibre
-% pfName = 'bcc_h11_1byh12.txt';
+% pfName = 'fcc_beta.txt';
 % hwidth = 5*degree;
-% hpf = {Miller(1,1,0,CS),...
-%   Miller(2,0,0,CS),...
-%   Miller(2,1,1,CS)};
-% pfColormap = colormap(jet);
-% odfSections = [0 45 90]*degree;
-% odfColormap = colormap(jet);
+% hpf = {Miller(1,1,1,CS),...
+%     Miller(2,0,0,CS),...
+%     Miller(2,2,0,CS)};
+% pfColormap = flipud(colormap(hot));
+% odfSections = [0 45 65]*degree;
+% odfColormap = flipud(colormap(hot));
 % % %-----------------
+
+
+
+% %-----------------
+% Example 2: Calculate the bcc {h 1 1} <1/h 1 2> fibre
+%
+% This fibre can be simplified as a nominal bcc alpha -fibre
+% whose <110> is tilted 20° from RD towards ND
+%
+% step 2: Define a nominal bcc crystal system
+CS = crystalSymmetry('SpaceId', 229, [2.86 2.86 2.86], [90 90 90]*degree, 'mineral', 'iron');
+% step 3: Define a crystallographic direction
+cD = Miller({1,1,1},CS,'uvw');
+% cD = Miller({1,1,0},CS,'uvw');
+% step 4: Define a tilt away a specimen co-ordinate system direction
+% rotN = rotation('Euler',-20*degree,0*degree,0*degree);
+% sD = rotN * RD;
+sD = ND;
+% step 5: Define the sample symmetry
+sS = specimenSymmetry('orthorhombic');
+% step 6: Call the fibreMaker function
+% pfName = 'bcc_h11_1byh12.txt';
+pfName = 'bcc_gammaFibre.txt';
+fibreMaker(cD,sD,sS,'halfwidth',5*degree,'export',pfName)
+
+% step 7: Pre-define settings to plot the pole figure(s) & ODF of the fibre
+hwidth = 5*degree;
+hpf = {Miller(1,1,0,CS),...
+  Miller(2,0,0,CS),...
+  Miller(2,1,1,CS)};
+pfColormap = colormap(jet);
+odfSections = [0 45 90]*degree;
+odfColormap = colormap(jet);
+% %-----------------
 %%
 
 
@@ -107,6 +110,7 @@ odfColormap = flipud(colormap(hot));
 
 
 %% DO NOT EDIT/MODIFY BELOW THIS LINE
+setInterp2Latex;
 % check for MTEX version
 currentVersion = 5.9;
 fid = fopen('VERSION','r');
@@ -153,8 +157,8 @@ plotPDF(odf,...
 colormap(pfColormap);
 caxis([1 maxpf_value]);
 colorbar('location','eastOutSide','LineWidth',1.25,'TickLength', 0.01,...
-    'YTick', [0:ceil(maxpf_value/10):maxpf_value],...
-    'YTickLabel',num2str([0:ceil(maxpf_value/10):maxpf_value]'), 'YLim', [0 maxpf_value],...
+    'YTick', [1:ceil(maxpf_value/10):maxpf_value],...
+    'YTickLabel',num2str([1:ceil(maxpf_value/10):maxpf_value]'), 'YLim', [1 maxpf_value],...
     'TickLabelInterpreter','latex','FontName','Helvetica','FontSize',14,'FontWeight','bold');
 set(figH,'Name','Pole figure(s)','NumberTitle','on');
 drawnow;
@@ -170,11 +174,12 @@ plotSection(odf,...
 colormap(odfColormap);
 caxis([1 maxodf_value]);
 colorbar('location','eastOutSide','LineWidth',1.25,'TickLength', 0.01,...
-    'YTick', [0:ceil(maxodf_value/10):maxodf_value],...
-    'YTickLabel',num2str([0:ceil(maxodf_value/10):maxodf_value]'), 'YLim', [0 maxodf_value],...
+    'YTick', [1:ceil(maxodf_value/10):maxodf_value],...
+    'YTickLabel',num2str([1:ceil(maxodf_value/10):maxodf_value]'), 'YLim', [1 maxodf_value],...
     'TickLabelInterpreter','latex','FontName','Helvetica','FontSize',14,'FontWeight','bold');
 set(figH,'Name','Orientation distribution function (ODF)','NumberTitle','on');
 odf.SS = specimenSymmetry('triclinic');
 drawnow;
 %---
+setInterp2Tex;
 %%
