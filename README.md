@@ -16,7 +16,7 @@
 
 MTEX is fully capable of interrogating, processing, and manipulating EBSD map data obtained in several configurations from different OEM vendors. Perhaps its single most powerful characteristic is that the toolbox itself is fully scriptable. This allows users to develop scripts (or codes or programs) to add functionality where needed. It enables a fully customisable analytical experience and unlike commercial OEM software suites, provides for an ever-evolving library of niche capabilities.
 
-This [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) webpage is a collated library of additional MTEX functions and their demonstration scripts. Some are original scripts by this author whereas others were gleaned and/or put together from various sources. In the latter case, and while concurrently choosing not to re-invent the wheel, the scripts were modified to either improve on their logic and efficiency or increase their general functionality and usability within MTEX/Matlab. For all such scripts, attributions to the original author are stated in the acknowledgements section of the relevant function. Regardles of their antecedent(s), all scripts in the mtexTools library are directly incorporated into the latest version of MTEX and can be seamlessly and readily used without modification. 
+This [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) webpage is a collated library of additional MTEX functions and their demonstration scripts. Some are original scripts by this author whereas others were gleaned and/or put together from various sources. In the latter case, and while concurrently choosing not to re-invent the wheel, the scripts were modified to either improve on their logic and efficiency or increase their general functionality and usability within MTEX/Matlab. For all such scripts, attributions to the original author are stated in the acknowledgements section of the relevant function. Regardless of their antecedent(s), all scripts in the mtexTools library are directly incorporated into the latest version of MTEX and can be seamlessly and readily used without modification. 
 
 ---
 
@@ -54,6 +54,8 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 ## C
 - [**calcGrainsFFT**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcGrainsFFT): Returns the Fast Fourier Transforms (FFTs) of individual grains. The FFTs are calculated after padding each grayscale/binary grain map to its nearest square. The FFTs from grayscale and binary data are returned in grid format within the 'grains.prop.fftGray' and 'grains.prop.fftBinary' structure variables.
+
+- [**calcODFIntensity**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcODFIntensity): Returns a 3D variable of the ODF intensity (f(g)) in user-defined steps of phi2 using Bunge's notation.
 
 - [**calcStepSize**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcStepSize): Calculates the step size of the ebsd map. This function also re-calculates the x and y grid values as multiples of the step size to mitigate any rounding-off errors during subsequent gridding operations. To enable the re-calculation of the x and y grid values, the ebsd variable must be outputted from the function.
 
