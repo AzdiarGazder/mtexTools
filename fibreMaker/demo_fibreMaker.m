@@ -135,6 +135,8 @@ end
 %--- Re-define the specimen symmetry
 odf.SS = specimenSymmetry('orthorhombic');
 %--- Calculate the value and orientation of the maximum f(g) in the ODF
+% [maxodf_value,~] = max(odf);
+% odf = odf.*(100/maxodf_value); % scale ODF to maximum f(g) = 100
 [maxodf_value,maxodf_ori] = max(odf);
 maxodf_value = round(maxodf_value/5)*5;
 %---
@@ -177,9 +179,10 @@ colorbar('location','eastOutSide','LineWidth',1.25,'TickLength', 0.01,...
     'YTick', [1:ceil(maxodf_value/10):maxodf_value],...
     'YTickLabel',num2str([1:ceil(maxodf_value/10):maxodf_value]'), 'YLim', [1 maxodf_value],...
     'TickLabelInterpreter','latex','FontName','Helvetica','FontSize',14,'FontWeight','bold');
+setColorRange('equal') % set equal color range for all subplots
 set(figH,'Name','Orientation distribution function (ODF)','NumberTitle','on');
 odf.SS = specimenSymmetry('triclinic');
 drawnow;
 %---
-setInterp2Tex;
+% setInterp2Tex;
 %%
