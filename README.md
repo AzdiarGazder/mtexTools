@@ -55,6 +55,8 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 ## C
 - [**calcGrainsFFT**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcGrainsFFT): Returns the Fast Fourier Transforms (FFTs) of individual grains. The FFTs are calculated after padding each grayscale/binary grain map to its nearest square. The FFTs from grayscale and binary data are returned in grid format within the 'grains.prop.fftGray' and 'grains.prop.fftBinary' structure variables.
 
+- [**calcODFIntensity**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcODFIntensity): Returns a 3D variable of the ODF intensity (f(g)) in user-defined steps of phi2 using Bunge's notation.
+
 - [**calcStepSize**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcStepSize): Calculates the step size of the ebsd map. This function also re-calculates the x and y grid values as multiples of the step size to mitigate any rounding-off errors during subsequent gridding operations. To enable the re-calculation of the x and y grid values, the ebsd variable must be outputted from the function.
 
 - [**crop**](https://github.com/AzdiarGazder/mtexTools/tree/main/crop): Crop, cut-out or make a subset of ebsd map data from within a user-specified rectangular, circular, polygonal or freehand area-based region of interest (ROI). Instructions on script use are provided in the window titlebar.
