@@ -116,8 +116,11 @@ odf = calcDensity(ori,'halfwidth',hwidth,'points','all');
 odf.SS = specimenSymmetry('orthorhombic');
 
 %--- Calculate the value and orientation of the maximum f(g) in the ODF
+% [maxodf_value,~] = max(odf);
+% odf = odf.*(100/maxodf_value); % scale ODF to maximum f(g) = 100
 [maxodf_value,maxodf_ori] = max(odf);
 maxodf_value = round(maxodf_value/5)*5;
+
 %---
 
 %--- Calculate the pole figures from the orientation distribution function 
@@ -158,9 +161,10 @@ colorbar('location','eastOutSide','LineWidth',1.25,'TickLength', 0.01,...
     'YTick', [0:ceil(maxodf_value/10):maxodf_value],...
     'YTickLabel',num2str([0:ceil(maxodf_value/10):maxodf_value]'), 'YLim', [0 maxodf_value],...
     'TickLabelInterpreter','latex','FontName','Helvetica','FontSize',14,'FontWeight','bold');
+setColorRange('equal') % set equal color range for all subplots
 set(figH,'Name','Orientation distribution function (ODF)','NumberTitle','on');
 odf.SS = specimenSymmetry('triclinic');
 drawnow;
 %---
-setInterp2Tex;
+% setInterp2Tex;
 %%
