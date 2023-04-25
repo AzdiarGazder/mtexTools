@@ -42,5 +42,5 @@ psi = calcKernel(ebsd(CS{2}).orientations);
 odf = calcDensity(ebsd(CS{2}).orientations,'kernel',psi);
 
 % compute the ODF intensity
-% fG = calcODFIntensity(odf);
-fG = calcODFIntensity(odf,'phi2',(0:5:90)*degree);
+% odf = calcODFIntensity(odf);
+odf = calcODFIntensity(odf,'phi2',(0:5:90)*degree);
