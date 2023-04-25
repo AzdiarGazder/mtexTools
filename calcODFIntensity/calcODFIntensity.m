@@ -1,15 +1,12 @@
-function odfIntensity = calcODFIntensity(odf,varargin)
+function odf = calcODFIntensity(odf,varargin)
 %% Function description:
-% Returns a 3D variable of the ODF intensity (f(g)) in user-defined steps 
-% of phi2 using Bunge's notation.
+% Returns the ODF intensity (f(g)) in user-defined steps of phi2 using 
+% Bunge's notation to the variable 'odf.opt.intensity'.
 %
 %% Author:
 % Dr. Ralf Heilscher, 2023
-% 
-%% Modified by:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
-% to function format
-%
+% 
 %% Syntax:
 %  calcODFIntensity(odf)
 %
@@ -36,6 +33,13 @@ phi2Sec = phi2Sections(odf.CS,odf.SS,'phi2',phi2Steps);
 S3G = phi2Sec.makeGrid;
 
 % return the ODF intensity at the gridded points
-odfIntensity = odf.eval(S3G);
+odf.opt.intensity = odf.eval(S3G);
 
+% make negative f(g) values == 0
+odf.opt.intensity(odf.opt.intensity<0) = 0;
+
+% check if the user has not specified an output variable
+if nargout == 0
+    assignin('base','odf',odf);
+end
 end
