@@ -91,6 +91,8 @@ Bunge's notation to the variable 'odf.opt.intensity'.
 
 
 ## I
+- [**imageResize**](https://github.com/AzdiarGazder/mtexTools/tree/main/imageResize): Interactively resize an image. This function may be used in conjunction with ebsd map data to correct for drift during map acquisition.
+
 - [**imageTransform**](https://github.com/AzdiarGazder/mtexTools/tree/main/imageTransform): Interactively projective or affine transform an image. This function may be used in conjunction with ebsd map data to correct for drift during map acquisition.
 
 
