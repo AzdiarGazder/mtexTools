@@ -90,6 +90,11 @@ Bunge's notation to the variable 'odf.opt.intensity'.
 
 
 
+## I
+- [**imageTransform**](https://github.com/AzdiarGazder/mtexTools/tree/main/imageTransform): Interactively projective or affine transform an image. This function is too be used in conjunction with ebsd map data to correct for drift during map acquisition.
+
+
+
 ## J
 - [**jeolOI2Mtex**](https://github.com/AzdiarGazder/mtexTools/tree/main/jeolOI2Mtex): A set of three scripts to be run successively that enables novice users to find the settings needed to successfully and routinely import thair ebsd map data (collected using a combination of a JEOL scanning electron microscope (SEM) and Oxford Instruments (OI) EBSD(+EDS) system) into MTEX. This tool enables users to plot the ebsd orientation + spatial data and crystallographic texture in Mtex in formats that exactly match the output from OI Channel-5 and Aztec Crystal.
 
