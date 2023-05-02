@@ -1,7 +1,7 @@
 function imageTransform
 %% Function description:
-% Interactively projective or affine transform an image. This function is
-% to be used in conjunction with ebsd map data to correct for drift during
+% Interactively projective or affine transform an image. This function may
+% be used in conjunction with ebsd map data to correct for drift during
 % map acquisition.
 %
 %% Author:
