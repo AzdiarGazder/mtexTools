@@ -55,9 +55,9 @@ while true
 
     % Step 9: Resize the image
     % % This method does not maintain aspect ratio or avoid distortion
-    % resizedImg = imresize(img, [rectHeight rectWidth]);
+    % resizedImg = imresize(img,[rectHeight rectWidth]);
     % This method maintains aspect ratio or avoid distortion
-    scaleFactor = min(rectWidth/imgWidth,rectHeight/imgHeight);
+    scaleFactor = min(rectWidth/imgWidth, rectHeight/imgHeight);
     resizedImg = imresize(img,scaleFactor);
 
 
