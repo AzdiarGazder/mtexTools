@@ -28,7 +28,7 @@ end
 % the spacing between the points = (length(incmap)-1)/(nbins-1)
 out = [linspace(1,length(incmap),nbins)]';
 
-% convert the middle row indices to integers
+% convert the row indices between 2:end-1 to integers
 out(2:end-1,1) = ceil(out(2:end-1,1));
 
 % re-assign the row indices to the colormap
