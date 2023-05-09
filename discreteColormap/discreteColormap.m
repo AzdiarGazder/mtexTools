@@ -23,28 +23,15 @@ if length(incmap) < nbins
     return;
 end
 
+% generate a linearly spaced [n x 1] vector of row indices based on:
+% an interval = 1:maximum number of rows as the input colormap
+% the spacing between the points = (length(incmap)-1)/(nbins-1)
+out = [linspace(1,length(incmap),nbins)]';
 
-% make a numeric array with the same number of rows as the input colormap
-sortedVals = [1:length(incmap)]';
+% convert the middle row indices to integers
+out(2:end-1,1) = ceil(out(2:end-1,1));
 
-% compute the bin width based on the number of rows and user specified bins
-binWidth = floor(length(sortedVals(2:end))/(nbins-1));
-
-% compute the remainder number of rows
-remainderRows = length(sortedVals) - (binWidth*(nbins-1)) - 1;
-
-% divide numeric array into a cell array such that:
-% the first bin contains the first value
-% (2:end-2) bins are equal in size, and
-% the end bin contains the remainder rows as well
-% [ones(1,1), binWidth*ones(1,nbins-2), binWidth*ones(1,1)+remainderRows]
-binContents = mat2cell(sortedVals,[ones(1,1), binWidth*ones(1,nbins-2), binWidth*ones(1,1)+remainderRows]);
-
-% find the value in the last row of every cell
-out = cellfun(@(x) x(end,:),binContents,'UniformOutput',false);
-out = vertcat(out{:});
-
-% re-assign the rows to the colormap
+% re-assign the row indices to the colormap
 outcmap = incmap(out,:);
 end
 
