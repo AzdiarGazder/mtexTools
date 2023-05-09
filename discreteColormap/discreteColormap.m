@@ -28,15 +28,16 @@ end
 sortedVals = [1:length(incmap)]';
 
 % compute the bin width based on the number of rows and user specified bins
-binWidth = floor(length(sortedVals)/(nbins-1));
+binWidth = floor(length(sortedVals(2:end))/(nbins-1));
 
-% find out the remainder number of rows
+% compute the remainder number of rows
 remainderRows = length(sortedVals) - (binWidth*(nbins-1)) - 1;
 
 % divide numeric array into a cell array such that:
 % the first bin contains the first value
 % (2:end-2) bins are equal in size, and
 % the end bin contains the remainder rows as well
+% [ones(1,1), binWidth*ones(1,nbins-2), binWidth*ones(1,1)+remainderRows]
 binContents = mat2cell(sortedVals,[ones(1,1), binWidth*ones(1,nbins-2), binWidth*ones(1,1)+remainderRows]);
 
 % find the value in the last row of every cell
