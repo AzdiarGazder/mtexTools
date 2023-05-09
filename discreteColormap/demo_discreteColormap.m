@@ -12,7 +12,7 @@ colorbar;
 figure(2)
 % sub-divide a colormap into a user specified number of discrete colors
 % cmap = divideColormap(cmap,5);
-cmap = divideColormap(colormap('jet'),5);
+cmap = discreteColormap(colormap('jet'),5);
 % define the discretised colormap
 colormap(cmap);
 colorbar;
