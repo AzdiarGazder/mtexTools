@@ -29,7 +29,7 @@ end
 out = [linspace(1,length(incmap),nbins)]';
 
 % convert the row indices between 2:end-1 to integers
-out(2:end-1,1) = ceil(out(2:end-1,1));
+out(2:end-1,1) = round(out(2:end-1,1));
 
 % re-assign the row indices to the colormap
 outcmap = incmap(out,:);
