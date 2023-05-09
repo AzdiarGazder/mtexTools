@@ -69,7 +69,7 @@ Bunge's notation to the variable 'odf.opt.intensity'.
 ## D
 - [**dilate**](https://github.com/AzdiarGazder/mtexTools/tree/main/dilate): Dilates the ebsd data surrounding individual, multiple contiguous or multiple discrete grains of interest by one pixel.
 
-- [**divideColormap**](https://github.com/AzdiarGazder/mtexTools/tree/main/divideColormap): Sub-divides a default colormap palette into a user specified number of discrete colors to improve on the visual distinction between bins/levels.
+- [**discreteColormap**](https://github.com/AzdiarGazder/mtexTools/tree/main/discreteColormap): Sub-divides a default colormap palette into a user specified number of discrete colors to improve on the visual distinction between bins/levels.
 
 
 
