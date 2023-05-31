@@ -47,27 +47,21 @@ RD = xvector; TD = yvector; ND = zvector;
 % % This fibre can be simplified as <110> directions tilted 60° from ND
 % % towards TD
 % %
-% % step 2: Define a nominal fcc crystal system
+% % Step 2: Define a nominal fcc crystal system
 % CS = crystalSymmetry('SpaceId', 225, [3.6 3.6 3.6], [90 90 90]*degree, 'mineral', 'copper');
-% % step 3: Define a crystallographic direction
+% % Step 3: Define a crystallographic direction
 % cD = Miller({1,1,0},CS,'uvw');
-% % step 4: Define a sample direction tilted 60° from ND towards TD
+% % Step 4: Define a sample direction tilted 60° from ND towards TD
 % rotN = rotation('Euler',90*degree,60*degree,0*degree);
 % sD = rotN * ND;
-% % step 5: Define the sample symmetry
+% % Step 5: Define the sample symmetry
 % sS = specimenSymmetry('orthorhombic');
-% % step 6: Call the fibreMaker function
-% fibreMaker(cD,sD,sS,'halfwidth',5*degree,'export','fcc_beta.txt')
-% 
-% % step 7: Pre-define settings to plot the pole figure(s) & ODF of the fibre
-% pfName = 'fcc_beta.txt';
+% % Step 6: Define a half-width
 % hwidth = 5*degree;
-% hpf = {Miller(1,1,1,CS),...
-%     Miller(2,0,0,CS),...
-%     Miller(2,2,0,CS)};
-% pfColormap = flipud(colormap(hot));
-% odfSections = [0 45 65]*degree;
-% odfColormap = flipud(colormap(hot));
+% % Step 7: Define a file name
+% pfName = 'fcc_beta.txt';
+% % Step 8: Call the fibreMaker function
+% fibreMaker(cD,sD,sS,'halfwidth',hwidth,'export',pfName)
 % % %-----------------
 
 
@@ -78,30 +72,24 @@ RD = xvector; TD = yvector; ND = zvector;
 % This fibre can be simplified as a nominal bcc alpha -fibre
 % whose <110> is tilted 20° from RD towards ND
 %
-% step 2: Define a nominal bcc crystal system
+% Step 2: Define a nominal bcc crystal system
 CS = crystalSymmetry('SpaceId', 229, [2.86 2.86 2.86], [90 90 90]*degree, 'mineral', 'iron');
-% step 3: Define a crystallographic direction
+% Step 3: Define a crystallographic direction
 cD = Miller({1,1,1},CS,'uvw');
 % cD = Miller({1,1,0},CS,'uvw');
-% step 4: Define a tilt away a specimen co-ordinate system direction
+% Step 4: Define a tilt away a specimen co-ordinate system direction
 % rotN = rotation('Euler',-20*degree,0*degree,0*degree);
 % sD = rotN * RD;
 sD = ND;
-% step 5: Define the sample symmetry
+% Step 5: Define the sample symmetry
 sS = specimenSymmetry('orthorhombic');
-% step 6: Call the fibreMaker function
+% Step 6: Define a half-width
+hwidth = 5*degree;
+% Step 7: Define a file name
 % pfName = 'bcc_h11_1byh12.txt';
 pfName = 'bcc_gammaFibre.txt';
-fibreMaker(cD,sD,sS,'halfwidth',5*degree,'export',pfName)
-
-% step 7: Pre-define settings to plot the pole figure(s) & ODF of the fibre
-hwidth = 5*degree;
-hpf = {Miller(1,1,0,CS),...
-  Miller(2,0,0,CS),...
-  Miller(2,1,1,CS)};
-pfColormap = colormap(jet);
-odfSections = [0 45 90]*degree;
-odfColormap = colormap(jet);
+% Step 8: Call the fibreMaker function
+fibreMaker(cD,sD,sS,'halfwidth',hwidth,'export',pfName)
 % %-----------------
 %%
 
@@ -111,7 +99,8 @@ odfColormap = colormap(jet);
 
 %% DO NOT EDIT/MODIFY BELOW THIS LINE
 setInterp2Latex;
-% check for MTEX version
+
+% Check for MTEX version
 currentVersion = 5.9;
 fid = fopen('VERSION','r');
 MTEXversion = fgetl(fid);
@@ -124,65 +113,23 @@ if MTEXversion >= currentVersion % for MTEX versions 5.9.0 and above
         'ColumnNames',{'Euler 1','Euler 2','Euler 3','weights'});
 
 else % for MTEX versions 5.8.2 and below
-    %--- Load the texture file as discrete orientations
+    % Load the texture file as discrete orientations
     [ori,~] = orientation.load(pfName,CS,sS,'interface','generic',...
         'ColumnNames', {'phi1' 'Phi' 'phi2'}, 'Columns', [1 2 3], 'Bunge');
     ori = ori(:);
-    %--- Calculate the orientation distribution function and define the specimen symmetry of the parent
+    % Calculate the orientation distribution function and define the specimen symmetry of the parent
     odf = calcDensity(ori,'halfwidth',hwidth,'points','all');
 end
-
-%--- Re-define the specimen symmetry
-odf.SS = specimenSymmetry('orthorhombic');
-%--- Calculate the value and orientation of the maximum f(g) in the ODF
 % [maxodf_value,~] = max(odf);
 % odf = odf.*(100/maxodf_value); % scale ODF to maximum f(g) = 100
-[maxodf_value,maxodf_ori] = max(odf);
-maxodf_value = round(maxodf_value/5)*5;
-%---
 
-%--- Calculate the pole figures from the orientation distribution function
-pf = calcPoleFigure(odf,hpf,regularS2Grid('resolution',hwidth),'antipodal');
-%--- Calculate the value of the maximum f(g) in the PF
-maxpf_value = max(max(pf));
-maxpf_value = round(maxpf_value/5)*5;
-%---
+% Plot the pole figures
+% hpf = {Miller(1,1,1,odf.CS),Miller(2,0,0,odf.CS), Miller(2,2,0,odf.CS)};
+hpf = {Miller(1,1,0,odf.CS),Miller(2,0,0,odf.CS), Miller(2,1,1,odf.CS)};
+plotHPF(odf,hpf,specimenSymmetry('triclinic'),'stepSize',50,'colormap',jet);
 
-%--- Plot the pole figures
-figH = figure(1);
-odf.SS = specimenSymmetry('triclinic');
-plotPDF(odf,...
-    hpf,...
-    'points','all',...
-    'equal','antipodal',...
-    'contourf',1:ceil(maxpf_value/10):maxpf_value);
-colormap(pfColormap);
-caxis([1 maxpf_value]);
-colorbar('location','eastOutSide','LineWidth',1.25,'TickLength', 0.01,...
-    'YTick', [1:ceil(maxpf_value/10):maxpf_value],...
-    'YTickLabel',num2str([1:ceil(maxpf_value/10):maxpf_value]'), 'YLim', [1 maxpf_value],...
-    'TickLabelInterpreter','latex','FontName','Helvetica','FontSize',14,'FontWeight','bold');
-set(figH,'Name','Pole figure(s)','NumberTitle','on');
-drawnow;
-odf.SS = specimenSymmetry('orthorhombic');
-%---
+% Plot the orientation distribution function
+plotHODF(odf,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'stepSize',250,'colormap',jet);
 
-%--- Plot the orientation distribution function
-figH = figure(2);
-plotSection(odf,...
-    'phi2',odfSections,...
-    'points','all','equal',...
-    'contourf',1:ceil(maxodf_value/10):maxodf_value);
-colormap(odfColormap);
-caxis([1 maxodf_value]);
-colorbar('location','eastOutSide','LineWidth',1.25,'TickLength', 0.01,...
-    'YTick', [1:ceil(maxodf_value/10):maxodf_value],...
-    'YTickLabel',num2str([1:ceil(maxodf_value/10):maxodf_value]'), 'YLim', [1 maxodf_value],...
-    'TickLabelInterpreter','latex','FontName','Helvetica','FontSize',14,'FontWeight','bold');
-setColorRange('equal') % set equal color range for all subplots
-set(figH,'Name','Orientation distribution function (ODF)','NumberTitle','on');
-odf.SS = specimenSymmetry('triclinic');
-drawnow;
-%---
-% setInterp2Tex;
+setInterp2Tex;
 %%

@@ -16,7 +16,7 @@ function fibreMaker(crystalDirection,sampleDirection,sampleSymmetry,varargin)
 % https://github.com/ORTools4MTEX/ORTools/blob/develop/fibreMaker.m
 %
 %% Syntax:
-%  fibreMaker(crystalDirection,samplenDirection,,sampleSymmetry)
+%  fibreMaker(crystalDirection,sampleDirection,sampleSymmetry)
 %
 %% Input:
 %  crystalDirection     - @Miller
