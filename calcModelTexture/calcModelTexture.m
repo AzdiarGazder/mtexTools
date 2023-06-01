@@ -76,7 +76,7 @@ for ii = 1:5
 
 %     elseif ii >= 3 % Refined: from the list of semi-refined orientations
 %         clear phi1 PHI phi2 ori
-% %         [modes,~,id2] = unique(modes,'tolerance',2*psi.halfwidth); 10*degree);
+% %         [modes,~,id2] = unique(modes,'tolerance',2*psi.halfwidth); %10*degree);
 % %         vol = accumarray(id2,vol);
 %         phi1 = modes.phi1; PHI = modes.Phi; phi2 = modes.phi2;
 %         ori = orientation.byEuler(phi1,PHI,phi2,expODF.CS,specimenSymmetry('orthorhombic'));

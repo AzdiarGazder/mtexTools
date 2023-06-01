@@ -179,34 +179,40 @@ return
 
 
 %---
+% Output unique modes versus ideal orientations in a table
+[m,~,id2] = unique(modes,'tolerance',2*psi.halfwidth);
+v = accumarray(id2,vol);
+
 phi1 = eA(:,1)*degree; PHI = eA(:,2)*degree; phi2 = eA(:,3)*degree;
 ori = orientation.byEuler(phi1,PHI,phi2,expODF.CS,specimenSymmetry('orthorhombic'));
 ori = ori(:);
-miso = zeros(length(modes),length(ori));
-for ii = 1:length(modes)
+miso = zeros(length(m),length(ori));
+for ii = 1:length(m)
     for jj = 1:length(ori)
-        miso(ii,jj) = min(angle(modes(ii),symmetrise(ori(jj))))./degree;
+        miso(ii,jj) = min(angle(m(ii),symmetrise(ori(jj))))./degree;
     end
 end
 [minVal,minIdx] = min(miso,[],2);
-% % Output histogram data in a table
-m = 1:length(modes);% [modes.phi1 modes.Phi modes.phi2];
-disp(table(m',vol,minIdx,minVal,'VariableNames',{'mode_index','mode_volFrac','idealOrN_index','min_misoAngle'}))
+mm = [1:length(m)]';
+disp(table(mm,v,minIdx,minVal,'VariableNames',{'uniqueMode_index','uniqueMode_volFrac','idealOrN_index','min_misoAngle'}))
 %---
 
 
 
 %---
-% Quick test to find out which ideal orientations the modes correspond to
-cmap = jet(length(modes));
+% Plot which ideal orientations the unique modes correspond to
+[m,~,id2] = unique(modes,'tolerance',2*psi.halfwidth);
+v = accumarray(id2,vol);
+
+cmap = jet(length(m));
 figure(3);
 hold all;
-for ii = 1:length(modes)
+for ii = 1:length(m)
     [keyCode,~] = getKey(1); % wait for user input
     if keyCode == 27 % ascii code if the escape key is presssed
         return % exit the loop
     else % continue the loop
-        annotate(modes(ii),...
+        annotate(m(ii),...
             'marker','s','MarkerSize',12,'MarkerFaceColor',cmap(ii,:));
     end
 end
