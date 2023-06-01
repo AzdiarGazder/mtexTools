@@ -179,7 +179,7 @@ return
 
 
 %---
-% Output unique modes versus ideal orientations in a table
+% Output unique modes versus possible ideal orientations in a table
 [m,~,id2] = unique(modes,'tolerance',2*psi.halfwidth);
 v = accumarray(id2,vol);
 
