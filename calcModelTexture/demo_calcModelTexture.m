@@ -183,8 +183,6 @@ return
 [m,~,id2] = unique(modes,'tolerance',2*psi.halfwidth);
 v = accumarray(id2,vol);
 
-phi1 = eA(:,1)*degree; PHI = eA(:,2)*degree; phi2 = eA(:,3)*degree;
-ori = orientation.byEuler(phi1,PHI,phi2,expODF.CS,specimenSymmetry('orthorhombic'));
 ori = ori(:);
 miso = zeros(length(m),length(ori));
 for ii = 1:length(m)
