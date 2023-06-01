@@ -96,21 +96,21 @@ setInterp2Latex;
 
 % % This is code common to Example 1 and 2 to visualise the *.txt or *.Tex 
 % % file data
-%--- Load the texture file
+% Load the texture file
 [ori,~] = orientation.load(pfName,CS,sS,'interface','generic',...
     'ColumnNames', {'phi1' 'Phi' 'phi2'}, 'Columns', [1 2 3], 'Bunge');
 
-%--- Calculate the orientation distribution function and define the specimen symmetry of the parent
+% Calculate the orientation distribution function and define the specimen symmetry of the parent
 odf = calcDensity(ori,'halfwidth',hwidth,'points','all');
 % [maxodf_value,~] = max(odf);
 % odf = odf.*(100/maxodf_value); % scale ODF to maximum f(g) = 100
 
-%--- Plot the pole figures
+% Plot the pole figures
 hpf = {Miller(1,1,1,odf.CS),Miller(2,0,0,odf.CS), Miller(2,2,0,odf.CS)};
 % hpf = {Miller(1,1,0,odf.CS),Miller(2,0,0,odf.CS), Miller(2,1,1,odf.CS)};
 plotHPF(odf,hpf,specimenSymmetry('triclinic'),'stepSize',10,'colormap',flipud(hot));
 
-%--- Plot the orientation distribution function
+% Plot the orientation distribution function
 plotHODF(odf,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'stepSize',100,'colormap',flipud(hot));
 
 setInterp2Tex;
