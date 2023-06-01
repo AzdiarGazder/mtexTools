@@ -40,11 +40,12 @@ odf = unimodalODF(symmetrise(oriIn),'halfwidth',hwidth);
 % re-define the ODF specimen symmetry based on the user specification
 odf.SS = sampleSymmetry;
 
-% generate the user specified number of orientations from the ODF
-oriOut = odf.discreteSample(length(odf.weights));
+% % generate the user specified number of orientations from the ODF
+% oriOut = odf.discreteSample(length(odf.weights));
 
 % save an MTEX ASCII File *.txt file (lossless format)
-export(oriOut,pfName_Out,'Bunge','interface','mtex');
+export(odf,pfName_Out,'Bunge','interface','mtex');
+% export(oriOut,pfName_Out,'Bunge','interface','mtex');
 
 end
 

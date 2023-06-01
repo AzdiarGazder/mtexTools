@@ -65,10 +65,11 @@ else % for MTEX versions 5.8.2 and below
     odf = fibreODF(symmetrise(crystalDirection),sampleDirection,ss,'de la Vallee Poussin',...
         'halfwidth',hwidth,'Fourier',22);
     % re-define the ODF specimen symmetry based on user specification
-    odf.SS = sampleSymmetry;
-    % discretise the ODF (lossy format)
-    ori =  odf.discreteSample(length(odf.components{1}.weights));
+    odf.SS = sampleSymmetry;    
+%     % discretise the ODF (lossy format)
+%     ori =  odf.discreteSample(length(odf.components{1}.weights));
     % save an MTEX ASCII File *.txt file 
-    export(ori,pfName_Out,'Bunge');
+    export(odf,pfName_Out,'Bunge','interface','mtex');
+
 end
 end

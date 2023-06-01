@@ -108,10 +108,10 @@ odf = calcDensity(ori,'halfwidth',hwidth,'points','all');
 % Plot the pole figures
 hpf = {Miller(1,1,1,odf.CS),Miller(2,0,0,odf.CS), Miller(2,2,0,odf.CS)};
 % hpf = {Miller(1,1,0,odf.CS),Miller(2,0,0,odf.CS), Miller(2,1,1,odf.CS)};
-plotHPF(odf,hpf,specimenSymmetry('triclinic'),'stepSize',10,'colormap',flipud(hot));
+plotHPF(odf,hpf,specimenSymmetry('triclinic'),'stepSize',25,'colormap',flipud(hot));
 
 % Plot the orientation distribution function
-plotHODF(odf,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'stepSize',100,'colormap',flipud(hot));
+plotHODF(odf,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'stepSize',200,'colormap',flipud(hot));
 
 setInterp2Tex;
 %%
