@@ -192,7 +192,7 @@ for ii = 1:length(m)
 end
 [minVal,minIdx] = min(miso,[],2);
 mm = [1:length(m)]';
-disp(table(mm,v,minIdx,minVal,'VariableNames',{'uniqueMode_index','uniqueMode_volFrac','idealOrN_index','min_misoAngle'}))
+disp(table(mm,v,minIdx,minVal,'VariableNames',{'uniqueModes_index','uniqueModes_volFrac','idealOrN_index','min_misoAngle'}));
 %---
 
 
