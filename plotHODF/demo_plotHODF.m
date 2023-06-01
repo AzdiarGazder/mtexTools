@@ -37,6 +37,7 @@ ebsd.CSList = CS;
 
 
 %% DO NOT EDIT/MODIFY BELOW THIS LINE
+setInterp2Latex
 
 % Calculate the optimal kernel size
 psi = calcKernel(ebsd.orientations,'method','ruleOfThumb');
@@ -46,4 +47,6 @@ odf = calcDensity(ebsd.orientations,'de la Vallee Poussin','kernel',psi);
 
 % Plot the orientation distribution function
 plotHODF(odf,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'stepSize',5,'colormap',jet);
+
+setInterp2Tex
 %%
