@@ -22,7 +22,7 @@ function [modODF,modes,vol] = calcModelTexture(expODF,ori,psi)
 %     if ii == 1 % Coarse: from the full list of ideal orientations & their symmetric counterparts
 % %         phi1 = eA(:,1)*degree; PHI = eA(:,2)*degree; phi2 = eA(:,3)*degree;
 % %         ori =
-% unique(orientation.byEuler(phi1,PHI,phi2,expODF.CS,specimenSymmetry('orthorhombic')));  
+%         unique(orientation.byEuler(phi1,PHI,phi2,expODF.CS,specimenSymmetry('orthorhombic')));  
 %         ori = unique(orientation.byEuler(ori.phi1,ori.Phi,ori.phi2,expODF.CS,specimenSymmetry('orthorhombic')));
 %         ori = symmetrise(ori);
 %     elseif ii == 2 % Semi-refined: from the condensed list of ideal orientations & their symmetric counterparts
@@ -61,8 +61,8 @@ for ii = 1:5
         % normalise the volume fraction
         vol = vol./sum(vol);
 
-    elseif ii == 2 % Semi-refined: from the list of coarse symmetric orientations
-%         clear phi1 PHI phi2 ori
+    elseif ii >= 2 % Semi-refined: from the list of coarse symmetric orientations
+        clear phi1 PHI phi2 ori
         phi1 = modes.phi1; PHI = modes.Phi; phi2 = modes.phi2;
         ori = symmetrise(orientation.byEuler(phi1,PHI,phi2,expODF.CS,specimenSymmetry('orthorhombic')));
         % using coarse symmetric orientations as seeds
@@ -74,21 +74,21 @@ for ii = 1:5
         % normalise the volume fraction
         vol = vol./sum(vol);
 
-    elseif ii >= 3 % Refined: from the list of semi-refined orientations
-        clear phi1 PHI phi2 ori
-%         [modes,~,id2] = unique(modes,'tolerance',2*psi.halfwidth); 10*degree);
-%         vol = accumarray(id2,vol);
-        phi1 = modes.phi1; PHI = modes.Phi; phi2 = modes.phi2;
-        ori = orientation.byEuler(phi1,PHI,phi2,expODF.CS,specimenSymmetry('orthorhombic'));
-        % using unique semi-refined orientations and volume fractions as seeds
-        [modes,vol,~] = calcComponents(expODF,...
-            'seed',ori(:),...
-            'weights',vol,...
-            'maxIter',500,...
-            'resolution',psi.halfwidth/2,...
-            'exact');
-        % normalise the volume fraction
-        vol = vol./sum(vol);
+%     elseif ii >= 3 % Refined: from the list of semi-refined orientations
+%         clear phi1 PHI phi2 ori
+% %         [modes,~,id2] = unique(modes,'tolerance',2*psi.halfwidth); 10*degree);
+% %         vol = accumarray(id2,vol);
+%         phi1 = modes.phi1; PHI = modes.Phi; phi2 = modes.phi2;
+%         ori = orientation.byEuler(phi1,PHI,phi2,expODF.CS,specimenSymmetry('orthorhombic'));
+%         % using unique semi-refined orientations and volume fractions as seeds
+%         [modes,vol,~] = calcComponents(expODF,...
+%             'seed',ori(:),...
+%             'weights',vol,...
+%             'maxIter',500,...
+%             'resolution',psi.halfwidth/2,...
+%             'exact');
+%         % normalise the volume fraction
+%         vol = vol./sum(vol);
     end
 end
 
