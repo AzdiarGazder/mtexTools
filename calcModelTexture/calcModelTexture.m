@@ -1,10 +1,28 @@
 function [modODF,modes,vol] = calcModelTexture(expODF,ori,psi)
+%% Function description:
+% Returns a model ODF based on a user specified number of ideal 
+% orientations used as seeds.
+%
+%% Author:
+% Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
+% 
+%% Syntax:
+%  calcModelTexture(expODF,ori,psi)
+%
+%% Input:
+%  odf          - @SO3FunRBF or @SO3FunHarmonic
+%  ori          - @orientation
+%  psi          - @SO3DeLaValleePoussinKernel 
+%                 calculated optimal kernal for the experimental ODF
+%%
+
 
 %% Find the orientation component and volume fraction of the ideal
 % for ii = 1:4
 %     if ii == 1 % Coarse: from the full list of ideal orientations & their symmetric counterparts
 % %         phi1 = eA(:,1)*degree; PHI = eA(:,2)*degree; phi2 = eA(:,3)*degree;
-% %         ori = unique(orientation.byEuler(phi1,PHI,phi2,expODF.CS,specimenSymmetry('orthorhombic')));
+% %         ori =
+% unique(orientation.byEuler(phi1,PHI,phi2,expODF.CS,specimenSymmetry('orthorhombic')));  
 %         ori = unique(orientation.byEuler(ori.phi1,ori.Phi,ori.phi2,expODF.CS,specimenSymmetry('orthorhombic')));
 %         ori = symmetrise(ori);
 %     elseif ii == 2 % Semi-refined: from the condensed list of ideal orientations & their symmetric counterparts
