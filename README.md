@@ -122,6 +122,10 @@ Bunge's notation to the variable 'odf.opt.intensity'.
 ## P
 - [**pad**](https://github.com/AzdiarGazder/mtexTools/tree/main/pad): Pads a binary map with ones or zeros. Options include: (i) Padding to a size based on a user specified [1 x 2] padding array. The padding array defines the number of rows and columns to add to the [(top & bottom) , (left & right)], respectively, of the input map. (ii) Paddding to the nearest square. (iii) Padding automatcially to a size that prevents map data from getting clipped during subsequent map rotation.
 
+- [**plotHODF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHODF): Plots orientation distribution function phi2 sections in publication-ready format.
+
+- [**plotHPF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHPF):  Plots pole figures in publication-ready format.
+
 
 
 ## R
