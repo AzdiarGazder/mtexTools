@@ -37,6 +37,7 @@ ebsd.CSList = CS;
 
 
 %% DO NOT EDIT/MODIFY BELOW THIS LINE
+setInterp2Latex
 
 % Calculate the optimal kernel size
 psi = calcKernel(ebsd.orientations,'method','ruleOfThumb');
@@ -47,4 +48,6 @@ odf = calcDensity(ebsd.orientations,'de la Vallee Poussin','kernel',psi);
 % Plot the pole figures
 hpf = {Miller(1,1,0,odf.CS),Miller(2,0,0,odf.CS), Miller(2,1,1,odf.CS)};
 plotHPF(odf,'poleFigures',hpf,specimenSymmetry('triclinic'),'stepSize',1,'colormap',flipud(hot));
+
+setInterp2Tex
 %%
