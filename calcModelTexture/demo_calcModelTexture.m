@@ -119,10 +119,8 @@ eA = [360  0  0;...
 ori = orientation.byEuler(eA.*degree,expODF.CS);
 
 
-
 %% Create a model ODF from the list of ideal orientations
 [modODF,modes,vol] = calcModelTexture(expODF,ori,psi);
-
 
 
 %% Plot the model PFs and ODF sections
@@ -132,7 +130,6 @@ plotHPF(modODF,hpf,specimenSymmetry('triclinic'),'stepSize',2,'colormap',jet);
 
 % Plot the model orientation distribution function
 plotHODF(modODF,specimenSymmetry('orthorhombic'),'sections',[0:5:90]*degree,'stepSize',5,'colormap',jet);
-
 
 
 %% Calculate the statisitics for comparison
@@ -158,6 +155,7 @@ disp('-----------')
 pfName_Out = 'modelTexture.txt';
 export(modODF,pfName_Out,'weights',vol,'Bunge','interface','mtex');
 return
+%---
 
 
 
