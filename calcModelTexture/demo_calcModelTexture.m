@@ -120,28 +120,28 @@ ori = orientation.byEuler(eA.*degree,expODF.CS);
 
 
 %% Create a model ODF from the list of ideal orientations
-[modODF,modes,vol] = calcModelTexture(expODF,ori,psi);
+[modelODF,modes,vol] = calcModelTexture(expODF,ori,psi);
 
 
 %% Plot the model PFs and ODF sections
 % Plot the model pole figures
-hpf = {Miller(1,1,1,modODF.CS),Miller(2,0,0,modODF.CS), Miller(2,2,0,modODF.CS)};
-plotHPF(modODF,hpf,specimenSymmetry('triclinic'),'stepSize',2,'colormap',jet);
+hpf = {Miller(1,1,1,modelODF.CS),Miller(2,0,0,modelODF.CS), Miller(2,2,0,modelODF.CS)};
+plotHPF(modelODF,hpf,specimenSymmetry('triclinic'),'stepSize',2,'colormap',jet);
 
 % Plot the model orientation distribution function
-plotHODF(modODF,specimenSymmetry('orthorhombic'),'sections',[0:5:90]*degree,'stepSize',5,'colormap',jet);
+plotHODF(modelODF,specimenSymmetry('orthorhombic'),'sections',[0:5:90]*degree,'stepSize',5,'colormap',jet);
 
 
 %% Calculate the statisitics for comparison
 % Define the ODF specimen symmetries
 expODF.SS = specimenSymmetry('triclinic');
-modODF.SS = specimenSymmetry('triclinic');
+modelODF.SS = specimenSymmetry('triclinic');
 % calculate the texture index of the experimental texture
 T_exp = sqrt(mean(abs(expODF).^2));
 % calculate the texture index of the model texture
-T_mod = sqrt(mean(abs(modODF).^2));
+T_mod = sqrt(mean(abs(modelODF).^2));
 % calculate the texture difference between experimental and model textures
-Td = sqrt(mean((abs(modODF)-abs(expODF)).^2));
+Td = sqrt(mean((abs(modelODF)-abs(expODF)).^2));
 % calculate the normalised texture difference between experimental and model textures
 Td_hat = Td/T_exp;
 disp('-----------')
@@ -153,8 +153,29 @@ disp('-----------')
 
 % save an MTEX ASCII File *.txt file
 pfName_Out = 'modelTexture.txt';
-export(modODF,pfName_Out,'weights',vol,'Bunge','interface','mtex');
+export(modelODF,pfName_Out,'Bunge','MTEX');
 return
+%---
+
+
+
+%---
+% Import and plot the saved *.txt file
+importODF = ODF.load('modelTexture.txt',...
+    'CS',CS{2},...
+    'SS',specimenSymmetry('triclinic'),...
+    'interface','generic',...
+    'resolution',psi.halfwidth,...
+    'ColumnNames',{'Euler 1','Euler 2','Euler 3','weights'},...
+    'Columns', [1 2 3 4],...
+    'Bunge');
+
+% Plot the imported pole figures
+hpf = {Miller(1,1,1,importODF.CS),Miller(2,0,0,importODF.CS), Miller(2,2,0,importODF.CS)};
+plotHPF(importODF,hpf,specimenSymmetry('triclinic'),'stepSize',2,'colormap',jet);
+
+% Plot the imported orientation distribution function
+plotHODF(importODF,specimenSymmetry('orthorhombic'),'sections',[0:5:90]*degree,'stepSize',5,'colormap',jet);
 %---
 
 
