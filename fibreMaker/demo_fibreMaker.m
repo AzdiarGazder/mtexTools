@@ -103,10 +103,10 @@ setInterp2Latex;
 % Load the ODF.mat variable
 load(pfName);
 
-% Plot the pole figures
-% % hpf = {Miller(1,1,1,odf.CS),Miller(2,0,0,odf.CS), Miller(2,2,0,odf.CS)};
-hpf = {Miller(1,1,0,odf.CS),Miller(2,0,0,odf.CS), Miller(2,1,1,odf.CS)};
-plotHPF(odf,hpf,specimenSymmetry('triclinic'),'colormap',jet);
+% % Plot the pole figures - this is taking a very long time to plot in MTEX v5.10
+% % % hpf = {Miller(1,1,1,odf.CS),Miller(2,0,0,odf.CS), Miller(2,2,0,odf.CS)};
+% hpf = {Miller(1,1,0,odf.CS),Miller(2,0,0,odf.CS), Miller(2,1,1,odf.CS)};
+% plotHPF(odf,hpf,specimenSymmetry('triclinic'),'colormap',jet);
 
 % Plot the orientation distribution function
 plotHODF(odf,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'colormap',jet);
