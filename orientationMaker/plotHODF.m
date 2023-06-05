@@ -37,11 +37,11 @@ end
 % Specify or set the phi2 sections to plot in the ODF
 odfSections = get_option(varargin,'sections',[0 45 90]*degree);
 
-% Specify or set the step size of contour levels in the ODF
-stepSize = get_option(varargin,'stepSize',5);
-
 % Specify or calculate the value of the maximum f(g) in the ODF
-maxODF = get_option(varargin,'max',ceil(max(odf)));
+maxODF = get_option(varargin,'max',ceil(max(odf)./10)*10);
+
+% Specify or set the step size of contour levels in the ODF
+stepSize = get_option(varargin,'stepSize',maxODF/10);
 
 % Specify or set the colormap in the ODF
 odfColormap = get_option(varargin,'colormap',gray);

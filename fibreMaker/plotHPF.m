@@ -46,11 +46,12 @@ else % set default pole figures
     hpf = {Miller(1,1,1,odf.CS),Miller(2,0,0,odf.CS), Miller(2,2,0,odf.CS)};
 end
 
-% Specify or set the step size of contour levels in the PFs
-stepSize = get_option(varargin,'stepSize',1);
-
 % Specify or calculate the value of the maximum f(g) in the PFs
-maxPF = get_option(varargin,'max',ceil(max(max(calcPoleFigure(odf,hpf,regularS2Grid('resolution',2.5*degree),'antipodal')))));
+pf = calcPoleFigure(odf,hpf,'resolution',2.5*degree,'antipodal');
+maxPF = get_option(varargin,'max',ceil(max(max(pf))./10)*10);
+
+% Specify or set the step size of contour levels in the PFs
+stepSize = get_option(varargin,'stepSize',maxPF/10);
 
 % Specify or set the colormap in the PFs
 pfColormap = get_option(varargin,'colormap',gray);
