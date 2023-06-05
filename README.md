@@ -84,7 +84,7 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 ## F
-- [**fibreMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/fibreMaker): Creates an ideal crystallographic fibre with a user specified half-width and exports the data as a lossless Mtex *.txt file (for version 5.9.0 and onwards) or as a lossy discretised Mtex *.txt file (for up to version 5.8.2) for later use.
+- [**fibreMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/fibreMaker): Creates an ideal crystallographic fibre with a user specified half-width and exports the data as a lossless MATLAB *.mat* variable for later use.
 
 
 
@@ -116,7 +116,7 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 ## O
-- [**orientationMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/orientationMaker): Creates an ideal crystallographic orientation from a unimodal ODF with a user specified half-width and exports the data as a lossless Mtex file for later use.
+- [**orientationMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/orientationMaker): Creates an ideal crystallographic orientation from a unimodal ODF with a user specified half-width and exports the data as a lossless MATLAB *.mat* variable for later use.
 
 
 
