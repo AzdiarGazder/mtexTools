@@ -1,5 +1,7 @@
 close all; clc; clear all; clear hidden;
 startup_mtex
+setMTEXpref('maxSO3Bandwidth',100);
+
 
 %% -----------------
 % NOTES TO USERS
@@ -61,7 +63,7 @@ sS = specimenSymmetry('orthorhombic');
 % step 4: Define a half-width
 hwidth = 2.5*degree;
 % step 5: Define a file name
-pfName = 'fcc_A.txt';
+pfName = 'fcc_A.mat';
 % step 6: Call the orientationMaker function
 orientationMaker(ori,sS,'halfwidth',hwidth,'export',pfName);
 % %-----------------
@@ -81,7 +83,7 @@ orientationMaker(ori,sS,'halfwidth',hwidth,'export',pfName);
 % % step 4: Define a half-width
 % hwidth = 2.5*degree;
 % % step 5: Define a file name
-% pfName = 'bcc_554_-2-25.txt';
+% pfName = 'bcc_554_-2-25.mat';
 % % step 6: Call the orientationMaker function
 % orientationMaker(ori,sS,'halfwidth',hwidth,'export',pfName);
 % % %-----------------
@@ -94,16 +96,8 @@ orientationMaker(ori,sS,'halfwidth',hwidth,'export',pfName);
 %% DO NOT EDIT/MODIFY BELOW THIS LINE
 setInterp2Latex;
 
-% % This is code common to Example 1 and 2 to visualise the *.txt or *.Tex 
-% % file data
-% Load the texture file
-[ori,~] = orientation.load(pfName,CS,sS,'interface','generic',...
-    'ColumnNames', {'phi1' 'Phi' 'phi2'}, 'Columns', [1 2 3], 'Bunge');
-
-% Calculate the orientation distribution function and define the specimen symmetry of the parent
-odf = calcDensity(ori,'halfwidth',hwidth,'points','all');
-% [maxodf_value,~] = max(odf);
-% odf = odf.*(100/maxodf_value); % scale ODF to maximum f(g) = 100
+% Load the ODF.mat variable
+load(pfName);
 
 % Plot the pole figures
 hpf = {Miller(1,1,1,odf.CS),Miller(2,0,0,odf.CS), Miller(2,2,0,odf.CS)};
@@ -111,7 +105,7 @@ hpf = {Miller(1,1,1,odf.CS),Miller(2,0,0,odf.CS), Miller(2,2,0,odf.CS)};
 plotHPF(odf,hpf,specimenSymmetry('triclinic'),'stepSize',25,'colormap',flipud(hot));
 
 % Plot the orientation distribution function
-plotHODF(odf,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'stepSize',200,'colormap',flipud(hot));
+plotHODF(odf,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'stepSize',250,'colormap',flipud(hot));
 
 setInterp2Tex;
 %%

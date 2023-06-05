@@ -1,5 +1,6 @@
 
 *.asv
+*.mat
 *.Tex
 *.txt
 *.png

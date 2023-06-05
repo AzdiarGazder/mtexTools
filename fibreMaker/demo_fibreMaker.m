@@ -59,7 +59,7 @@ RD = xvector; TD = yvector; ND = zvector;
 % % Step 6: Define a half-width
 % hwidth = 5*degree;
 % % Step 7: Define a file name
-% pfName = 'fcc_beta.txt';
+% pfName = 'fcc_beta.mat';
 % % Step 8: Call the fibreMaker function
 % fibreMaker(cD,sD,sS,'halfwidth',hwidth,'export',pfName)
 % % %-----------------
@@ -87,7 +87,7 @@ sS = specimenSymmetry('orthorhombic');
 hwidth = 5*degree;
 % Step 7: Define a file name
 % pfName = 'bcc_h11_1byh12.txt';
-pfName = 'bcc_gammaFibre.txt';
+pfName = 'bcc_gammaFibre.mat';
 % Step 8: Call the fibreMaker function
 fibreMaker(cD,sD,sS,'halfwidth',hwidth,'export',pfName)
 % %-----------------
@@ -100,36 +100,16 @@ fibreMaker(cD,sD,sS,'halfwidth',hwidth,'export',pfName)
 %% DO NOT EDIT/MODIFY BELOW THIS LINE
 setInterp2Latex;
 
-% Check for MTEX version
-currentVersion = 5.9;
-fid = fopen('VERSION','r');
-MTEXversion = fgetl(fid);
-fclose(fid);
-MTEXversion = str2double(MTEXversion(5:end-2));
-
-if MTEXversion >= currentVersion % for MTEX versions 5.9.0 and above
-    %--- Load the texture file as an ODF
-    odf = SO3Fun.load(pfName,'CS',CS,'resolution',hwidth,'Bunge',...
-        'ColumnNames',{'Euler 1','Euler 2','Euler 3','weights'});
-
-else % for MTEX versions 5.8.2 and below
-    % Load the texture file as discrete orientations
-    [ori,~] = orientation.load(pfName,CS,sS,'interface','generic',...
-        'ColumnNames', {'phi1' 'Phi' 'phi2'}, 'Columns', [1 2 3], 'Bunge');
-    ori = ori(:);
-    % Calculate the orientation distribution function and define the specimen symmetry of the parent
-    odf = calcDensity(ori,'halfwidth',hwidth,'points','all');
-end
-% [maxodf_value,~] = max(odf);
-% odf = odf.*(100/maxodf_value); % scale ODF to maximum f(g) = 100
+% Load the ODF.mat variable
+load(pfName);
 
 % Plot the pole figures
 % hpf = {Miller(1,1,1,odf.CS),Miller(2,0,0,odf.CS), Miller(2,2,0,odf.CS)};
 hpf = {Miller(1,1,0,odf.CS),Miller(2,0,0,odf.CS), Miller(2,1,1,odf.CS)};
-plotHPF(odf,hpf,specimenSymmetry('triclinic'),'stepSize',50,'colormap',jet);
+plotHPF(odf,hpf,specimenSymmetry('triclinic'),'stepSize',100,'colormap',jet);
 
 % Plot the orientation distribution function
-plotHODF(odf,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'stepSize',250,'colormap',jet);
+plotHODF(odf,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'stepSize',200,'colormap',jet);
 
 setInterp2Tex;
 %%

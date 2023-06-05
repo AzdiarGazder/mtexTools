@@ -151,31 +151,11 @@ disp(['Difference index              = ',num2str(Td)]);
 disp(['Normalised difference index   = ',num2str(Td_hat)]);
 disp('-----------')
 
-% save an MTEX ASCII File *.txt file
-pfName_Out = 'modelTexture.txt';
-export(modelODF,pfName_Out,'Bunge','MTEX');
+
+%% save the ODF.mat variable (lossless format)
+pfName = 'modelTexture.mat';
+save(pfName,"modelODF");
 return
-%---
-
-
-
-%---
-% Import and plot the saved *.txt file
-importODF = ODF.load('modelTexture.txt',...
-    'CS',CS{2},...
-    'SS',specimenSymmetry('triclinic'),...
-    'interface','generic',...
-    'resolution',psi.halfwidth,...
-    'ColumnNames',{'Euler 1','Euler 2','Euler 3','weights'},...
-    'Columns', [1 2 3 4],...
-    'Bunge');
-
-% Plot the imported pole figures
-hpf = {Miller(1,1,1,importODF.CS),Miller(2,0,0,importODF.CS), Miller(2,2,0,importODF.CS)};
-plotHPF(importODF,hpf,specimenSymmetry('triclinic'),'stepSize',2,'colormap',jet);
-
-% Plot the imported orientation distribution function
-plotHODF(importODF,specimenSymmetry('orthorhombic'),'sections',[0:5:90]*degree,'stepSize',5,'colormap',jet);
 %---
 
 
@@ -217,4 +197,21 @@ for ii = 1:length(m)
     end
 end
 hold off;
+%---
+
+
+
+%---
+close all; clear all
+
+% Load the ODF.mat variable
+pfName = 'modelTexture.mat';
+load(pfName);
+
+% Plot the imported pole figures
+hpf = {Miller(1,1,1,modelODF.CS),Miller(2,0,0,modelODF.CS), Miller(2,2,0,modelODF.CS)};
+plotHPF(modelODF,hpf,specimenSymmetry('triclinic'),'stepSize',2,'colormap',jet);
+
+% Plot the imported orientation distribution function
+plotHODF(modelODF,specimenSymmetry('orthorhombic'),'sections',[0:5:90]*degree,'stepSize',5,'colormap',jet);
 %---
