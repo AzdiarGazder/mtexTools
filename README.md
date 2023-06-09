@@ -2,7 +2,7 @@
 
 **For MTEX Version 5.10 (released in June 2023):**
 - All scripts are fully functional.
-- In case of any issues, please [submit an issue](https://github.com/mtexTools/issues) or [open a discussion](https://github.com/mtexTools/discussions).
+- In case of any issues, please [submit an issue](https://github.com/AzdiarGazder/mtexTools/issues) or [open a discussion](https://github.com/AzdiarGazder/mtexTools/discussions).
 ---
 
 
