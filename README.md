@@ -48,6 +48,11 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 
+## B
+- [**binaryTable**](https://github.com/AzdiarGazder/mtexTools/tree/main/binaryTable): Returns a variable containing all logical combinations for a given number of variables.
+
+
+
 ## C
 - [**calcGrainsFFT**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcGrainsFFT): Returns the Fast Fourier Transforms (FFTs) of individual grains. The FFTs are calculated after padding each grayscale/binary grain map to its nearest square. The FFTs from grayscale and binary data are returned in grid format within the 'grains.prop.fftGray' and 'grains.prop.fftBinary' structure variables.
 
@@ -122,6 +127,9 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 - [**plotHODF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHODF): Plots orientation distribution function phi2 sections in publication-ready format.
 
 - [**plotHPF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHPF):  Plots pole figures in publication-ready format.
+
+- [**plotScatter**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotScatter):  Creates a scatter plot coloured by density.
+
 
 
 
