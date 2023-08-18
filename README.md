@@ -129,12 +129,13 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 ## P
 - [**pad**](https://github.com/AzdiarGazder/mtexTools/tree/main/pad): Pads a binary map with ones or zeros. Options include: (i) Padding to a size based on a user specified [1 x 2] padding array. The padding array defines the number of rows and columns to add to the [(top & bottom) , (left & right)], respectively, of the input map. (ii) Paddding to the nearest square. (iii) Padding automatcially to a size that prevents map data from getting clipped during subsequent map rotation.
 
+- [**plotCAxis**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotCAxis): A short demonstration on how to plot the angle between the c-axis of the hexagonal unit cell and a macroscopic specimen axis.
+
 - [**plotHODF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHODF): Plots orientation distribution function phi2 sections in publication-ready format.
 
 - [**plotHPF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHPF):  Plots pole figures in publication-ready format.
 
 - [**plotScatter**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotScatter):  Creates a scatter plot coloured by density.
-
 
 
 
