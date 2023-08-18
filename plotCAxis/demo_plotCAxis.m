@@ -46,7 +46,7 @@ grains = grains.smooth(5);
 CS = grains.CS;
 % plot the grains
 figure;
-plot(grains,grains.meanOrientation)
+plot(grains,grains.meanOrientation);
 %%
 
 
@@ -173,6 +173,7 @@ ylabel('Absolute counts', 'FontSize',14);
 % output the bar graph data in the command window
 xy_withTBs = [classRange', absCounts_withoutTBs]
 xy_withoutTBs = [classRange', absCounts_withTBs]
+hold off;
 %---
 
 
