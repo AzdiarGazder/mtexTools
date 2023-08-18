@@ -111,6 +111,11 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 
+## M
+- [**mergeTwins**](https://github.com/AzdiarGazder/mtexTools/tree/main/mergeTwins): A short demonstration on how to correctly separate grains with and without twins and how to correctly merge grains containing twins.
+
+
+
 ## N
 - [**nestedLoopCounter**](https://github.com/AzdiarGazder/mtexTools/tree/main/nestedLoopCounter): Returns the current count (or specifically, the row index) for a series of running nested loops. The function currently employs three nested loops but can be reduced to two nested loops or extended to multiple nested loops.
 
