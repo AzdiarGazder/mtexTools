@@ -308,7 +308,7 @@ ebsd_baseSet.CSList{end+1} = CS_bainite;
 ebsd_baseSet.phaseMap(end+1) = max(ebsd_baseSet.phaseMap) + 1;
 ebsd_baseSet.phaseMap(end+1) = max(ebsd_baseSet.phaseMap) + 1;
 
-% change the phase number of the measurements in question to the new phase number
+% change the phase number of each microconstituent to the new phase number
 ebsd_baseSet(ismember(ebsd_baseSet.grainId,grains_acicularFerrite.id)).phase = 2;
 ebsd_baseSet(ismember(ebsd_baseSet.grainId,grains_bainite.id)).phase = 3;
 
