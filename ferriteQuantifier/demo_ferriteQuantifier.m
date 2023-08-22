@@ -1,7 +1,7 @@
 %% Demonstration description:
 % This script demonstrates how to use EBSD map data to automatically 
-% quantify the area fractions of the various ferrite microconstituents 
-% within steel grades produced by the CASTRIP(R) process.
+% quantify the area fractions of various ferrite microconstituents 
+% formed within steel grades produced by the CASTRIP(R) process.
 % The three ferrite microconstituents namely, (1) acicular ferrite, 
 % (2) polygonal ferrite and (3) bainite, significantly influence the 
 % mechanical properties of steel. They are distinguished using the grain 
