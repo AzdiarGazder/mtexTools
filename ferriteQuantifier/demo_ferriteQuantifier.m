@@ -40,6 +40,7 @@
 % - Histogram: Grain area vs. grain boundary misorientation distribution
 % - Histogram: Grain aspect ratio distribution
 % - Histogram: Grain average misorientation (GAM) distribution
+% - Map: EBSD map of ferrite microconstituent distribution
 %
 %% Options:
 %  none
@@ -60,7 +61,7 @@ setMTEXpref('FontSize', 24);
 
 % load mtex example data
 mtexdata ferrite
-ebsd.phaseMap = [0; 1];
+ebsd.phaseMap = [0; 1]; % over-writing the strange numbers in the MTEX dataset
 
 
 
