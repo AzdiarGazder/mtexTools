@@ -1,5 +1,5 @@
 %% Demonstration description:
-% A short demonstration on how to correctly separate grains with and 
+% This script demonstrates how to correctly separate grains with and 
 % without twins and how to correctly merge grains containing twins.
 %
 %% Author:

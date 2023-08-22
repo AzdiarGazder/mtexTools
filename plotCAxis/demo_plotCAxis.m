@@ -1,5 +1,5 @@
 %% Demonstration description:
-% A short demonstration on how to plot the angle between the c-axis of the 
+% This script demonstrates how to plot the angle between the c-axis of the 
 % hexagonal unit cell and a macroscopic specimen axis.
 %
 %% Author:
