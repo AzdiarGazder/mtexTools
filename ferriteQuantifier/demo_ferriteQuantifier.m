@@ -60,6 +60,8 @@ setMTEXpref('FontSize', 24);
 
 % load mtex example data
 mtexdata ferrite
+ebsd.phaseMap = [0; 1];
+
 
 
 %% Calculate the grains
@@ -69,6 +71,7 @@ mtexdata ferrite
 ebsd(grains(grains.grainSize <= 5)) = [];
 % store the crystal symmetry for later use
 CS = grains.CS;
+CS.color = [0 0 1];
 fR = fundamentalRegion(CS,CS);
 
 figH = figure;
@@ -221,22 +224,31 @@ set(figH,'Name','Histogram: Grain average misorientation (GAM) distribution','Nu
 % create an index of grains with a critical misorientation >50 deg and aspect
 % ratio > 2.3
 idx_acicularFerrite = sum(logicalMatrix2(:,20:end)')' == 1 & grainAspectRatio > 2.3;
+grains_acicularFerrite = grains_baseSet(idx_acicularFerrite);
+ebsd_acicularFerrite = ebsd_baseSet(ismember(ebsd_baseSet.grainId,grains_acicularFerrite.id));
 area_acicularFerrite = sum(grainArea(idx_acicularFerrite));
 
 % polygonal ferrite
 % create an index of grains with aspect ratio < 1.5
 idx_polygonalFerrite1 = grainAspectRatio < 1.5 & idx_acicularFerrite == 0;
-area_polygonalFerrite1 = sum(grainArea(idx_polygonalFerrite1));
 % create an index of grains with aspect ratio >= 1.5, gam <= 3 amd area >= 150
 idx_polygonalFerrite2 = grainAspectRatio >= 1.5 & gam <= 3 & grainArea >= 150 & idx_acicularFerrite == 0;
-area_polygonalFerrite2 = sum(grainArea(idx_polygonalFerrite2));
-area_polygonalFerrite = area_polygonalFerrite1 + area_polygonalFerrite2;
+idx_polygonalFerrite = idx_polygonalFerrite1 | idx_polygonalFerrite2;
+grains_polygonalFerrite = grains_baseSet(idx_polygonalFerrite);
+ebsd_polygonalFerrite = ebsd_baseSet(ismember(ebsd_baseSet.grainId,grains_polygonalFerrite.id));
+area_polygonalFerrite = sum(grainArea(idx_polygonalFerrite));
+
 
 % bainite
-totalArea = sum(grainArea);
-area_bainite = totalArea - (area_acicularFerrite + area_polygonalFerrite);
+idx_bainite = ones(length(grains_baseSet),1) & idx_acicularFerrite == 0 & idx_polygonalFerrite == 0;
+grains_bainite = grains_baseSet(idx_bainite);
+ebsd_bainite = ebsd_baseSet(ismember(ebsd_baseSet.grainId,grains_bainite.id));
+area_bainite = sum(grainArea(idx_bainite));
+% area_bainite = totalArea - (area_acicularFerrite + area_polygonalFerrite);
+
 
 % calculate the area fractions
+totalArea = sum(grainArea);
 areaFraction_acicularFerrite = area_acicularFerrite / totalArea;
 areaFraction_polygonalFerrite = area_polygonalFerrite / totalArea;
 areaFraction_bainite = area_bainite / totalArea;
@@ -247,4 +259,59 @@ display(['Area fraction of acicular ferrite   = ' num2str(areaFraction_acicularF
 display(['Area fraction of polygonal ferrite  = ' num2str(areaFraction_polygonalFerrite)]);
 display(['Area fraction of bainite            = ' num2str(areaFraction_bainite)]);
 display('----');
+
+
+
+figH = figure;
+ebsd_polygonalFerrite.CS.color = [0 0 1];
+ebsd_polygonalFerrite.CS.mineral = 'Polygonal ferrite';
+plot(ebsd_polygonalFerrite)
+hold all;
+ebsd_acicularFerrite.CS.color = [1 0 0];
+ebsd_acicularFerrite.CS.mineral = 'Acicular ferrite';
+plot(ebsd_acicularFerrite)
+ebsd_bainite.CS.color = [1 1 0];
+ebsd_bainite.CS.mineral = 'Bainite';
+plot(ebsd_bainite)
+set(figH,'Name','Map: EBSD map of ferrite microconstituent distribution','NumberTitle','on');
+
+
+
+
+return
+
+%% Re-assigning the ferrite microconstituents as new phases
+% This is currently not working due to a bug in MTEX
+
+% Assume the ferrite phase that was orignally indexed in the map is 
+% "polygonal ferrite"
+ebsd_baseSet.CS.mineral = 'Polygonal ferrite';
+
+% define the crystal symmetries of the new phases
+CS_acicularFerrite = CS;
+CS_bainite = CS;
+
+% assign names to these new phases
+CS_acicularFerrite.mineral = 'Acicular ferrite';
+CS_bainite.mineral = 'Bainite';
+
+% assign colors to these new phases
+CS_acicularFerrite.color = [1 0 0];
+CS_bainite.color = [1 1 0];
+
+% add the new phases to the EBSD data set
+ebsd_baseSet.CSList{end+1} = CS_acicularFerrite;
+ebsd_baseSet.CSList{end+1} = CS_bainite;
+
+% based on the EBSD map, give these symmetries phase numbers 
+ebsd_baseSet.phaseMap(end+1) = max(ebsd_baseSet.phaseMap) + 1;
+ebsd_baseSet.phaseMap(end+1) = max(ebsd_baseSet.phaseMap) + 1;
+
+% change the phase number of the measurements in question to the new phase number
+ebsd_baseSet(ismember(ebsd_baseSet.grainId,grains_acicularFerrite.id)).phase = 2;
+ebsd_baseSet(ismember(ebsd_baseSet.grainId,grains_bainite.id)).phase = 3;
+
+figH = figure;
+plot(ebsd_baseSet)
+set(figH,'Name','Map: EBSD map of ferrite microconstituent distribution','NumberTitle','on');
 
