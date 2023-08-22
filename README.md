@@ -85,6 +85,8 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 ## F
+- [**ferriteQuantifier**](https://github.com/AzdiarGazder/mtexTools/tree/main/ferriteQuantifier): This script demonstrates how to use EBSD map data to automatically quantify the area fractions of the various ferrite microconstituents within steel grades produced by the CASTRIP(R) process. The three ferrite microconstituents namely, (1) acicular ferrite, (2) polygonal ferrite and (3) bainite, significantly influence the mechanical properties of steel. They are distinguished using the grain aspect ratio, grain boundary misorientation angle, grain average misorientation and grain size criteria.
+
 - [**fibreMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/fibreMaker): Creates an ideal crystallographic fibre with a user specified half-width and exports the data as a lossless MATLAB *.mat* file object for later use.
 
 
@@ -112,7 +114,7 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 ## M
-- [**mergeTwins**](https://github.com/AzdiarGazder/mtexTools/tree/main/mergeTwins): A short demonstration on how to correctly separate grains with and without twins and how to correctly merge grains containing twins.
+- [**mergeTwins**](https://github.com/AzdiarGazder/mtexTools/tree/main/mergeTwins): This script demonstrates how to correctly separate grains with and without twins and how to correctly merge grains containing twins.
 
 
 
@@ -129,7 +131,7 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 ## P
 - [**pad**](https://github.com/AzdiarGazder/mtexTools/tree/main/pad): Pads a binary map with ones or zeros. Options include: (i) Padding to a size based on a user specified [1 x 2] padding array. The padding array defines the number of rows and columns to add to the [(top & bottom) , (left & right)], respectively, of the input map. (ii) Paddding to the nearest square. (iii) Padding automatcially to a size that prevents map data from getting clipped during subsequent map rotation.
 
-- [**plotCAxis**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotCAxis): A short demonstration on how to plot the angle between the c-axis of the hexagonal unit cell and a macroscopic specimen axis.
+- [**plotCAxis**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotCAxis): This script demonstrates how to plot the angle between the c-axis of the hexagonal unit cell and a macroscopic specimen axis.
 
 - [**plotHODF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHODF): Plots orientation distribution function phi2 sections in publication-ready format.
 
