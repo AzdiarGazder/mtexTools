@@ -57,7 +57,7 @@ startup_mtex;
 % define Mtex plotting convention as X = right, Y = up
 setMTEXpref('xAxisDirection','east');
 setMTEXpref('zAxisDirection','outOfPlane');
-setMTEXpref('FontSize', 24);
+setMTEXpref('FontSize', 14);
 
 % load mtex example data
 mtexdata ferrite
@@ -291,6 +291,7 @@ ebsd_baseSet.CS.mineral = 'Polygonal ferrite';
 % define the crystal symmetries of the new phases
 CS_acicularFerrite = CS;
 CS_bainite = CS;
+clear CS
 
 % assign names to these new phases
 CS_acicularFerrite.mineral = 'Acicular ferrite';
