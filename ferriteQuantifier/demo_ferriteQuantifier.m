@@ -280,36 +280,41 @@ set(figH,'Name','Map: EBSD map of ferrite microconstituent distribution','Number
 
 
 return
+%% Re-assigning the ferrite microconstituents as new phases in the ebsd map
+% To get this section of the script to work, please do the following first:
+% Go to C:\mtex\geometry\@symmetry\symmetry.m
+% replace the first line with the following line:
+% classdef symmetry < matlab.mixin.Copyable
 
-%% Re-assigning the ferrite microconstituents as new phases
-% This is currently not working due to a bug in MTEX
+% Add the zero solutions back to the map
+ebsd_baseSet = [ebsd('notindexed'),ebsd_baseSet];
 
-% Assume the ferrite phase that was orignally indexed in the map is 
+% Assuming the ferrite phase that was orignally indexed in the map is 
 % "polygonal ferrite"
 ebsd_baseSet.CS.mineral = 'Polygonal ferrite';
+ebsd_baseSet.CS.color = [0 0 1];
 
 % define the crystal symmetries of the new phases
-CS_acicularFerrite = CS;
-CS_bainite = CS;
-clear CS
+CS_acicularFerrite = copy(CS);
+CS_bainite = copy(CS);
 
-% assign names to these new phases
+% assign names to these new symmetries
 CS_acicularFerrite.mineral = 'Acicular ferrite';
 CS_bainite.mineral = 'Bainite';
 
-% assign colors to these new phases
+% assign colors to these new symmetries
 CS_acicularFerrite.color = [1 0 0];
 CS_bainite.color = [1 1 0];
 
-% add the new phases to the EBSD data set
+% add the new symmetries to the EBSD data set
 ebsd_baseSet.CSList{end+1} = CS_acicularFerrite;
 ebsd_baseSet.CSList{end+1} = CS_bainite;
 
-% based on the EBSD map, give these symmetries phase numbers 
+% assign phase numbers to these new symmetries 
 ebsd_baseSet.phaseMap(end+1) = max(ebsd_baseSet.phaseMap) + 1;
 ebsd_baseSet.phaseMap(end+1) = max(ebsd_baseSet.phaseMap) + 1;
 
-% change the phase number of each microconstituent to the new phase number
+% change each microconstituent fraction to the new phase number
 ebsd_baseSet(ismember(ebsd_baseSet.grainId,grains_acicularFerrite.id)).phase = 2;
 ebsd_baseSet(ismember(ebsd_baseSet.grainId,grains_bainite.id)).phase = 3;
 
