@@ -1,9 +1,10 @@
+
+
 function rowIdx = nestedLoopCounter(currentLoopIdx,varargin)
 %% Function description:
 % Returns the current count (or specifically, the row index) for a series 
-% of running nested loops. The function currently employs three nested 
-% loops but can be reduced to two nested loops or extended to multiple 
-% nested loops.
+% of running nested loops. The function currently employs two and three 
+% nested loops but can be extended to multiple nested loops.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
@@ -26,23 +27,23 @@ if size(currentLoopIdx,2) ~= length(varargin)
     return;
 end
 
-% % check if the varargin are arrays
-% for ii = 1:length(varargin)
-%     varargScalar = isscalar(varargin{ii});
-%     if varargScalar == 1
-%         error(['Varargin ', num2str(ii),' should be a 1 x c array.'])
-%         return;
-%     end
-% end
 
-% define the indices of the nested loop
-[outerLoop,middleLoop,innerLoop] = ndgrid(varargin{1},varargin{2},varargin{3});
-loopIdx = [outerLoop(:),middleLoop(:),innerLoop(:)];
-loopIdx = sortrows(loopIdx,[1 2 3]);
+if size(currentLoopIdx,2) == 2
+    % define the indices of the nested loop
+    [outerLoop,innerLoop] = ndgrid(varargin{1},varargin{2});
+    loopIdx = [outerLoop(:),innerLoop(:)];
+    loopIdx = sortrows(loopIdx,[1 2]);
+
+elseif size(currentLoopIdx,2) == 3
+    % define the indices of the nested loop
+    [outerLoop,middleLoop,innerLoop] = ndgrid(varargin{1},varargin{2},varargin{3});
+    loopIdx = [outerLoop(:),middleLoop(:),innerLoop(:)];
+    loopIdx = sortrows(loopIdx,[1 2 3]);
+
+end
 
 % find the row index of the current loop within the nested loop indices
-% tic;
-rowIdx = find(ismember(loopIdx,currentLoopIdx,'rows')==1);
-% idx = find(any(all(bsxfun(@eq,loopCombos,permute(currentLoop,[3 2 1])),2),3) == 1)
-% toc
+rowIdx = find(ismember(loopIdx,currentLoopIdx,'rows') == 1);
+
 end
+.rtcContent { padding: 30px; }.lineNode {font-size: 10pt; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-style: normal; font-weight: normal; }
