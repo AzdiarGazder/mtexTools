@@ -1,7 +1,7 @@
 %% Demonstration description:
-% This script demonstrates how to use EBSD map data to automatically 
-% quantify the area fractions of various ferrite microconstituents 
-% formed within steel grades produced by the CASTRIP(R) process.
+% This script demonstrates how to automatically quantify the area 
+% fractions of various ferrite microconstituents in EBSD maps of steel 
+% grades produced by the CASTRIP(R) process.
 % The three ferrite microconstituents namely, (1) acicular ferrite, 
 % (2) polygonal ferrite and (3) bainite, significantly influence the 
 % mechanical properties of steel. They are distinguished using the grain 
@@ -20,6 +20,7 @@
 % SL Shrestha, AJ Breen, P Trimby, G Proust, SP Ringer, JM Cairney, 'An 
 % automated method of quantifying ferrite microstructures using electron 
 % backscatter diffraction (EBSD) data', Ultramicroscopy, 137, 2014, 40-47.
+% https://www.sciencedirect.com/science/article/pii/S0304399113002957
 %
 %% Syntax:
 %  demo_ferriteQuantifier
@@ -31,7 +32,7 @@
 % Output in the command window:
 % - the number of grains having more than 1 critical misorientation and 
 %   excluded from the analysis (ideally = 0)
-% - the volume fractions of the microconstituents
+% - the area fractions of the microconstituents
 %
 % Figures comprising:
 % - Map: Image quality/band contrast
