@@ -1,6 +1,6 @@
 %% Demonstration description:
-% This script demonstrates how to automatically quantify the area 
-% fractions of granular bainite and polygonal ferrite in EBSD maps of 
+% This script demonstrates how to automatically segment and quantify the 
+% area fractions of granular bainite and polygonal ferrite in EBSD maps of 
 % steel grades using the critical kernel average misorientation (KAM) 
 % criterion.
 %
