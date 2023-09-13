@@ -49,6 +49,8 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 ## B
+- [**bainiteQuantifier**](https://github.com/AzdiarGazder/mtexTools/tree/main/bainiteQuantifier): This script demonstrates how to automatically quantify the area fractions of granular bainite and polygonal ferrite in EBSD maps of steel grades using the critical kernel average misorientation (KAM) criterion.
+
 - [**binaryTable**](https://github.com/AzdiarGazder/mtexTools/tree/main/binaryTable): Returns a variable containing all logical combinations for a given number of variables.
 
 
