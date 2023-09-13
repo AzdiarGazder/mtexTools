@@ -49,6 +49,8 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 ## B
+- [**bainiteQuantifier**](https://github.com/AzdiarGazder/mtexTools/tree/main/bainiteQuantifier): This script demonstrates how to automatically quantify the area fractions of granular bainite and polygonal ferrite in EBSD maps of steel grades using the critical kernel average misorientation (KAM) criterion.
+
 - [**binaryTable**](https://github.com/AzdiarGazder/mtexTools/tree/main/binaryTable): Returns a variable containing all logical combinations for a given number of variables.
 
 
@@ -85,7 +87,7 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 ## F
-- [**ferriteQuantifier**](https://github.com/AzdiarGazder/mtexTools/tree/main/ferriteQuantifier): This script demonstrates how to use EBSD map data to automatically quantify the area fractions of various ferrite microconstituents formed within steel grades produced by the CASTRIP(R) process. The three ferrite microconstituents namely, (1) acicular ferrite, (2) polygonal ferrite and (3) bainite, significantly influence the mechanical properties of steel. They are distinguished using the grain aspect ratio, grain boundary misorientation angle, grain average misorientation and grain size criteria.
+- [**ferriteQuantifier**](https://github.com/AzdiarGazder/mtexTools/tree/main/ferriteQuantifier): This script demonstrates how to automatically quantify the area fractions of various ferrite microconstituents in EBSD maps of steel grades produced by the CASTRIP(R) process. The three ferrite microconstituents namely, (1) acicular ferrite, (2) polygonal ferrite and (3) bainite, significantly influence the mechanical properties of steel. They are distinguished using the grain aspect ratio, grain boundary misorientation angle, grain average misorientation and grain size criteria.
 
 - [**fibreMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/fibreMaker): Creates an ideal crystallographic fibre with a user specified half-width and exports the data as a lossless MATLAB *.mat* file object for later use.
 
