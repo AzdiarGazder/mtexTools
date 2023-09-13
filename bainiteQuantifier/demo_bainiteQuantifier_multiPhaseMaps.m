@@ -238,7 +238,7 @@ grains_ferrite = grains_bcc(~criticalCnt);
 ebsd_bainite = ebsd_bcc(ismember(ebsd_bcc.grainId,grains_bcc(criticalCnt).id));
 ebsd_ferrite = ebsd_bcc(ismember(ebsd_bcc.grainId,grains_bcc(~criticalCnt).id));
 
-% calculate the area fractions
+% Calculate the area fractions
 grainArea = area(grains_bcc);
 area_bainite = sum(grainArea(criticalCnt));
 area_ferrite = sum(grainArea(~criticalCnt));
@@ -251,11 +251,11 @@ disp('Done!')
 disp('---')
 
 
-% display the area fractions
-display('----');
-display(['Area fraction of polygonal ferrite  = ' num2str(areaFraction_ferrite)]);
-display(['Area fraction of granular bainite   = ' num2str(areaFraction_bainite)]);
-display('----');
+% Display the area fractions
+disp('----');
+disp(['Area fraction of polygonal ferrite  = ' num2str(areaFraction_ferrite)]);
+disp(['Area fraction of granular bainite   = ' num2str(areaFraction_bainite)]);
+disp('----');
 
 
 return
