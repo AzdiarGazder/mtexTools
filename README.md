@@ -1,8 +1,3 @@
-
-[![DOI](https://zenodo.org/badge/601424745.svg)](https://zenodo.org/badge/latestdoi/601424745)
-
-
-
 ## UPDATE
 
 **For MTEX Version 5.10 (released in June 2023):**
@@ -40,6 +35,7 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 - If these scripts and tools prove useful and contribute to published works in any way, please consider an acknowledgement by citing the following reference:
 
 **A.A. Gazder, mtexTools: A collated library of additional MTEX functions and their demonstration scripts, Github, accessed Date-Month-Year, <https://github.com/AzdiarGazder/mtexTools>.**
+[![DOI](https://zenodo.org/badge/601424745.svg)](https://zenodo.org/badge/latestdoi/601424745)
 
 - If users wish to modify any of these scripts, they are welcome to do so. If modified scripts are redistributed, please include attribution(s) to the original author(s) as a courtesy within the acknowledgements section of the script.
 
