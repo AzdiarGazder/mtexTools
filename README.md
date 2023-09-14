@@ -1,3 +1,8 @@
+
+[![DOI](https://zenodo.org/badge/601424745.svg)](https://zenodo.org/badge/latestdoi/601424745)
+
+
+
 ## UPDATE
 
 **For MTEX Version 5.10 (released in June 2023):**
