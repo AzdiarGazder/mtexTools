@@ -234,7 +234,7 @@ xline(xInflection,'color','k','lineWidth',2);
 
 
 disp('---')
-disp('Re-calculating the KAM using the inflection point...')
+disp('Segmenting the microstucture using the KAM-based inflection point...')
 criticalOrder = xData(idx)/stepSize;
 criticalKAM = ebsd_bcc.KAM('order',criticalOrder);
 criticalCnt = logical(cnt(:,criticalOrder));
