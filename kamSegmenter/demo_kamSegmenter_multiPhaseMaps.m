@@ -16,7 +16,7 @@
 % https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4324505
 % 
 %% Syntax:
-%  demo_bainiteQuantifier
+%  demo_kamSegmenter
 %
 %% Input:
 %  none
