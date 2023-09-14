@@ -137,7 +137,8 @@ coeffs = polyfit(xData,yData,3);
 xx = xData;
 yy = polyval(coeffs, xx);
 
-% Find the inflection point based on a user-defined fitting threshold
+% Find the inflection point of the best fit polynomial based on a 
+% user-defined fitting threshold
 fitValue = 1; % initialize the fit value to 1
 idx = 2;  % start with (x1,y1) and (x2,y2)
 while fitValue >= fitThreshold && idx <= numPoints
@@ -200,13 +201,19 @@ disp(['Fit value for RHS line             : ' num2str(fitValueRHS)]);
 disp('---')
 
 
-% Plot the data and the best fit lines
+% Plot the map and fitted data
 figH = figure;
-plot(xData, yData, 'o-b','lineWidth',2);
+
+% Plot the map data
+plot(xData, yData, 'o-b','lineWidth',2); 
 grid on;
 xlabel('KAM kernel size (um)','fontSize',14);
 ylabel('Granular bainite number fraction','fontSize',14);
-hold on;
+hold all;
+
+% Plot the 3rd degree fitted polynomial
+plot(xx, yy, '--k','lineWidth',2); 
+hold all;
 
 % Use the LHS equation to get the fitted yLHS values
 xLHS = xData(1:idx+1);
@@ -220,7 +227,7 @@ yRHS = polyval(coeffsRHS, xRHS);
 % Plot RHS line of best fit
 plot(xRHS, yRHS,'r-','lineWidth',2);
 
-% Mark the inflection point with a black line
+% Plot the inflection point with a black line
 xc = (coeffsRHS(2) - coeffsLHS(2)) / (coeffsLHS(1) - coeffsRHS(1));
 xline(xc,'color','k','lineWidth',2);
 
