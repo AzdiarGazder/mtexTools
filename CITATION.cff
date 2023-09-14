@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If these scripts and tools prove useful and contribute to published works in any way, please consider an acknowledgement by citing the following reference:"
+authors:
+  - family-names: Gazder
+    given-names: Azdiar A.
+    orcid: https://orcid.org/0000-0001-5046-9702
+title: "mtexTools: A collated library of additional MTEX functions and demonstration scripts"
+version: 
+doi: 10.5281/zenodo.8343432
+date-released: 2023-09-14
