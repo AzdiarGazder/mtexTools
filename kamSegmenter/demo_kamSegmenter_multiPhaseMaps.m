@@ -227,9 +227,9 @@ yRHS = polyval(coeffsRHS, xRHS);
 % Plot RHS line of best fit
 plot(xRHS, yRHS,'r-','lineWidth',2);
 
-% Plot the inflection point with a black line
-xc = (coeffsRHS(2) - coeffsLHS(2)) / (coeffsLHS(1) - coeffsRHS(1));
-xline(xc,'color','k','lineWidth',2);
+% Plot the inflection point
+xInflection = (coeffsRHS(2) - coeffsLHS(2)) / (coeffsLHS(1) - coeffsRHS(1));
+xline(xInflection,'color','k','lineWidth',2);
 
 
 
