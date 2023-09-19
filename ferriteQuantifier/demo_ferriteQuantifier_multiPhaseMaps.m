@@ -93,7 +93,7 @@ ebsd_bcc(grains_bcc(grains_bcc.grainSize <= 5)) = [];
 
 
 figH = figure;
-% plot(ebsd(CS.mineral),ebsd(CS.mineral).iq);
+% plot(ebsd_bcc(CS.mineral),ebsd_bcc(CS.mineral).iq);
 plot(ebsd_bcc(CS.mineral),ebsd_bcc(CS.mineral).bc);
 colormap(gray)
 set(figH,'Name','Map: Image quality','NumberTitle','on');
