@@ -137,10 +137,10 @@ logicalMatrix2 = logical(logicalMatrix2);
 % where grains have more than one critical misorientation, they should be 
 % removed from the analysis.
 numGrains = sum(sum(logicalMatrix2') > 1);
-display('----');
-display(['Number of grains with > 1 critical misorientation        = ' num2str(numGrains)]);
-display(['Percent grains deleted from the analyis due to the above = ' num2str(100*(numGrains/length(logicalMatrix2)))]);
-display('----');
+disp('----');
+disp(['Number of grains with > 1 critical misorientation        = ' num2str(numGrains)]);
+disp(['Percent grains deleted from the analyis due to the above = ' num2str(100*(numGrains/length(logicalMatrix2)))]);
+disp('----');
 % remove grains that are in more than one bin
 idx = sum(logicalMatrix2') > 1;
 logicalMatrix1(idx,:) = [];
@@ -273,11 +273,11 @@ areaFraction_polygonalFerrite = area_polygonalFerrite / totalArea;
 areaFraction_bainite = area_bainite / totalArea;
 
 % display the area fractions
-display('----');
-display(['Area fraction of acicular ferrite   = ' num2str(areaFraction_acicularFerrite)]);
-display(['Area fraction of polygonal ferrite  = ' num2str(areaFraction_polygonalFerrite)]);
-display(['Area fraction of bainite            = ' num2str(areaFraction_bainite)]);
-display('----');
+disp('----');
+disp(['Area fraction of acicular ferrite   = ' num2str(areaFraction_acicularFerrite)]);
+disp(['Area fraction of polygonal ferrite  = ' num2str(areaFraction_polygonalFerrite)]);
+disp(['Area fraction of bainite            = ' num2str(areaFraction_bainite)]);
+disp('----');
 
 
 
@@ -296,13 +296,11 @@ set(figH,'Name','Map: EBSD map of ferrite microconstituent distribution','Number
 
 
 
-
-return
 %% Re-assigning the ferrite microconstituents as new phases in the ebsd map
-% To get this section of the script to work, please do the following first:
-% Go to C:\mtex\geometry\@symmetry\symmetry.m
-% replace the first line with the following line:
-% classdef symmetry < matlab.mixin.Copyable
+pName = what('geometry\@symmetry'); % finds the location of the required folder containing the file
+pfName = [pName.path,'\symmetry.m']; % define the full path & file name
+replaceText(pfName, pfName, 'classdef symmetry < handle', 'classdef symmetry < matlab.mixin.Copyable');
+
 
 % ---
 % Assuming the ferrite phase that was orignally indexed in the map is 
@@ -371,6 +369,8 @@ ebsd1 = [ebsd_nI, ebsd_fcc, ebsd_baseSet];
 figH = figure;
 plot(ebsd1)
 set(figH,'Name','Map: EBSD map of ferrite microconstituent distribution','NumberTitle','on');
+
+ebsd1.export('newDuplex.ctf');
 % ---
 
 
