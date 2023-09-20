@@ -155,6 +155,8 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 - [**rename**](https://github.com/AzdiarGazder/mtexTools/tree/main/rename): Rename phases using the ebsd or grains variables interactively via a GUI or via scripting.
 
+- [**replaceText**](https://github.com/AzdiarGazder/mtexTools/tree/main/replaceText):  This script enables users to edit by replacing or changing the first or all instances of a full line of text in a text-based file. This is especially useful if small changes are needed on-the-fly to function files in publicly released toolboxes (like MTEX).
+
 
 
 ## S
