@@ -11,4 +11,15 @@ startup_mtex;
 pName = what('geometry\@symmetry'); % finds the location of the required folder containing the file
 pfName = [pName.path,'\symmetry.m']; % defines the full path & file name
 
+% The following commands replace **the first instance** of the line:
+% 'classdef symmetry < handle'
+% with 
+% 'classdef symmetry < matlab.mixin.Copyable'
 replaceText(pfName, pfName, 'classdef symmetry < handle', 'classdef symmetry < matlab.mixin.Copyable');
+replaceText(pfName, pfName, 'classdef symmetry < handle', 'classdef symmetry < matlab.mixin.Copyable','first');
+
+% The following command replaces **all instances** of the line:
+% 'classdef symmetry < handle'
+% with 
+% 'classdef symmetry < matlab.mixin.Copyable'
+replaceText(pfName, pfName, 'classdef symmetry < handle', 'classdef symmetry < matlab.mixin.Copyable','all');
