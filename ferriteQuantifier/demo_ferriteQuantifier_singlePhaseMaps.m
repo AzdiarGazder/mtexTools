@@ -323,3 +323,4 @@ figH = figure;
 plot(ebsd_baseSet)
 set(figH,'Name','Map: EBSD map of ferrite microconstituent distribution','NumberTitle','on');
 
+ebsd_baseSet.export('newFerrite.ctf');

@@ -297,9 +297,14 @@ set(figH,'Name','Map: EBSD map of ferrite microconstituent distribution','Number
 
 
 %% Re-assigning the ferrite microconstituents as new phases in the ebsd map
+% AUTOMATICALLY:
 pName = what('geometry\@symmetry'); % finds the location of the required folder containing the file
 pfName = [pName.path,'\symmetry.m']; % define the full path & file name
 replaceText(pfName, pfName, 'classdef symmetry < handle', 'classdef symmetry < matlab.mixin.Copyable');
+% MANUALLY:
+% Go to C:\mtex\geometry\@symmetry\symmetry.m
+% replace the first line with the following line:
+% classdef symmetry < matlab.mixin.Copyable
 
 
 % ---

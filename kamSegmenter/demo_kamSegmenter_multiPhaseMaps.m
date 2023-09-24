@@ -265,9 +265,13 @@ disp(['Area fraction of granular bainite   = ' num2str(areaFraction_bainite)]);
 disp('----');
 
 
-return
+
 %% Re-assigning the ferrite microconstituents as new phases in the ebsd map
-% To get this section of the script to work, please do the following first:
+% AUTOMATICALLY:
+pName = what('geometry\@symmetry'); % finds the location of the required folder containing the file
+pfName = [pName.path,'\symmetry.m']; % define the full path & file name
+replaceText(pfName, pfName, 'classdef symmetry < handle', 'classdef symmetry < matlab.mixin.Copyable');
+% MANUALLY:
 % Go to C:\mtex\geometry\@symmetry\symmetry.m
 % replace the first line with the following line:
 % classdef symmetry < matlab.mixin.Copyable
@@ -328,4 +332,6 @@ ebsd1 = [ebsd_nI, ebsd_fcc, ebsd_bcc];
 figH = figure;
 plot(ebsd1)
 set(figH,'Name','Map: EBSD map of ferrite microconstituent distribution','NumberTitle','on');
+
+ebsd1.export('newDuplex.ctf');
 % ---
