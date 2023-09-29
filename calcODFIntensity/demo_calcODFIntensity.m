@@ -43,4 +43,4 @@ odf = calcDensity(ebsd(CS{2}).orientations,'kernel',psi);
 
 % compute the ODF intensity
 % odf = calcODFIntensity(odf);
-odf = calcODFIntensity(odf,'phi2',(0:5:90)*degree);
+odf = calcODFIntensity(odf,'resolution',5*degree);

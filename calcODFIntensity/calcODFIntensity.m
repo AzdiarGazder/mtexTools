@@ -24,16 +24,13 @@ if ~isa(odf,'SO3FunRBF') && ~isa(odf,'SO3FunHarmonic')
 end
 
 % get the user specified steps for the phi2 sections
-phi2Steps = get_option(varargin,'phi2',(0:5:90)*degree);
+res = get_option(varargin,'resolution',5*degree);
 
-% define the phi2 sections
-phi2Sec = phi2Sections(odf.CS,odf.SS,'phi2',phi2Steps);
-
-% make a grid using the user specified phi2 steps
-S3G = phi2Sec.makeGrid;
+% define the grid
+SO3G = regularSO3Grid(odf.CS,odf.SS,'resolution',res);
 
 % return the ODF intensity at the gridded points
-odf.opt.intensity = odf.eval(S3G);
+odf.opt.intensity = odf.eval(SO3G);
 
 % make negative f(g) values == 0
 odf.opt.intensity(odf.opt.intensity<0) = 0;
