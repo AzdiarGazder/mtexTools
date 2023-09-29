@@ -1,10 +1,11 @@
 
 *.asv
-*.mat
-*.Tex
-*.txt
-*.png
 *.jpg
+*.mat
+*.pdf
+*.png
+*.Tex
 *.tiff
+*.txt
 /TEST/
 /yieldLocus/
