@@ -3,7 +3,7 @@
 
 ## UPDATE
 
-**For MTEX Version 5.10 (released in June 2023):**
+**For MTEX Version 6.2 (released in September 2023):**
 - All scripts are fully functional.
 - In case of any issues, please [submit an issue](https://github.com/AzdiarGazder/mtexTools/issues) or [open a discussion](https://github.com/AzdiarGazder/mtexTools/discussions).
 ---
@@ -59,6 +59,8 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 ## C
+- [**calcEaring**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcEaring): This function calculates the height (h) at each peripheral position of a cup drawn from a polycrystalline bcc metal sheet. In the analytical treatment, the polycrystalline sheet is assumed to be an aggregate of single crystals (grains) with various orientations. In the original paper, an orientation distribution function (ODF) contructed from texture data was used to calculate the weight of each single crystal. In this function, ebsd or grain data can be used. For ebsd data, an ODF is first calculated. Following that, there are 2 options: (1) Calculate ODF components & volume fractions using MTEX-default functions, or (2) Calculate the volume fractions of a discretised ODF. For both options, the volume fraction is used as the weight. Alternatively, for grain data, weights are computed using the grain area fraction. The ear may be calculated crystallographically by considering both, restricted glide and pencil glide; with the former returning better predictions in the original paper.
+
 - [**calcGrainsFFT**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcGrainsFFT): Returns the Fast Fourier Transforms (FFTs) of individual grains. The FFTs are calculated after padding each grayscale/binary grain map to its nearest square. The FFTs from grayscale and binary data are returned in grid format within the 'grains.prop.fftGray' and 'grains.prop.fftBinary' structure variables.
 
 - [**calcModelTexture**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcModelTexture): Returns a model ODF based on a user specified number of ideal orientations used as seeds.
