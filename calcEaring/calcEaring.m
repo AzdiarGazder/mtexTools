@@ -71,9 +71,21 @@ if isa(indata,'EBSD')
         disp('---')
         disp('Calculating discrete ODF intensity from ebsd data...');
         % make a regular grid using 5*degree step size
-        ori = regularSO3Grid(odf.CS,odf.SS,'resolution',5*degree);
+        % MTEX BUG: not returning the correct ori size
+%         ori = regularSO3Grid(odf.CS,odf.SS,'resolution',5*degree,'Bunge');
+
+        x = linspace(0,90*degree,19);
+        y = linspace(0,360*degree,73);
+        z = linspace(0,90*degree,19);
+        % create a meshgrid
+        [phi1,Phi,phi2] = meshgrid(x, y, z);
+        ori = orientation.byEuler(phi1,Phi,phi2,odf.CS,odf.SS);
+
         % return the ODF intensity at the gridded points
         odf.opt.intensity = odf.eval(ori);
+        % make negative f(g) values == 0
+        odf.opt.intensity(odf.opt.intensity<0) = 0;
+
         disp('Done!');
         disp('---')
         disp('Calculating discrete ODF volume fractions...');
@@ -230,10 +242,13 @@ function v = calcODFvolFraction(odf)
 % Initialise variables
 fg = odf.opt.intensity;
 
-% Define the dimensions of the ODF grid
-x = linspace(0, size(fg,2)*5*degree, size(fg,2));
-y = linspace(0, size(fg,1)*5*degree, size(fg,1));
-z = linspace(0, size(fg,3)*5*degree, size(fg,3));
+% Define odf extents
+[maxRho,maxTheta,maxSec] = fundamentalRegionEuler(odf.SRight,odf.SLeft);
+
+% Define the dimensions of the odf grid
+x = linspace(0,maxTheta,size(fg,2));
+y = linspace(0,maxRho,size(fg,1));
+z = linspace(0,maxSec,size(fg,3));
 
 % Create a meshgrid
 [phi1, Phi, phi2] = meshgrid(x, y, z);
