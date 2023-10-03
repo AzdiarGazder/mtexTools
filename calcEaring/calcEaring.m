@@ -252,9 +252,9 @@ z = linspace(0,maxSec,size(fg,3));
 
 % Create a meshgrid
 [phi1, Phi, phi2] = meshgrid(x, y, z);
-dphi1 = max(max(max(diff(phi1(:)))));
-dPhi = max(max(max(diff(Phi(:)))));
-dphi2 = max(max(max(diff(phi2(:)))));
+dphi1 = max(diff(phi1(:)),[],'all');
+dPhi = max(diff(Phi(:)),[],'all');
+dphi2 = max(diff(phi2(:)),[],'all');
 
 
 % Initialise the grid of multiplier fractions with 1
