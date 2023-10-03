@@ -6,6 +6,7 @@ startup_mtex
 %% Define the Mtex plotting convention
 setMTEXpref('xAxisDirection','east');
 setMTEXpref('zAxisDirection','outofPlane');
+setMTEXpref('maxSO3Bandwidth',92);
 
 %% Load an mtex dataset
 mtexdata ferrite
@@ -66,8 +67,8 @@ prop.thicknessBlank = 0.8;   % Thickness of blank (t0, in mm)
 
 
 % h = calcEaring(ebsd,sS, prop);
-% h = calcEaring(ebsd,sS, prop,'discrete');
-h = calcEaring(grains,sS, prop);
+h = calcEaring(ebsd,sS, prop,'discrete');
+% h = calcEaring(grains,sS, prop);
 
 figure
 plot(linspace(0,360,73),h,'-r','lineWidth',1.5);

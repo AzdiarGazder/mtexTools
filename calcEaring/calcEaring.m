@@ -231,9 +231,9 @@ function v = calcODFvolFraction(odf)
 fg = odf.opt.intensity;
 
 % Define the dimensions of the ODF grid
-x = linspace(0, 360*degree, size(fg,2));
-y = linspace(0, 90*degree, size(fg,1));
-z = linspace(0, 90*degree, size(fg,3));
+x = linspace(0, size(fg,2)*5*degree, size(fg,2));
+y = linspace(0, size(fg,1)*5*degree, size(fg,1));
+z = linspace(0, size(fg,3)*5*degree, size(fg,3));
 
 % Create a meshgrid
 [phi1, Phi, phi2] = meshgrid(x, y, z);
