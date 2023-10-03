@@ -98,6 +98,8 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 - [**fibreMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/fibreMaker): Creates an ideal crystallographic fibre with a user specified half-width and exports the data as a lossless MATLAB *.mat* file object for later use.
 
+- [**fibreOrientations**](https://github.com/AzdiarGazder/mtexTools/tree/main/fibreOrientations): This script demonstrates how to obtain and plot orientations from a crystallographic fibre.
+
 
 
 ## G
