@@ -19,18 +19,17 @@
 %%
 
 
-% clear variables
+%% Initialise Mtex
 clc; clear all; clear hidden; close all;
-
-% start Mtex
 startup_mtex;
 
-% define Mtex plotting convention as X = right, Y = up
+
+%% define Mtex plotting convention as X = right, Y = up
 setMTEXpref('xAxisDirection','east');
 setMTEXpref('zAxisDirection','outOfPlane');
 setMTEXpref('FontSize', 24);
 
-% load mtex example data
+%% load mtex example data
 mtexdata twins
 
 
