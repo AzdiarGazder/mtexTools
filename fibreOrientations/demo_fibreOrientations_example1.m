@@ -38,7 +38,7 @@ SS = specimenSymmetry('orthorhombic');
 o1Alpha = orientation.byEuler([0 45 0].*degree,CS,SS);  % Goss
 o2Alpha = orientation.byEuler([90 45 0].*degree,CS,SS); % Rt-Goss
 fAlpha = fibre(o1Alpha,o2Alpha,CS,SS,'full');
-oriAlpha = orientation(fAlpha,CS,SS); % list of fibre orientations
+oriAlpha = orientation(fAlpha,CS,SS,'points',19) % list of fibre orientations at intervals of delta_phi1 = 10 degree
 
 
 %% Define the preferences for plotting crystallographic texture
@@ -51,7 +51,7 @@ odfSections = [0 45 65]*degree;
 
 
 %% Plot the pole figures
-figH = figure(1);
+figH = figure(4);
 oriAlpha.SS = specimenSymmetry('triclinic');
 plotPDF(oriAlpha,...
     hpf,...
@@ -74,7 +74,7 @@ oriAlpha.SS = specimenSymmetry('orthorhombic');
 
 
 %% Plot the orientation distribution function
-figH = figure(2);
+figH = figure(5);
 plotSection(oriAlpha,...
     'phi2',odfSections,...
      'MarkerFaceColor','orange','MarkerSize',5);
@@ -92,7 +92,7 @@ drawnow;
 
 
 %% Plot the inverse pole figures
-figH = figure(3);
+figH = figure(6);
 r = [vector3d(1,0,0),vector3d(0,1,0),vector3d(0,0,1)];
 plotIPDF(oriAlpha,r,...
         'points','all',...
