@@ -1,5 +1,10 @@
 
-[![DOI](https://zenodo.org/badge/601424745.svg)](https://zenodo.org/badge/latestdoi/601424745); ![Static Badge](https://img.shields.io/badge/https%3A%2F%2Fwww.researchgate.net%2Fprofile%2FAzdiar-Gazder?style=flat&logoColor=0%201%200&label=ResearchGate)
+[![DOI](https://zenodo.org/badge/601424745.svg)](https://zenodo.org/badge/latestdoi/601424745) 
+
+![Downloads](https://img.shields.io/github/downloads/:AzdiarGazder/:mtexTools/total)
+
+
+![Static Badge](https://img.shields.io/badge/https%3A%2F%2Fwww.researchgate.net%2Fprofile%2FAzdiar-Gazder?style=flat&logoColor=0%201%200&label=ResearchGate) 
 
 ## UPDATE
 
