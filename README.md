@@ -3,7 +3,7 @@
 
 ![Static Badge](https://img.shields.io/badge/https%3A%2F%2Fwww.researchgate.net%2Fprofile%2FAzdiar-Gazder?style=flat&logoColor=0%201%200&label=ResearchGate) 
 
-![GitHub contributors (via allcontributors.org)](https://img.shields.io/github/all-contributors/AzdiarGazder/mtexTools/main)
+![GitHub all releases](https://img.shields.io/github/downloads-pre/AzdiarGazder/mtexTools/total)
 
 ## UPDATE
 
