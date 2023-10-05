@@ -36,7 +36,7 @@ SS = specimenSymmetry('orthorhombic');
 
 %% Define the fcc beta fibre
 fBeta = fibre.beta(CS,SS,'full');
-oriBeta = orientation(fBeta,CS,SS,'points',50) % list of fibre orientations
+oriBeta = orientation(fBeta,CS,SS,'points',73) % list of fibre orientations
 
 
 %% Define the preferences for plotting crystallographic texture
