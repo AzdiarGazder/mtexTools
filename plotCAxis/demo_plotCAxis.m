@@ -6,7 +6,7 @@
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
 %
 %% Syntax:
-%  demo_mergeTwins
+%  demo_plotCAxis
 %
 %% Input:
 %  none

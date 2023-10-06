@@ -9,7 +9,7 @@ startup_mtex
 % % gamma             -fibre = <1 1 1> || ND
 % % tau               -fibre = <1 1 0> || TD
 % % REF: https://doi.org/10.1016/j.actamat.2011.05.050
-% % theta-fibre = <001> || ND
+% % theta             -fibre = <0 0 1> || ND
 
 
 % List of common fibers for bcc materials:

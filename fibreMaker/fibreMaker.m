@@ -26,22 +26,33 @@ pfName_Out = get_option(varargin,'export','inputFibre.mat');
 %% define the specimen symmetry to compute ODF
 ss = specimenSymmetry('triclinic');
 
-%% check for MTEX version
-currentVersion = 5.9;
+% check for MTEX version
+chkVersion = '5.9.0';
+chkVerParts = getVersionParts(chkVersion);
 fid = fopen('VERSION','r');
-MTEXversion = fgetl(fid);
+curVersion = fgetl(fid);
 fclose(fid);
-MTEXversion = str2double(MTEXversion(5:end-2));
+curVersion = erase(curVersion, 'MTEX ');
+curVerParts = getVersionParts(curVersion);
+
+if curVerParts(1) ~= chkVerParts(1)     % major version
+    flagVersion = curVerParts(1) < chkVerParts(1);
+elseif curVerParts(2) ~= chkVerParts(2) % minor version
+    flagVersion = curVerParts(2) < chkVerParts(2);
+else                                    % revision version
+    flagVersion = curVerParts(3) < chkVerParts(3);
+end
+
 
 %%
-if MTEXversion >= currentVersion % for MTEX versions 5.9.0 and above
+if flagVersion == 0 % for MTEX versions 5.9.0 and above
     % pre-define the fibre
-    f = fibre(symmetrise(crystalDirection),sampleDirection,ss,'full');
+    f = fibre(crystalDirection,sampleDirection,ss,'full');
     % calculate a fibre ODF
     odf = fibreODF(f,'halfwidth',hwidth);
 
     %%
-else % for MTEX versions 5.8.2 and below
+elseif flagVersion == 1 % for MTEX versions 5.8.2 and below
     % calculate a fibre ODF
     odf = fibreODF(symmetrise(crystalDirection),sampleDirection,ss,'de la Vallee Poussin',...
         'halfwidth',hwidth,'Fourier',22);
