@@ -109,6 +109,10 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 ## I
+- [**idealFibres**](https://github.com/AzdiarGazder/mtexTools/tree/main/idealFibres): This script demonstrates how to plot user-defined pole figures and orientation distribution function sections (and 3D ODFs) of common ideal fibres for bcc, fcc and hcp materials.
+
+- [**idealOrientations**](https://github.com/AzdiarGazder/mtexTools/tree/main/idealOrientations): This script demonstrates how to plot user-defined pole figures and orientation distribution function sections of common ideal orientations for bcc, fcc and hcp materials.
+ 
 - [**imageResize**](https://github.com/AzdiarGazder/mtexTools/tree/main/imageResize): Interactively resize an image. This function may be used in conjunction with ebsd map data to correct for drift during map acquisition.
 
 - [**imageTransform**](https://github.com/AzdiarGazder/mtexTools/tree/main/imageTransform): Interactively projective or affine transform an image. This function may be used in conjunction with ebsd map data to correct for drift during map acquisition.
