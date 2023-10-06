@@ -75,12 +75,10 @@ RD = xvector; TD = yvector; ND = zvector;
 % Step 2: Define a nominal bcc crystal system
 CS = crystalSymmetry('SpaceId', 229, [2.86 2.86 2.86], [90 90 90]*degree, 'mineral', 'iron');
 % Step 3: Define a crystallographic direction
-cD = Miller({1,1,1},CS,'uvw');
-% cD = Miller({1,1,0},CS,'uvw');
+cD = Miller({1,1,0},CS,'uvw');
 % Step 4: Define a tilt away a specimen co-ordinate system direction
-% rotN = rotation('Euler',-20*degree,0*degree,0*degree);
-% sD = rotN * RD;
-sD = ND;
+rotN = rotation('Euler',-20*degree,0*degree,0*degree);
+sD = rotN * RD;
 % Step 5: Define the sample symmetry
 sS = specimenSymmetry('orthorhombic');
 % Step 6: Define a half-width
@@ -104,12 +102,12 @@ setInterp2Latex;
 load(pfName);
 
 % % Plot the pole figures - this is taking a very long time to plot in MTEX v5.10
-% % % hpf = {Miller(1,1,1,odf.CS),Miller(2,0,0,odf.CS), Miller(2,2,0,odf.CS)};
-% hpf = {Miller(1,1,0,odf.CS),Miller(2,0,0,odf.CS), Miller(2,1,1,odf.CS)};
-% plotHPF(odf,hpf,specimenSymmetry('triclinic'),'colormap',jet);
+% % % hpf = {Miller(1,1,1,fiberODF.CS),Miller(2,0,0,fiberODF.CS), Miller(2,2,0,fiberODF.CS)};
+% hpf = {Miller(1,1,0,fiberODF.CS),Miller(2,0,0,fiberODF.CS), Miller(2,1,1,fiberODF.CS)};
+% plotHPF(fiberODF,hpf,specimenSymmetry('triclinic'),'colormap',jet);
 
 % Plot the orientation distribution function
-plotHODF(odf,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'colormap',jet);
+plotHODF(fiberODF,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'colormap',jet);
 
 setInterp2Tex;
 %%

@@ -66,3 +66,14 @@ fiberODF = odf;
 save(pfName_Out,"fiberODF");
 
 end
+
+
+function parts = getVersionParts(V)
+
+parts = sscanf(V, '%d.%d.%d')';
+
+if length(parts) < 3
+    parts(3) = 0; % zero-fills to 3 elements
+end
+
+end
