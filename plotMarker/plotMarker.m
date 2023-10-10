@@ -1,12 +1,14 @@
 function h = plotMarker(xData,yData,varargin)
 %% Function description:
-% Plots a line plot using customised markers.
+% Plots a line-plot using customisable markers. The function uses line 
+% plotting options similar to MATLAB's "plot" command but applies custom 
+% patches instead of MATLAB's in-built marker set.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
 %
-%% Version(s):
-% The first version of this function was posted in:
+%% Acknowledgement(s):
+% Salman Mashayekh, for the original version of this function posted in:
 % https://au.mathworks.com/matlabcentral/fileexchange/39487-custom-marker-plot?s_tid=prof_contriblnk
 %
 %% Syntax:
