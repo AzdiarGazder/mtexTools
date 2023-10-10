@@ -43,7 +43,8 @@ function h = plotMarker(xData,yData,varargin)
 %                    '+'     = cross
 %                    'x'     = x-mark
 % innermarker      - Flag for an inner marker
-% sizeFactor       - Size of the inner marker
+% sizeFactor       - Size factor of the inner marker relative to the outer
+%                    marker
 % markerStep       - Defines the angular step size by which the marker is
 %                    rotated
 % markerEdgeColor  - @double, Defines the marker edge [RGB] color
