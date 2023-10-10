@@ -155,7 +155,9 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 - [**plotHODF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHODF): Plots orientation distribution function phi2 sections in publication-ready format.
 
-- [**plotHPF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHPF):  Plots pole figures in publication-ready format.
+- [**plotHPF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHPF): Plots pole figures in publication-ready format.
+
+- [**plotMarker**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotMarker): Plots a line-plot using customisable markers. The function uses line plotting options similar to MATLAB's "plot" command but applies custom patches instead of MATLAB's in-built marker set.
 
 - [**plotScatter**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotScatter):  Creates a scatter plot coloured by density.
 
