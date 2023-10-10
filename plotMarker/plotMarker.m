@@ -1,4 +1,4 @@
-function h = plotMarker(xData,yData,varargin)
+function plotMarker(xData,yData,varargin)
 %% Function description:
 % Plots a line-plot using customisable markers. The function uses line 
 % plotting options similar to MATLAB's "plot" command but applies custom 
@@ -107,6 +107,8 @@ if flagMarkerStep
     markerStep = varargin{find_option(varargin,'markerStep') + 1};
     if ~isnumeric(markerStep)
         markerStep = 45*degree;
+    elseif isnumeric(markerStep) & markerStep == 0
+        flagMarkerStep = 0;
     end
 end
 
@@ -226,7 +228,7 @@ faces = 0:length(xData):length(xData)*(length(markerDataY)-1);
 faces = repmat(faces,length(xData),1);
 faces = repmat((1:length(xData))',1,length(markerDataY)) + faces;
 % ------
-h = figure; box on; 
+% h = figure;
 plot(xData,yData,'lineStyle',lineStyle,'Color',lineColor,'LineWidth',lineWidth);
 pHandle = patch('Faces',faces,'Vertices',[vertX vertY]);
 set(pHandle,'FaceColor',markerFaceColor,'EdgeColor',markerEdgeColor) ;
