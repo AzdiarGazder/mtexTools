@@ -68,7 +68,7 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 - [**calcODFIntensity**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcODFIntensity): Returns the ODF intensity (f(g)) in user-defined steps of phi2 using Bunge's notation to the variable 'odf.opt.intensity'.
 
-- [**calcStepSize**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcStepSize): Calculates the step size of the ebsd map. This function also re-calculates the x and y grid values as multiples of the step size to mitigate any rounding-off errors during subsequent gridding operations. To enable the re-calculation of the x and y grid values, the ebsd variable must be outputted from the function.
+- [**calcStepSize**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcStepSize): Calculates the step size of the ebsd map. This function can also be used in conjunction with the regrid.m script.
 
 - [**checkMTEXVersion**](https://github.com/AzdiarGazder/mtexTools/tree/main/checkMTEXVersion): Compare versions of the current MTEX toolbox to a user-specified version string of the form 'majorVersion.minorVersion.revisionVersion'. Returns true if the current toolbox version is less than the user-specified version string. Returns false if the current toolbox version is greater than the user-specified version string.
 
@@ -105,6 +105,11 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 ## G
 - [**GAM**](https://github.com/AzdiarGazder/mtexTools/tree/main/GAM): By modifying MTEX's in-built KAM script, this function calculates the intragranular grain average misorientation. The first neighbour kernal average misorientation is averaged to return a single value per grain.
+
+
+
+## H
+- [**hex2Square**](https://github.com/AzdiarGazder/mtexTools/tree/main/hex2Square): This script demonstrates how to automatically convert from a hexagonal grid ebsd map in TSL OIM's *.ang format to a square grid ebsd map in Oxford Instruments HKL Channel-5 *.cpr and *.crc format.
 
 
 
@@ -165,6 +170,8 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 ## R
 - [**recolor**](https://github.com/AzdiarGazder/mtexTools/tree/main/recolor): Recolor phases using the ebsd or grains variables interactively via a GUI or via scripting.
+
+- [**regrid**](https://github.com/AzdiarGazder/mtexTools/tree/main/regrid): Re-calculates the x and y grid values as multiples of the step size to mitigate any rounding-off errors during subsequent gridding operations. This function can be used in conjunction with the calcStepSize.m script.
 
 - [**rename**](https://github.com/AzdiarGazder/mtexTools/tree/main/rename): Rename phases using the ebsd or grains variables interactively via a GUI or via scripting.
 
