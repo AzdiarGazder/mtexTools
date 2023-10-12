@@ -63,7 +63,7 @@ ebsd0 = gridify(ebsd0);
 CS = ebsd0.CSList{3};
 CS.color = [0 0 1];
 fR = fundamentalRegion(CS,CS);
-[stepSize,~] = calcStepSize(ebsd0);
+stepSize = calcStepSize(ebsd0);
 
 
 % Make subsets of the zero solutions & other phases for later use

@@ -43,18 +43,28 @@ if any(strcmpi(varargin,'north')) ||...
     %     bounds1 = inebsd1.extend; % [xmin, xmax, ymin, ymax]
     %     bounds2 = inebsd2.extend; % [xmin, xmax, ymin, ymax]
     % check for MTEX version
-    currentVersion = 5.9;
+    chkVersion = '5.9.0';
+    chkVerParts = getVersionParts(chkVersion);
     fid = fopen('VERSION','r');
-    MTEXversion = fgetl(fid);
+    curVersion = fgetl(fid);
     fclose(fid);
-    MTEXversion = str2double(MTEXversion(5:end-2));
+    curVersion = erase(curVersion, 'MTEX ');
+    curVerParts = getVersionParts(curVersion);
 
-    if MTEXversion >= currentVersion
-        bounds1 = inebsd1.extent; % [xmin, xmax, ymin, ymax]
-        bounds2 = inebsd2.extent; % [xmin, xmax, ymin, ymax]
-    else
+    if curVerParts(1) ~= chkVerParts(1)     % major version
+        flagVersion = curVerParts(1) < chkVerParts(1);
+    elseif curVerParts(2) ~= chkVerParts(2) % minor version
+        flagVersion = curVerParts(2) < chkVerParts(2);
+    else                                    % revision version
+        flagVersion = curVerParts(3) < chkVerParts(3);
+    end
+
+    if flagVersion % for MTEX versions 5.8.2 and below
         bounds1 = inebsd1.extend; % [xmin, xmax, ymin, ymax]
         bounds2 = inebsd2.extend; % [xmin, xmax, ymin, ymax]
+    else % for MTEX versions 5.9.0 and above
+        bounds1 = inebsd1.extent; % [xmin, xmax, ymin, ymax]
+        bounds2 = inebsd2.extent; % [xmin, xmax, ymin, ymax]
     end
 
     % find the map origin
@@ -389,6 +399,8 @@ else
     return
 end
 end
+%%
+
 
 
 %% Check for the size of the offset/overlay array
@@ -396,5 +408,16 @@ function arraySize(inArray)
 if ~isequal(size(inArray), [1 2])
     error(sprintf('The offset/overlay must be a 1 x 2 array.'));
     return;
+end
+end
+%%
+
+
+
+%%
+function parts = getVersionParts(V)
+parts = sscanf(V, '%d.%d.%d')';
+if length(parts) < 3
+    parts(3) = 0; % zero-fills to 3 elements
 end
 end

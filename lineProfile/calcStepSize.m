@@ -1,23 +1,20 @@
-function [stepSize,outebsd] = calcStepSize(inebsd)
+function stepSize = calcStepSize(inebsd)
 %% Function description:
-% Calculates the step size of the ebsd map. This function also 
-% re-calculates the x and y grid values as multiples of the step size to 
-% mitigate any rounding-off errors during subsequent gridding operations.
-% To enable the re-calculation of the x and y grid values, the ebsd 
-% variable must be outputted from the function.
+% Calculates the step size of the ebsd map. This function can also be used
+% in conjunction with the regrid.m script.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
 %
 %% Syntax:
-%  [stepSize,ebsd] = calcStepSize(ebsd)
+%  stepSize = calcStepSize(ebsd)
 %
 %% Input:
 %  ebsd        - @EBSD
 %
 %% Output:
 %  stepSize    - @numeric
-%  ebsd        - @EBSD
+% 
 %%
 
 % calculate the ebsd map step size
@@ -29,13 +26,5 @@ if size(inebsd.unitCell,1) == 6 % hexGrid
 else % squareGrid
     stepSize = sqrt(unitPixelArea);
 end
-
-outebsd = inebsd;
-
-% re-calculating the grid values as multiples of the calculated step size
-% this step mitigates any rounding-off errors during subsequent gridding
-% operations
-outebsd.prop.x = stepSize.*floor(outebsd.prop.x./stepSize);
-outebsd.prop.y = stepSize.*floor(outebsd.prop.y./stepSize);
 
 end

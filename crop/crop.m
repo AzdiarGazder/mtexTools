@@ -77,10 +77,6 @@ lineStyle = get_option(varargin,'lineStyle','-');
 
 
 % gridify ebsd map data
-% While MTex's default "gridify.m" is used here, the command could result
-% in Nan pixels. In such cases, it is recommended to use the modified
-% "gridify2.m" instead. Click the link to find the "gridify2.m" script.
-% % https://github.com/mtex-toolbox/mtex/issues/471
 [gebsd,~] = gridify(inebsd);
 
 
