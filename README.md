@@ -1,9 +1,9 @@
 
 [![DOI](https://zenodo.org/badge/601424745.svg)](https://zenodo.org/badge/latestdoi/601424745) 
 
-![GitHub contributors](https://img.shields.io/github/contributors/AzdiarGazder/mtexTools)  |  ![GitHub followers](https://img.shields.io/github/followers/AzdiarGazder)  |  ![GitHub watchers](https://img.shields.io/github/watchers/AzdiarGazder/mtexTools)
+![GitHub contributors](https://img.shields.io/github/contributors/AzdiarGazder/mtexTools)  ![GitHub followers](https://img.shields.io/github/followers/AzdiarGazder)  ![GitHub watchers](https://img.shields.io/github/watchers/AzdiarGazder/mtexTools)
 
-![GitHub Discussions](https://img.shields.io/github/discussions/AzdiarGazder/mtexTools)   |  ![GitHub issues](https://img.shields.io/github/issues/AzdiarGazder/mtexTools)
+![GitHub Discussions](https://img.shields.io/github/discussions/AzdiarGazder/mtexTools)  ![GitHub issues](https://img.shields.io/github/issues/AzdiarGazder/mtexTools)
 
 
 ## UPDATE
