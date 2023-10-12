@@ -3,6 +3,8 @@
 
 ![GitHub contributors](https://img.shields.io/github/contributors/AzdiarGazder/mtexTools)  ![GitHub watchers](https://img.shields.io/github/watchers/AzdiarGazder/mtexTools)  ![GitHub followers](https://img.shields.io/github/followers/AzdiarGazder)  
 
+![GitHub all releases](https://img.shields.io/github/downloads/ORTools4MTEX/ORTools/total)  ![GitHub forks](https://img.shields.io/github/forks/ORTools4MTEX/ORTools)
+
 ![GitHub Discussions](https://img.shields.io/github/discussions/AzdiarGazder/mtexTools)  ![GitHub issues](https://img.shields.io/github/issues/AzdiarGazder/mtexTools)
 
 
