@@ -108,6 +108,11 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 
 
+## H
+- [**hex2Square**](https://github.com/AzdiarGazder/mtexTools/tree/main/hex2Square): This script demonstrates how to automatically convert from a hexagonal grid ebsd map in TSL OIM's *.ang format to a square grid ebsd map in Oxford Instruments HKL Channel-5 *.cpr and *.crc format.
+
+
+
 ## I
 - [**idealFibres**](https://github.com/AzdiarGazder/mtexTools/tree/main/idealFibres): This script demonstrates how to plot user-defined pole figures and orientation distribution function sections (and 3D ODFs) of common ideal fibres for bcc, fcc and hcp materials.
 
