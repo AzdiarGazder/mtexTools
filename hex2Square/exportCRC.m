@@ -111,7 +111,7 @@ ebsd.prop.fit = interpolateNaNs(ebsd.prop.fit);
 if flagOIFormat == false
     rot = rotation.byAxisAngle(zvector,90*degree); % counterclockwise
     ebsd = rotate(ebsd,rot,'keepEuler');
-        rot = rotation.byAxisAngle(xvector,180*degree); % counterclockwise
+    rot = rotation.byAxisAngle(xvector,180*degree);
     ebsd = rotate(ebsd,rot,'keepXY');
 end
 %%
