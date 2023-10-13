@@ -92,8 +92,7 @@ for ii = 2:length(ebsd.CSList)
 
 %     cprInfo.(fieldName).LaueGroup = symmetry.pointGroups(ebsd.CSList{ii}.id).LaueId;
     cprInfo.(fieldName).LaueGroup = [];
-%     cprInfo.(fieldName).SpaceGroup = spaceId;
-    cprInfo.(fieldName).SpaceGroup = [];
+    cprInfo.(fieldName).SpaceGroup = spaceId;
     cprInfo.(fieldName).ID1 = [];
     cprInfo.(fieldName).ID2 = [];
     cprInfo.(fieldName).NumberOfReflectors = [];
@@ -128,36 +127,37 @@ end
 
 %% Space groups list
 function list = spaceGroups
-list = { 1,    '1';
-    2,   '-1';
+list = {...
+    1,    '1';
+    2,    '-1';
     5,    '2';
     9,    'm';
     15,   '2/m';
-    24,    '222';
-    46,    'mm2';
+    24,   '222';
+    46,   'mm2';
     74,   'mmm';
-    80,    '4';
-    82,    '-4';
+    80,   '4';
+    82,   '-4';
     88,   '4/m';
-    98,    '422';
-    110,    '4mm';
-    122,   '-42m';
-    142,    '4/mmm';
-    146,    '3';
-    148,   '-3';
-    155,    '32';
-    161,    '3m';
-    167,   '-3m';
-    173,    '6';
-    174,    '-6';
-    176,    '6/m';
-    182,   '622';
-    186,   '6mm';
+    98,   '422';
+    110,  '4mm';
+    122,  '-42m';
+    142,  '4/mmm';
+    146,  '3';
+    148,  '-3';
+    155,  '32';
+    161,  '3m';
+    167,  '-3m';
+    173,  '6';
+    174,  '-6';
+    176,  '6/m';
+    182,  '622';
+    186,  '6mm';
     190,  '-6m2';
-    194, '6/mmm';
-    199,    '23';
-    206,   'm-3';
-    214,   '432';
+    194,  '6/mmm';
+    199,  '23';
+    206,  'm-3';
+    214,  '432';
     220,  '-43m';
     230,  'm-3m'};
 end
