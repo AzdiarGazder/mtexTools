@@ -103,7 +103,16 @@ headerNames = fieldnames(cprStruct);
 ebsd.prop.phi1 = interpolateNaNs(ebsd.rotations.phi1);
 ebsd.prop.Phi = interpolateNaNs(ebsd.rotations.Phi);
 ebsd.prop.phi2 = interpolateNaNs(ebsd.rotations.phi2);
-ebsd.prop.fit = interpolateNaNs(ebsd.prop.fit);
+
+if isfield(ebsd.prop,'fit') == 1
+    ebsd.prop.fit = interpolateNaNs(ebsd.prop.fit);
+end
+if isfield(ebsd.prop,'iq') == 1
+    ebsd.prop.fit = interpolateNaNs(ebsd.prop.iq);
+end
+if isfield(ebsd.prop,'imagequality') == 1
+    ebsd.prop.fit = interpolateNaNs(ebsd.prop.imagequality);
+end
 %%
 
 
