@@ -108,10 +108,16 @@ if isfield(ebsd.prop,'fit') == 1
     ebsd.prop.fit = interpolateNaNs(ebsd.prop.fit);
 end
 if isfield(ebsd.prop,'iq') == 1
-    ebsd.prop.fit = interpolateNaNs(ebsd.prop.iq);
+    ebsd.prop.iq = interpolateNaNs(ebsd.prop.iq);
 end
 if isfield(ebsd.prop,'imagequality') == 1
-    ebsd.prop.fit = interpolateNaNs(ebsd.prop.imagequality);
+    ebsd.prop.imagequality = interpolateNaNs(ebsd.prop.imagequality);
+end
+if isfield(ebsd.prop,'ci') == 1
+    ebsd.prop.ci = interpolateNaNs(ebsd.prop.ci);
+end
+if isfield(ebsd.prop,'confidenceindex') == 1
+    ebsd.prop.confidenceindex = interpolateNaNs(ebsd.prop.confidenceindex);
 end
 %%
 
@@ -186,6 +192,12 @@ end
 %% C7 = BS
 if flagOIFormat && isfield(ebsdGrid.prop,'bs') == 1
     grid.bs = fliplr(ebsdGrid.prop.bs.');
+    elseif isfield(ebsdGrid.prop,'ci') == 1
+    ci = round(255 * mat2gray(ebsdGrid.prop.ci));
+    grid.bs = fliplr(ci.');
+elseif isfield(ebsdGrid.prop,'confidenceindex') == 1
+    confidenceindex = round(255 * mat2gray(ebsdGrid.prop.confidenceindex));
+    grid.bs = fliplr(confidenceindex.');
 else
     grid.bs = zeros(size(fliplr(ebsdGrid.isIndexed.')));
 end
