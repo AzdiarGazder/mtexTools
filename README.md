@@ -1,5 +1,5 @@
 
-[![DOI](https://zenodo.org/badge/601424745.svg)](https://zenodo.org/badge/latestdoi/601424745) 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8343432.svg)](https://doi.org/10.5281/zenodo.8343432) 
 
 ![GitHub contributors](https://img.shields.io/github/contributors/AzdiarGazder/mtexTools)  ![GitHub watchers](https://img.shields.io/github/watchers/AzdiarGazder/mtexTools)  ![GitHub followers](https://img.shields.io/github/followers/AzdiarGazder)  
 
@@ -46,7 +46,7 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 **A.A. Gazder, mtexTools: A collated library of additional MTEX functions and demonstration scripts, Github, accessed Date-Month-Year, <https://github.com/AzdiarGazder/mtexTools>.**
 
-[![DOI](https://zenodo.org/badge/601424745.svg)](https://zenodo.org/badge/latestdoi/601424745)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8343432.svg)](https://doi.org/10.5281/zenodo.8343432)
 
 - If users wish to modify any of these scripts, they are welcome to do so. If modified scripts are redistributed, please include attribution(s) to the original author(s) as a courtesy within the acknowledgements section of the script.
 
