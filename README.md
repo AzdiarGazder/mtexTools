@@ -8,9 +8,8 @@
 **For MTEX Version 6.2 (released in September 2023):**
 - All scripts are fully functional.
 - In case of any issues, please [submit an issue](https://github.com/AzdiarGazder/mtexTools/issues) or [open a discussion](https://github.com/AzdiarGazder/mtexTools/discussions).
+
 ---
-
-
 
 # [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
 ![matlab compatible](https://img.shields.io/badge/matlab-compatible-lightgrey.svg)  ![GitHub top language](https://img.shields.io/github/languages/top/AzdiarGazder/mtexTools)
@@ -20,6 +19,17 @@
 MTEX is fully capable of interrogating, processing, and manipulating EBSD map data obtained in several configurations from different OEM vendors. Perhaps its single most powerful characteristic is that the toolbox itself is fully scriptable. This allows users to develop scripts (or codes or programs) to add functionality where needed. It enables a fully customisable analytical experience and unlike commercial OEM software suites, provides for an ever-evolving library of niche capabilities.
 
 This [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) webpage is a collated library of additional MTEX functions and demonstration scripts. Some are original scripts by this author whereas others were gleaned and/or put together from various sources. In the latter case, and while concurrently choosing not to re-invent the wheel, the scripts were modified to either improve on their logic and efficiency or increase their general functionality and usability within MTEX/Matlab. For all such scripts, attributions to the original author are stated in the acknowledgements section of the relevant function. Regardless of their antecedent(s), all scripts in the mtexTools library are directly incorporated into the latest version of MTEX and can be seamlessly and readily used without modification. 
+
+---
+
+## How to cite [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8343432.svg)](https://doi.org/10.5281/zenodo.8343432)  ![GitHub contributors](https://img.shields.io/github/contributors/AzdiarGazder/mtexTools) 
+
+- If these scripts and tools prove useful and contribute to published works in any way, please consider an acknowledgement by citing the following reference:
+
+**A.A. Gazder, mtexTools: A collated library of additional MTEX functions and demonstration scripts, Github, accessed Date-Month-Year, <https://github.com/AzdiarGazder/mtexTools>.**
+
+- If users wish to modify any of these scripts, they are welcome to do so. If modified scripts are redistributed, please include attribution(s) to the original author(s) as a courtesy within the acknowledgements section of the script.
 
 ---
 
@@ -40,20 +50,7 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 
 ---
 
-## How to cite [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8343432.svg)](https://doi.org/10.5281/zenodo.8343432)  ![GitHub contributors](https://img.shields.io/github/contributors/AzdiarGazder/mtexTools) 
-
-- If these scripts and tools prove useful and contribute to published works in any way, please consider an acknowledgement by citing the following reference:
-
-**A.A. Gazder, mtexTools: A collated library of additional MTEX functions and demonstration scripts, Github, accessed Date-Month-Year, <https://github.com/AzdiarGazder/mtexTools>.**
-
-
-- If users wish to modify any of these scripts, they are welcome to do so. If modified scripts are redistributed, please include attribution(s) to the original author(s) as a courtesy within the acknowledgements section of the script.
-
----
 ## Alphabetical list of scripts in the [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) library
-
-
 
 ## A
 - [**align**](https://github.com/AzdiarGazder/mtexTools/tree/main/align): Align ebsd map data along a user-specified linear fiducial in case of drift caused by the thermal cycling of scanning coil electronics during acquisition. The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products. Instructions on script use are provided in the window titlebar.
