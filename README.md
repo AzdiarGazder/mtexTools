@@ -1,7 +1,5 @@
 ## UPDATE
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/AzdiarGazder/mtexTools/main)  ![GitHub repo size](https://img.shields.io/github/repo-size/AzdiarGazder/mtexTools)
-
-![GitHub Discussions](https://img.shields.io/github/discussions/AzdiarGazder/mtexTools)  ![GitHub issues](https://img.shields.io/github/issues/AzdiarGazder/mtexTools)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/AzdiarGazder/mtexTools/main)  ![GitHub repo size](https://img.shields.io/github/repo-size/AzdiarGazder/mtexTools)  ![GitHub Discussions](https://img.shields.io/github/discussions/AzdiarGazder/mtexTools)  ![GitHub issues](https://img.shields.io/github/issues/AzdiarGazder/mtexTools)
 
 **For MTEX Version 6.2 (released in September 2023):**
 - All scripts are fully functional.
