@@ -1,8 +1,6 @@
 ## UPDATE
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/AzdiarGazder/mtexTools/main)  ![GitHub repo size](https://img.shields.io/github/repo-size/AzdiarGazder/mtexTools)
 
-![GitHub all releases](https://img.shields.io/github/downloads/AzdiarGazder/mtexTools/total)  ![GitHub forks](https://img.shields.io/github/forks/AzdiarGazder/mtexTools)  ![GitHub Repo stars](https://img.shields.io/github/stars/AzdiarGazder/mtexTools)  
-
 ![GitHub Discussions](https://img.shields.io/github/discussions/AzdiarGazder/mtexTools)  ![GitHub issues](https://img.shields.io/github/issues/AzdiarGazder/mtexTools)
 
 **For MTEX Version 6.2 (released in September 2023):**
@@ -35,6 +33,8 @@ This [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) webpage is a col
 
 ## How to use [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
 ![GitHub watchers](https://img.shields.io/github/watchers/AzdiarGazder/mtexTools)  ![GitHub followers](https://img.shields.io/github/followers/AzdiarGazder)  
+
+![GitHub all releases](https://img.shields.io/github/downloads/AzdiarGazder/mtexTools/total)  ![GitHub forks](https://img.shields.io/github/forks/AzdiarGazder/mtexTools)  ![GitHub Repo stars](https://img.shields.io/github/stars/AzdiarGazder/mtexTools)  
 
 Visitors to this webpage may download and implement the entire library or individual scripts related to specific tools. Please report any issues with the scripts or webpage to the author using the discussion section or directly via email (for a valid email address, please replace the word "dots" with periods).
 
