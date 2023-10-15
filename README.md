@@ -24,7 +24,7 @@ This [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) webpage is a col
 ---
 
 ## How to use [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
-![GitHub contributors](https://img.shields.io/github/contributors/AzdiarGazder/mtexTools) ![GitHub watchers](https://img.shields.io/github/watchers/AzdiarGazder/mtexTools)  ![GitHub followers](https://img.shields.io/github/followers/AzdiarGazder)  
+![GitHub watchers](https://img.shields.io/github/watchers/AzdiarGazder/mtexTools)  ![GitHub followers](https://img.shields.io/github/followers/AzdiarGazder)  
 
 Visitors to this webpage may download and implement the entire library or individual scripts related to specific tools. Please report any issues with the scripts or webpage to the author using the discussion section or directly via email (for a valid email address, please replace the word "dots" with periods).
 
@@ -41,7 +41,7 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 ---
 
 ## How to cite [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8343432.svg)](https://doi.org/10.5281/zenodo.8343432)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8343432.svg)](https://doi.org/10.5281/zenodo.8343432)  ![GitHub contributors](https://img.shields.io/github/contributors/AzdiarGazder/mtexTools) 
 
 - If these scripts and tools prove useful and contribute to published works in any way, please consider an acknowledgement by citing the following reference:
 
