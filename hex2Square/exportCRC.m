@@ -400,9 +400,9 @@ end
 % From https://au.mathworks.com/matlabcentral/answers/34346-interpolating-nan-s
 function out = interpolateNaNs(in)
 in_notNaN = ~isnan(in);
-iLength = (1:numel(in)).';
-pp = interp1(iLength(in_notNaN),in(in_notNaN),'linear','pp');
-out = fnval(pp,iLength);
+inLength = (1:numel(in)).';
+pp = interp1(inLength(in_notNaN),in(in_notNaN),'linear','pp');
+out = fnval(pp,inLength);
 % plot(iLength,in,'ko',iLength,out,'b-');
 % box on; grid on;
 end
