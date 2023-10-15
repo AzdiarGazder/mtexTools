@@ -1,15 +1,13 @@
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8343432.svg)](https://doi.org/10.5281/zenodo.8343432) 
 
-![GitHub contributors](https://img.shields.io/github/contributors/AzdiarGazder/mtexTools)  ![GitHub watchers](https://img.shields.io/github/watchers/AzdiarGazder/mtexTools)  ![GitHub followers](https://img.shields.io/github/followers/AzdiarGazder)  
 
-![GitHub all releases](https://img.shields.io/github/downloads/AzdiarGazder/mtexTools/total)  ![GitHub forks](https://img.shields.io/github/forks/AzdiarGazder/mtexTools)  ![GitHub Repo stars](https://img.shields.io/github/stars/AzdiarGazder/mtexTools)
 
-![GitHub Discussions](https://img.shields.io/github/discussions/AzdiarGazder/mtexTools)  ![GitHub issues](https://img.shields.io/github/issues/AzdiarGazder/mtexTools)
+
 
 
 ## UPDATE
-
+![GitHub Discussions](https://img.shields.io/github/discussions/AzdiarGazder/mtexTools)  ![GitHub issues](https://img.shields.io/github/issues/AzdiarGazder/mtexTools)
+![GitHub all releases](https://img.shields.io/github/downloads/AzdiarGazder/mtexTools/total)  ![GitHub forks](https://img.shields.io/github/forks/AzdiarGazder/mtexTools)  ![GitHub Repo stars](https://img.shields.io/github/stars/AzdiarGazder/mtexTools)
 **For MTEX Version 6.2 (released in September 2023):**
 - All scripts are fully functional.
 - In case of any issues, please [submit an issue](https://github.com/AzdiarGazder/mtexTools/issues) or [open a discussion](https://github.com/AzdiarGazder/mtexTools/discussions).
@@ -18,6 +16,7 @@
 
 
 # [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
+![matlab compatible](https://img.shields.io/badge/matlab-compatible-lightgrey.svg)  ![GitHub top language](https://img.shields.io/github/languages/top/AzdiarGazder/mtexTools)
 [**MTEX**](https://mtex-toolbox.github.io/) is a free-to-download [**Matlab**](https://au.mathworks.com/products/matlab.html) toolbox for analysing electron back-scattering diffraction (EBSD) map data. The toolbox is used by researchers from around the world who are interested in script-based microstructure and crystallographic analyses.
 
 MTEX is fully capable of interrogating, processing, and manipulating EBSD map data obtained in several configurations from different OEM vendors. Perhaps its single most powerful characteristic is that the toolbox itself is fully scriptable. This allows users to develop scripts (or codes or programs) to add functionality where needed. It enables a fully customisable analytical experience and unlike commercial OEM software suites, provides for an ever-evolving library of niche capabilities.
@@ -27,6 +26,7 @@ This [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) webpage is a col
 ---
 
 ## How to use [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
+![GitHub contributors](https://img.shields.io/github/contributors/AzdiarGazder/mtexTools) ![GitHub watchers](https://img.shields.io/github/watchers/AzdiarGazder/mtexTools)  ![GitHub followers](https://img.shields.io/github/followers/AzdiarGazder)  
 Visitors to this webpage may download and implement the entire library or individual scripts related to specific tools. Please report any issues with the scripts or webpage to the author using the discussion section or directly via email (for a valid email address, please replace the word "dots" with periods).
 
 The recommended method, which helps keep all mtexTools functions and scripts up-to-date, is as follows: 
@@ -42,11 +42,11 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 ---
 
 ## How to cite [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8343432.svg)](https://doi.org/10.5281/zenodo.8343432)
 - If these scripts and tools prove useful and contribute to published works in any way, please consider an acknowledgement by citing the following reference:
 
 **A.A. Gazder, mtexTools: A collated library of additional MTEX functions and demonstration scripts, Github, accessed Date-Month-Year, <https://github.com/AzdiarGazder/mtexTools>.**
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8343432.svg)](https://doi.org/10.5281/zenodo.8343432)
 
 - If users wish to modify any of these scripts, they are welcome to do so. If modified scripts are redistributed, please include attribution(s) to the original author(s) as a courtesy within the acknowledgements section of the script.
 
