@@ -56,12 +56,12 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 ## Alphabetical list of scripts in the [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) library
 
 ## A
-- [**align**](https://github.com/AzdiarGazder/mtexTools/tree/main/align) ![Static Badge](https://img.shields.io/badge/function-FF0000): Align ebsd map data along a user-specified linear fiducial in case of drift caused by the thermal cycling of scanning coil electronics during acquisition. The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products. Instructions on script use are provided in the window titlebar.
+- ![Static Badge](https://img.shields.io/badge/function-FF0000) [**align**](https://github.com/AzdiarGazder/mtexTools/tree/main/align): Align ebsd map data along a user-specified linear fiducial in case of drift caused by the thermal cycling of scanning coil electronics during acquisition. The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products. Instructions on script use are provided in the window titlebar.
 
 
 
 ## B
-- [**binaryTable**](https://github.com/AzdiarGazder/mtexTools/tree/main/binaryTable) ![Static Badge](https://img.shields.io/badge/script-FF0000): Returns a variable containing all logical combinations for a given number of variables.
+- ![Static Badge](https://img.shields.io/badge/function-FF0000) [**binaryTable**](https://github.com/AzdiarGazder/mtexTools/tree/main/binaryTable): Returns a variable containing all logical combinations for a given number of variables.
 
 
 
