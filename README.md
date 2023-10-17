@@ -29,8 +29,15 @@ This [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) webpage is a col
 
 ---
 
+## Collaborators
+![Static Badge](https://img.shields.io/badge/Collaborators-Welcome!-8A2BE2)
+
+[**Dr Manasij Kumar Yadava**](https://github.com/manasijy) - calcLankford and calcYieldLocus
+
+---
+
 ## How to use [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
-![GitHub all releases](https://img.shields.io/github/downloads/AzdiarGazder/mtexTools/total)  ![GitHub forks](https://img.shields.io/github/forks/AzdiarGazder/mtexTools)  ![GitHub Repo stars](https://img.shields.io/github/stars/AzdiarGazder/mtexTools)  ![GitHub watchers](https://img.shields.io/github/watchers/AzdiarGazder/mtexTools)  ![GitHub followers](https://img.shields.io/github/followers/AzdiarGazder)  
+![GitHub forks](https://img.shields.io/github/forks/AzdiarGazder/mtexTools)  ![GitHub Repo stars](https://img.shields.io/github/stars/AzdiarGazder/mtexTools)  ![GitHub watchers](https://img.shields.io/github/watchers/AzdiarGazder/mtexTools)  ![GitHub followers](https://img.shields.io/github/followers/AzdiarGazder)  
 
 Visitors to this webpage may download and implement the entire library or individual scripts related to specific tools. Please report any issues with the scripts or webpage to the author using the discussion section or directly via email (for a valid email address, please replace the word "dots" with periods).
 
@@ -70,6 +77,8 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 - [**calcODFIntensity**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcODFIntensity): Returns the ODF intensity (f(g)) in user-defined steps using Bunge's notation to the variable 'odf.opt.intensity'.
 
 - [**calcStepSize**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcStepSize): Calculates the step size of the ebsd map. This function can also be used in conjunction with the regrid.m script.
+
+- [**calcYieldLocus**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcYieldLocus): This script calculates the yield locus of an orientation set using the equality of external work done with the virtual work via the Taylor model (default and works for all crystal systems), and the Bishop-Hill analysis (works for cubic systems with 24 slip systems only). In the case of the Taylor model, Mtf is calculated as the work done (i.e.- it is the sum of all shears normalised by norm(strainTensor)). Thereafter, for the yield locus, normalisation with the e_11 component is required. In the case of Bishop-Hill (BH) analysis, the script calculates the most appropriate BH stress states for a given external strain using the maximum work principle. The  output M is the maximum work normalised with e_XX. The priniciple of equivalence of external work to the virtual work is utilised to determine the yield locus sections. For e.g. - to determine the sigmaXX - sigmaYY section (where sigmaZZ = 0), the external work is (sigmaXX * eXX) + (sigmaYY * eYY) while the virtual work is W determined from the Taylor or Bishop-Hill methods. Equating both gives equations of straight lines with slopes depending on rho values. The yield locus is the inner envelop of these lines.
 
 - [**checkMTEXVersion**](https://github.com/AzdiarGazder/mtexTools/tree/main/checkMTEXVersion): Compare versions of the current MTEX toolbox to a user-specified version string of the form 'majorVersion.minorVersion.revisionVersion'. Returns true if the current toolbox version is less than the user-specified version string. Returns false if the current toolbox version is greater than the user-specified version string.
 
