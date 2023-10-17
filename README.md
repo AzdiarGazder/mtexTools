@@ -30,7 +30,7 @@ This [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) webpage is a col
 ---
 
 ## How to use [**mtexTools**](https://github.com/AzdiarGazder/mtexTools)
-![GitHub all releases](https://img.shields.io/github/downloads/AzdiarGazder/mtexTools/total)  ![GitHub forks](https://img.shields.io/github/forks/AzdiarGazder/mtexTools)  ![GitHub Repo stars](https://img.shields.io/github/stars/AzdiarGazder/mtexTools)  ![GitHub watchers](https://img.shields.io/github/watchers/AzdiarGazder/mtexTools)  ![GitHub followers](https://img.shields.io/github/followers/AzdiarGazder)  
+![GitHub forks](https://img.shields.io/github/forks/AzdiarGazder/mtexTools)  ![GitHub Repo stars](https://img.shields.io/github/stars/AzdiarGazder/mtexTools)  ![GitHub watchers](https://img.shields.io/github/watchers/AzdiarGazder/mtexTools)  ![GitHub followers](https://img.shields.io/github/followers/AzdiarGazder)  
 
 Visitors to this webpage may download and implement the entire library or individual scripts related to specific tools. Please report any issues with the scripts or webpage to the author using the discussion section or directly via email (for a valid email address, please replace the word "dots" with periods).
 
