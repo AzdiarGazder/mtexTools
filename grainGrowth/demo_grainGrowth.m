@@ -1,5 +1,5 @@
 %% Demonstration description:
-% This phase-field simulation script demonstrating 2D grain growth using
+% This phase-field simulation script demonstrates 2D grain growth using
 % the Allen-Cahn equation for non-conserved order parameters based on a
 % model developed by:
 % D. Fan, L-Q. Chen, Computer simulation of grain growth using a continuum
