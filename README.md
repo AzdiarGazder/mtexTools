@@ -116,7 +116,7 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 ## G
 - [**GAM**](https://github.com/AzdiarGazder/mtexTools/tree/main/GAM): By modifying MTEX's in-built KAM script, this function calculates the intragranular grain average misorientation. The first neighbour kernal average misorientation is averaged to return a single value per grain.
 
-- [**grainGrowth**](https://github.com/AzdiarGazder/mtexTools/tree/main/grainGrowth): This phase-field simulation script demonstrating 2D grain growth using the Allen-Cahn equation for non-conserved order parameters based on a model developed by: D. Fan, L-Q. Chen, Computer simulation of grain growth using a continuum field model, Acta Materialia, Volume 45, Issue 2, 1997, Pages 611-622.
+- [**grainGrowth**](https://github.com/AzdiarGazder/mtexTools/tree/main/grainGrowth): This phase-field simulation script demonstrating 2D grain growth using the Allen-Cahn equation for non-conserved order parameters based on a continuum field model.
 
 
 
