@@ -4,11 +4,11 @@ body:
   - type: markdown
     attributes:
       value: |
-        ### Describe the issue
+        ## Describe the issue
   - type: textarea
     id: issue
     attributes:
-      label: Description of the issue
+      label: ### Description of the issue
       description: "A clear and concise description of what the issue is."
       value: |
         1.
@@ -25,7 +25,7 @@ body:
   - type: textarea
     id: mapDescription
     attributes:
-      label: Description of the sample
+      label: ### Description of the sample
       description: "A clear and concise description of the sample condition."
       value: |
         1.
@@ -38,7 +38,7 @@ body:
   - type: dropdown
     id: fileType
     attributes:
-      label: Map type
+      label: ### Map type
       options:
         - ctf
         - cpr and crc
@@ -51,7 +51,7 @@ body:
   - type: dropdown
     id: mapType
     attributes:
-      label: Grid type
+      label: ### Grid type
       options:
         - Square
         - Hexagonal
