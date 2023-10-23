@@ -67,10 +67,8 @@ body:
       label: Script to reproduce the issue
       description: "Please insert the code in-between the lines bounded by the backticks."
       value: |
-        ```matlab
-        
-        ```
-      render: bash
+        ...
+      render: matlab
     validations:
       required: false         
    - type: textarea
@@ -105,10 +103,8 @@ body:
       label: Error message (if any)
       description: "Please insert the errors in-between the lines bounded by  the backticks."
       value: |
-        ```matlab
-        
-        ```
-      render: bash
+        ...
+      render: matlab
     validations:
       required: false        
   - type: markdown
