@@ -18,3 +18,42 @@ body:
       render: bash
     validations:
       required: true
+      - type: markdown
+    attributes:
+      value: |
+        ### EBSD map information        
+   - type: textarea
+    id: mapDescription
+    attributes:
+      label: Description of the sample
+      description: "A clear and concise description of the sample condition."
+      value: |
+        1.
+        2.
+        3.
+        ...
+      render: bash
+    validations:
+      required: true         
+   - type: dropdown
+    id: devVersions
+    attributes:
+      label: Map type
+      options:
+        - ctf
+        - cpr and crc
+        - h5oina
+        - ang
+        - osc
+        - txt
+    validations:
+      required: true
+  - type: dropdown
+    id: devVersions
+    attributes:
+      label: Grid type
+      options:
+        - Square
+        - Hexagonal
+    validations:
+      required: true
