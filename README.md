@@ -55,7 +55,7 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 ---
 
 ## Alphabetical list of scripts in the [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) library
-Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![Static Badge](https://img.shields.io/badge/D-0000FF) = demonstration script;  ![Static Badge](https://img.shields.io/badge/C-00FF00) = collaboration
+Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![Static Badge](https://img.shields.io/badge/D-0000FF) = demonstration script; ![Static Badge](https://img.shields.io/badge/M-00FFFF) = MTEX modification; ![Static Badge](https://img.shields.io/badge/C-00FF00) = collaboration
 
 ## A
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**align**](https://github.com/AzdiarGazder/mtexTools/tree/main/align): Align ebsd map data along a user-specified linear fiducial in case of drift caused by the thermal cycling of scanning coil electronics during acquisition. The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products. Instructions on script use are provided in the window titlebar.
@@ -156,6 +156,8 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 ## M
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**mergeTwins**](https://github.com/AzdiarGazder/mtexTools/tree/main/mergeTwins): This script demonstrates how to correctly separate grains with and without twins and how to correctly merge grains containing twins.
 
+- ![Static Badge](https://img.shields.io/badge/M-00FFFF) [**mtexStatistics**](https://github.com/AzdiarGazder/mtexTools/tree/main/mergeTwins): This script modifies the MTEX distribution to return the mean, median and mode values for all classes and object types.
+
 
 
 ## N
@@ -189,7 +191,7 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**rename**](https://github.com/AzdiarGazder/mtexTools/tree/main/rename): Rename phases using the ebsd or grains variables interactively via a GUI or via scripting.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**replaceText**](https://github.com/AzdiarGazder/mtexTools/tree/main/replaceText):  Enables users to edit by replacing or changing the first or all instances of a full line of text in a text-based file. This is especially useful if small changes are needed on-the-fly to function files in publicly released toolboxes (like MTEX).
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) ![Static Badge](https://img.shields.io/badge/M-00FFFF) [**replaceText**](https://github.com/AzdiarGazder/mtexTools/tree/main/replaceText): Enables users to edit by replacing or changing the first or all instances of a full line of text in a text-based file. This is especially useful if small changes are needed on-the-fly to function files in publicly released toolboxes (like MTEX).
 
 
 
