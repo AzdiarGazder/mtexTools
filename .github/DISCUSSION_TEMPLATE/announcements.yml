@@ -1,7 +1,7 @@
 title: "[announcements] "
 labels: ["Ask the community for help"]
 body:
-  - type: markdown
+- type: markdown
     attributes:
       value: |
         ## Describe the issue
