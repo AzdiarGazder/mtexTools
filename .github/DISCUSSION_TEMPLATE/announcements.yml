@@ -4,12 +4,12 @@ body:
   - type: markdown
     attributes:
       value: |
-        This is text that will show up in the template!
+        ### Describe the issue
   - type: textarea
-    id: improvements
+    id: issue
     attributes:
-      label: Top 3 improvements
-      description: "What are the top 3 improvements we could make to this project?"
+      label: Description of the issue
+      description: "A clear and concise description of what the issue is."
       value: |
         1.
         2.
