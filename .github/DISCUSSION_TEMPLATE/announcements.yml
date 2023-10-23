@@ -100,7 +100,7 @@ body:
   - type: textarea
     id: error
     attributes:
-      label: Error message (if any)
+      label: Error message(s) (if any)
       description: "Please insert the errors in-between the lines bounded by  the backticks."
       value: |
         ...
