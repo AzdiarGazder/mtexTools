@@ -1,7 +1,7 @@
 title: "[announcements] "
 labels: ["Ask the community for help"]
 body:
-- type: markdown
+  - type: markdown
     attributes:
       value: |
         ## Describe the issue
@@ -61,7 +61,7 @@ body:
     attributes:
       value: |
         ## MTEX / ORTools script information  
-   - type: textarea
+  - type: textarea
     id: script
     attributes:
       label: Script to reproduce the issue
@@ -74,7 +74,7 @@ body:
       render: bash
     validations:
       required: false         
-   - type: textarea
+  - type: textarea
     id: currBehaviour
     attributes:
       label: Current behavior
@@ -87,7 +87,7 @@ body:
       render: bash
     validations:
       required: true         
-    - type: textarea
+  - type: textarea
     id: expBehaviour
     attributes:
       label: Expected behavior
@@ -100,7 +100,7 @@ body:
       render: bash
     validations:
       required: true   
-   - type: textarea
+  - type: textarea
     id: error
     attributes:
       label: Error message (if any)
