@@ -8,5 +8,4 @@
 *.tiff
 *.txt
 /TEST/
-/yieldLocus/
-/Private/
+/private/
