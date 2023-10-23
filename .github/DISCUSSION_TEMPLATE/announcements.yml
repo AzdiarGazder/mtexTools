@@ -18,11 +18,11 @@ body:
       render: bash
     validations:
       required: true
-      - type: markdown
+  - type: markdown
     attributes:
       value: |
         ### EBSD map information        
-   - type: textarea
+  - type: textarea
     id: mapDescription
     attributes:
       label: Description of the sample
@@ -35,7 +35,7 @@ body:
       render: bash
     validations:
       required: true         
-   - type: dropdown
+  - type: dropdown
     id: devVersions
     attributes:
       label: Map type
