@@ -54,7 +54,7 @@ body:
       label: Grid type
       options:
         - Square
-        - Heaxgonal
+        - Hexagonal
     validations:
       required: true
    - type: markdown
@@ -67,8 +67,11 @@ body:
       label: Script to reproduce the issue
       description: "Please insert the code in-between the lines bounded by the backticks."
       value: |
+        1.
+        2.
+        3.
         ...
-      render: matlab
+      render: bash
     validations:
       required: false         
    - type: textarea
@@ -103,8 +106,11 @@ body:
       label: Error message (if any)
       description: "Please insert the errors in-between the lines bounded by  the backticks."
       value: |
+        1.
+        2.
+        3.
         ...
-      render: matlab
+      render: bash
     validations:
       required: false        
   - type: markdown
