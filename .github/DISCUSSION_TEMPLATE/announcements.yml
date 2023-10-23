@@ -8,7 +8,7 @@ body:
   - type: textarea
     id: issue
     attributes:
-      label: ### Description of the issue
+      label: Description of the issue
       description: "A clear and concise description of what the issue is."
       value: |
         1.
@@ -21,11 +21,11 @@ body:
   - type: markdown
     attributes:
       value: |
-        ### EBSD map information        
+        ## EBSD map information        
   - type: textarea
     id: mapDescription
     attributes:
-      label: ### Description of the sample
+      label: Description of the sample
       description: "A clear and concise description of the sample condition."
       value: |
         1.
@@ -38,7 +38,7 @@ body:
   - type: dropdown
     id: fileType
     attributes:
-      label: ### Map type
+      label: Map type
       options:
         - ctf
         - cpr and crc
@@ -51,9 +51,92 @@ body:
   - type: dropdown
     id: mapType
     attributes:
-      label: ### Grid type
+      label: Grid type
       options:
         - Square
         - Hexagonal
     validations:
       required: true
+  - type: markdown
+    attributes:
+      value: |
+        ## MTEX / ORTools script information  
+   - type: textarea
+    id: script
+    attributes:
+      label: Script to reproduce the issue
+      description: "Please insert the code in-between the lines bounded by the backticks."
+      value: |
+        1.
+        2.
+        3.
+        ...
+      render: bash
+    validations:
+      required: false         
+   - type: textarea
+    id: currBehaviour
+    attributes:
+      label: Current behavior
+      description: "A clear and concise description of what is happening."
+      value: |
+        1.
+        2.
+        3.
+        ...
+      render: bash
+    validations:
+      required: true         
+    - type: textarea
+    id: expBehaviour
+    attributes:
+      label: Expected behavior
+      description: "A clear and concise description of what is expected to happen."
+      value: |
+        1.
+        2.
+        3.
+        ...
+      render: bash
+    validations:
+      required: true   
+   - type: textarea
+    id: error
+    attributes:
+      label: Error message (if any)
+      description: "Please insert the errors in-between the lines bounded by  the backticks."
+      value: |
+        1.
+        2.
+        3.
+        ...
+      render: bash
+    validations:
+      required: false        
+  - type: markdown
+    attributes:
+      value: |
+        ### Other general information  
+  - type: dropdown
+    id: devVersions
+    attributes:
+      label: Using the latest DEVELOPER versions of MTEX & mtexTools?
+      options:
+        - Yes
+        - No
+    validations:
+      required: true
+  - type: dropdown
+    id: stabVersions
+    attributes:
+      label: Using the latest STABLE versions of MTEX & mtexTools?
+      options:
+        - Yes
+        - No
+    validations:
+      required: true  
+  - type: markdown
+    attributes:
+      value: |
+        ### Thank you for the information. A Maintainer will be in contact shortly.
+
