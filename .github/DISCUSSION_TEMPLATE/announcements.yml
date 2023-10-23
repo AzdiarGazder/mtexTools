@@ -1,15 +1,15 @@
-title: "[Annoucements] "
-labels: ["General Introduction"]
+title: "[Announcements]"
+labels: ["Ask the community for help"]
 body:
-  - type: markdown
+   - type: markdown
     attributes:
       value: |
-        This is text that will show up in the template!
+        ### Describe the issue
   - type: textarea
-    id: improvements
+    id: issueDescription
     attributes:
-      label: Top 3 improvements
-      description: "What are the top 3 improvements we could make to this project?"
+      label: Description of the issue
+      description: "A clear and concise description of what the issue is."
       value: |
         1.
         2.
@@ -18,38 +18,122 @@ body:
       render: bash
     validations:
       required: true
-  - type: markdown
+   - type: markdown
     attributes:
       value: |
-        ## Markdown header
-        And some more markdown
-  - type: input
-    id: has-id
+        ### EBSD map information        
+   - type: textarea
+    id: mapDescription
     attributes:
-      label: Suggestions
-      description: A description about suggestions to help you
+      label: Description of the sample
+      description: "A clear and concise description of the sample condition."
+      value: |
+        1.
+        2.
+        3.
+        ...
+      render: bash
+    validations:
+      required: true         
+   - type: dropdown
+    id: devVersions
+    attributes:
+      label: Map type
+      options:
+        - *.ctf
+        - *.cpr and *.crc
+        - *.h5oina
+        - *.ang
+        - *.osc
+        - *.txt
     validations:
       required: true
   - type: dropdown
-    id: download
+    id: devVersions
     attributes:
-      label: Which area of this project could be most improved?
+      label: Grid type
       options:
-        - Documentation
-        - Pull request review time
-        - Bug fix time
-        - Release cadence
+        - Square
+        - Heaxgonal
     validations:
       required: true
-  - type: checkboxes
+   - type: markdown
     attributes:
-      label: Check that box!
-      options:
-        - label: This one!
-          required: true
-        - label: I won't stop you if you check this one, too
+      value: |
+        ### MTEX / ORTools script information  
+   - type: textarea
+    id: script
+    attributes:
+      label: Script to reproduce the issue
+      description: "Please insert the code in-between the lines bounded by the backticks (**``...**)"
+      value: |
+        ```matlab
+        
+        ```
+      render: bash
+    validations:
+      required: false         
+   - type: textarea
+    id: currBehaviour
+    attributes:
+      label: Current behavior
+      description: "A clear and concise description of what is happening."
+      value: |
+        1.
+        2.
+        3.
+        ...
+      render: bash
+    validations:
+      required: true         
+    - type: textarea
+    id: expBehaviour
+    attributes:
+      label: Expected behavior
+      description: "A clear and concise description of what is expected to happen."
+      value: |
+        1.
+        2.
+        3.
+        ...
+      render: bash
+    validations:
+      required: true   
+   - type: textarea
+    id: error
+    attributes:
+      label: Error message (if any)
+      description: "Please insert the errors in-between the lines bounded by  the backticks (**``...**):"
+      value: |
+        ```matlab
+        
+        ```
+      render: bash
+    validations:
+      required: false        
   - type: markdown
     attributes:
       value: |
-        ### The thrilling conclusion
-        _to our template_
+        ### Other general information  
+  - type: dropdown
+    id: devVersions
+    attributes:
+      label: Using the latest DEVELOPER versions of MTEX & mtexTools?
+      options:
+        - Yes
+        - No
+    validations:
+      required: true
+  - type: dropdown
+    id: stabVersions
+    attributes:
+      label: Using the latest STABLE versions of MTEX & mtexTools?
+      options:
+        - Yes
+        - No
+    validations:
+      required: true  
+  - type: markdown
+    attributes:
+      value: |
+        ### Thank you for the information. A Maintainer will be in contact shortly.
