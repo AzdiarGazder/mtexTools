@@ -1,5 +1,5 @@
-title: "[q&a] "
-labels: ["Ask the community for help"]
+title: "[general] "
+labels: ["Chat about anything and everything here"]
 body:
   - type: markdown
     attributes:
