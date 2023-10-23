@@ -122,8 +122,8 @@ body:
     attributes:
       label: Using the latest DEVELOPER versions of MTEX & mtexTools?
       options:
-        - Yes
-        - No
+        - 'Yes'
+        - 'No'
     validations:
       required: true
   - type: dropdown
@@ -131,8 +131,8 @@ body:
     attributes:
       label: Using the latest STABLE versions of MTEX & mtexTools?
       options:
-        - Yes
-        - No
+        - 'Yes'
+        - 'No'
     validations:
       required: true  
   - type: markdown
