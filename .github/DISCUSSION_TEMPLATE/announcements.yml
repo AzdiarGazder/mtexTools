@@ -40,12 +40,12 @@ body:
     attributes:
       label: Map type
       options:
-        - *.ctf
-        - *.cpr and *.crc
-        - *.h5oina
-        - *.ang
-        - *.osc
-        - *.txt
+        - ctf
+        - cpr and crc
+        - h5oina
+        - ang
+        - osc
+        - txt
     validations:
       required: true
   - type: dropdown
