@@ -1,8 +1,7 @@
-title: "[Announcements] "
-labels: ["Ask the community for help"]
+title: "[General] "
+labels: ["General Introduction"]
 body:
-   - type: markdown
+  - type: markdown
     attributes:
       value: |
-        ### Describe the issue
-  
+        This is text that will show up in the template!
