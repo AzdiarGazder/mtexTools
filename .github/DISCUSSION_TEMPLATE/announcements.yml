@@ -1,21 +1,8 @@
-title: "[ Announcements ]"
+title: "[Announcements] "
 labels: ["Ask the community for help"]
 body:
    - type: markdown
     attributes:
       value: |
         ### Describe the issue
-  - type: textarea
-    id: issueDescription
-    attributes:
-      label: Description of the issue
-      description: "A clear and concise description of what the issue is."
-      value: |
-        1.
-        2.
-        3.
-        ...
-      render: bash
-    validations:
-      required: true
   
