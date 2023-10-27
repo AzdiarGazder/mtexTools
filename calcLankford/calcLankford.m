@@ -59,12 +59,12 @@ function [R, minMtheta, Mtheta, rhoTheta]  = calcLankford(ori,sS,varargin)
 warning(sprintf(['\ncalcLankford assumes tensile direction = horizontal; rotation = out-of-plane']));
 
 % Check for symmetrised slip system(s)
-% isSymmetrised = sum(eq(sS(1),sS)) > 1;
-% if ~isSymmetrised
-%     warning(sprintf('\nSymmetrised slip system(s) required.'));
-%     sS = sS.symmetrise;
-% end
-sS = sS.ensureSymmetrised;
+isSymmetrised = sum(eq(sS(1),sS)) > 1;
+if ~isSymmetrised
+    warning(sprintf('\nSymmetrised slip system(s) required.'));
+    sS = sS.symmetrise;
+end
+
 
 
 %% Rotate the orientations incrementally about the pre-defined tensile axis
