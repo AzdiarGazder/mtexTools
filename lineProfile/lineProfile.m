@@ -42,7 +42,7 @@ lineStyle = get_option(varargin,'lineStyle','-');
 % create an ebsd variable in case input ebsd data is gridded
 inebsd = EBSD(inebsd);
 
-% calculate teh map step size
+% calculate the map step size
 stepSize = calcStepSize(inebsd);
 
 % grid ebsd map data
