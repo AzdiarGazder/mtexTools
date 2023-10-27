@@ -44,7 +44,7 @@ sS = [slipSystem.basal(CS,1),...
 
 
 % Calculate the plastic anisotropy of the sheet
-[minMtheta, R, Mtheta, rhoTheta] = calcLankford(ori,sS);
+[R, minMtheta, Mtheta, rhoTheta] = calcLankford(ori,sS,'weights',grains.grainSize);
 
 
 

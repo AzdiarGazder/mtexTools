@@ -1,4 +1,4 @@
-function [minMtheta, R, Mtheta, rhoTheta]  = calcLankford(ori,sS,varargin)
+function [R, minMtheta, Mtheta, rhoTheta]  = calcLankford(ori,sS,varargin)
 %% Function description:
 % This function calculates the minimum Taylor factor (M) and the Lankford 
 % coefficient or plastic anisotropy ratio (R-value or r-value) as a 
@@ -41,58 +41,70 @@ function [minMtheta, R, Mtheta, rhoTheta]  = calcLankford(ori,sS,varargin)
 %  sS           - @slipSystem
 %
 %% Output:
-% minMtheta     - @double, minimum Taylor factor (M) as a function of the 
-%                 angle to the tensile direction (theta).
 % R             - @double, plastic anisotropy ratio (R-value) at 
-%                 minimum Taylor factor (M) as a function of the angle to 
-%                 the tensile direction (theta).
+%                 minimum Taylor factor (M) as a function of the angle 
+%                 (theta) to the horizontal tensile direction.
+% minMtheta     - @double, minimum Taylor factor (M) as a function of the 
+%                 angle (theta) to the horizontal tensile direction.
 % Mtheta        - @double, An array of Taylor factor as a function of the
-%                 angle to the tensile direction (theta).
+%                 angle (theta) to the horizontal tensile direction.
 % rhoTheta      - @double, An array of plastic strain (rho) as a function 
-%                 of the angle to the tensile direction (theta).
+%                 of the angle (theta) to the horizontal tensile direction.
 %
 %% Options:
+% silent        - @char, supress output
+% weights       - @double, containing texture information
 %
 
-warning(sprintf(['\ncalcRValue assumes the orientation data of the sheet is in following format:',...
-    '\nRD || tensile direction = horizontal; TD = vertical; ND = out-of-plane']));
+warning(sprintf(['\ncalcLankford assumes tensile direction = horizontal; rotation = out-of-plane']));
 
 % Check for symmetrised slip system(s)
-isSymmetrised = sum(eq(sS(1),sS)) > 1;
-if ~isSymmetrised
-    warning(sprintf('\nSymmetrised slip system(s) required.'));
-    sS = sS.symmetrise;
-end
-
+% isSymmetrised = sum(eq(sS(1),sS)) > 1;
+% if ~isSymmetrised
+%     warning(sprintf('\nSymmetrised slip system(s) required.'));
+%     sS = sS.symmetrise;
+% end
+sS = sS.ensureSymmetrised;
 
 
 %% Rotate the orientations incrementally about the pre-defined tensile axis
-% Here RD || tensile axis || map horizontal
+% Here horizontal || tensile axis || RD (nominally)
 theta = linspace(0,90*degree,19); 
 oriRot = (rotation.byAxisAngle(zvector,theta) * ori).'; % rowwise reshape into a single column vector
 
 
+
 %% Define a strain tensor in the specimen reference frame (sRF)
+% Method 1
 % The strainTensor_sRF is not axi-symmetric since rho values are changing
 rhoRange = linspace(0,1,11); % 0-100 % uniaxial tension 
 strainTensor_sRF = strainTensor(zeros(3,3,length(rhoRange))); % define an empty strain tensor in the specimen reference frame (sRF)
 strainTensor_sRF.M(1,1,:) = 1;
 strainTensor_sRF.M(2,2,:) = -rhoRange;
 strainTensor_sRF.M(3,3,:) = -(1 - rhoRange); 
-
-
+% Method 2
+% eps_sRF = velocityGradientTensor.uniaxial(xvector,rhoRange);
 
 %% Transform the strain tensor from the specimen reference frame (sRF)
 % to the crystal reference frame (xRF)
+% Method 1
 strainTensor_xRF = inv(oriRot) * strainTensor_sRF; % rows    = orientations
                                                    % columns = incrementally increasing strain tensors
 strainTensor_xRF = strainTensor_xRF(:); % reshape columnwise into a single column vector
+% Method 2
+% strainTensor_xRF = inv(oriRot) * eps_sRF;
 
 %% Calculate the Taylor factor as a function of the strain tensor for
 % all orientations
 % Taylor factor (M) = ori x theta x strain (or rho) range
 [M,~,~] = calcTaylor(strainTensor_xRF,sS);%,'silent');
 M = reshape(M,length(ori),length(theta),length(rhoRange));
+
+% %% Average the Taylor factor over the texture
+% weights = get_option(varargin,'weights',ones(size(ori)));
+% weights = weights ./ sum(weights);
+% weights = repmat(weights,1,length(theta),length(rhoRange));
+% M = weights .* M;
 
 %% Create the Mtheta array
 Mtheta = permute(mean(M),[1 3 2]); 
