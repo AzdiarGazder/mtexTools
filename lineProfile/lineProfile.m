@@ -39,10 +39,11 @@ lineColor = get_option(varargin,'color',[1 0 0]);
 lineWidth = get_option(varargin,'lineWidth',2);
 lineStyle = get_option(varargin,'lineStyle','-');
 
+% create an ebsd variable in case input ebsd data is gridded
+inebsd = EBSD(inebsd);
 
-% calculate the map step size
+% calculate teh map step size
 stepSize = calcStepSize(inebsd);
-
 
 % grid ebsd map data
 % While MTex's default "gridify.m" can be used here, the command creates
@@ -50,6 +51,15 @@ stepSize = calcStepSize(inebsd);
 % It is recommended to use the modified "gridify2.m" instead.
 [gebsd,~] = gridify2(inebsd);
 % assignin('base','gebsd',gebsd);
+
+% re-grid the ebsd grid
+% Done to ensure no rounding-off errors in grid values.
+% This step is especially necessary when converting from hexagonal to
+% square grid types
+inebsd = regrid(inebsd,stepSize);
+
+% perform linear interpolation to remove NaNs from ebsd property data
+gebsd = clean(gebsd);
 
 % create a new user-defined plot
 figure(1);
@@ -97,7 +107,11 @@ elseif nargin>=1 && isnumeric(varargin{1})
         idxMatrix = reshape(gebsd.prop.mad',[],1);
     elseif any(ismember(fields(gebsd.prop),'error'))
         idxMatrix = reshape(gebsd.prop.error',[],1);
-    end
+    elseif any(ismember(fields(gebsd.prop),'kam'))
+        idxMatrix = reshape(gebsd.prop.error',[],1);
+    elseif any(ismember(fields(gebsd.prop),'gnd'))
+        idxMatrix = reshape(gebsd.prop.error',[],1);
+    end  
     gebsdProperty = nan(size(idxMatrix)); % define an array of NaNs
     gebsdProperty(~isnan(idxMatrix)) = varargin{1}; % replace numeric values into the NaN array
     gebsdProperty = reshape(gebsdProperty,size(gebsd,2),size(gebsd,1)).'; % reshape NaN-numeric array row-wise
