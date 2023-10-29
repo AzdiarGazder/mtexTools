@@ -104,6 +104,8 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**euclideanDistance**](https://github.com/AzdiarGazder/mtexTools/tree/main/euclideanDistance): Calculates the 2D Euclidean distance in pixels (default) or map scan units for supported distance methods for each pixel within a grain. The default 2D Euclidean distance measurement is from the grain center to the grain boundary in pixels or map scan units. The 2D Euclidean distance measurement from the grain boundary to the grain center is available but only when specified by the user. The values are returned within the 'ebsd.prop.euclid' structure variable.
 
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**exportCRC**](https://github.com/AzdiarGazder/mtexTools/tree/main/exportCRC): Exports input EBSD map orientation data in any vendor format to proprietary Oxford Instruments HKL Channel 5 *.cpr and *.crc output file format.
+
 
 
 ## F
