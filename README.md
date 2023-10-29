@@ -118,7 +118,7 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 ## G
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**GAM**](https://github.com/AzdiarGazder/mtexTools/tree/main/GAM): By modifying MTEX's in-built KAM script, this function calculates the intragranular grain average misorientation. The first neighbour kernal average misorientation is averaged to return a single value per grain.
 
-- ![Static Badge](https://img.shields.io/badge/D-0000FF) [**grainGrowth**](https://github.com/AzdiarGazder/mtexTools/tree/main/grainGrowth): This phase-field simulation script demonstrates 2D grain growth using the Allen-Cahn equation for non-conserved order parameters based on a continuum field model by Fan and Chen.
+- ![Static Badge](https://img.shields.io/badge/D-0000FF) [**grainGrowth_phaseFieldModel**](https://github.com/AzdiarGazder/mtexTools/tree/main/grainGrowth_phaseFieldModel): This phase-field simulation script demonstrates 2D grain growth using the Allen-Cahn equation for non-conserved order parameters based on a continuum field model by Fan and Chen.
 
 
 
