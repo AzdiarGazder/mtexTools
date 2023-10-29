@@ -20,7 +20,7 @@
 % https://github.com/abhinavroy1999/grain-growth-phase-field-code
 %
 %% Syntax:
-%  demo_grainGrowth
+%  demo_grainGrowth_phaseFieldModel
 %
 %% Input:
 %  none
@@ -46,7 +46,7 @@ setMTEXpref('FontSize', 14);
 %% Load mtex example data
 mtexdata twins
 
-%% Calculate teh step size and regrid map data
+%% Calculate the step size and regrid map data
 stepSize = calcStepSize(ebsd);
 ebsd = regrid(ebsd,stepSize);
 
