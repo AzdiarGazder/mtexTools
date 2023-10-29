@@ -46,6 +46,16 @@ sS = [slipSystem.basal(CS,1),...
 % Calculate the plastic anisotropy of the sheet
 [R, minMtheta, Mtheta, rhoTheta] = calcLankford(ori,sS,'weights',grains.grainSize);
 
+figure
+plot(linspace(0,90,19),R,'o-r','lineWidth',1.5);
+xlabel('Angle to tensile direction, {\theta} (in degrees)');
+ylabel('R @ M_m_i_n, R = {\rho} / (1 - {\rho}) = -d{\epsilon}_Y / d{\epsilon}_Z');
+
+
+figure;
+plot(linspace(0,90,19),minMtheta,'o-b','lineWidth',1.5);
+xlabel('Angle to tensile direction, {\theta} (in degrees)');
+ylabel('Min. relative strength, min(M) = min({\sigma}_x / {\tau}_m_i_n_(_M_))');
 
 
 figure
@@ -59,19 +69,11 @@ ylabel('Relative strength, M = {\sigma}_x / {\tau}');
 % % and transverse direction tension tests for an ideal (1 1 0)[1 -1 2]
 % % Brass orientation. In the rolling direction test x = [1 -1 2], and 
 % % in the transverse test x = [-1 1 1].
- 
+
+
 figure
 plot(linspace(0,90,19),rhoTheta,'o-r','lineWidth',1.5);
 xlabel('Angle to tensile direction, {\theta} (in degrees)');
 ylabel('{\rho} = -d{\epsilon}_Y / d{\epsilon}_X');
 
-figure;
-plot(linspace(0,90,19),minMtheta,'o-b','lineWidth',1.5);
-xlabel('Angle to tensile direction, {\theta} (in degrees)');
-ylabel('Min. relative strength, min(M) = min({\sigma}_x / {\tau}_m_i_n_(_M_))');
-
-figure
-plot(linspace(0,90,19),R,'o-r','lineWidth',1.5);
-xlabel('Angle to tensile direction, {\theta} (in degrees)');
-ylabel('R @ M_m_i_n, R = {\rho} / (1 - {\rho}) = -d{\epsilon}_Y / d{\epsilon}_Z');
 

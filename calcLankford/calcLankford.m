@@ -56,7 +56,7 @@ function [R, minMtheta, Mtheta, rhoTheta]  = calcLankford(ori,sS,varargin)
 % weights       - @double, containing texture information
 %
 
-warning(sprintf(['\ncalcLankford assumes tensile direction = horizontal; rotation = out-of-plane']));
+warning(sprintf(['\ncalcLankford assumes the reference tensile direction = x; rotation = z']));
 
 % Check for symmetrised slip system(s)
 isSymmetrised = sum(eq(sS(1),sS)) > 1;
@@ -98,24 +98,30 @@ strainTensor_xRF = strainTensor_xRF(:); % reshape columnwise into a single colum
 % all orientations
 % Taylor factor (M) = ori x theta x strain (or rho) range
 [M,~,~] = calcTaylor(strainTensor_xRF,sS);%,'silent');
-M = reshape(M,length(ori),length(theta),length(rhoRange));
+% --- 
+% In this section, the method does not use weights. It calculates an 
+% average Mtheta based on the inputted texture.
+% M = reshape(M,length(ori),length(theta),length(rhoRange));
+% 
+% %% Create the Mtheta array
+% Mtheta = permute(mean(M),[1 3 2]); 
+% Mtheta = reshape(Mtheta,[],size(mean(M),2),1);
+% 
+% %% Find the minimum Taylor factor along the strain (or rho) range
+% [minMtheta,idx] = min(Mtheta); 
+% ---
 
-% %% Average the Taylor factor over the texture
-% weights = get_option(varargin,'weights',ones(size(ori)));
-% weights = weights ./ sum(weights);
-% weights = repmat(weights,1,length(theta),length(rhoRange));
-% M = weights .* M;
+%% Average the Taylor factor over the texture using weights
+weights = get_option(varargin,'weights',ones(size(ori)));
+weights = weights ./ sum(weights);
+M = weights(:).' * reshape(M,length(ori),[]);
+Mtheta = reshape(M,length(theta),length(rhoRange)).';
 
-%% Create the Mtheta array
-Mtheta = permute(mean(M),[1 3 2]); 
-Mtheta = reshape(Mtheta,[],size(mean(M),2),1);
-
-%% Find the minimum Taylor factor and spin along the strain (or rho) range
-[minMtheta,idx] = min(Mtheta); 
+%% Find the minimum Taylor factor along the strain (or rho) range
+[minMtheta,idx] = min(Mtheta,[],1); 
 
 %% Find the corresponding R and rhoTheta values
-Rrange = rhoRange ./ (1 - rhoRange);
-R = Rrange(idx);
+R = rhoRange(idx) ./ (1 - rhoRange(idx));
 rhoTheta = rhoRange(idx);
 
 disp('Done!')
