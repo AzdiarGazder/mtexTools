@@ -25,6 +25,7 @@ function [R, minMtheta, Mtheta, rhoTheta]  = calcLankford(ori,sS,varargin)
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
 % Dr. Manasij Kumar Yadava, 2023, manasijyatgmaildotcom
+% Dr. Ralf Heilscher, 2023, 
 %
 %% Acknowledgements:
 % Dr. Manasij Kumar Yadava
