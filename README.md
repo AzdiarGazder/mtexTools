@@ -55,7 +55,7 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 ---
 
 ## Alphabetical list of scripts in the [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) library
-Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![Static Badge](https://img.shields.io/badge/D-0000FF) = demonstration script; ![Static Badge](https://img.shields.io/badge/M-00FFFF) = MTEX modification; ![Static Badge](https://img.shields.io/badge/C-00FF00) = collaboration
+Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![Static Badge](https://img.shields.io/badge/D-0000FF) = demonstration script;  ![Static Badge](https://img.shields.io/badge/T-FAAE11) = toolbox; ![Static Badge](https://img.shields.io/badge/M-00FFFF) = MTEX modification; ![Static Badge](https://img.shields.io/badge/C-00FF00) = collaboration
 
 ## A
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**align**](https://github.com/AzdiarGazder/mtexTools/tree/main/align): Align ebsd map data along a user-specified linear fiducial in case of drift caused by the thermal cycling of scanning coil electronics during acquisition. The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products. Instructions on script use are provided in the window titlebar.
@@ -122,6 +122,7 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**grainGrowth_phaseField**](https://github.com/AzdiarGazder/mtexTools/tree/main/grainGrowth_phaseField): This phase-field simulation script demonstrates 2D grain growth using the Allen-Cahn equation for non-conserved order parameters based on a continuum field model by Fan and Chen.
 
+- ![Static Badge](https://img.shields.io/badge/T-FAAE11) [**grainSizeToolbox**](https://github.com/AzdiarGazder/mtexTools/tree/main/grainSizeToolbox): GrainSizeTools is a free, open-source, cross-platform script written in Python and maintained by Dr Marco A. Lopez-Sanchez. This toolbox replicates the data analysis and plots in GrainSizeTools for a MATLAB and MTEX -based environmment by providing tools for: (1) describing and visualising grain size populations, and (2) applying stereology methods to approximate the 3D distribution of grain size from thin sections.
 
 
 ## H
