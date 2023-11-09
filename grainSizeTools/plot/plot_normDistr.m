@@ -88,6 +88,7 @@ yGrid = interp1(xi, kde, xGrid, 'spline');
 
 disp(' ');
 disp('=======================================');
+disp('DESCRIPTIVE STATISTICS from plot_normDistr');
 switch type
     case 'mean'
         disp(['Normalized SD = ' num2str(std(data), '%0.3f')]);
@@ -98,15 +99,15 @@ disp(['KDE bandwidth = ' num2str(bw)]);
 disp('=======================================');
 
 % plot the figure
-fig = figure;
-ax = axes(fig);
+figH = figure;
+ax = axes(figH);
 
 f1 = area(ax, xGrid, yGrid,...
     'FaceColor',[209/255, 52/255, 107/255],...
     'FaceAlpha', 0.5,...
     'EdgeColor', [47/255, 72/255, 88/255],...
     'LineStyle', '-',...
-    'LineWidth', 2.5);
+    'LineWidth', 2);
 hold all;
 
 switch type
@@ -116,7 +117,7 @@ switch type
         f2 = plot(ax, [meanValue meanValue], [0 yMax],...
             'Color', [254/255, 196/255, 79/255],...
             'LineStyle', '-',...
-            'LineWidth', 2.5,...
+            'LineWidth', 2,...
             'DisplayName', 'arith. mean');
         hold all;
         legend(f2,{'arith. mean'});
@@ -127,7 +128,7 @@ switch type
         f2 = plot(ax, [medianValue medianValue], [0 yMax],...
             'Color',  [254/255, 196/255, 79/255],...
             'LineStyle', '--',...
-            'LineWidth', 2.5,...
+            'LineWidth', 2,...
             'DisplayName', 'median');
         hold all;
         legend(f2,{'median'});
@@ -135,12 +136,12 @@ switch type
 end
 
 ylabel(ax, 'Density');
-xlabel(ax, 'Normalised log(size)');
-legend(ax, 'Location', 'northeast', 'FontSize', 16);
+xlabel(ax, 'norm. log(grainDiameter(s))');
+legend(ax, 'Location', 'northeast');
 legend('boxoff');
 axis tight;
 hold off;
 
-set(fig, 'PaperPositionMode', 'auto');
-
+set(figH,'Name','Normalised lognormal distribution of grain diameter(s)','NumberTitle','on');
+set(figH, 'PaperPositionMode', 'auto');
 end

@@ -71,14 +71,15 @@ end
 
 disp(' ');
 disp('=======================================');
-disp('DESCRIPTIVE STATISTICS');
+disp('DESCRIPTIVE STATISTICS from plot_distr');
 disp(['Number of classes = ', num2str(bins)]);
 disp(['Bin size = ', num2str((max(data) - min(data)) / bins)]);
-disp('=======================================');
+
 
 
 % Plot the figure
 figH = figure;
+set(findall(gcf, '-property', 'FontSize'), 'FontSize', 14);
 ax = gca;
 
 f1 = histogram(ax, data, bins,...
@@ -116,10 +117,8 @@ yGrid = interp1(xi, kde, xGrid, 'spline');
 % Scale yGrid to histogram maximum
 yGrid = yGrid .* (max(f1.Values) / max(yGrid));
 
-disp(' ');
-disp('---------------------------------------');
 disp(['KDE bandwidth = ', num2str(bw)]);
-disp('---------------------------------------');
+disp('=======================================');
 
 % end
 
@@ -129,7 +128,7 @@ yOffset = 0.05;
 f2 = plot(ax, xGrid, yGrid,...
     'Color', [47/255, 72/255, 88/255],...
     'LineStyle', '-',...
-    'LineWidth', 2.5,...
+    'LineWidth', 1.5,...
     'DisplayName', 'kde');
 hold all;
 
@@ -173,12 +172,13 @@ hold on;
 xlim([0 max(xGrid)]);
 ylim([0 (max(yGrid) + yOffset)]);
 ylabel(ax, 'Density');
-xlabel(ax, 'Apparent size');
+xlabel(ax, 'Apparent diameter  (\mum)');
 legend([f3, f4, f5, f6],{'arith. mean', 'geo. mean', 'median', 'mode'});
-legend(ax, 'Location', 'northeast', 'FontSize', 16);
+legend(ax, 'Location', 'northeast');
 legend('boxoff');
-axis tight;
+% axis tight;
 hold off;
 
+set(figH,'Name','Distribution of grain diameter(s)','NumberTitle','on');
 set(figH, 'PaperPositionMode', 'auto');
 end

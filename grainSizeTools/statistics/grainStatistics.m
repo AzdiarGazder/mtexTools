@@ -1,4 +1,16 @@
 function grainStatistics(data, varargin)
+%% Options:
+% ci                - @double, the certainty of the confidence interval
+%                     A positive scalar value ranging between 0 and 1;
+%                     default = 0.95
+% bandWidth         - @char or @double, the method to estimate the
+%                     bandwidth or a scalar directly defining the
+%                     bandwidth. The @char options are:
+%                     'silverman' or 'scott'; default = 'silverman'
+% precision         - @double, the maximum precision expected for the
+%                     "peak" kde-based estimator; default = 0.05. This
+%                     variable is not related to confidence intervals.
+
 
 % Delete NaNs and Infs from data (if any)
 data = data(~isnan(data) & ~isinf(data));

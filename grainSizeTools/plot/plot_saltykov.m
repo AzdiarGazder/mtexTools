@@ -61,6 +61,7 @@ yFit = yFit.* (max(appFreq)/max(yFit)); % re-scale
 
 
 figH = figure;
+set(findall(gcf, '-property', 'FontSize'), 'FontSize', 14);
 ax = gca;
 % Plot the data hisotgram
 hp = bar(appCenters,appFreq);
@@ -78,8 +79,8 @@ area(ax, xFit, yFit,...
     'FaceColor', [0/255, 114/255, 178/255],...
     'EdgeColor', 'none',...
     'FaceAlpha', 0.55);
-ylabel(ax, 'Density', 'FontSize', 16);
-xlabel(ax, 'Diameter (\mum)', 'FontSize', 16);
+ylabel(ax, 'Density');
+xlabel(ax, 'Diameter (\mum)');
 hold off;
 
 xlim([0 max(xFit)]);
@@ -102,17 +103,21 @@ cdfNorm = cdf / cdf(end);
 % (ax2) a volume-weighted cumulative frequency plot
 
 figH = figure;
+set(findall(gcf, '-property', 'FontSize'), 'FontSize', 14);
 ax = gca;
+
+% subplot 1,2,1
 % Plot frequency vs grain size
 ax(1) = subplot(1,2,1);
 bar(ax(1), in.centers, in.freq,...
     'FaceColor', [30/255, 144/255, 255/255],...
     'EdgeColor', [216/255, 216/255, 216/255],...
     'LineWidth', 1.5);
-ylabel(ax(1), 'Density', 'FontSize', 16);
-xlabel(ax(1), 'Diameter (\mum)', 'FontSize', 16);
+ylabel(ax(1), 'Density');
+xlabel(ax(1), 'Diameter (\mum)');
 hold all;
 
+% subplot 1,2,2
 % Plot the volume-weighted cumulative frequency curve
 ax(2) = subplot(1,2,2);
 ylim(ax(2), [-2, 105]);
@@ -121,15 +126,15 @@ plot(ax(2), in.centers, cdfNorm,...
     'LineWidth', 2,...
     'MarkerFaceColor', [237/255, 67/255, 86/255],...
     'MarkerSize', 5);
-ylabel(ax(2), 'Cumulative volume (%)', 'FontSize', 16);
-xlabel(ax(2), 'Diameter (\mum)', 'FontSize', 16);
+ylabel(ax(2), 'Cumulative volume (%)');
+xlabel(ax(2), 'Diameter (\mum)');
 hold off;
 
 % Link the x-axes of ax1 and ax2
 linkaxes(ax, 'x');
-
-set(figH,'Name','Grain diameter frequency histogram (Saltykov)','NumberTitle','on');
 %%
 
 
+set(figH,'Name','Grain diameter frequency histogram (Saltykov)','NumberTitle','on');
+set(figH, 'PaperPositionMode', 'auto');
 end

@@ -67,10 +67,10 @@ end
 
 disp(' ');
 disp('=======================================');
-disp('DESCRIPTIVE STATISTICS');
-disp(['Area-weighted mean size = ', num2str(wtdMean)]);
-disp('=======================================');
-disp('HISTOGRAM FEATURES');
+disp('DESCRIPTIVE STATISTICS from plot_wtdArea');
+disp(['Area-weighted mean = ', num2str(wtdMean), ' um']);
+disp('---------------------------------------');
+disp('HISTOGRAM FEATURES from plot_wtdArea');
 disp(['Modal interval = ', num2str(binEdges(getIndex)),' - ', num2str(binEdges(getIndex) + h), ' um']);
 if ischar(binSize)
     disp(['Number of classes = ', num2str(length(histogram))]);
@@ -85,7 +85,8 @@ maxValue = max(norm_cumArea);
 
 yOffset = 0.025;
 % plot the figure
-fig = figure;
+figH = figure;
+set(findall(gcf, '-property', 'FontSize'), 'FontSize', 14);
 ax = axes;
 
 f1 = bar(ax, binEdges, norm_cumArea,...
@@ -106,9 +107,11 @@ ylim([0 (maxValue + yOffset)]);
 ylabel(ax,'Normalised area fraction');
 xlabel(ax,'Apparent size');
 legend(f2,{'area wtd. mean'});
-legend(ax, 'Location', 'northeast', 'FontSize', 16);
+legend(ax, 'Location', 'northeast');
 legend('boxoff');
+% axis tight;
+hold off;
 
-set(fig, 'PaperPositionMode', 'auto');
-
+set(figH,'Name','Distribution of area weighted grain diameter(s)','NumberTitle','on');
+set(figH, 'PaperPositionMode', 'auto');
 end

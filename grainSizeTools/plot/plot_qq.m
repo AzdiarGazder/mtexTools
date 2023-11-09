@@ -67,7 +67,9 @@ else
     [H, log_pValue, log_W] = shapiroWilk(data, (1-ci));
 end
 
+disp(' ');
 disp('=======================================');
+disp('DESCRIPTIONS from plot_qq');
 disp('Shapiro-Wilk test for lognormality');
 if H == 0 || log_pValue > 0.05
     disp('Data is lognormally distributed.');
@@ -79,12 +81,12 @@ disp(['Lognormality test: ',...
     ', ',...
     num2str(log_pValue, '%0.2f'),...
     ' (test statistic, p-value)']);
-
 disp('=======================================');
 
 
 % Plot the figure
-fig = figure;
+figH = figure;
+set(findall(gcf, '-property', 'FontSize'), 'FontSize', 14);
 ax = gca;
 
 plot(theoreticalData, actualData,...
@@ -92,23 +94,23 @@ plot(theoreticalData, actualData,...
     'MarkerFaceColor', [130/255 200/255 235/255],...
     'MarkerEdgeColor', [100/255 180/255 205/255],...
     'MarkerSize', 12,...
-    'LineWidth', 2.5,...
+    'LineWidth', 2,...
     'DisplayName', 'observed');
 hold all;
 
 plot([minValue, maxValue], [minValue, maxValue],...
     'Color', [47/255, 72/255, 88/255],...
     'LineStyle', '-',...
-    'LineWidth', 2.5,...
+    'LineWidth', 2,...
     'DisplayName', 'perfect lognormal');
 
 xlabel('Theoretical');
 ylabel('Observed');
-legend('Location', 'southeast', 'FontSize', 16);
+legend('Location', 'southeast');
 legend('boxoff');
 axis tight;
 hold off;
 
-set(fig, 'PaperPositionMode', 'auto');
-
+set(figH,'Name','Lognormal distribution of grain diameter(s) on a quantile-quantile plot','NumberTitle','on');
+set(figH, 'PaperPositionMode', 'auto');
 end
