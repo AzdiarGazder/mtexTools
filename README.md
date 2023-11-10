@@ -188,6 +188,8 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 
 ## R
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**randomEuler**](https://github.com/AzdiarGazder/mtexTools/tree/main/randomEuler): Generate uniformly distributed random Euler angles (φ1, φ, φ2) in the form of orientations, quaternions or rotation matrices.
+
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**recolor**](https://github.com/AzdiarGazder/mtexTools/tree/main/recolor): Recolor phases using the ebsd or grains variables interactively via a GUI or via scripting.
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**regrid**](https://github.com/AzdiarGazder/mtexTools/tree/main/regrid): Re-calculates the x and y grid values as multiples of the step size to mitigate any rounding-off errors during subsequent gridding operations. This function can be used in conjunction with the calcStepSize.m script.
