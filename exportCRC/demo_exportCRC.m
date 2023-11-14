@@ -39,7 +39,9 @@ ebsd = loadEBSD_crc([pwd, '\CR42_800C.cpr'],'interface','crc','convertSpatial2Eu
 %% Export map to OI Channel-5 *.cpr and *.crc file format
 % pfName = [pwd,'\newTwins.crc'];
 pfName = [pwd,'\newCR42_800C_cprcrc.crc'];
-% pfName = [pwd,'\newCR42_800C_ctf.crc','convertSpatial2EulerReferenceFrame'];
+% pfName = [pwd,'\newCR42_800C_ctf.crc'];
 
-exportCRC(ebsd,pfName)
+exportCRC(ebsd,pfName);
+% exportCRC(ebsd,pfName,'convertEuler2SpatialReferenceFrame');
+% exportCRC(ebsd,pfName,'convertSpatial2EulerReferenceFrame');
 %%
