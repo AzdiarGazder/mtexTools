@@ -22,7 +22,9 @@ clc; clear all; clear hidden; close all;
 % start Mtex
 startup_mtex;
 
-% %% Load an ebsd map in square grid format
+
+%% Load an ebsd map in square grid format
+% % Load a default MTEX map
 % mtexdata twins
 
 % % Load a *.cpr & *.crc map
@@ -30,6 +32,8 @@ ebsd = loadEBSD_crc([pwd, '\CR42_800C.cpr'],'interface','crc','convertSpatial2Eu
 
 % Load a *.ctf map
 % ebsd = loadEBSD_ctf([pwd, '\CR42_800C_D7CC.ctf'],'interface','ctf','convertSpatial2EulerReferenceFrame');
+%%
+
 
 
 %% Export map to OI Channel-5 *.cpr and *.crc file format
