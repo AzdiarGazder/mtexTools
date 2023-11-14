@@ -36,5 +36,6 @@ ebsd = loadEBSD_crc([pwd, '\CR42_800C.cpr'],'interface','crc','convertSpatial2Eu
 % pfName = [pwd,'\newTwins.crc'];
 pfName = [pwd,'\newCR42_800C_cprcrc.crc'];
 % pfName = [pwd,'\newCR42_800C_ctf.crc','convertSpatial2EulerReferenceFrame'];
+
 exportCRC(ebsd,pfName)
 %%
