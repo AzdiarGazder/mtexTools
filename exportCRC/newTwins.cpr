@@ -25,8 +25,8 @@ NoOfPoints=22879
 GridDistX=0.3
 GridDistY=0.3
 GridDist=0.3
-xCells=137
-yCells=167
+xCells=167
+yCells=137
 
 [SEMFields]
 DOEuler1=0
@@ -76,7 +76,7 @@ SpaceGroup=194
 ID1=
 ID2=
 NumberOfReflectors=
-Color=209
+Color=64
 
 [Settings]
 Thumbnail=
