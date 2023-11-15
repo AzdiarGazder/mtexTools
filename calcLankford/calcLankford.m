@@ -99,27 +99,33 @@ strainTensor_xRF = strainTensor_xRF(:); % reshape columnwise into a single colum
 % all orientations
 % Taylor factor (M) = ori x theta x strain (or rho) range
 [M,~,~] = calcTaylor(strainTensor_xRF,sS);%,'silent');
-% --- 
-% In this section, the method does not use weights. It calculates an 
-% average Mtheta based on the inputted texture.
-% M = reshape(M,length(ori),length(theta),length(rhoRange));
-% 
-% %% Create the Mtheta array
-% Mtheta = permute(mean(M),[1 3 2]); 
-% Mtheta = reshape(Mtheta,[],size(mean(M),2),1);
-% 
-% %% Find the minimum Taylor factor along the strain (or rho) range
-% [minMtheta,idx] = min(Mtheta); 
-% ---
 
-%% Average the Taylor factor over the texture using weights
+%% METHOD 1: Without weights
+% % In this section, the method does not use weights. It calculates an
+% % average Mtheta based on the inputted orientations.
+% M = reshape(M,length(ori),length(theta),length(rhoRange));
+%
+% % Create the Mtheta array
+% Mtheta = permute(mean(M),[1 3 2]);
+% Mtheta = reshape(Mtheta,[],size(mean(M),2),1);
+%
+% % Find the minimum Taylor factor along the strain (or rho) range
+% [minMtheta,idx] = min(Mtheta);
+%%
+
+
+%% METHOD 1: With weights
+% In this section, the method uses weights. It calculates an
+% average Mtheta based on the inputted orientations and their weights.
 weights = get_option(varargin,'weights',ones(size(ori)));
 weights = weights ./ sum(weights);
 M = weights(:).' * reshape(M,length(ori),[]);
-Mtheta = reshape(M,length(theta),length(rhoRange)).';
+Mtheta = reshape(M,length(theta),length(rhoRange)).'; % tranpose Mtheta -> rho x theta
 
-%% Find the minimum Taylor factor along the strain (or rho) range
-[minMtheta,idx] = min(Mtheta,[],1); 
+% Find the minimum Taylor factor along the strain (or rho) range
+[minMtheta,idx] = min(Mtheta,[],1);
+%%
+
 
 %% Find the corresponding R and rhoTheta values
 R = rhoRange(idx) ./ (1 - rhoRange(idx));
