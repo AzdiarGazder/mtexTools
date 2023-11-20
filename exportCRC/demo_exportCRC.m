@@ -28,20 +28,20 @@ startup_mtex;
 % mtexdata twins
 
 % % Load a *.cpr & *.crc map
-ebsd = loadEBSD_crc([pwd, '\CR42_800C.cpr'],'interface','crc','convertSpatial2EulerReferenceFrame');
+% ebsd = loadEBSD_crc([pwd, '\CR42_800C.cpr'],'interface','crc','convertSpatial2EulerReferenceFrame');
 
-% Load a *.ctf map
-% ebsd = loadEBSD_ctf([pwd, '\CR42_800C_D7CC.ctf'],'interface','ctf','convertSpatial2EulerReferenceFrame');
+% % Load a *.ctf map
+ebsd = loadEBSD_ctf([pwd, '\CR42_800C_D7CC.ctf'],'interface','ctf','convertSpatial2EulerReferenceFrame');
 %%
 
 
 
 %% Export map to OI Channel-5 *.cpr and *.crc file format
 % pfName = [pwd,'\newTwins.crc'];
-pfName = [pwd,'\newCR42_800C_cprcrc.crc'];
-% pfName = [pwd,'\newCR42_800C_ctf.crc'];
+% pfName = [pwd,'\newCR42_800C_cprcrc.crc'];
+pfName = [pwd,'\newCR42_800C_ctf.crc'];
 
-exportCRC(ebsd,pfName);
-% exportCRC(ebsd,pfName,'convertEuler2SpatialReferenceFrame');
+% exportCRC(ebsd,pfName);
+exportCRC(ebsd,pfName,'convertEuler2SpatialReferenceFrame');
 % exportCRC(ebsd,pfName,'convertSpatial2EulerReferenceFrame');
 %%

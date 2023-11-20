@@ -1,4 +1,7 @@
-function cprInfo = getCPRInfo(ebsd)
+function cprInfo = getCPRInfo(ebsd,varargin)
+
+flagOIFormat = get_option(varargin,'flagOIFormat',true);
+flagCPRInfo = get_option(varargin,'flagCPRInfo',true);
 
 % Initialize the nested structure
 cprInfo = struct();
@@ -34,8 +37,14 @@ cprInfo.Job.NoOfPoints = length(ebsd);
 cprInfo.Job.GridDistX = stepSize;
 cprInfo.Job.GridDistY = stepSize;
 cprInfo.Job.GridDist = stepSize;
-cprInfo.Job.xCells = size(gebsd,1);
-cprInfo.Job.yCells = size(gebsd,2);
+if (flagOIFormat && flagCPRInfo) || (~flagOIFormat && ~flagCPRInfo)
+    cprInfo.Job.xCells = size(gebsd,1);
+    cprInfo.Job.yCells = size(gebsd,2);
+elseif (flagOIFormat && ~flagCPRInfo)
+    cprInfo.Job.xCells = size(gebsd,2);
+    cprInfo.Job.yCells = size(gebsd,1);
+end
+
 
 % SEMFields
 cprInfo.SEMFields.DOEuler1 = 0;

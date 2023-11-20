@@ -1,6 +1,7 @@
 function cprInfo = getCPRInfo(ebsd,varargin)
 
-flagCPRInfo = get_option(varargin,'flag',true);
+flagOIFormat = get_option(varargin,'flagOIFormat',true);
+flagCPRInfo = get_option(varargin,'flagCPRInfo',true);
 
 % Initialize the nested structure
 cprInfo = struct();
@@ -36,10 +37,10 @@ cprInfo.Job.NoOfPoints = length(ebsd);
 cprInfo.Job.GridDistX = stepSize;
 cprInfo.Job.GridDistY = stepSize;
 cprInfo.Job.GridDist = stepSize;
-if flagCPRInfo
+if (flagOIFormat && flagCPRInfo) || (~flagOIFormat && ~flagCPRInfo)
     cprInfo.Job.xCells = size(gebsd,1);
     cprInfo.Job.yCells = size(gebsd,2);
-else
+elseif (flagOIFormat && ~flagCPRInfo)
     cprInfo.Job.xCells = size(gebsd,2);
     cprInfo.Job.yCells = size(gebsd,1);
 end

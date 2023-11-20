@@ -54,7 +54,7 @@ elseif ~isfield(ebsd.opt,'cprInfo') && isfield(ebsd.prop,'bc') && isfield(ebsd.p
     flagCPRInfo = false;
     % Since the structure containing the cpr data is missing, information
     % for an equivalent CPR file data needs to be generated
-    cprStruct = getCPRInfo(ebsd,'flag',flagCPRInfo);
+    cprStruct = getCPRInfo(ebsd,'flagOIFormat',flagOIFormat,'flagCPRInfo',flagCPRInfo);
 
 else
     % In this case, the input map is from another vendor
@@ -62,7 +62,7 @@ else
     flagCPRInfo = false;
     % Since the structure containing the cpr data is missing, information
     % for an equivalent CPR file data needs to be generated
-    cprStruct = getCPRInfo(ebsd,'flag',flagCPRInfo);
+    cprStruct = getCPRInfo(ebsd,'flagOIFormat',flagOIFormat,'flagCPRInfo',flagCPRInfo);
 
 end
 % Find the first level field names of the structure
