@@ -36,6 +36,10 @@ function threshold = calcThreshold(inData,varargin)
 
 % Specify if the CDF or dCDF requires thresholding
 plotType = char(extract_option(varargin,{'cdf','dcdf'}));
+if isempty(plotType)
+    plotType = 'cdf';
+    warning('Plot types ''cdf'' or ''dcdf'' not specified. Default ''cdf'' will be used.');
+end
 
 % Specify the bin width
 binWidth = get_option(varargin,'binWidth',[]);
