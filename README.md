@@ -58,71 +58,73 @@ The recommended method, which helps keep all mtexTools functions and scripts up-
 Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![Static Badge](https://img.shields.io/badge/D-0000FF) = demonstration script;  ![Static Badge](https://img.shields.io/badge/T-FAAE11) = toolbox; ![Static Badge](https://img.shields.io/badge/M-00FFFF) = MTEX modification; ![Static Badge](https://img.shields.io/badge/C-00FF00) = collaboration
 
 ## A
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**align**](https://github.com/AzdiarGazder/mtexTools/tree/main/align): Align ebsd map data along a user-specified linear fiducial in case of drift caused by the thermal cycling of scanning coil electronics during acquisition. The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products. Instructions on script use are provided in the window titlebar.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**align**](https://github.com/AzdiarGazder/mtexTools/tree/main/align): This function aligns ebsd map data along a user-specified linear fiducial in case of drift caused by the thermal cycling of scanning coil electronics during acquisition. The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products. Instructions on script use are provided in the window titlebar.
 
 
 
 ## B
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**binaryTable**](https://github.com/AzdiarGazder/mtexTools/tree/main/binaryTable): Returns a variable containing all logical combinations for a given number of variables.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**binaryTable**](https://github.com/AzdiarGazder/mtexTools/tree/main/binaryTable): This function returns a variable containing all logical combinations for a given number of variables.
 
 
 
 ## C
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcEaring**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcEaring): This function calculates the height (h) at each peripheral position of a cup drawn from a polycrystalline bcc metal sheet. In the analytical treatment, the polycrystalline sheet is assumed to be an aggregate of single crystals (grains) with various orientations. In the original paper, an orientation distribution function (ODF) contructed from texture data was used to calculate the weight of each single crystal. In this function, ebsd or grain data can be used. For ebsd data, an ODF is first calculated. Following that, there are 2 options: (1) Calculate ODF components & volume fractions using MTEX-default functions, or (2) Calculate the volume fractions of a discretised ODF. For both options, the volume fraction is used as the weight. Alternatively, for grain data, weights are computed using the grain area fraction. The ear may be calculated crystallographically by considering both, restricted glide and pencil glide; with the former returning better predictions in the original paper.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcGrainsFFT**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcGrainsFFT): Returns the Fast Fourier Transforms (FFTs) of individual grains. The FFTs are calculated after padding each grayscale/binary grain map to its nearest square. The FFTs from grayscale and binary data are returned in grid format within the 'grains.prop.fftGray' and 'grains.prop.fftBinary' structure variables.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcGrainsFFT**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcGrainsFFT): This function returns the Fast Fourier Transforms (FFTs) of individual grains. The FFTs are calculated after padding each grayscale/binary grain map to its nearest square. The FFTs from grayscale and binary data are returned in grid format within the 'grains.prop.fftGray' and 'grains.prop.fftBinary' structure variables.
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) ![Static Badge](https://img.shields.io/badge/C-00FF00) [**calcLankford**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcLankford): This function calculates the minimum Taylor factor (M) and the Lankford coefficient or plastic anisotropy ratio (R-value or r-value) as a function of the angle to the tensile direction (theta). The R-value, is the ratio of the true width strain to the true thickness strain at a particular value of length strain. The normal anisotropy ratio (Rbar, or Ravg, or rm) defines the ability of the metal to deform in the thickness direction relative to deformation in the plane of the sheet. For Rbar values >= 1, the sheet metal resists thinning, improves cup drawing, hole expansion, and other forming modes where metal thinning is detrimental. For Rbar < 1, thinning becomes the preferential metal flow direction, increasing the risk of failure in drawing operations. A related parameter is the planar anisotropy parameter (deltaR) which is an indicator of the ability of a material to demonstrate non-earing behavior. A deltaR value = 0 is ideal for can-making or deep drawing of cylinders, as this indicates equal metal flow in all directions; thus eliminating the need to trim ears during subsequent processing.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcModelTexture**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcModelTexture): Returns a model ODF based on a user specified number of ideal orientations used as seeds.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcModelTexture**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcModelTexture): This function returns a model ODF based on a user specified number of ideal orientations used as seeds.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcODFIntensity**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcODFIntensity): Returns the ODF intensity (f(g)) in user-defined steps using Bunge's notation to the variable 'odf.opt.intensity'.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcODFIntensity**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcODFIntensity): This function returns the ODF intensity (f(g)) in user-defined steps using Bunge's notation to the variable 'odf.opt.intensity'.
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcSpacing**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcSpacing): This function calculates the interplanar spacing for a given set of Miller indices specifying the lattice plane. The Bravis lattice of the Miller indices is automatically identified.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcStepSize**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcStepSize): Calculates the step size of the ebsd map. This function can also be used in conjunction with the regrid.m script.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcStepSize**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcStepSize): This function calculates the step size of the ebsd map. This function can also be used in conjunction with the regrid.m script.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcThreshold**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcThreshold): Calculates a threshold based on: (1) the cumulative distribution function (CDF) of a given dataset, OR (2) the differential of the CDF of a given dataset. In both cases, the bin widths of the CDF are calculated using either Scott's, Freedman-Diaconis', or the square root rules, or by specifying a value. In Case (1), the threshold is determined by a specified number of standard deviations from the mean of the data. In Case (2), the threshold is determined by fitting a Gaussian to the differential data and finding the specified number of standard deviations from the mid-point of the fitted Gaussian.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcThreshold**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcThreshold): This function calculates a threshold based on: (1) the cumulative distribution function (CDF) of a given dataset, OR (2) the differential of the CDF of a given dataset. In both cases, the bin widths of the CDF are calculated using either Scott's, Freedman-Diaconis', or the square root rules, or by specifying a value. In Case (1), the threshold is determined by a specified number of standard deviations from the mean of the data. In Case (2), the threshold is determined by fitting a Gaussian to the differential data and finding the specified number of standard deviations from the mid-point of the fitted Gaussian.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) ![Static Badge](https://img.shields.io/badge/C-00FF00) [**calcYieldLocus**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcYieldLocus): This script calculates the yield locus of an orientation set using the equality of external work done with the virtual work via the Taylor model (default and works for all crystal systems), and the Bishop-Hill analysis (works for cubic systems with 24 slip systems only). In the case of the Taylor model, Mtf is calculated as the work done (i.e.- it is the sum of all shears normalised by norm(strainTensor)). Thereafter, for the yield locus, normalisation with the e_11 component is required. In the case of Bishop-Hill (BH) analysis, the script calculates the most appropriate BH stress states for a given external strain using the maximum work principle. The  output M is the maximum work normalised with e_XX. The priniciple of equivalence of external work to the virtual work is utilised to determine the yield locus sections. For e.g. - to determine the sigmaXX - sigmaYY section (where sigmaZZ = 0), the external work is (sigmaXX * eXX) + (sigmaYY * eYY) while the virtual work is W determined from the Taylor or Bishop-Hill methods. Equating both gives equations of straight lines with slopes depending on rho values. The yield locus is the inner envelop of these lines.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) ![Static Badge](https://img.shields.io/badge/C-00FF00) [**calcYieldLocus**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcYieldLocus): This function calculates the yield locus of an orientation set using the equality of external work done with the virtual work via the Taylor model (default and works for all crystal systems), and the Bishop-Hill analysis (works for cubic systems with 24 slip systems only). In the case of the Taylor model, Mtf is calculated as the work done (i.e.- it is the sum of all shears normalised by norm(strainTensor)). Thereafter, for the yield locus, normalisation with the e_11 component is required. In the case of Bishop-Hill (BH) analysis, the script calculates the most appropriate BH stress states for a given external strain using the maximum work principle. The  output M is the maximum work normalised with e_XX. The priniciple of equivalence of external work to the virtual work is utilised to determine the yield locus sections. For e.g. - to determine the sigmaXX - sigmaYY section (where sigmaZZ = 0), the external work is (sigmaXX * eXX) + (sigmaYY * eYY) while the virtual work is W determined from the Taylor or Bishop-Hill methods. Equating both gives equations of straight lines with slopes depending on rho values. The yield locus is the inner envelop of these lines.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**checkMTEXVersion**](https://github.com/AzdiarGazder/mtexTools/tree/main/checkMTEXVersion): Compare versions of the current MTEX toolbox to a user-specified version string of the form 'majorVersion.minorVersion.revisionVersion'. Returns true if the current toolbox version is less than the user-specified version string. Returns false if the current toolbox version is greater than the user-specified version string.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**checkMTEXVersion**](https://github.com/AzdiarGazder/mtexTools/tree/main/checkMTEXVersion): This function compares versions of the current MTEX toolbox to a user-specified version string of the form 'majorVersion.minorVersion.revisionVersion'. Returns true if the current toolbox version is less than the user-specified version string. Returns false if the current toolbox version is greater than the user-specified version string.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**crop**](https://github.com/AzdiarGazder/mtexTools/tree/main/crop): Crop, cut-out or make a subset of ebsd map data from within a user-specified rectangular, circular, polygonal or freehand area-based region of interest (ROI). Instructions on script use are provided in the window titlebar.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**crop**](https://github.com/AzdiarGazder/mtexTools/tree/main/crop): This function crops, cuts-out or makes a subset of ebsd map data from within a user-specified rectangular, circular, polygonal or freehand area-based region of interest (ROI). Instructions on script use are provided in the window titlebar.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**currentFolder**](https://github.com/AzdiarGazder/mtexTools/tree/main/currentFolder): Change MATLAB's current folder to the folder containing this function and add all of its sub-folders to the work path.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**currentFolder**](https://github.com/AzdiarGazder/mtexTools/tree/main/currentFolder): This function changes MATLAB's current folder to the folder containing this function and add all of its sub-folders to the work path.
 
 
 
 ## D
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**dilate**](https://github.com/AzdiarGazder/mtexTools/tree/main/dilate): Dilates the ebsd data surrounding individual, multiple contiguous or multiple discrete grains of interest by one pixel.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**dilate**](https://github.com/AzdiarGazder/mtexTools/tree/main/dilate): This function dilates the ebsd data surrounding individual, multiple contiguous or multiple discrete grains of interest by one pixel.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**discreteColormap**](https://github.com/AzdiarGazder/mtexTools/tree/main/discreteColormap): Sub-divides a default colormap palette into a user specified number of discrete colors to improve on the visual distinction between bins/levels.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**discreteColormap**](https://github.com/AzdiarGazder/mtexTools/tree/main/discreteColormap): This function sub-divides a default colormap palette into a user specified number of discrete colors to improve on the visual distinction between bins/levels.
 
 
 
 ## E
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**ebsd2binary**](https://github.com/AzdiarGazder/mtexTools/tree/main/ebsd2binary): Converts ebsd data of a single grain to a grid of binary ones or zeros.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**ebsd2binary**](https://github.com/AzdiarGazder/mtexTools/tree/main/ebsd2binary): This function converts ebsd data of a single grain to a grid of binary ones or zeros.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**erode**](https://github.com/AzdiarGazder/mtexTools/tree/main/erode): Erodes the ebsd data surrounding individual grains of interest by one pixel.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**erode**](https://github.com/AzdiarGazder/mtexTools/tree/main/erode): This function erodes the ebsd data surrounding individual grains of interest by one pixel.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**euclideanDistance**](https://github.com/AzdiarGazder/mtexTools/tree/main/euclideanDistance): Calculates the 2D Euclidean distance in pixels (default) or map scan units for supported distance methods for each pixel within a grain. The default 2D Euclidean distance measurement is from the grain center to the grain boundary in pixels or map scan units. The 2D Euclidean distance measurement from the grain boundary to the grain center is available but only when specified by the user. The values are returned within the 'ebsd.prop.euclid' structure variable.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**euclideanDistance**](https://github.com/AzdiarGazder/mtexTools/tree/main/euclideanDistance): This function calculates the 2D Euclidean distance in pixels (default) or map scan units for supported distance methods for each pixel within a grain. The default 2D Euclidean distance measurement is from the grain center to the grain boundary in pixels or map scan units. The 2D Euclidean distance measurement from the grain boundary to the grain center is available but only when specified by the user. The values are returned within the 'ebsd.prop.euclid' structure variable.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**exportCRC**](https://github.com/AzdiarGazder/mtexTools/tree/main/exportCRC): Exports input EBSD map orientation data in any vendor format to proprietary Oxford Instruments HKL Channel 5 *.cpr and *.crc output file format.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**exportCRC**](https://github.com/AzdiarGazder/mtexTools/tree/main/exportCRC): This function exports input EBSD map orientation data in any vendor format to proprietary Oxford Instruments HKL Channel 5 *.cpr and *.crc output file format.
 
 
 
 ## F
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**ferriteQuantifier**](https://github.com/AzdiarGazder/mtexTools/tree/main/ferriteQuantifier): This script demonstrates how to automatically segment and quantify the area fractions of various ferrite microconstituents in EBSD maps of steel grades produced by the CASTRIP(R) process. The three ferrite microconstituents namely, (1) acicular ferrite, (2) polygonal ferrite and (3) bainite, significantly influence the mechanical properties of steel. They are distinguished using the grain aspect ratio, grain boundary misorientation angle, grain average misorientation and grain size criteria.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**fibreMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/fibreMaker): Creates an ideal crystallographic fibre with a user specified half-width and exports the data as a lossless MATLAB *.mat* file object for later use.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**fibreMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/fibreMaker): This function creates an ideal crystallographic fibre with a user specified half-width and exports the data as a lossless MATLAB *.mat* file object for later use.
 
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**fibreOrientations**](https://github.com/AzdiarGazder/mtexTools/tree/main/fibreOrientations): This script demonstrates how to obtain and plot orientations from a crystallographic fibre.
 
 
 
 ## G
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**GAM**](https://github.com/AzdiarGazder/mtexTools/tree/main/GAM): By modifying MTEX's in-built KAM script, this function calculates the intragranular grain average misorientation. The first neighbour kernal average misorientation is averaged to return a single value per grain.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**GAM**](https://github.com/AzdiarGazder/mtexTools/tree/main/GAM): This function modifies MTEX's in-built KAM script and calculates the intragranular grain average misorientation. The first neighbour kernal average misorientation is averaged to return a single value per grain.
+
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**gBFraction**](https://github.com/AzdiarGazder/mtexTools/tree/main/gBFraction): This function calculates the fraction of indexed boundary segments that are below and above user-specified threshold angle(s) for each grain.
 
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**grainGrowth_phaseField**](https://github.com/AzdiarGazder/mtexTools/tree/main/grainGrowth_phaseField): This phase-field simulation script demonstrates 2D grain growth using the Allen-Cahn equation for non-conserved order parameters based on a continuum field model by Fan and Chen.
 
@@ -139,9 +141,9 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**idealOrientations**](https://github.com/AzdiarGazder/mtexTools/tree/main/idealOrientations): This script demonstrates how to plot user-defined pole figures and orientation distribution function sections of common ideal orientations for bcc, fcc and hcp materials.
  
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**imageResize**](https://github.com/AzdiarGazder/mtexTools/tree/main/imageResize): Interactively resize an image. This function may be used in conjunction with ebsd map data to correct for drift during map acquisition.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**imageResize**](https://github.com/AzdiarGazder/mtexTools/tree/main/imageResize): This function interactively resizes an image. This function may be used in conjunction with ebsd map data to correct for drift during map acquisition.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**imageTransform**](https://github.com/AzdiarGazder/mtexTools/tree/main/imageTransform): Interactively projective or affine transform an image. This function may be used in conjunction with ebsd map data to correct for drift during map acquisition.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**imageTransform**](https://github.com/AzdiarGazder/mtexTools/tree/main/imageTransform): This function interactively projectives or affine transforms an image. This function may be used in conjunction with ebsd map data to correct for drift during map acquisition.
 
 
 
@@ -156,7 +158,7 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 
 ## L
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**lineProfile**](https://github.com/AzdiarGazder/mtexTools/tree/main/lineProfile): Interactively plots an EBSD map property (numeric, logical, or misorientation) profile along a user specified line or linear fiducial.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**lineProfile**](https://github.com/AzdiarGazder/mtexTools/tree/main/lineProfile): This function interactively plots an EBSD map property (numeric, logical, or misorientation) profile along a user specified line or linear fiducial.
 
 
 
@@ -168,52 +170,52 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 
 ## N
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**nestedLoopCounter**](https://github.com/AzdiarGazder/mtexTools/tree/main/nestedLoopCounter): Returns the current count (or specifically, the row index) for a series of running nested loops. The function currently employs two and three nested loops but can be extended to multiple nested loops.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**nestedLoopCounter**](https://github.com/AzdiarGazder/mtexTools/tree/main/nestedLoopCounter): This function returns the current count (or specifically, the row index) for a series of running nested loops. The function currently employs two and three nested loops but can be extended to multiple nested loops.
 
 
 ## O
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**orientationMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/orientationMaker): Creates an ideal crystallographic orientation from a unimodal ODF with a user specified half-width and exports the data as a lossless MATLAB *.mat* file object for later use.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**orientationMaker**](https://github.com/AzdiarGazder/mtexTools/tree/main/orientationMaker): This function creates an ideal crystallographic orientation from a unimodal ODF with a user specified half-width and exports the data as a lossless MATLAB *.mat* file object for later use.
 
 
 
 ## P
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**pad**](https://github.com/AzdiarGazder/mtexTools/tree/main/pad): Pads a binary map with ones or zeros. Options include: (i) Padding to a size based on a user specified [1 x 2] padding array. The padding array defines the number of rows and columns to add to the [(top & bottom) , (left & right)], respectively, of the input map. (ii) Paddding to the nearest square. (iii) Padding automatcially to a size that prevents map data from getting clipped during subsequent map rotation.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**pad**](https://github.com/AzdiarGazder/mtexTools/tree/main/pad): This function pads a binary map with ones or zeros. Options include: (i) Padding to a size based on a user specified [1 x 2] padding array. The padding array defines the number of rows and columns to add to the [(top & bottom) , (left & right)], respectively, of the input map. (ii) Paddding to the nearest square. (iii) Padding automatcially to a size that prevents map data from getting clipped during subsequent map rotation.
 
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**plotCAxis**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotCAxis): This script demonstrates how to plot the angle between the c-axis of the hexagonal unit cell and a macroscopic specimen axis.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**plotHODF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHODF): Plots orientation distribution function phi2 sections in publication-ready format.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**plotHODF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHODF): This function plots orientation distribution function phi2 sections in publication-ready format.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**plotHPF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHPF): Plots pole figures in publication-ready format.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**plotHPF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHPF): This function plots pole figures in publication-ready format.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**plotMarker**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotMarker): Plots a line-plot using customisable markers. The function uses line plotting options similar to MATLAB's "plot" command but applies custom patches instead of MATLAB's in-built marker set.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**plotMarker**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotMarker): This function plots a line-plot using customisable markers. The function uses line plotting options similar to MATLAB's "plot" command but applies custom patches instead of MATLAB's in-built marker set.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**plotScatter**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotScatter):  Creates a scatter plot coloured by density.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**plotScatter**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotScatter):  This function creates a scatter plot coloured by density.
 
 
 
 ## R
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**randomEuler**](https://github.com/AzdiarGazder/mtexTools/tree/main/randomEuler): Generate uniformly distributed random Euler angles (φ1, φ, φ2) in the form of orientations, quaternions or rotation matrices.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**randomEuler**](https://github.com/AzdiarGazder/mtexTools/tree/main/randomEuler): This function generates uniformly distributed random Euler angles (φ1, φ, φ2) in the form of orientations, quaternions or rotation matrices.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**recolor**](https://github.com/AzdiarGazder/mtexTools/tree/main/recolor): Recolor phases using the ebsd or grains variables interactively via a GUI or via scripting.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**recolor**](https://github.com/AzdiarGazder/mtexTools/tree/main/recolor): This function recolors phases using the ebsd or grains variables interactively via a GUI or via scripting.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**regrid**](https://github.com/AzdiarGazder/mtexTools/tree/main/regrid): Re-calculates the x and y grid values as multiples of the step size to mitigate any rounding-off errors during subsequent gridding operations. This function can be used in conjunction with the calcStepSize.m script.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**regrid**](https://github.com/AzdiarGazder/mtexTools/tree/main/regrid): This function re-calculates the x and y grid values as multiples of the step size to mitigate any rounding-off errors during subsequent gridding operations. This function can be used in conjunction with the calcStepSize.m script.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**rename**](https://github.com/AzdiarGazder/mtexTools/tree/main/rename): Rename phases using the ebsd or grains variables interactively via a GUI or via scripting.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**rename**](https://github.com/AzdiarGazder/mtexTools/tree/main/rename): This function renames phases using the ebsd or grains variables interactively via a GUI or via scripting.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) ![Static Badge](https://img.shields.io/badge/M-00FFFF) [**replaceText**](https://github.com/AzdiarGazder/mtexTools/tree/main/replaceText): Enables users to edit by replacing or changing the first or all instances of a full line of text in a text-based file. This is especially useful if small changes are needed on-the-fly to function files in publicly released toolboxes (like MTEX).
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) ![Static Badge](https://img.shields.io/badge/M-00FFFF) [**replaceText**](https://github.com/AzdiarGazder/mtexTools/tree/main/replaceText): This function enables users to edit by replacing or changing the first or all instances of a full line of text in a text-based file. This is especially useful if small changes are needed on-the-fly to function files in publicly released toolboxes (like MTEX).
 
 
 
 ## S
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**saveImage**](https://github.com/AzdiarGazder/mtexTools/tree/main/saveImage): Saves all open figures that are located either in separate GUI windows or grouped togther in tabs. The user inputs a file name and the program automatically adds a "__XX_" suffix comprising an underscore symbol and the figure number while saving the various figure(s). 
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**saveImage**](https://github.com/AzdiarGazder/mtexTools/tree/main/saveImage): This function saves all open figures that are located either in separate GUI windows or grouped togther in tabs. The user inputs a file name and the program automatically adds a "__XX_" suffix comprising an underscore symbol and the figure number while saving the various figure(s). 
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**setInterp2Latex**](https://github.com/AzdiarGazder/mtexTools/tree/main/setInterp2Latex): Changes all MATLAB text interpreters from 'tex' to 'latex' in all subsequent figures, plots, and graphs.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**setInterp2Latex**](https://github.com/AzdiarGazder/mtexTools/tree/main/setInterp2Latex): This function changes all MATLAB text interpreters from 'tex' to 'latex' in all subsequent figures, plots, and graphs.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**setInterp2Tex**](https://github.com/AzdiarGazder/mtexTools/tree/main/setInterp2Tex): Changes all MATLAB text interpreters from 'latex' to 'tex' in all subsequent figures, plots, and graphs.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**setInterp2Tex**](https://github.com/AzdiarGazder/mtexTools/tree/main/setInterp2Tex): This function changes all MATLAB text interpreters from 'latex' to 'tex' in all subsequent figures, plots, and graphs.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**split**](https://github.com/AzdiarGazder/mtexTools/tree/main/split): Splits or sub-divides an ebsd map into a regular, rectangular matrix of submaps with a user-specified number of rows and columns. Additional inputs include the ability to overlap a length fraction along both, horizontal and vertical submap directions. The submaps are returned to the main MATLAB workspace as individual ebsd variables. The location of each submap is denoted by the row and column number. For example: ebsd23 = a submap from row 2, column 3 of the ebsd map.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**split**](https://github.com/AzdiarGazder/mtexTools/tree/main/split): This function splits or sub-divides an ebsd map into a regular, rectangular matrix of submaps with a user-specified number of rows and columns. Additional inputs include the ability to overlap a length fraction along both, horizontal and vertical submap directions. The submaps are returned to the main MATLAB workspace as individual ebsd variables. The location of each submap is denoted by the row and column number. For example: ebsd23 = a submap from row 2, column 3 of the ebsd map.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**stitch**](https://github.com/AzdiarGazder/mtexTools/tree/main/stitch): Stitch, combine or merge two ebsd maps together into one map by defining a user-specified position and offset/overlay for map 2 relative to map 1.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**stitch**](https://github.com/AzdiarGazder/mtexTools/tree/main/stitch): This function stitches, combines or merges two ebsd maps together into one map by defining a user-specified position and offset/overlay for map 2 relative to map 1.
 
 
 
