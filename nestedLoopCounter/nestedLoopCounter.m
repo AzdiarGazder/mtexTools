@@ -1,5 +1,3 @@
-
-
 function rowIdx = nestedLoopCounter(currentLoopIdx,varargin)
 %% Function description:
 % Returns the current count (or specifically, the row index) for a series 
@@ -46,4 +44,3 @@ end
 rowIdx = find(ismember(loopIdx,currentLoopIdx,'rows') == 1);
 
 end
-.rtcContent { padding: 30px; }.lineNode {font-size: 10pt; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-style: normal; font-weight: normal; }
