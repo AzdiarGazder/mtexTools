@@ -66,6 +66,9 @@ end
 % Specify the user-defined sigma value to threshold
 thresholdSigma = get_option(varargin,'sigma',3);
 
+% Specify whether to show the plot or not
+flagSilent = check_option(varargin,'silent');
+
 
 % Calculate the number of bins
 numBins = ceil(range(inData) / binWidth);
@@ -105,8 +108,9 @@ switch plotType
 
         % Calculate the threshold
         [~, idxX] = min(abs(binCenters - upperBound));
-        threshold.x = binCenters(idxX);
-        threshold.y = cdf(idxX);
+        threshold.x = binCenters;
+        threshold.y = cdf;
+        threshold.id = idxX;
 
         % Display the results
         disp('----');
@@ -118,21 +122,22 @@ switch plotType
         disp(['Actual probability within ',num2str(thresholdSigma),'-sigma: ' num2str(actProb)]);
         disp('----');
 
-        % Plot the PDF
-        figure;
-        subplot(2, 1, 1);
-        bar(binCenters, pdf, 'hist');
-        hold all;
-        % Highlight threshold sigma bounds on the PDF plot
-        fill([lowerBound, upperBound, upperBound, lowerBound], [0, 0, max(pdf), max(pdf)], 'r', 'FaceAlpha', 0.1667);
-        line([lowerBound, lowerBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
-        line([upperBound, upperBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
-        legend('PDF', [num2str(thresholdSigma),'-sigma bounds']);
-        % title('Probability density function (PDF)');
-        xlim([0 max(binCenters)]);
-        ylim([0 max(pdf)]);
-        hold off;
-
+        if ~flagSilent
+            % Plot the PDF
+            figure;
+            subplot(2, 1, 1);
+            bar(binCenters, pdf, 'hist');
+            hold all;
+            % Highlight threshold sigma bounds on the PDF plot
+            fill([lowerBound, upperBound, upperBound, lowerBound], [0, 0, max(pdf), max(pdf)], 'r', 'FaceAlpha', 0.1667);
+            line([lowerBound, lowerBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
+            line([upperBound, upperBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
+            legend('PDF', [num2str(thresholdSigma),'-sigma bounds']);
+            % title('Probability density function (PDF)');
+            xlim([0 max(binCenters)]);
+            ylim([0 max(pdf)]);
+            hold off;
+        end
 
     case 'dcdf'
         % Differentiate the CDF
@@ -159,8 +164,9 @@ switch plotType
 
         % Calculate the threshold
         [~, idxX] = min(abs(binCenters - upperBound));
-        threshold.x = binCenters(idxX);
-        threshold.y = cdf(idxX);
+        threshold.x = binCenters;
+        threshold.y = cdf;
+        threshold.id = idxX;
 
         % Display the results
         disp('----');
@@ -168,42 +174,46 @@ switch plotType
         disp(['Standard deviation (sigma): ' num2str(sigma)]);
         disp('----');
 
-        % Plot the differential
-        figure;
-        subplot(2, 1, 1);
-        bar(binCenters, dydx, 'hist');
-        hold all;
-        plot(binCenters,dydxFit, 'Color', 'g', 'LineWidth', 3, 'LineStyle', '-');
-        % Highlight threshold sigma bounds on the differential plot
-        fill([lowerBound, upperBound, upperBound, lowerBound], [0, 0, max(pdf), max(pdf)], 'r', 'FaceAlpha', 0.1667);
-        line([lowerBound, lowerBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
-        line([upperBound, upperBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
-        legend('d(CDF)/d(binCenters)', 'Gaussian fit', [num2str(thresholdSigma),'-sigma bounds']);
-        % title('Differential function (dCDF)');
-        xlim([0 max(binCenters)]);
-        ylim([0 max([dydx,dydxFit])]);
-        hold off;
+        if ~flagSilent
+            % Plot the differential
+            figure;
+            subplot(2, 1, 1);
+            bar(binCenters, dydx, 'hist');
+            hold all;
+            plot(binCenters,dydxFit, 'Color', 'g', 'LineWidth', 3, 'LineStyle', '-');
+            % Highlight threshold sigma bounds on the differential plot
+            fill([lowerBound, upperBound, upperBound, lowerBound], [0, 0, max(pdf), max(pdf)], 'r', 'FaceAlpha', 0.1667);
+            line([lowerBound, lowerBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
+            line([upperBound, upperBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
+            legend('d(CDF)/d(binCenters)', 'Gaussian fit', [num2str(thresholdSigma),'-sigma bounds']);
+            % title('Differential function (dCDF)');
+            xlim([0 max(binCenters)]);
+            ylim([0 max([dydx,dydxFit])]);
+            hold off;
+        end
 
 end
 
-% Plot the CDF
-subplot(2, 1, 2);
-plot([0, binCenters], [0, cdf], 'b', 'LineWidth', 2);
-hold all;
-% Highlight threshold sigma bounds on the PDF plot
-fill([lowerBound, upperBound, upperBound, lowerBound], [0, 0, max(cdf), max(cdf)], 'r', 'FaceAlpha', 0.1667);
-line([lowerBound, lowerBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
-line([upperBound, upperBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
-% Plot the threshold point
-scatter(threshold.x, threshold.y,...
-    75, 'g', 'filled', 'DisplayName', 'thresholdSigma');
-legend('CDF', [num2str(thresholdSigma),'-sigma bounds']);
-% title('Cumulative distribution function (CDF)');
-xlim([min(binCenters) max(binCenters)]);
-ylim([0 max(cdf)]);
-hold off;
+if ~flagSilent
+    % Plot the CDF
+    subplot(2, 1, 2);
+    plot([0, binCenters], [0, cdf], 'b', 'LineWidth', 2);
+    hold all;
+    % Highlight threshold sigma bounds on the PDF plot
+    fill([lowerBound, upperBound, upperBound, lowerBound], [0, 0, max(cdf), max(cdf)], 'r', 'FaceAlpha', 0.1667);
+    line([lowerBound, lowerBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
+    line([upperBound, upperBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
+    % Plot the threshold point
+    scatter(threshold.x(idxX), threshold.y(idxX),...
+        75, 'g', 'filled', 'DisplayName', 'thresholdSigma');
+    legend('CDF', [num2str(thresholdSigma),'-sigma bounds']);
+    % title('Cumulative distribution function (CDF)');
+    xlim([min(binCenters) max(binCenters)]);
+    ylim([0 max(cdf)]);
+    hold off;
 
-% Link x-axes of the two subplots
-linkaxes([subplot(2, 1, 1), subplot(2, 1, 2)], 'x');
+    % Link x-axes of the two subplots
+    linkaxes([subplot(2, 1, 1), subplot(2, 1, 2)], 'x');
+end
 
 end

@@ -348,7 +348,7 @@ end
 % inLength = (1:numel(in)).';
 % pp = interp1(inLength(in_notNaN),in(in_notNaN),'linear','pp');
 % out = fnval(pp,inLength);
-% % plot(iLength,in,'ko',iLength,out,'b-');
+% % plot(inLength,in,'ko',inLength,out,'b-');
 % % box on; grid on;
 % end
 
