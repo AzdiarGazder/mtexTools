@@ -45,13 +45,11 @@ setMTEXpref('maxSO3Bandwidth',96);
 
 
 %% Define the critical angle for a high-angle boundary
-criticalAngle = 15; % in degrees (min = 5; ideal = 7.5; max = 15)
+criticalAngle = 7.5; % in degrees (min = 5; ideal = 7.5; max = 15)
 
 %% Import the dataset
-ebsd = EBSD.load('FL08SR.cpr','interface','crc',...
+ebsd = EBSD.load('FL35.ctf','interface','ctf',...
     'convertEuler2SpatialReferenceFrame');
-% ebsd = EBSD.load('FL35.ctf','interface','ctf',...
-%     'convertEuler2SpatialReferenceFrame');
 ebsd = ebsd('indexed');
 
 %% Store the crystal symmetry
@@ -102,6 +100,7 @@ plot(grains_unrcrx,psi(~lA1))
 setColorRange([min(psi(~lA1)) max(psi(~lA1))])
 mtexColorbar jet
 set(figH,'Name','Unrecrystallised grain fraction','NumberTitle','on');
+% ----
 figH = figure;
 plot(grains_rcrx,psi(lA1))
 setColorRange([min(psi(lA1)) max(psi(lA1))])
@@ -118,6 +117,7 @@ ebsd_rcrx =  ebsd(idx);
 figH = figure;
 plot(ebsd_unrcrx,ebsd_unrcrx.orientations);
 set(figH,'Name','Unrecrystallised ebsd fraction','NumberTitle','on');
+% ----
 figH = figure;
 plot(ebsd_rcrx,ebsd_rcrx.orientations);
 set(figH,'Name','Recrystallised ebsd fraction','NumberTitle','on');
@@ -158,6 +158,7 @@ figH = figure;
 plot(grains_def,grains_def.meanOrientation)
 mtexColorbar jet
 set(figH,'Name','Deformed grain fraction','NumberTitle','on');
+% ----
 figH = figure;
 plot(grains_rec,grains_rec.meanOrientation)
 mtexColorbar jet
@@ -173,6 +174,7 @@ ebsd_rec =  ebsd(idx);
 figH = figure;
 plot(ebsd_def,ebsd_def.orientations);
 set(figH,'Name','Deformed ebsd fraction','NumberTitle','on');
+% ----
 figH = figure;
 plot(ebsd_rec,ebsd_rec.orientations);
 set(figH,'Name','Recovered ebsd fraction','NumberTitle','on');
@@ -203,6 +205,7 @@ plot(grains_nuc,grainSize_rcrx(~lA3))
 setColorRange([min(grainSize_rcrx(~lA3)) max(grainSize_rcrx(~lA3))])
 mtexColorbar jet
 set(figH,'Name','Newly nucleated grain fraction','NumberTitle','on');
+% ----
 figH = figure;
 plot(grains_grow,grainSize_rcrx(lA3))
 setColorRange([min(grainSize_rcrx(lA3)) max(grainSize_rcrx(lA3))])
@@ -219,6 +222,7 @@ ebsd_grow =  ebsd(idx);
 figH = figure;
 plot(ebsd_nuc,ebsd_nuc.orientations);
 set(figH,'Name','Newly nucleated ebsd fraction','NumberTitle','on');
+% ----
 figH = figure;
 plot(ebsd_grow,ebsd_grow.orientations);
 set(figH,'Name','Growing grain ebsd fraction','NumberTitle','on');
@@ -227,7 +231,7 @@ set(figH,'Name','Growing grain ebsd fraction','NumberTitle','on');
 
 
 
-%% STEP 4: Calculate the area fractions
+%% STEP 4: Calculate the area fractions of the various subsets
 % Calculate the area fractions
 area_total = sum(area(grains));
 areaFraction_unrcrx = sum(area(grains_unrcrx)) / area_total;
@@ -241,20 +245,64 @@ areaFraction_grow = sum(area(grains_grow)) / area_total;
 disp('====');
 disp('Grain area fractions of the subsets:');
 disp('====');
-disp(['Unrecrystallised = ' num2str(areaFraction_unrcrx)]);
-disp(['Recrystallised   = ' num2str(areaFraction_rcrx)]);
+disp(['Unrecrystallised = ', num2str(areaFraction_unrcrx)]);
+disp(['Recrystallised   = ', num2str(areaFraction_rcrx)]);
 disp('----');
-disp(['Deformed         = ' num2str(areaFraction_def)]);
-disp(['Recovered        = ' num2str(areaFraction_rec)]);
-disp(['Newly nucleated  = ' num2str(areaFraction_nuc)]);
-disp(['Growing grains   = ' num2str(areaFraction_grow)]);
+disp(['Deformed         = ', num2str(areaFraction_def)]);
+disp(['Recovered        = ', num2str(areaFraction_rec)]);
+disp(['Newly nucleated  = ', num2str(areaFraction_nuc)]);
+disp(['Growing grains   = ', num2str(areaFraction_grow)]);
+disp('====');
+%%
+
+%% STEP 5: Calculate the grain statistics
+% Step 5.1: Calculate the equivalent circle diameter of the various subsets
+ecd_unrcrx = 0.816 * 2 * grains_unrcrx.equivalentRadius;
+ecd_rcrx = 0.816 * 2 * grains_rcrx.equivalentRadius;
+ecd_def = 0.816 * 2 * grains_def.equivalentRadius;
+ecd_rec = 0.816 * 2 * grains_rec.equivalentRadius;
+ecd_nuc = 0.816 * 2 * grains_nuc.equivalentRadius;
+ecd_grow = 0.816 * 2 * grains_grow.equivalentRadius;
+
+% Display the grain equivalent circle diameters of the various subsets
+disp('====');
+disp('Grain equivalent circle diameters (d_ecd, um) of the subsets:');
+disp('====');
+disp(['Unrecrystallised = ', num2str(mean(ecd_unrcrx)), ' ± ',num2str(std(ecd_unrcrx))]);
+disp(['Recrystallised   = ', num2str(mean(ecd_rcrx)), ' ± ',num2str(std(ecd_rcrx))]);
+disp('----');
+disp(['Deformed         = ', num2str(mean(ecd_def)), ' ± ',num2str(std(ecd_def))]);
+disp(['Recovered        = ', num2str(mean(ecd_rec)), ' ± ',num2str(std(ecd_rec))]);
+disp(['Newly nucleated  = ', num2str(mean(ecd_nuc)), ' ± ',num2str(std(ecd_nuc))]);
+disp(['Growing grains   = ', num2str(mean(ecd_grow)), ' ± ',num2str(std(ecd_grow))]);
+disp('====');
+%%
+
+% Step 5.2: Calculate the aspect ratio of the various subsets
+% aR_unrcrx = aspectRatio(grains_unrcrx); % calculated previously in Step 2
+aR_rcrx = aspectRatio(grains_rcrx);
+aR_def = aspectRatio(grains_def);
+aR_rec = aspectRatio(grains_rec);
+aR_nuc = aspectRatio(grains_nuc);
+aR_grow = aspectRatio(grains_grow);
+
+% Display the grain aspect ratio of the various subsets
+disp('====');
+disp('Grain aspect ratio (λ) of the subsets:');
+disp('====');
+disp(['Unrecrystallised = ', num2str(mean(aR_unrcrx)), ' ± ',num2str(std(aR_unrcrx))]);
+disp(['Recrystallised   = ', num2str(mean(aR_rcrx)), ' ± ',num2str(std(aR_rcrx))]);
+disp('----');
+disp(['Deformed         = ', num2str(mean(aR_def)), ' ± ',num2str(std(aR_def))]);
+disp(['Recovered        = ', num2str(mean(aR_rec)), ' ± ',num2str(std(aR_rec))]);
+disp(['Newly nucleated  = ', num2str(mean(aR_nuc)), ' ± ',num2str(std(aR_nuc))]);
+disp(['Growing grains   = ', num2str(mean(aR_grow)), ' ± ',num2str(std(aR_grow))]);
 disp('====');
 %%
 
 
 
-
-%% STEP 5: Calculate the grain boundary fractions of the various subsets
+%% STEP 6: Calculate the grain boundary fractions of the various subsets
 gB_total = grains.boundary;
 gB_unrcrx = grains_unrcrx.boundary;
 gB_rcrx = grains_rcrx.boundary;
@@ -264,7 +312,7 @@ gB_nuc = grains_nuc.boundary;
 gB_grow = grains_grow.boundary;
 %%
 
-% Step 5.1: Calculate the grain boundary area fractions of the various subsets
+% Step 6.1: Calculate the grain boundary area fractions of the various subsets
 gBFraction_total = sum(gB_total.segLength);
 gBFraction_unrcrx = sum(gB_unrcrx.segLength) / gBFraction_total;
 gBFraction_rcrx = sum(gB_rcrx.segLength) / gBFraction_total;
@@ -277,17 +325,17 @@ gBFraction_grow = sum(gB_grow.segLength) / gBFraction_total;
 disp('====');
 disp('Grain boundary length fractions of the subsets:');
 disp('====');
-disp(['Unrecrystallised = ' num2str(gBFraction_unrcrx)]);
-disp(['Recrystallised   = ' num2str(gBFraction_rcrx)]);
+disp(['Unrecrystallised = ', num2str(gBFraction_unrcrx)]);
+disp(['Recrystallised   = ', num2str(gBFraction_rcrx)]);
 disp('----');
-disp(['Deformed         = ' num2str(gBFraction_def)]);
-disp(['Recovered        = ' num2str(gBFraction_rec)]);
-disp(['Newly nucleated  = ' num2str(gBFraction_nuc)]);
-disp(['Growing grains   = ' num2str(gBFraction_grow)]);
+disp(['Deformed         = ', num2str(gBFraction_def)]);
+disp(['Recovered        = ', num2str(gBFraction_rec)]);
+disp(['Newly nucleated  = ', num2str(gBFraction_nuc)]);
+disp(['Growing grains   = ', num2str(gBFraction_grow)]);
 disp('====');
 %%
 
-% Step 5.2: Calculate the boundary specific interfacial area per unit
+% Step 6.2: Calculate the boundary specific interfacial area per unit
 % volume  of the various subsets
 Sv_unrcrx = (4/pi()) * sum(gB_unrcrx.segLength) / area_total;
 Sv_rcrx = (4/pi()) * sum(gB_rcrx.segLength) / area_total;
@@ -301,17 +349,17 @@ Sv_grow = (4/pi()) * sum(gB_grow.segLength) / area_total;
 disp('====');
 disp('Grain boundary specific interfacial areas per unit volume (Sv, um^-1) of the subsets:');
 disp('====');
-disp(['Unrecrystallised = ' num2str(Sv_unrcrx)]);
-disp(['Recrystallised   = ' num2str(Sv_rcrx)]);
+disp(['Unrecrystallised = ', num2str(Sv_unrcrx)]);
+disp(['Recrystallised   = ', num2str(Sv_rcrx)]);
 disp('----');
-disp(['Deformed         = ' num2str(Sv_def)]);
-disp(['Recovered        = ' num2str(Sv_rec)]);
-disp(['Newly nucleated  = ' num2str(Sv_nuc)]);
-disp(['Growing grains   = ' num2str(Sv_grow)]);
+disp(['Deformed         = ', num2str(Sv_def)]);
+disp(['Recovered        = ', num2str(Sv_rec)]);
+disp(['Newly nucleated  = ', num2str(Sv_nuc)]);
+disp(['Growing grains   = ', num2str(Sv_grow)]);
 disp('====');
 %%
 
-% Step 5.3: Calculate the misorientation distributions of the various subsets
+% Step 6.3: Calculate the misorientation distributions of the various subsets
 [~,binCenters,pdf_total] = calcPDF(gB_total.misorientation.angle./degree,'binWidth',1,'min',0,'max',ceil(fR.maxAngle./degree));
 [~,~,pdf_unrcrx] = calcPDF(gB_unrcrx.misorientation.angle./degree,'binWidth',1,'min',0,'max',ceil(fR.maxAngle./degree));
 [~,~,pdf_rcrx] = calcPDF(gB_rcrx.misorientation.angle./degree,'binWidth',1,'min',0,'max',ceil(fR.maxAngle./degree));
@@ -319,13 +367,58 @@ disp('====');
 [~,~,pdf_rec] = calcPDF(gB_rec.misorientation.angle./degree,'binWidth',1,'min',0,'max',ceil(fR.maxAngle./degree));
 [~,~,pdf_nuc] = calcPDF(gB_nuc.misorientation.angle./degree,'binWidth',1,'min',0,'max',ceil(fR.maxAngle./degree));
 [~,~,pdf_grow] = calcPDF(gB_grow.misorientation.angle./degree,'binWidth',1,'min',0,'max',ceil(fR.maxAngle./degree));
+
+% Calculate the low and high angle boundary fractions of the various subsets
+binCenters_LAGB = binCenters(binCenters < criticalAngle);
+% ----
+pdf_unrcrx_LAGB = pdf_unrcrx(binCenters < criticalAngle);
+pdf_rcrx_LAGB = pdf_rcrx(binCenters < criticalAngle);
+pdf_def_LAGB = pdf_def(binCenters < criticalAngle);
+pdf_rec_LAGB = pdf_rec(binCenters < criticalAngle);
+pdf_nuc_LAGB = pdf_nuc(binCenters < criticalAngle);
+pdf_grow_LAGB = pdf_grow(binCenters < criticalAngle);
+% ----
+LAGBFraction_unrcrx = sum(pdf_unrcrx_LAGB)/sum(pdf_unrcrx);
+LAGBFraction_rcrx = sum(pdf_rcrx_LAGB)/sum(pdf_rcrx);
+LAGBFraction_def = sum(pdf_def_LAGB)/sum(pdf_def);
+LAGBFraction_rec = sum(pdf_rec_LAGB)/sum(pdf_rec);
+LAGBFraction_nuc = sum(pdf_nuc_LAGB)/sum(pdf_nuc);
+LAGBFraction_grow = sum(pdf_grow_LAGB)/sum(pdf_grow);
+% ----
+pdf_unrcrx_HAGB = pdf_unrcrx(binCenters >= criticalAngle);
+pdf_rcrx_HAGB = pdf_rcrx(binCenters >= criticalAngle);
+pdf_def_HAGB = pdf_def(binCenters >= criticalAngle);
+pdf_rec_HAGB = pdf_rec(binCenters >= criticalAngle);
+pdf_nuc_HAGB = pdf_nuc(binCenters >= criticalAngle);
+pdf_grow_HAGB = pdf_grow(binCenters >= criticalAngle);
+% ----
+HAGBFraction_unrcrx = sum(pdf_unrcrx_HAGB)/sum(pdf_unrcrx);
+HAGBFraction_rcrx = sum(pdf_rcrx_HAGB)/sum(pdf_rcrx);
+HAGBFraction_def = sum(pdf_def_HAGB)/sum(pdf_def);
+HAGBFraction_rec = sum(pdf_rec_HAGB)/sum(pdf_rec);
+HAGBFraction_nuc = sum(pdf_nuc_HAGB)/sum(pdf_nuc);
+HAGBFraction_grow = sum(pdf_grow_HAGB)/sum(pdf_grow);
+
+% Display the low and high angle boundary fractions of the various subsets
+disp('====');
+disp('Low and high -angle boundary fractions of the subsets:');
+disp('====');
+disp(['Unrecrystallised = ', num2str(LAGBFraction_unrcrx), ' (LAGB) | ', num2str(HAGBFraction_unrcrx),' (HAGB)']);
+disp(['Recrystallised   = ', num2str(LAGBFraction_rcrx), ' (LAGB) | ', num2str(HAGBFraction_rcrx),' (HAGB)']);
+disp('----');
+disp(['Deformed         = ', num2str(LAGBFraction_def), ' (LAGB) | ', num2str(HAGBFraction_def),' (HAGB)']);
+disp(['Recovered        = ', num2str(LAGBFraction_rec), ' (LAGB) | ', num2str(HAGBFraction_rec),' (HAGB)']);
+disp(['Newly nucleated  = ', num2str(LAGBFraction_nuc), ' (LAGB) | ', num2str(HAGBFraction_nuc),' (HAGB)']);
+disp(['Growing grains   = ', num2str(LAGBFraction_grow), ' (LAGB) | ', num2str(HAGBFraction_grow),' (HAGB)']);
+disp('====');
 %%
 
-% Step 5.4: Calculate the Read-Shockley equation -based boundary stored 
+% Step 6.4: Calculate the Read-Shockley equation -based boundary stored 
 % energy of the various subsets
 storedEnergy = 0.617 .* (binCenters./criticalAngle) .* (1 - log(binCenters./criticalAngle));
 [maxVal,maxIdx] = max(storedEnergy);
 storedEnergy(maxIdx+1:end) = maxVal;
+% ----
 Eb_unrcrx = Sv_unrcrx * sum(storedEnergy.* pdf_unrcrx);
 Eb_rcrx = Sv_rcrx * sum(storedEnergy.* pdf_rcrx);
 Eb_def = Sv_def * sum(storedEnergy.* pdf_def);
@@ -339,18 +432,17 @@ disp('====');
 disp('Boundary stored energy (Eb, Joule.m^-3) of the subsets:');
 disp('(as per the Read-Shockley equation)')
 disp('====');
-disp(['Unrecrystallised = ' num2str(Eb_unrcrx)]);
-disp(['Recrystallised   = ' num2str(Eb_rcrx)]);
+disp(['Unrecrystallised = ', num2str(Eb_unrcrx)]);
+disp(['Recrystallised   = ', num2str(Eb_rcrx)]);
 disp('----');
-disp(['Deformed         = ' num2str(Eb_def)]);
-disp(['Recovered        = ' num2str(Eb_rec)]);
-disp(['Newly nucleated  = ' num2str(Eb_nuc)]);
-disp(['Growing grains   = ' num2str(Eb_grow)]);
+disp(['Deformed         = ', num2str(Eb_def)]);
+disp(['Recovered        = ', num2str(Eb_rec)]);
+disp(['Newly nucleated  = ', num2str(Eb_nuc)]);
+disp(['Growing grains   = ', num2str(Eb_grow)]);
 disp('====');
 %%
 
-
-% Step 5.6: Calculate the sub-boundary mobility of the various subsets
+% Step 6.6: Calculate the sub-boundary mobility of the various subsets
 % Reference: H. Zurob, Y. Bréchet, J. Dunlop, Quantitative criterion for 
 % recrystallization nucleation in single-phase alloys: Prediction of 
 % critical strains and incubation times, Acta Materialia, 54(15), 
@@ -360,19 +452,11 @@ disp('====');
 Mtheta = 1 - exp(-5 .* (binCenters./ criticalAngle).^4);
 
 % Calculate the average low angle misorientation of the various subsets
-binCenters_LAGB = binCenters(binCenters <= criticalAngle);
-
-pdf_unrcrx_LAGB = pdf_unrcrx(binCenters <= criticalAngle);
 avgLAGB_unrcrx = sum((binCenters_LAGB .* pdf_unrcrx_LAGB) ./ sum(pdf_unrcrx_LAGB));
-pdf_rcrx_LAGB = pdf_rcrx(binCenters <= criticalAngle);
 avgLAGB_rcrx = sum((binCenters_LAGB .* pdf_rcrx_LAGB) ./ sum(pdf_rcrx_LAGB));
-pdf_def_LAGB = pdf_def(binCenters <= criticalAngle);
 avgLAGB_def = sum((binCenters_LAGB .* pdf_def_LAGB) ./ sum(pdf_def_LAGB));
-pdf_rec_LAGB = pdf_rec(binCenters <= criticalAngle);
 avgLAGB_rec = sum((binCenters_LAGB .* pdf_rec_LAGB) ./ sum(pdf_rec_LAGB));
-pdf_nuc_LAGB = pdf_nuc(binCenters <= criticalAngle);
 avgLAGB_nuc = sum((binCenters_LAGB .* pdf_nuc_LAGB) ./ sum(pdf_nuc_LAGB));
-pdf_grow_LAGB = pdf_grow(binCenters <= criticalAngle);
 avgLAGB_grow = sum((binCenters_LAGB .* pdf_grow_LAGB) ./ sum(pdf_grow_LAGB));
 
 % Calculate phi(theta) of the various subsets
@@ -395,45 +479,52 @@ mobility_grow = sum(Mtheta .* phiTheta_grow .* pdf_grow);
 disp('====');
 disp('Sub-boundary mobility (um.s^-1) of the subsets:');
 disp('====');
-disp(['Unrecrystallised = ' num2str(mobility_unrcrx)]);
-disp(['Recrystallised   = ' num2str(mobility_rcrx)]);
+disp(['Unrecrystallised = ', num2str(mobility_unrcrx)]);
+disp(['Recrystallised   = ', num2str(mobility_rcrx)]);
 disp('----');
-disp(['Deformed         = ' num2str(mobility_def)]);
-disp(['Recovered        = ' num2str(mobility_rec)]);
-disp(['Newly nucleated  = ' num2str(mobility_nuc)]);
-disp(['Growing grains   = ' num2str(mobility_grow)]);
+disp(['Deformed         = ', num2str(mobility_def)]);
+disp(['Recovered        = ', num2str(mobility_rec)]);
+disp(['Newly nucleated  = ', num2str(mobility_nuc)]);
+disp(['Growing grains   = ', num2str(mobility_grow)]);
 disp('====');
 %%
 
 
 
 
-%% STEP 6: Calculate the grain boundary fractions between the various subsets
+%% STEP 7: Calculate the grain boundary fractions between the various subsets
 % Grain boundaries shared between unrecrystallised and recrystallised subsets
 [gBIdx,~] = ismember(gB_unrcrx.grainId,gB_rcrx.grainId,'rows');
 gB_unrcrx_rcrx = gB_unrcrx(gBIdx);
+% ----
 % Grain boundaries shared between deformed and recovered subsets
 [gBIdx,~] = ismember(gB_def.grainId,gB_rec.grainId,'rows');
 gB_def_rec = gB_def(gBIdx);
+% ----
 % Grain boundaries shared between deformed and newly nucleated subsets
 [gBIdx,~] = ismember(gB_def.grainId,gB_nuc.grainId,'rows');
 gB_def_nuc = gB_def(gBIdx);
+% ----
 % Grain boundaries shared between deformed and growing grain subsets
 [gBIdx,~] = ismember(gB_def.grainId,gB_grow.grainId,'rows');
 gB_def_grow = gB_def(gBIdx);
+% ----
 % Grain boundaries shared between recovered and newly nucleated subsets
 [gBIdx,~] = ismember(gB_rec.grainId,gB_nuc.grainId,'rows');
 gB_rec_nuc = gB_rec(gBIdx);
+% ----
 % Grain boundaries shared between recovered and growing grain subsets
 [gBIdx,~] = ismember(gB_rec.grainId,gB_grow.grainId,'rows');
 gB_rec_grow = gB_rec(gBIdx);
+% ----
 % Grain boundaries shared between newly nucleated and growing grain subsets
 [gBIdx,~] = ismember(gB_nuc.grainId,gB_grow.grainId,'rows');
 gB_nuc_grow = gB_nuc(gBIdx);
 %%
 
-% Step 6.1: Calculate the grain boundary area fractions between the various subsets
+% Step 7.1: Calculate the grain boundary area fractions between the various subsets
 gBFraction_total = sum(gB_total.segLength);
+% ----
 gBFraction_unrcrx_rcrx = sum(gB_unrcrx_rcrx.segLength) / gBFraction_total;
 gBFraction_def_rec = sum(gB_def_rec.segLength) / gBFraction_total;
 gBFraction_def_nuc = sum(gB_def_nuc.segLength) / gBFraction_total;
@@ -446,20 +537,20 @@ gBFraction_nuc_grow = sum(gB_nuc_grow.segLength) / gBFraction_total;
 disp('====');
 disp('Grain boundary length fractions between the subsets:');
 disp('====');
-disp(['Unrecrystallised-recrystallised = ' num2str(gBFraction_unrcrx_rcrx)]);
+disp(['Unrecrystallised-recrystallised = ', num2str(gBFraction_unrcrx_rcrx)]);
 disp('----');
-disp(['Deformed-recovered              = ' num2str(gBFraction_def_rec)]);
-disp(['Deformed-newly nucleated        = ' num2str(gBFraction_def_nuc)]);
-disp(['Deformed-growing grains         = ' num2str(gBFraction_def_grow)]);
+disp(['Deformed-recovered              = ', num2str(gBFraction_def_rec)]);
+disp(['Deformed-newly nucleated        = ', num2str(gBFraction_def_nuc)]);
+disp(['Deformed-growing grains         = ', num2str(gBFraction_def_grow)]);
 disp('----');
-disp(['Recovered-newly nucleated       = ' num2str(gBFraction_rec_nuc)]);
-disp(['Recovered-growing grains        = ' num2str(gBFraction_rec_grow)]);
+disp(['Recovered-newly nucleated       = ', num2str(gBFraction_rec_nuc)]);
+disp(['Recovered-growing grains        = ', num2str(gBFraction_rec_grow)]);
 disp('----');
-disp(['Newly nucleated-growing grains  = ' num2str(gBFraction_nuc_grow)]);
+disp(['Newly nucleated-growing grains  = ', num2str(gBFraction_nuc_grow)]);
 disp('====');
 %%
 
-% Step 6.2: Calculate the boundary specific interfacial area per unit
+% Step 7.2: Calculate the boundary specific interfacial area per unit
 % volume between the various subsets
 Sv_unrcrx_rcrx = (4/pi()) * sum(gB_unrcrx_rcrx.segLength) / area_total;
 Sv_def_rec = (4/pi()) * sum(gB_def_rec.segLength) / area_total;
@@ -468,24 +559,25 @@ Sv_def_grow = (4/pi()) * sum(gB_def_grow.segLength) / area_total;
 Sv_rec_nuc = (4/pi()) * sum(gB_rec_nuc.segLength) / area_total;
 Sv_rec_grow = (4/pi()) * sum(gB_rec_grow.segLength) / area_total;
 Sv_nuc_grow = (4/pi()) * sum(gB_nuc_grow.segLength) / area_total;
+
 % Display the boundary specific interfacial areas per unit volume
 disp('====');
 disp('Grain boundary specific interfacial areas per unit volume (Sv, um^-1) between the subsets:');
 disp('====');
-disp(['Unrecrystallised-recrystallised = ' num2str(Sv_unrcrx_rcrx)]);
+disp(['Unrecrystallised-recrystallised = ', num2str(Sv_unrcrx_rcrx)]);
 disp('----');
-disp(['Deformed-recovered              = ' num2str(Sv_def_rec)]);
-disp(['Deformed-newly nucleated        = ' num2str(Sv_def_nuc)]);
-disp(['Deformed-growing grains         = ' num2str(Sv_def_grow)]);
+disp(['Deformed-recovered              = ', num2str(Sv_def_rec)]);
+disp(['Deformed-newly nucleated        = ', num2str(Sv_def_nuc)]);
+disp(['Deformed-growing grains         = ', num2str(Sv_def_grow)]);
 disp('----');
-disp(['Recovered-newly nucleated       = ' num2str(Sv_rec_nuc)]);
-disp(['Recovered-growing grains        = ' num2str(Sv_rec_grow)]);
+disp(['Recovered-newly nucleated       = ', num2str(Sv_rec_nuc)]);
+disp(['Recovered-growing grains        = ', num2str(Sv_rec_grow)]);
 disp('----');
-disp(['Newly nucleated-growing grains  = ' num2str(Sv_nuc_grow)]);
+disp(['Newly nucleated-growing grains  = ', num2str(Sv_nuc_grow)]);
 disp('====');
 %%
 
-% Step 6.3: Calculate the misorientation distributions between the various subsets
+% Step 7.3: Calculate the misorientation distributions between the various subsets
 [~,~,pdf_unrcrx_rcrx] = calcPDF(gB_unrcrx_rcrx.misorientation.angle./degree,'binWidth',1,'min',0,'max',ceil(fR.maxAngle./degree));
 [~,~,pdf_def_rec] = calcPDF(gB_def_rec.misorientation.angle./degree,'binWidth',1,'min',0,'max',ceil(fR.maxAngle./degree));
 [~,~,pdf_def_nuc] = calcPDF(gB_def_nuc.misorientation.angle./degree,'binWidth',1,'min',0,'max',ceil(fR.maxAngle./degree));
@@ -495,11 +587,12 @@ disp('====');
 [~,~,pdf_nuc_grow] = calcPDF(gB_nuc_grow.misorientation.angle./degree,'binWidth',1,'min',0,'max',ceil(fR.maxAngle./degree));
 %%
 
-% Step 6.4: Calculate the Read-Shockley equation -based boundary stored 
+% Step 7.4: Calculate the Read-Shockley equation -based boundary stored 
 % energy between the various subsets
 storedEnergy = 0.617 .* (binCenters./criticalAngle) .* (1 - log(binCenters./criticalAngle));
 [maxVal,maxIdx] = max(storedEnergy);
 storedEnergy(maxIdx+1:end) = maxVal;
+% ----
 Eb_unrcrx_rcrx = Sv_unrcrx_rcrx * sum(storedEnergy.* pdf_unrcrx_rcrx);
 Eb_def_rec = Sv_def_rec * sum(storedEnergy.* pdf_def_rec);
 Eb_def_nuc = Sv_def_nuc * sum(storedEnergy.* pdf_def_nuc);
@@ -514,24 +607,25 @@ disp('====');
 disp('Boundary stored energy (Eb, Joule.m^-3) between the subsets:');
 disp('(as per the Read-Shockley equation)')
 disp('====');
-disp(['Unrecrystallised-recrystallised = ' num2str(Eb_unrcrx_rcrx)]);
+disp(['Unrecrystallised-recrystallised = ', num2str(Eb_unrcrx_rcrx)]);
 disp('----');
-disp(['Deformed-recovered              = ' num2str(Eb_def_rec)]);
-disp(['Deformed-newly nucleated        = ' num2str(Eb_def_nuc)]);
-disp(['Deformed-growing grains         = ' num2str(Eb_def_grow)]);
+disp(['Deformed-recovered              = ', num2str(Eb_def_rec)]);
+disp(['Deformed-newly nucleated        = ', num2str(Eb_def_nuc)]);
+disp(['Deformed-growing grains         = ', num2str(Eb_def_grow)]);
 disp('----');
-disp(['Recovered-newly nucleated       = ' num2str(Eb_rec_nuc)]);
-disp(['Recovered-growing grains        = ' num2str(Eb_rec_grow)]);
+disp(['Recovered-newly nucleated       = ', num2str(Eb_rec_nuc)]);
+disp(['Recovered-growing grains        = ', num2str(Eb_rec_grow)]);
 disp('----');
-disp(['Newly nucleated-growing grains  = ' num2str(Eb_nuc_grow)]);
+disp(['Newly nucleated-growing grains  = ', num2str(Eb_nuc_grow)]);
 disp('====');
 %%
 
 
 
 
-%% STEP 7: Calculate the orientation distribution functions of the various subsets
+%% STEP 8: Calculate the orientation distribution functions of the various subsets
 setInterp2Latex;
+
 % Calculate the optimal kernel sizes
 psi_def = calcKernel(ebsd_def.orientations,'method','ruleOfThumb');
 psi_rec = calcKernel(ebsd_rec.orientations,'method','ruleOfThumb');
@@ -549,14 +643,16 @@ figH = plotHODF(odf_def,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*de
 set(figH,'Name','ODFs of the deformed fraction','NumberTitle','on');
 figH = plotHODF(odf_rec,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'stepSize',5,'colormap',flipud(gray));
 set(figH,'Name','ODFs of the recovered fraction','NumberTitle','on');
-figH = plotHODF(odf_nuc,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'stepSize',5,'colormap',parula);
+figH = plotHODF(odf_nuc,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'stepSize',5,'colormap',viridis);
 set(figH,'Name','ODFs of the newly nucleated fraction','NumberTitle','on');
 figH = plotHODF(odf_grow,specimenSymmetry('orthorhombic'),'sections',[0 45 90]*degree,'stepSize',5,'colormap',jet);
 set(figH,'Name','ODFs of the growing grains fraction','NumberTitle','on');
 %%
 
 
-%% STEP 8: Calculate the pole figures of the various subsets
+
+
+%% STEP 9: Calculate the pole figures of the various subsets
 % Plot the pole figures
 setMTEXpref('xAxisDirection','north');
 hpf = {Miller(1,1,0,CS),Miller(2,0,0,CS), Miller(2,1,1,CS)};
@@ -564,9 +660,11 @@ figH = plotHPF(odf_def,'poleFigures',hpf,specimenSymmetry('triclinic'),'stepSize
 set(figH,'Name','PFs of the deformed fraction','NumberTitle','on');
 figH = plotHPF(odf_rec,'poleFigures',hpf,specimenSymmetry('triclinic'),'stepSize',1,'colormap',flipud(gray));
 set(figH,'Name','PFs of the recovered fraction','NumberTitle','on');
-figH = plotHPF(odf_nuc,'poleFigures',hpf,specimenSymmetry('triclinic'),'stepSize',1,'colormap',parula);
+figH = plotHPF(odf_nuc,'poleFigures',hpf,specimenSymmetry('triclinic'),'stepSize',1,'colormap',viridis);
 set(figH,'Name','PFs of the newly nucleated fraction','NumberTitle','on');
 figH = plotHPF(odf_grow,'poleFigures',hpf,specimenSymmetry('triclinic'),'stepSize',1,'colormap',jet);
 set(figH,'Name','PFs of the growing grains fraction','NumberTitle','on');
 setMTEXpref('xAxisDirection','east');
+
 setInterp2Tex;
+%%
