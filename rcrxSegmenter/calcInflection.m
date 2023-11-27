@@ -61,7 +61,8 @@ dist = abs((line(1).* binCenters) + (-1.* cdf) + line(2))/...
 
 % Define the output
 out.x = binCenters;
-out.y = cdf;
+out.pdf = pdf;
+out.cdf = cdf;
 out.id = id;
 
 if ~flagSilent
