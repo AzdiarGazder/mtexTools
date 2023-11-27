@@ -68,7 +68,7 @@ switch plotType
 
         % Calculate the fitted Gaussian data
         pdfFit = fitResult(binCenters);
-        scaleFactor = (max(pdf)/max(pdfFit)) % scale to data
+        scaleFactor = (max(pdf)/max(pdfFit)); % scale to data
         pdfFit = pdfFit.* scaleFactor;
         pdfFit = pdfFit';
 
