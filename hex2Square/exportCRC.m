@@ -69,12 +69,33 @@ end
 headerNames = fieldnames(cprStruct);
 
 
-%% Replace NaNs after changing from hexagonal to square grid types
+%% In case of the ANG file format, pre-rotate the ebsd data
+if ~flagOIFormat && ~flagCPRInfo
+    rot = rotation.byAxisAngle(zvector,90*degree); % counterclockwise
+    ebsd = rotate(ebsd,rot,'keepEuler');
+    rot = rotation.byAxisAngle(xvector,180*degree);
+    ebsd = rotate(ebsd,rot,'keepXY');
+end
+
+
+%% Change reference frame
+if check_option(varargin,'convertSpatial2EulerReferenceFrame')
+    ebsd = rotate(ebsd,rotation.byAxisAngle(xvector,180*degree),'keepEuler');
+elseif check_option(varargin,'convertEuler2SpatialReferenceFrame')
+    ebsd = rotate(ebsd,rotation.byAxisAngle(xvector,180*degree),'keepXY');
+elseif ~check_option(varargin,'convertSpatial2EulerReferenceFrame') && ~check_option(varargin,'convertEuler2SpatialReferenceFrame')
+    warning(['.crc and .cpr files usually have inconsistent conventions for spatial ' ...
+        'coordinates and Euler angles. You may want to use one of the options ' ...
+        '''convertSpatial2EulerReferenceFrame'' or ''convertEuler2SpatialReferenceFrame'' to correct for this.']);
+end
+
+
+%% Replace NaNs (especially after changing from hexagonal to square grid types)
 % After applying the gridify command, grid points in the regular grid that
 % do not have a correspondence in the regular grid are set to NaN.
 % However, this causes an issue with OI Channel-5 as the software does not
 % work with NaNs in the map data.
-% METHOD 1: Interpolte NaNs (default OI method)
+% METHOD 1: Interpolate NaNs (default OI method)
 % ebsd.prop.phi1 = interpolateNaNs(ebsd.rotations.phi1);
 % ebsd.prop.Phi = interpolateNaNs(ebsd.rotations.Phi);
 % ebsd.prop.phi2 = interpolateNaNs(ebsd.rotations.phi2);
@@ -109,27 +130,6 @@ if isfield(ebsd.prop,'confidenceindex')
     ebsd.prop.confidenceindex(isnan(ebsd.prop.confidenceindex)) = 0;
 end
 %%
-
-
-%% In case of the ANG file format, pre-rotate the ebsd data
-if ~flagOIFormat && ~flagCPRInfo
-    rot = rotation.byAxisAngle(zvector,90*degree); % counterclockwise
-    ebsd = rotate(ebsd,rot,'keepEuler');
-    rot = rotation.byAxisAngle(xvector,180*degree);
-    ebsd = rotate(ebsd,rot,'keepXY');
-end
-
-
-%% Change reference frame
-if check_option(varargin,'convertSpatial2EulerReferenceFrame')
-    ebsd = rotate(ebsd,rotation.byAxisAngle(xvector,180*degree),'keepEuler');
-elseif check_option(varargin,'convertEuler2SpatialReferenceFrame')
-    ebsd = rotate(ebsd,rotation.byAxisAngle(xvector,180*degree),'keepXY');
-elseif ~check_option(varargin,'convertSpatial2EulerReferenceFrame') && ~check_option(varargin,'convertEuler2SpatialReferenceFrame')
-    warning(['.crc and .cpr files usually have inconsistent conventions for spatial ' ...
-        'coordinates and Euler angles. You may want to use one of the options ' ...
-        '''convertSpatial2EulerReferenceFrame'' or ''convertEuler2SpatialReferenceFrame'' to correct for this.']);
-end
 
 
 %% Process *.crc data

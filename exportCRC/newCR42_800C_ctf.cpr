@@ -76,7 +76,7 @@ SpaceGroup=230
 ID1=
 ID2=
 NumberOfReflectors=
-Color=235
+Color=4
 
 [Phase2]
 StructureName=bcc
@@ -93,7 +93,7 @@ SpaceGroup=230
 ID1=
 ID2=
 NumberOfReflectors=
-Color=154
+Color=21
 
 [Phase3]
 StructureName=hcp
@@ -110,7 +110,7 @@ SpaceGroup=194
 ID1=
 ID2=
 NumberOfReflectors=
-Color=179
+Color=249
 
 [Settings]
 Thumbnail=

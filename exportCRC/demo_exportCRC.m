@@ -43,7 +43,7 @@ ebsd = EBSD.load('CR42_800C.ctf','interface','ctf',...
 % pfName = [pwd,'\newCR42_800C_cprcrc.crc'];
 pfName = [pwd,'\newCR42_800C_ctf.crc'];
 
-exportCRC(ebsd,pfName);
-% exportCRC(ebsd,pfName,'convertEuler2SpatialReferenceFrame');
+% exportCRC(ebsd,pfName);
+exportCRC(ebsd,pfName,'convertEuler2SpatialReferenceFrame');
 % exportCRC(ebsd,pfName,'convertSpatial2EulerReferenceFrame');
 %%
