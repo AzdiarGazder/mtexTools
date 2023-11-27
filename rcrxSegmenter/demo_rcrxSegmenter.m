@@ -187,15 +187,15 @@ set(figH,'Name','Recovered ebsd fraction','NumberTitle','on');
 % Define a variable for the grain size
 grainSize_rcrx = grains_rcrx.grainSize;
 
-% Calculate the grain size threshold of the d(CDF) using 3-sigma confidence
+% Calculate the grain size threshold of the PDF using 3-sigma confidence
 % levels
-out3 = calcThreshold(grainSize_rcrx,'dcdf','sigma',3);
+out3 = calcThreshold(grainSize_rcrx,'pdf','sigma',3);
 
-% Define a logical array using the inflection point as the critical
+% Define a logical array using the threshold value as the critical
 % conditionality for segmentation
 lA3 = grainSize_rcrx >= out3.x(out3.id);
 
-% Segment the newly nucleated and growing grain subsets
+% Segment the small (newly nucleated) and large (growing grains) subsets
 grains_nuc = grains_rcrx(~lA3);
 grains_grow = grains_rcrx(lA3);
 
@@ -378,12 +378,12 @@ pdf_rec_LAGB = pdf_rec(binCenters < criticalAngle);
 pdf_nuc_LAGB = pdf_nuc(binCenters < criticalAngle);
 pdf_grow_LAGB = pdf_grow(binCenters < criticalAngle);
 % ----
-LAGBFraction_unrcrx = sum(pdf_unrcrx_LAGB)/sum(pdf_unrcrx);
-LAGBFraction_rcrx = sum(pdf_rcrx_LAGB)/sum(pdf_rcrx);
-LAGBFraction_def = sum(pdf_def_LAGB)/sum(pdf_def);
-LAGBFraction_rec = sum(pdf_rec_LAGB)/sum(pdf_rec);
-LAGBFraction_nuc = sum(pdf_nuc_LAGB)/sum(pdf_nuc);
-LAGBFraction_grow = sum(pdf_grow_LAGB)/sum(pdf_grow);
+LAGBFraction_unrcrx = sum(pdf_unrcrx_LAGB) / sum(pdf_unrcrx);
+LAGBFraction_rcrx = sum(pdf_rcrx_LAGB) / sum(pdf_rcrx);
+LAGBFraction_def = sum(pdf_def_LAGB) / sum(pdf_def);
+LAGBFraction_rec = sum(pdf_rec_LAGB) / sum(pdf_rec);
+LAGBFraction_nuc = sum(pdf_nuc_LAGB) / sum(pdf_nuc);
+LAGBFraction_grow = sum(pdf_grow_LAGB) / sum(pdf_grow);
 % ----
 pdf_unrcrx_HAGB = pdf_unrcrx(binCenters >= criticalAngle);
 pdf_rcrx_HAGB = pdf_rcrx(binCenters >= criticalAngle);
@@ -392,12 +392,12 @@ pdf_rec_HAGB = pdf_rec(binCenters >= criticalAngle);
 pdf_nuc_HAGB = pdf_nuc(binCenters >= criticalAngle);
 pdf_grow_HAGB = pdf_grow(binCenters >= criticalAngle);
 % ----
-HAGBFraction_unrcrx = sum(pdf_unrcrx_HAGB)/sum(pdf_unrcrx);
-HAGBFraction_rcrx = sum(pdf_rcrx_HAGB)/sum(pdf_rcrx);
-HAGBFraction_def = sum(pdf_def_HAGB)/sum(pdf_def);
-HAGBFraction_rec = sum(pdf_rec_HAGB)/sum(pdf_rec);
-HAGBFraction_nuc = sum(pdf_nuc_HAGB)/sum(pdf_nuc);
-HAGBFraction_grow = sum(pdf_grow_HAGB)/sum(pdf_grow);
+HAGBFraction_unrcrx = sum(pdf_unrcrx_HAGB) / sum(pdf_unrcrx);
+HAGBFraction_rcrx = sum(pdf_rcrx_HAGB) / sum(pdf_rcrx);
+HAGBFraction_def = sum(pdf_def_HAGB) / sum(pdf_def);
+HAGBFraction_rec = sum(pdf_rec_HAGB) / sum(pdf_rec);
+HAGBFraction_nuc = sum(pdf_nuc_HAGB) / sum(pdf_nuc);
+HAGBFraction_grow = sum(pdf_grow_HAGB) / sum(pdf_grow);
 
 % Display the low and high angle boundary fractions of the various subsets
 disp('====');
@@ -429,7 +429,7 @@ Eb_grow = Sv_grow * sum(storedEnergy.* pdf_grow);
 % Display the boundary stored energy as per the Read-Shockley equation of
 % the various subsets
 disp('====');
-disp('Boundary stored energy (Eb, Joule.m^-3) of the subsets:');
+disp('Boundary stored energy (Eb, J.m^-3) of the subsets:');
 disp('(as per the Read-Shockley equation)')
 disp('====');
 disp(['Unrecrystallised = ', num2str(Eb_unrcrx)]);
@@ -604,7 +604,7 @@ Eb_nuc_grow = Sv_nuc_grow * sum(storedEnergy.* pdf_nuc_grow);
 % Display the boundary stored energy as per the Read-Shockley equation
 % between the various subsets
 disp('====');
-disp('Boundary stored energy (Eb, Joule.m^-3) between the subsets:');
+disp('Boundary stored energy (Eb, J.m^-3) between the subsets:');
 disp('(as per the Read-Shockley equation)')
 disp('====');
 disp(['Unrecrystallised-recrystallised = ', num2str(Eb_unrcrx_rcrx)]);

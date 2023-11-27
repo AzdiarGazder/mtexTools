@@ -1,16 +1,17 @@
 function threshold = calcThreshold(inData,varargin)
 %% Function description:
 % This function calculates a threshold based on:
-% (1) the cumulative distribution function (CDF) of a given dataset, OR
-% (2) the differential of the CDF of a given dataset.
-% In both cases, the bin widths of the CDF are calculated using either
-% Scott's, Freedman-Diaconis', or the square root rules, or by specifying
-% a value.
-% In Case (1), the threshold is determined by a specified number of
+% (1) the probability distribution function (PDF) of a given dataset, OR
+% (2) the cumulative distribution function (CDF) of a given dataset, OR
+% (3) the differential of the CDF of a given dataset.
+% In all cases, the bin widths of the distribution functions are calculated 
+% using either Scott's, Freedman-Diaconis', or the square root rules, or 
+% by specifying a value.
+% In Cases (1 & 3), the threshold is determined by fitting a Gaussian to 
+% the PDF or differential CDF data and finding the specified number of 
+% standard deviations from the mid-point of the fitted Gaussian.
+% In Case (2), the threshold is determined by a specified number of
 % standard deviations from the mean of the data.
-% In Case (2), the threshold is determined by fitting a Gaussian to the
-% differential data and finding the specified number of standard deviations
-% from the mid-point of the fitted Gaussian.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
@@ -39,10 +40,10 @@ function threshold = calcThreshold(inData,varargin)
 
 
 % Specify if the CDF or dCDF requires thresholding
-plotType = char(extract_option(varargin,{'cdf','dcdf'}));
+plotType = char(extract_option(varargin,{'pdf','cdf','dcdf'}));
 if isempty(plotType)
-    plotType = 'cdf';
-    warning('Plot types ''cdf'' or ''dcdf'' not specified. Default ''cdf'' will be used.');
+    plotType = 'pdf';
+    warning('Plot types ''pdf'', ''cdf'' or ''dcdf'' not specified. Default ''cdf'' will be used.');
 end
 
 % Specify the user-defined sigma value to threshold
@@ -60,6 +61,60 @@ flagSilent = check_option(varargin,'silent');
 cdf = cumsum(pdf * binWidth);
 
 switch plotType
+        case 'pdf'
+        % Fit a Gaussian to the pdf data
+        options = fitoptions('gauss3');
+        fitResult = fit(binCenters', pdf', 'gauss3',options);
+
+        % Calculate the fitted Gaussian data
+        pdfFit = fitResult(binCenters);
+        scaleFactor = (max(pdf)/max(pdfFit)) % scale to data
+        pdfFit = pdfFit.* scaleFactor;
+        pdfFit = pdfFit';
+
+        % Get the mid-point and sigma values
+        midPoint = fitResult.b1 * scaleFactor;
+        sigma = (fitResult.c1 / sqrt(2)) * scaleFactor; % standard deviation
+
+        % Calculate the lower and upper bounds of the Gaussian based on the threshold sigma
+        lowerBound = (midPoint - (thresholdSigma * sigma)) / scaleFactor;
+        % Since the data does have negative numbers, min(lowerBound) = 0
+        if lowerBound < 0
+            lowerBound = 0;
+        end
+        upperBound = (midPoint + (thresholdSigma * sigma)) / scaleFactor;
+
+        % Calculate the threshold
+        [~, idxX] = min(abs(binCenters - upperBound));
+        threshold.x = binCenters;
+        threshold.pdf = pdf;
+        threshold.cdf = cdf;
+        threshold.id = idxX;
+
+        % Display the results
+        disp('----');
+        disp(['Mid-point: ' num2str(midPoint)]);
+        disp(['Standard deviation (sigma): ' num2str(sigma)]);
+        disp('----');
+
+        if ~flagSilent
+            % Plot the pdf
+            figure;
+            subplot(2, 1, 1);
+            bar(binCenters, pdf, 'hist');
+            hold all;
+            plot(binCenters,pdfFit, 'Color', 'g', 'LineWidth', 3, 'LineStyle', '-');
+            % Highlight threshold sigma bounds on the pdf plot
+            fill([lowerBound, upperBound, upperBound, lowerBound], [0, 0, max(pdf), max(pdf)], 'r', 'FaceAlpha', 0.1667);
+            line([lowerBound, lowerBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
+            line([upperBound, upperBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
+            legend('PDF', 'Gaussian fit', [num2str(thresholdSigma),'-sigma bounds']);
+            % title('Probability distribution function (PDF)');
+            xlim([0 max(binCenters)]);
+            ylim([0 max([pdf,pdfFit])]);
+            hold off;
+        end
+    
     case 'cdf'
         % Calculate mu and sigma
         mu = mean(inData);
@@ -81,7 +136,8 @@ switch plotType
         % Calculate the threshold
         [~, idxX] = min(abs(binCenters - upperBound));
         threshold.x = binCenters;
-        threshold.y = cdf;
+        threshold.pdf = pdf;
+        threshold.cdf = cdf;
         threshold.id = idxX;
 
         % Display the results
@@ -117,27 +173,32 @@ switch plotType
         dydx = [0, dydx];
 
         % Fit a Gaussian to the differential data
-        fitResult = fit(binCenters', dydx', 'gauss1');
-        % Get the mid-point and sigma values
-        midPoint = fitResult.b1;
-        sigma = fitResult.c1 / sqrt(2); % standard deviation
+        options = fitoptions('gauss3');
+        fitResult = fit(binCenters', dydx', 'gauss3',options);
 
         % Calculate the fitted Gaussian data
         dydxFit = fitResult(binCenters);
+        scaleFactor = (max(dydx)/max(dydxFit)); % scale to data
+        dydxFit = dydxFit.* scaleFactor;
         dydxFit = dydxFit';
 
+        % Get the mid-point and sigma values
+        midPoint = fitResult.b1 * scaleFactor;
+        sigma = (fitResult.c1 / sqrt(2)) * scaleFactor; % standard deviation
+
         % Calculate the lower and upper bounds of the Gaussian based on the threshold sigma
-        lowerBound = midPoint - (thresholdSigma * sigma);
+        lowerBound = (midPoint - (thresholdSigma * sigma)) / scaleFactor;
         % Since the data does have negative numbers, min(lowerBound) = 0
         if lowerBound < 0
             lowerBound = 0;
         end
-        upperBound = midPoint + (thresholdSigma * sigma);
+        upperBound = (midPoint + (thresholdSigma * sigma)) / scaleFactor;
 
         % Calculate the threshold
         [~, idxX] = min(abs(binCenters - upperBound));
         threshold.x = binCenters;
-        threshold.y = cdf;
+        threshold.pdf = pdf;
+        threshold.cdf = cdf;
         threshold.id = idxX;
 
         % Display the results
@@ -159,7 +220,7 @@ switch plotType
             line([upperBound, upperBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
             legend('d(CDF)/d(binCenters)', 'Gaussian fit', [num2str(thresholdSigma),'-sigma bounds']);
             % title('Differential function (dCDF)');
-            xlim([0 max(binCenters)]);
+            xlim([0 max(binCenters)+0.05]);
             ylim([0 max([dydx,dydxFit])]);
             hold off;
         end
@@ -176,7 +237,7 @@ if ~flagSilent
     line([lowerBound, lowerBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
     line([upperBound, upperBound], ylim, 'Color', 'k', 'LineWidth', 3, 'LineStyle', '--');
     % Plot the threshold point
-    scatter(threshold.x(idxX), threshold.y(idxX),...
+    scatter(threshold.x(idxX), threshold.cdf(idxX),...
         75, 'g', 'filled', 'DisplayName', 'thresholdSigma');
     legend('CDF', [num2str(thresholdSigma),'-sigma bounds']);
     % title('Cumulative distribution function (CDF)');
