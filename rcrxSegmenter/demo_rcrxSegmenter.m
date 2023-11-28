@@ -257,12 +257,12 @@ disp('====');
 
 %% STEP 5: Calculate the grain statistics
 % Step 5.1: Calculate the equivalent circle diameter of the various subsets
-ecd_unrcrx = 0.816 * 2 * grains_unrcrx.equivalentRadius;
-ecd_rcrx = 0.816 * 2 * grains_rcrx.equivalentRadius;
-ecd_def = 0.816 * 2 * grains_def.equivalentRadius;
-ecd_rec = 0.816 * 2 * grains_rec.equivalentRadius;
-ecd_nuc = 0.816 * 2 * grains_nuc.equivalentRadius;
-ecd_grow = 0.816 * 2 * grains_grow.equivalentRadius;
+ecd_unrcrx = 0.816.* 2.* grains_unrcrx.equivalentRadius;
+ecd_rcrx = 0.816.* 2.* grains_rcrx.equivalentRadius;
+ecd_def = 0.816.* 2.* grains_def.equivalentRadius;
+ecd_rec = 0.816.* 2.* grains_rec.equivalentRadius;
+ecd_nuc = 0.816.* 2.* grains_nuc.equivalentRadius;
+ecd_grow = 0.816.* 2.* grains_grow.equivalentRadius;
 
 % Display the grain equivalent circle diameters of the various subsets
 disp('====');
@@ -415,7 +415,7 @@ disp('====');
 
 % Step 6.4: Calculate the Read-Shockley equation -based boundary stored 
 % energy of the various subsets
-storedEnergy = 0.617 .* (binCenters./criticalAngle) .* (1 - log(binCenters./criticalAngle));
+storedEnergy = 0.617.* (binCenters./criticalAngle).* (1 - log(binCenters./criticalAngle));
 [maxVal,maxIdx] = max(storedEnergy);
 storedEnergy(maxIdx+1:end) = maxVal;
 % ----
@@ -429,7 +429,7 @@ Eb_grow = Sv_grow * sum(storedEnergy.* pdf_grow);
 % Display the boundary stored energy as per the Read-Shockley equation of
 % the various subsets
 disp('====');
-disp('Boundary stored energy (Eb, J.m^-3) of the subsets:');
+disp('Estimated boundary stored energy (Eb, J.m^-3) of the subsets:');
 disp('(as per the Read-Shockley equation)')
 disp('====');
 disp(['Unrecrystallised = ', num2str(Eb_unrcrx)]);
@@ -449,35 +449,35 @@ disp('====');
 % p. 3983-3990, 2006.
 
 % Calculate M(theta)
-Mtheta = 1 - exp(-5 .* (binCenters./ criticalAngle).^4);
+Mtheta = 1 - exp(-5.* (binCenters./ criticalAngle).^4);
 
 % Calculate the average low angle misorientation of the various subsets
-avgLAGB_unrcrx = sum((binCenters_LAGB .* pdf_unrcrx_LAGB) ./ sum(pdf_unrcrx_LAGB));
-avgLAGB_rcrx = sum((binCenters_LAGB .* pdf_rcrx_LAGB) ./ sum(pdf_rcrx_LAGB));
-avgLAGB_def = sum((binCenters_LAGB .* pdf_def_LAGB) ./ sum(pdf_def_LAGB));
-avgLAGB_rec = sum((binCenters_LAGB .* pdf_rec_LAGB) ./ sum(pdf_rec_LAGB));
-avgLAGB_nuc = sum((binCenters_LAGB .* pdf_nuc_LAGB) ./ sum(pdf_nuc_LAGB));
-avgLAGB_grow = sum((binCenters_LAGB .* pdf_grow_LAGB) ./ sum(pdf_grow_LAGB));
+avgLAGB_unrcrx = sum((binCenters_LAGB.* pdf_unrcrx_LAGB) ./ sum(pdf_unrcrx_LAGB));
+avgLAGB_rcrx = sum((binCenters_LAGB.* pdf_rcrx_LAGB) ./ sum(pdf_rcrx_LAGB));
+avgLAGB_def = sum((binCenters_LAGB.* pdf_def_LAGB) ./ sum(pdf_def_LAGB));
+avgLAGB_rec = sum((binCenters_LAGB.* pdf_rec_LAGB) ./ sum(pdf_rec_LAGB));
+avgLAGB_nuc = sum((binCenters_LAGB.* pdf_nuc_LAGB) ./ sum(pdf_nuc_LAGB));
+avgLAGB_grow = sum((binCenters_LAGB.* pdf_grow_LAGB) ./ sum(pdf_grow_LAGB));
 
 % Calculate phi(theta) of the various subsets
-phiTheta_unrcrx = (pi()/2) .* (binCenters./ avgLAGB_unrcrx) .* exp(-(pi()/4)*(binCenters./ avgLAGB_unrcrx).^2);
-phiTheta_rcrx = (pi()/2) .* (binCenters./ avgLAGB_rcrx) .* exp(-(pi()/4)*(binCenters./ avgLAGB_rcrx).^2);
-phiTheta_def = (pi()/2) .* (binCenters./ avgLAGB_def) .* exp(-(pi()/4)*(binCenters./ avgLAGB_def).^2);
-phiTheta_rec = (pi()/2) .* (binCenters./ avgLAGB_rec) .* exp(-(pi()/4)*(binCenters./ avgLAGB_rec).^2);
-phiTheta_nuc = (pi()/2) .* (binCenters./ avgLAGB_nuc) .* exp(-(pi()/4)*(binCenters./ avgLAGB_nuc).^2);
-phiTheta_grow = (pi()/2) .* (binCenters./ avgLAGB_grow) .* exp(-(pi()/4)*(binCenters./ avgLAGB_grow).^2);
+phiTheta_unrcrx = (pi()/2).* (binCenters./ avgLAGB_unrcrx).* exp(-(pi()/4).* (binCenters./ avgLAGB_unrcrx).^2);
+phiTheta_rcrx = (pi()/2).* (binCenters./ avgLAGB_rcrx).* exp(-(pi()/4).* (binCenters./ avgLAGB_rcrx).^2);
+phiTheta_def = (pi()/2).* (binCenters./ avgLAGB_def).* exp(-(pi()/4).* (binCenters./ avgLAGB_def).^2);
+phiTheta_rec = (pi()/2).* (binCenters./ avgLAGB_rec).* exp(-(pi()/4).* (binCenters./ avgLAGB_rec).^2);
+phiTheta_nuc = (pi()/2).* (binCenters./ avgLAGB_nuc).* exp(-(pi()/4).* (binCenters./ avgLAGB_nuc).^2);
+phiTheta_grow = (pi()/2).* (binCenters./ avgLAGB_grow).* exp(-(pi()/4).* (binCenters./ avgLAGB_grow).^2);
 
 % Calculate the boundary mobility of the various subsets
-mobility_unrcrx = sum(Mtheta .* phiTheta_unrcrx .* pdf_unrcrx);
-mobility_rcrx = sum(Mtheta .* phiTheta_rcrx .* pdf_rcrx);
-mobility_def = sum(Mtheta .* phiTheta_def .* pdf_def);
-mobility_rec = sum(Mtheta .* phiTheta_rec .* pdf_rec);
-mobility_nuc = sum(Mtheta .* phiTheta_nuc .* pdf_nuc);
-mobility_grow = sum(Mtheta .* phiTheta_grow .* pdf_grow);
+mobility_unrcrx = sum(Mtheta.* phiTheta_unrcrx.* pdf_unrcrx);
+mobility_rcrx = sum(Mtheta.* phiTheta_rcrx.* pdf_rcrx);
+mobility_def = sum(Mtheta.* phiTheta_def.* pdf_def);
+mobility_rec = sum(Mtheta.* phiTheta_rec.* pdf_rec);
+mobility_nuc = sum(Mtheta.* phiTheta_nuc.* pdf_nuc);
+mobility_grow = sum(Mtheta.* phiTheta_grow.* pdf_grow);
 
 % Display the sub-boundary mobility of the various subsets
 disp('====');
-disp('Sub-boundary mobility (um.s^-1) of the subsets:');
+disp('Estimated sub-boundary mobility (um.s^-1) of the subsets:');
 disp('====');
 disp(['Unrecrystallised = ', num2str(mobility_unrcrx)]);
 disp(['Recrystallised   = ', num2str(mobility_rcrx)]);
@@ -589,7 +589,7 @@ disp('====');
 
 % Step 7.4: Calculate the Read-Shockley equation -based boundary stored 
 % energy between the various subsets
-storedEnergy = 0.617 .* (binCenters./criticalAngle) .* (1 - log(binCenters./criticalAngle));
+storedEnergy = 0.617.* (binCenters./criticalAngle).* (1 - log(binCenters./criticalAngle));
 [maxVal,maxIdx] = max(storedEnergy);
 storedEnergy(maxIdx+1:end) = maxVal;
 % ----
@@ -604,7 +604,7 @@ Eb_nuc_grow = Sv_nuc_grow * sum(storedEnergy.* pdf_nuc_grow);
 % Display the boundary stored energy as per the Read-Shockley equation
 % between the various subsets
 disp('====');
-disp('Boundary stored energy (Eb, J.m^-3) between the subsets:');
+disp('Estimated boundary stored energy (Eb, J.m^-3) between the subsets:');
 disp('(as per the Read-Shockley equation)')
 disp('====');
 disp(['Unrecrystallised-recrystallised = ', num2str(Eb_unrcrx_rcrx)]);
@@ -622,7 +622,7 @@ disp('====');
 
 
 
-
+return
 %% STEP 8: Calculate the orientation distribution functions of the various subsets
 setInterp2Latex;
 
