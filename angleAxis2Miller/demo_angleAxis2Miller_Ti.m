@@ -11,7 +11,7 @@ clc; clear all; clear hidden; close all
 
 % The axis-angle representation for the common twin modes in α-titanium 
 % with c = 0.4683 nm and a = 0.2950 nm is stated as:
-CS = crystalSymmetry('6/mmm', [0.295 0.295 0.4683], 'X||a', 'Y||b*', 'Z||c');
+CS = crystalSymmetry('6/mmm', [0.295 0.295 0.4683], 'X||a*', 'Y||b', 'Z||c');
 
 angleList = [84.98; 34.99; 64.45; 57.26].*degree;
 axisList = [-1 2 -1 0;...
@@ -24,15 +24,9 @@ mori = orientation.byAxisAngle(Miller(axisList(:,1),axisList(:,2),axisList(:,3),
     angleList,...
     CS,CS);
 
-% Labelling the twin modes
-mori.opt.modes = ['1 0 1 -2';...
-    '1 1 -2 1';...
-    '1 1 -2 2';...
-    '1 0 -1 1'];
-
 % Labelling the twin types
 % E = extension twin; C = compression twin
-mori.opt.types = ['E'; 'C'; 'E'; 'C'];
+mori.opt.types = {'E'; 'C'; 'E'; 'C'};
 
 % The twin shear, s, is calculated using formulas in Table 3 of 
 % Reference (2):
