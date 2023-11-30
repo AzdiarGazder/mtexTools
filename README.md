@@ -60,6 +60,7 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 ## A
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**align**](https://github.com/AzdiarGazder/mtexTools/tree/main/align): This function aligns ebsd map data along a user-specified linear fiducial in case of drift caused by the thermal cycling of scanning coil electronics during acquisition. The linear fiducial may correspond to a twin boundary, stacking fault, or any linear-shaped deformation or phase transformation products. Instructions on script use are provided in the window titlebar.
 
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**angleAxis2Miller**](https://github.com/AzdiarGazder/mtexTools/tree/main/angleAxis2Miller): This function uses twin misorientations defined by their angle-axis convention as input. It returns four Miller indices such that: the first Miller index maps onto the second, and the third Miller index maps onto the fourth. Here the first and second Miller indices correspond to K1 and K2, respectively whereas the third and fourth Miller indices correspond to eta1 and eta2, respectively.
 
 
 ## B
@@ -190,6 +191,8 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**plotHPF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHPF): This function plots pole figures in publication-ready format.
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**plotMarker**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotMarker): This function plots a line-plot using customisable markers. The function uses line plotting options similar to MATLAB's "plot" command but applies custom patches instead of MATLAB's in-built marker set.
+
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**plotMcKenzie**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotMcKenzie): Plots the McKenzie distribution of a crystal system for a user-defined number of orientations in publication-ready format. It returns the histogram data as well as MTEX's default McKenzie distribtuon after scaling.
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**plotScatter**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotScatter):  This function creates a scatter plot coloured by density.
 
