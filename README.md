@@ -150,6 +150,8 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**imageTransform**](https://github.com/AzdiarGazder/mtexTools/tree/main/imageTransform): This function interactively projectives or affine transforms an image. This function may be used in conjunction with ebsd map data to correct for drift during map acquisition.
 
+- ![Static Badge](https://img.shields.io/badge/D-0000FF) [**indexLaue**](https://github.com/AzdiarGazder/mtexTools/tree/main/indexLaue): This script demonstrates how to index a Laue micro-diffraction pattern in MTEX.
+
 
 
 ## J
