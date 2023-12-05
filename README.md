@@ -33,8 +33,8 @@ This [**mtexTools**](https://github.com/AzdiarGazder/mtexTools) webpage is a col
 ## Collaborators
 ![Static Badge](https://img.shields.io/badge/Collaborators-Welcome!-8A2BE2)
 
-[**Dr Manasij Kumar Yadava**](https://github.com/manasijy) - calcLankford and calcYieldLocus
-[**Dr. Marco A. López Sánchez**](https://github.com/marcoalopez) - grainSizeTools
+- [**Dr Manasij Kumar Yadava**](https://github.com/manasijy) - calcLankford and calcYieldLocus
+- [**Dr. Marco A. López Sánchez**](https://github.com/marcoalopez) - grainSizeTools
 
 
 ---
