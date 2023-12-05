@@ -4,11 +4,12 @@ function plot_normDistr(data, varargin)
 % is useful when comparing size distributions between samples with 
 % different average values.
 %
-%% Author:
+%% Authors:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
+% Dr. Marco A. López Sánchez, 2023, marcoalopezatoutlookdotcom
 %
 %% Acknowledgements:
-% Dr. Marco A. Lopez-Sanchez
+% Dr. Marco A. López Sánchez
 % For the original Python script at:
 % https://github.com/marcoalopez/GrainSizeTools/blob/master/grain_size_tools/plot.py
 %

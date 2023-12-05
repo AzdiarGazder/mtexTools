@@ -8,11 +8,12 @@ function out = GCI_ci(data, varargin)
 %% USER NOTES:
 % This function assumes the population follows a lognormal distribution.
 %
-%% Author:
+%% Authors:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
+% Dr. Marco A. López Sánchez, 2023, marcoalopezatoutlookdotcom
 %
 %% Acknowledgements:
-% Dr. Marco A. Lopez-Sanchez
+% Dr. Marco A. López Sánchez
 % For the original Python script at:
 % https://github.com/marcoalopez/GrainSizeTools/blob/master/grain_size_tools/averages.py
 %
@@ -57,7 +58,7 @@ end
 
 
 data = data(~isnan(data) & ~isinf(data));  % omit NaNs and Infs (if any)
-data = log(data);
+% data = log(data);
 data = data(:);
 n = length(data);
 dof = n - 1;                               % degrees of freedom
@@ -65,7 +66,7 @@ dof = n - 1;                               % degrees of freedom
 arithMean = mean(data);                    % arithmetic mean
 stdDev = std(data,1);                      % Bessel corrected standard deviation
 
-variance = var(data,0,"all");              % variance
+variance = var(log(data),0,"all");              % variance
 % When w = 0 (default), the variance is normalised by (n - 1), where n is
 % the size of the population.
 % When w = 1, the variance is normalised by the population size.

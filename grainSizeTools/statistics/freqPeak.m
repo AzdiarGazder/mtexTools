@@ -3,11 +3,12 @@ function out = freqPeak(data, varargin)
 % Returns the peak of the frequency ("mode") of a continuous
 % distribution based on the Gaussian kernel density estimator.
 %
-%% Author:
+%% Authors:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
+% Dr. Marco A. López Sánchez, 2023, marcoalopezatoutlookdotcom
 %
 %% Acknowledgements:
-% Dr. Marco A. Lopez-Sanchez
+% Dr. Marco A. López Sánchez
 % For the original Python script at:
 % https://github.com/marcoalopez/GrainSizeTools
 %

@@ -9,8 +9,8 @@
 %     grain size from thin sections. 
 %
 %% Acknowledgements:
-% Dr Marco A. Lopez-Sanchez              - GrainSizeTools
-% Drs Dorian Depriester and Régis Kubler - automatic-Saltykov
+% Dr. Marco A. Lopez-Sanchez              - GrainSizeTools
+% Drs. Dorian Depriester and Régis Kubler - automatic-Saltykov
 % MATLAB file exchange                   - shapiroWilk and hatchFill
 %
 %% Repository locations:

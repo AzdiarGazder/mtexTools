@@ -33,7 +33,10 @@ function t = calcTScore(ci, n)
 % Recalculate confidence for the two-tailed t-distribution
 ci = ci + ((1 - ci) / 2);
 
+% Estimate the degrees of freedom
+nu = max(0, n - 1);
+
 % Calculate the two-tailed critical value of t-distribution
-t = tinv(ci, n);
+t = tinv(ci, nu);
 
 end

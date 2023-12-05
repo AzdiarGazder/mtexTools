@@ -35,7 +35,7 @@ ci = get_option(varargin, 'ci', 0.95);
 
 
 data = data(~isnan(data) & ~isinf(data));   % omit NaNs and Infs (if any)
-data = log(data);
+% data = log(data);
 data = data(:);
 n = length(data);
 
@@ -45,13 +45,15 @@ stdDev = std(data,1);                       % Bessel corrected standard deviatio
 tScore = calcTScore(ci, n);                 % T-score
 
 % Estimate confidence limits
-lower = exp(arithMean - tScore * (stdDev / sqrt(n)));
-upper = exp(arithMean + tScore * (stdDev / sqrt(n)));
+log_arithMean = mean(log(data));
+log_stdDev = std(log(data));
+lower = exp(log_arithMean - tScore * (log_stdDev / sqrt(n)));
+upper = exp(log_arithMean + tScore * (log_stdDev / sqrt(n)));
 confInt = [lower, upper];
 intLength = upper - lower;
 
-out.mean = exp(arithMean);
-out.stdDev = exp(stdDev);
+out.mean = arithMean;
+out.stdDev = stdDev;
 out.lower = lower;
 out.upper = upper;
 out.intLength = intLength;

@@ -3,11 +3,12 @@ function grid = generateGrid(start, stop, varargin)
 % Returns an equispaced grid of discretised values over the sample space 
 % with a fixed range and desired precision.
 %
-%% Author:
+%% Authors:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
+% Dr. Marco A. López Sánchez, 2023, marcoalopezatoutlookdotcom
 %
 %% Acknowledgements:
-% Dr. Marco A. Lopez-Sanchez
+% Dr. Marco A. López Sánchez
 % For the original Python script at:
 % https://github.com/marcoalopez/GrainSizeTools
 %

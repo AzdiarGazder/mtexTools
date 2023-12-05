@@ -8,11 +8,12 @@ function plot_saltykov(diameters, in, varargin)
 % (2.1) a bar plot of Saltykov frequency versus grain size, and
 % (2.2) a line plot of Saltykov volume-weighted cumulative frequency.
 %
-%% Author:
+%% Authors:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
+% Dr. Marco A. López Sánchez, 2023, marcoalopezatoutlookdotcom
 %
 %% Acknowledgements:
-% Dr. Marco A. Lopez-Sanchez
+% Dr. Marco A. López Sánchez
 % For the original Python script at:
 % https://github.com/marcoalopez/GrainSizeTools/blob/master/grain_size_tools/plot.py
 %

@@ -48,11 +48,12 @@ function smallDataset(data, varargin)
 % the standard deviation cannot be estimated accurately. For large
 % datasets, the t-distribution approaches a normal distribution.
 %
-%% Author:
+%% Authors:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
+% Dr. Marco A. López Sánchez, 2023, marcoalopezatoutlookdotcom
 %
 %% Acknowledgements:
-% Dr. Marco A. Lopez-Sanchez
+% Dr. Marco A. López Sánchez
 % For the original Python script named "conf_interval" at:
 % https://github.com/marcoalopez/GrainSizeTools/blob/master/grain_size_tools/GrainSizeTools_script.py
 %
@@ -128,12 +129,13 @@ function largeDataset(data, varargin)
 % This function assumes the data follows a normal or symmetric
 % distrubution when sample size is large.
 %
-%% Author:
+%% Authors:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
+% Dr. Marco A. López Sánchez, 2023, marcoalopezatoutlookdotcom
 %
 %% Acknowledgements:
-% Dr. Marco A. Lopez-Sanchez
-% For the original Python script named "summarize" at:
+% Dr. Marco A. López Sánchez
+% For the original Python script named "conf_interval" at:
 % https://github.com/marcoalopez/GrainSizeTools/blob/master/grain_size_tools/GrainSizeTools_script.py
 %
 %% Syntax:

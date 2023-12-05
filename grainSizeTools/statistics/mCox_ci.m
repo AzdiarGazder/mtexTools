@@ -6,11 +6,12 @@ function out = mCox_ci(data, varargin)
 %% USER NOTES:
 % This fucntion assumes the population follows a lognormal distribution
 %
-%% Author:
+%% Authors:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
+% Dr. Marco A. López Sánchez, 2023, marcoalopezatoutlookdotcom
 %
 %% Acknowledgements:
-% Dr. Marco A. Lopez-Sanchez
+% Dr. Marco A. López Sánchez
 % For the original Python script at:
 % https://github.com/marcoalopez/GrainSizeTools/blob/master/grain_size_tools/averages.py
 %
@@ -41,7 +42,7 @@ ci = get_option(varargin, 'ci', 0.95);
 
 
 data = data(~isnan(data) & ~isinf(data));  % omit NaNs and Infs (if any)
-data = log(data);
+% data = log(data);
 data = data(:);
 n = length(data);
 
@@ -51,8 +52,10 @@ stdDev = std(data,1);                      % Bessel corrected standard deviation
 tScore = calcTScore(ci,n);                 % T-score
 
 % Estimate confidence limits
-lower = exp(arithMean + 0.5 * stdDev^2 - tScore * (stdDev / sqrt(n)) * sqrt(1 + (stdDev^2 * n) / (2 * (n + 1))));
-upper = exp(arithMean + 0.5 * stdDev^2 + tScore * (stdDev / sqrt(n)) * sqrt(1 + (stdDev^2 * n) / (2 * (n + 1))));
+log_arithMean = mean(log(data));
+log_stdDev = std(log(data));
+lower = exp(log_arithMean + 0.5 * log_stdDev^2 - tScore * (log_stdDev / sqrt(n)) * sqrt(1 + (log_stdDev^2 * n) / (2 * (n + 1))));
+upper = exp(log_arithMean + 0.5 * log_stdDev^2 + tScore * (log_stdDev / sqrt(n)) * sqrt(1 + (log_stdDev^2 * n) / (2 * (n + 1))));
 confInt = [lower, upper];
 intLength = upper - lower;
 

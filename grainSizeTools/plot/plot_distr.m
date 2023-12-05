@@ -2,11 +2,12 @@ function plot_distr(data, varargin)
 %% Function description:
 % Plots the distribution of sizes in a dataset.
 %
-%% Author:
+%% Authors:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
+% Dr. Marco A. López Sánchez, 2023, marcoalopezatoutlookdotcom
 %
 %% Acknowledgements:
-% Dr. Marco A. Lopez-Sanchez
+% Dr. Marco A. López Sánchez
 % For the original Python script at:
 % https://github.com/marcoalopez/GrainSizeTools/blob/master/grain_size_tools/plot.py
 %

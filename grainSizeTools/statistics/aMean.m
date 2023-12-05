@@ -9,11 +9,12 @@ function out = aMean(data, varargin)
 % - CLT confidence interval is optimised for normal distributions
 % - GCI and mCox methods are optimised for lognormal distributions
 %
-%% Author:
+%% Authors:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
+% Dr. Marco A. López Sánchez, 2023, marcoalopezatoutlookdotcom
 %
 %% Acknowledgements:
-% Dr. Marco A. Lopez-Sanchez
+% Dr. Marco A. López Sánchez
 % For the original Python script at:
 % https://github.com/marcoalopez/GrainSizeTools
 %

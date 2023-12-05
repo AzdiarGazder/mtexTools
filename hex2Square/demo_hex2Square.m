@@ -70,5 +70,5 @@ drawnow;
 
 %% Export map to OI Channel-5 *.cpr and *.crc file format
 pfName = [pwd,'\copperSquare.crc'];
-exportCRC(gebsd,pfName)
+exportCRC(gebsd,pfName,'convertSpatial2EulerReferenceFrame')
 %%

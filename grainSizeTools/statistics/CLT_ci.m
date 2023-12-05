@@ -6,11 +6,12 @@ function out = CLT_ci(data, varargin)
 % This is the method described in the ASTM standard E112-12 (1996): 
 % Standard test methods for determining average grain size.
 %
-%% Author:
+%% Authors:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
+% Dr. Marco A. López Sánchez, 2023, marcoalopezatoutlookdotcom
 %
 %% Acknowledgements:
-% Dr. Marco A. Lopez-Sanchez
+% Dr. Marco A. López Sánchez
 % For the original Python script at:
 % https://github.com/marcoalopez/GrainSizeTools/blob/master/grain_size_tools/averages.py
 % 

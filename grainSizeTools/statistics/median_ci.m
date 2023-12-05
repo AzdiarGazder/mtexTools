@@ -3,11 +3,12 @@ function out = median_ci(data, varargin)
 % Estimate the approximate confidence interval (ci) error margins for the 
 % median using a rule of thumb based on Hollander and Wolfe (1999).
 %
-%% Author:
+%% Authors:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
+% Dr. Marco A. López Sánchez, 2023, marcoalopezatoutlookdotcom
 %
 %% Acknowledgements:
-% Dr. Marco A. Lopez-Sanchez
+% Dr. Marco A. López Sánchez
 % For the original Python script at:
 % https://github.com/marcoalopez/GrainSizeTools/blob/master/grain_size_tools/averages.py
 %

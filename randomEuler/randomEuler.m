@@ -19,7 +19,7 @@ function out = randomEuler(n,varargin)
 % randomEuler(n,varargin)
 %
 %% Input:
-% n         - @double, defiens the number of uniformly distributed random
+% n         - @double, defines the number of uniformly distributed random
 %             Euler angles to output
 %
 %% Options:
