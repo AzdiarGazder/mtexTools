@@ -57,7 +57,6 @@ function plotMarker(xData,yData,varargin)
 %% Check for the input data
 if ~isvector(xData) || ~isvector(yData) || length(xData) ~= length(yData)
     error('Error. xData and yData must be of the same length.');
-    return;
 end
 
 %% Define the lineStyle
