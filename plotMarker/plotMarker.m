@@ -168,7 +168,7 @@ switch markerType
         [X,Y] = markerMaker(120*degree,1,flagInnerMarker,sizeFactor);
         X= 1./X;
 
-    case {'s','*'}
+    case {'*'}
         % for even indices
         ii = 1:10; idx = mod(ii, 2) == 0;
         X(idx) = 2/5 * cos(pi/2 + (ii(idx)-1) * pi/5);
