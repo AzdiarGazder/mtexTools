@@ -190,6 +190,8 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**plotCAxis**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotCAxis): This script demonstrates how to plot the angle between the c-axis of the hexagonal unit cell and a macroscopic specimen axis.
 
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**plotHeatScatter**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHeatScatter): This function plots a density distribution of the yData versus the xData using user-specified tiles by applying custom patches. The xData and yData are equally sized vectors. Rows containing NaN values in either vectors are ignored.
+
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**plotHODF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHODF): This function plots orientation distribution function phi2 sections in publication-ready format.
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**plotHPF**](https://github.com/AzdiarGazder/mtexTools/tree/main/plotHPF): This function plots pole figures in publication-ready format.
