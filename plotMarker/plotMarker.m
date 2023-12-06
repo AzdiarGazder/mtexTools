@@ -61,31 +61,13 @@ if ~isvector(xData) || ~isvector(yData) || length(xData) ~= length(yData)
 end
 
 %% Define the lineStyle
-flagLineStyle = check_option(varargin,'lineStyle');
-if flagLineStyle
-    lineStyle = varargin{find_option(varargin,'lineStyle') + 1};
-    if ~ischar(lineStyle)
-        lineStyle = '-';
-    end
-end
+lineStyle = get_option(varargin,'lineStyle','-');
 
 %% Define the lineColor
-flagLineColor = check_option(varargin,'lineColor');
-if flagLineColor
-    lineColor = varargin{find_option(varargin,'lineColor') + 1};
-    if ~isnumeric(lineColor)
-        lineColor = [0, 0.4470, 0.7410];
-    end
-end
+lineColor = get_option(varargin,'lineColor',[0 0 0]);
 
 %% Define the lineWidth
-flagLineWidth = check_option(varargin,'lineWidth');
-if flagLineWidth
-    lineWidth = varargin{find_option(varargin,'lineWidth') + 1};
-    if ~isnumeric(lineWidth)
-        lineWidth = 1;
-    end
-end
+lineWidth = get_option(varargin,'lineWidth',2);
 
 %% Define the markerType
 markerType = get_option(varargin,'marker','c');
@@ -107,7 +89,7 @@ if flagMarkerStep
     markerStep = varargin{find_option(varargin,'markerStep') + 1};
     if ~isnumeric(markerStep)
         markerStep = 45*degree;
-    elseif isnumeric(markerStep) & markerStep == 0
+    elseif isnumeric(markerStep) && markerStep == 0
         flagMarkerStep = 0;
     end
 end
