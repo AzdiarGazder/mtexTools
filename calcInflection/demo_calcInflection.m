@@ -2,7 +2,7 @@ clc; clear all; clear hidden; close all;
 
 % Load a demonstration dataset
 load("dataset.mat");
-diameters = dataset(:,4); % grain feret diameter
+diameters = dataset.feretDiameter; % grain feret diameter
 
 % Calculate the inflection points of the cumulative distribution function (CDF)
 out = calcInflection(diameters)

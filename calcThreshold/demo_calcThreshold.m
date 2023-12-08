@@ -12,7 +12,7 @@ out.x(out.id)
 %% DEMO SET #2
 % Load a demonstration dataset
 load("dataset.mat");
-diameters = dataset(:,4); % grain feret diameter
+diameters = dataset.feretDiameter; % grain feret diameter
 
 % Threshold the cumulative distribution function (CDF)
 out = calcThreshold(diameters,'scott','sigma',3)

@@ -29,8 +29,8 @@ currentFolder;
 load("dataset.mat");
 % Note: Minimum requirement = an array of grain diameters and grain areas
 
-area = dataset(:,2); % grain area
-diameters = dataset(:,4); % grain feret diameter
+area = dataset.area; % grain area
+diameters = dataset.feretDiameter; % grain feret diameter
 
 grainStatistics(diameters)
 
