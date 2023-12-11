@@ -1,8 +1,8 @@
 %% Demonstration description:
-% This script demonstrates how to apply the latest algorithms to 
-% automatically segment and quantify the deformed, recovered, newly 
-% nucleated and growing grain fractions of a partially recrystallised EBSD 
-% map.
+% This script demonstrates how to apply the latest inflection and threshold 
+% algorithms to automatically segment and quantify the deformed, recovered, 
+% newly nucleated and growing grain fractions of a partially 
+% recrystallised EBSD map.
 % This script is the latest developmental iteration of the multi-condition 
 % segmentation method first desribed in:
 % AA Gazder et al., Evolution of recrystallization texture in a 0.78 wt.% 
@@ -14,7 +14,7 @@
 %
 % 
 %% Syntax:
-%  demo_rcrxSegmenter
+%  demo_rcrxSegmenter_inflectThreshold
 %
 %% Input:
 %  none
