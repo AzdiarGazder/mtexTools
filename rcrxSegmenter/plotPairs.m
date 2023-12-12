@@ -20,8 +20,8 @@ function plotPairs(inData,gmm, varargin)
 %
 %% Input:
 %  inData       - @double, an n x m array of data that was previously
-%                 used as input in the "gaussMixModel.m" function
-%  gmm          - @struc, the output from the "gaussMixModel.m"
+%                 used as input in the "calcClusters.m" function
+%  gmm          - @struc, the output from the "calcClusters.m"
 %
 %% Options:
 %  'labels'     - @cell, a cell array of @char values comprising the labels
