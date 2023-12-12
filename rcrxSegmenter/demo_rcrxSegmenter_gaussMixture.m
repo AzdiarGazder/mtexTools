@@ -1,8 +1,8 @@
 %% Demonstration description:
-% This script demonstrates how to apply the latest inflection, Gaussian 
-% mixture model, and threshold algorithms to automatically segment and 
-% quantify the deformed, recovered, newly nucleated and growing grain 
-% fractions of a partially recrystallised EBSD map. 
+% This script demonstrates how to apply the Gaussian mixture model 
+% algorithm to automatically cluster, segment and quantify the deformed, 
+% recovered, newly nucleated and growing grain fractions of a partially 
+% recrystallised EBSD map. 
 % This script is the latest developmental iteration of the multi-condition 
 % segmentation method first desribed in:
 % AA Gazder et al., Evolution of recrystallization texture in a 0.78 wt.% 
@@ -42,6 +42,7 @@ startup_mtex;
 setMTEXpref('xAxisDirection','east');
 setMTEXpref('zAxisDirection','intoPlane');
 setMTEXpref('maxSO3Bandwidth',96);
+currentFolder;
 
 
 %% Define the critical angle for a high-angle boundary
@@ -83,27 +84,26 @@ disp('Done!')
 % Calculate sphericity
 psi = grains.area ./ grains.perimeter('withInclusion') ./ grains.equivalentRadius;
 
-% Calculate the inflection point of the sphericity cdf
-out1 = calcInflection(psi);
+% Calculate the deformed and recovered grain subsets using clustering via
+% Guassian mixture modelling
+out1 = calcClusters(psi,'clusters',2);
+plotPairs(psi,out1,'labels',{'psi'},'type','kde');
 
-% Define a logical array using the inflection point as the critical
-% conditionality for segmentation
-lA1 = psi >= out1.x(out1.id);
-
-% Segment the unrecrystallised and recrystallised grain subsets
-grains_unrcrx = grains(~lA1);
-grains_rcrx = grains(lA1);
+% Use the logical arrays as the critical conditionality for segmenting into
+% the unrecrystallised and recrystallised grain subsets
+grains_unrcrx = grains(out1.cluster.c1);
+grains_rcrx = grains(out1.cluster.c2);
 
 % Plot the unrecrystallised and recrystallised grain subsets
 figH = figure;
-plot(grains_unrcrx,psi(~lA1))
-setColorRange([min(psi(~lA1)) max(psi(~lA1))])
+plot(grains_unrcrx,psi(out1.cluster.c1))
+setColorRange([min(psi(out1.cluster.c1)) max(psi(out1.cluster.c1))])
 mtexColorbar jet
 set(figH,'Name','Unrecrystallised grain fraction','NumberTitle','on');
 % ----
 figH = figure;
-plot(grains_rcrx,psi(lA1))
-setColorRange([min(psi(lA1)) max(psi(lA1))])
+plot(grains_rcrx,psi(out1.cluster.c2))
+setColorRange([min(psi(out1.cluster.c2)) max(psi(out1.cluster.c2))])
 mtexColorbar jet
 set(figH,'Name','Recrystallised grain fraction','NumberTitle','on');
 
@@ -126,26 +126,21 @@ set(figH,'Name','Recrystallised ebsd fraction','NumberTitle','on');
 
 
 
-%% NEW STEP 2: Simultanesouly apply the aspect ratio, shape factor, paris 
-% and GOS criteria to the unrecrystallised fraction
+%% NEW STEP 2: Simultanesouly apply the aspect ratio and shape factor
+% criteria to the unrecrystallised fraction
 aR_unrcrx = aspectRatio(grains_unrcrx);
 sF_unrcrx = shapeFactor(grains_unrcrx);
-p_unrcrx = paris(grains_unrcrx);
-GOS_unrcrx = grains_unrcrx.prop.GOS./degree;
+inpt2 = [aR_unrcrx, sF_unrcrx];
 
-% Calculate the deformed and recovered grain subsets
-inpt = [aR_unrcrx, sF_unrcrx, p_unrcrx, GOS_unrcrx];
-out2 = gaussMixModel(inpt,'clusters',2,'type','soft');
-plotPairs(inpt,out2,'labels',{'aR','sF','paris','GOS'},'type','kde');
+% Calculate the deformed and recovered grain subsets using clustering via
+% Guassian mixture modelling
+out2 = calcClusters(inpt2,'clusters',2);
+plotPairs(inpt2,out2,'labels',{'aR','sF'},'type','kde');
 
-% Define logical arrays as the critical conditionality for segmentation
-% Here the recovered fraction is computed by combining grains in 
-% the logical matrices out2.cluster1 and out2.common together
-lA_rec = out2.cluster1 | out2.common;
-
-% Segment the deformed and recovered grain subsets
-grains_def = grains_unrcrx(~lA_rec);
-grains_rec = grains_unrcrx(lA_rec);
+% Use the logical arrays as the critical conditionality for segmenting into
+% the deformed and recovered grain subsets
+grains_def = grains_unrcrx(out2.cluster.c2);
+grains_rec = grains_unrcrx(out2.cluster.c1);
 
 % Plot the deformed and recovered grain subsets
 figH = figure;
@@ -180,29 +175,30 @@ set(figH,'Name','Recovered ebsd fraction','NumberTitle','on');
 %% STEP 3: Apply the size criterion to the recrystallised fraction
 % Define a variable for the grain size
 grainSize_rcrx = grains_rcrx.grainSize;
+p_rcrx = paris(grains_rcrx);
+GOS_rcrx = grains_rcrx.prop.GOS./degree;
+inpt3 = [grainSize_rcrx, p_rcrx, GOS_rcrx];
 
-% Calculate the grain size threshold of the PDF using 3-sigma confidence
-% levels
-out3 = calcThreshold(grainSize_rcrx,'pdf','sigma',3);
+% Calculate the small (newly nucleated) and large (growing grains) subsets
+% using clustering via Guassian mixture modelling
+out3 = calcClusters(inpt3,'clusters',2);
+plotPairs(inpt3,out3,'labels',{'ECD','paris','GOS'},'type','kde');
 
-% Define a logical array using the threshold value as the critical
-% conditionality for segmentation
-lA3 = grainSize_rcrx >= out3.x(out3.id);
-
-% Segment the small (newly nucleated) and large (growing grains) subsets
-grains_nuc = grains_rcrx(~lA3);
-grains_grow = grains_rcrx(lA3);
+% Use the logical arrays as the critical conditionality for segmenting into
+% the small (newly nucleated) and large (growing grains) subsets
+grains_nuc = grains_rcrx(out3.cluster.c1);
+grains_grow = grains_rcrx(out3.cluster.c2);
 
 % Plot the newly nucleated and growing grain subsets
 figH = figure;
-plot(grains_nuc,grainSize_rcrx(~lA3))
-setColorRange([min(grainSize_rcrx(~lA3)) max(grainSize_rcrx(~lA3))])
+plot(grains_nuc,grainSize_rcrx(out3.cluster.c1))
+setColorRange([min(grainSize_rcrx(out3.cluster.c1)) max(grainSize_rcrx(out3.cluster.c1))])
 mtexColorbar jet
 set(figH,'Name','Newly nucleated grain fraction','NumberTitle','on');
 % ----
 figH = figure;
-plot(grains_grow,grainSize_rcrx(lA3))
-setColorRange([min(grainSize_rcrx(lA3)) max(grainSize_rcrx(lA3))])
+plot(grains_grow,grainSize_rcrx(out3.cluster.c2))
+setColorRange([min(grainSize_rcrx(out3.cluster.c2)) max(grainSize_rcrx(out3.cluster.c2))])
 mtexColorbar jet
 set(figH,'Name','Growing grain fraction','NumberTitle','on');
 

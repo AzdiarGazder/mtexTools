@@ -40,17 +40,17 @@ tempLabels = cellstr(num2str((1:numDataCols)', '%d'));
 labels = get_option(varargin,'labels',tempLabels);
 
 % Get the fieldnames of the clusters in the "gmm" structure variable
-clusterNames = fields(gmm);
-% Delete the "gmm.prob" field
-clusterNames(strcmpi(fields(gmm), 'prob')) = [];
+clusterNames = fields(gmm.cluster);
+% % Delete the "gmm.prob" field
+% clusterNames(strcmpi(fields(gmm), 'prob')) = [];
 % Define the number of colors based on the number of clusters
-numClusters = length(unique(clusterNames));
+numClusters = length(clusterNames);
 colors = lines(numClusters);
 
 % Define a cell array containing the cluster results
 clusterArray = cell(size(inData, 1),1);
 for ii = 1:length(clusterNames)
-    clusterArray(gmm.(clusterNames{ii}) == true) = {clusterNames{ii}};
+    clusterArray(gmm.cluster.(clusterNames{ii}) == true) = {clusterNames{ii}};
 end
 
 % Define the plot type
