@@ -29,15 +29,18 @@ function out = calcClusters(inData,varargin)
 numClusters = get_option(varargin,'clusters',2);
 errTol = get_option(varargin,'tolerance',1E-6);
 
+% Calculate the size of the input data array
+[ro, col] = size(inData);
 
-[ro, col] = size(inData); % size of the input data array
+% Set the random seed for data reproducibility
+rng(3);
 
 %% Step 1 - initialise the mean(s) with k-means
 [labels,mu] = kmeans(inData,numClusters);
 
 % Compute weights and covariance matrices using maximum likelihood
 % estimation (MLE)
-% weight = zeros(numClusters); sigma = cell(numClsuters);
+weight = zeros(1,numClusters); sigma = cell(1,numClusters);
 for kk = 1:numClusters
     weight(kk) = sum(labels == kk) / ro;
     sigma{kk} = cov(inData(labels == kk, :));

@@ -91,19 +91,19 @@ plotPairs(psi,out1,'labels',{'psi'},'type','kde');
 
 % Use the logical arrays as the critical conditionality for segmenting into
 % the unrecrystallised and recrystallised grain subsets
-grains_unrcrx = grains(out1.cluster.c1);
-grains_rcrx = grains(out1.cluster.c2);
+grains_unrcrx = grains(out1.cluster.c2);
+grains_rcrx = grains(out1.cluster.c1);
 
 % Plot the unrecrystallised and recrystallised grain subsets
 figH = figure;
-plot(grains_unrcrx,psi(out1.cluster.c1))
-setColorRange([min(psi(out1.cluster.c1)) max(psi(out1.cluster.c1))])
+plot(grains_unrcrx,psi(out1.cluster.c2))
+setColorRange([min(psi(out1.cluster.c2)) max(psi(out1.cluster.c2))])
 mtexColorbar jet
 set(figH,'Name','Unrecrystallised grain fraction','NumberTitle','on');
 % ----
 figH = figure;
-plot(grains_rcrx,psi(out1.cluster.c2))
-setColorRange([min(psi(out1.cluster.c2)) max(psi(out1.cluster.c2))])
+plot(grains_rcrx,psi(out1.cluster.c1))
+setColorRange([min(psi(out1.cluster.c1)) max(psi(out1.cluster.c1))])
 mtexColorbar jet
 set(figH,'Name','Recrystallised grain fraction','NumberTitle','on');
 

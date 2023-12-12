@@ -1,4 +1,4 @@
-function plotPairs(inData,gmm, varargin)
+function figH = plotPairs(inData,gmm, varargin)
 %% Function description:
 % This function returns the pairwise histogram and scatter plots. It uses
 % the data array and results from Gaussian mixture modelling as inputs.
@@ -54,6 +54,7 @@ end
 % Define the plot type
 plotType = get_option(varargin,'type','histogram');
 
+figH = figure;
 %% Scatter plots
 for ii = 1:numDataCols
     for jj = 1:numDataCols
