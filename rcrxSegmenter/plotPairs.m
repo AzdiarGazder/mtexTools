@@ -41,8 +41,6 @@ labels = get_option(varargin,'labels',tempLabels);
 
 % Get the fieldnames of the clusters in the "gmm" structure variable
 clusterNames = fields(gmm.cluster);
-% % Delete the "gmm.prob" field
-% clusterNames(strcmpi(fields(gmm), 'prob')) = [];
 % Define the number of colors based on the number of clusters
 numClusters = length(clusterNames);
 colors = lines(numClusters);
