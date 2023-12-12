@@ -1,12 +1,12 @@
 function plotPairs(inData,gmm, varargin)
 %% Function description:
-% This function returns the pairwise histogram and scatter plots. It uses 
+% This function returns the pairwise histogram and scatter plots. It uses
 % the data array and results from Gaussian mixture modelling as inputs.
 %
 %% Modified by:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
 %
-%% Acknowledgements: 
+%% Acknowledgements:
 % For the original functions posted by:
 % Ryosuke F Takeuchi
 % https://au.mathworks.com/matlabcentral/fileexchange/60866-pairplot-meas-label-group-colors-mode%
@@ -30,7 +30,7 @@ function plotPairs(inData,gmm, varargin)
 %                 'histogram','bar','kde', and 'cdf'.
 %
 %%
-% 
+%
 
 
 
@@ -102,8 +102,10 @@ for ii = 1:numDataCols
         else
             for kk = 1:numClusters
                 idx = strcmpi(clusterArray, clusterNames{kk});
-                histogram(ax, inData(idx, ii), bins, 'FaceColor', colors(kk,:), ...
-                    'Normalization', 'probability');
+                histogram(ax, inData(idx, ii), bins,...
+                    'Normalization', 'probability',...
+                    'FaceColor', colors(kk,:),...
+                    'LineWidth',1);
             end
         end
         xlim([bins(1) bins(end)]);
@@ -123,7 +125,10 @@ for ii = 1:numDataCols
             for kk = 1:numClusters
                 idx = strcmpi(clusterArray, clusterNames{kk});
                 [counts, ~] = histcounts(inData(idx, ii), edges);
-                bar(ax, bins, counts, 'BarWidth', 1, 'FaceColor', colors(kk,:))
+                bar(ax, bins, counts,...
+                    'BarWidth', 1,...
+                    'FaceColor', colors(kk,:),...
+                    'LineWidth',1);
             end
         end
         xlim([edges(1) edges(end)]);
@@ -138,7 +143,9 @@ for ii = 1:numDataCols
             for kk = 1:numClusters
                 idx = strcmpi(clusterArray, clusterNames{kk});
                 [f, xf] = ksdensity(inData(idx,ii));
-                plot(ax, xf, f, 'Color', colors(kk,:));
+                plot(ax, xf, f,...
+                    'Color', colors(kk,:),...
+                    'LineWidth',1);
             end
         end
         legend(clusterNames,'Location','best');
@@ -152,7 +159,9 @@ for ii = 1:numDataCols
             for kk = 1:numClusters
                 idx = strcmpi(clusterArray, clusterNames{kk});
                 [f, x] = ecdf(inData(idx, ii));
-                plot(ax, x, f, 'Color', colors(kk,:));
+                plot(ax, x, f,...
+                    'Color', colors(kk,:),...
+                    'LineWidth',1);
             end
         end
         legend(clusterNames,'Location','best');
