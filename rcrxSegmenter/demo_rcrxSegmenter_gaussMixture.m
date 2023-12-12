@@ -125,7 +125,7 @@ set(figH,'Name','Recrystallised ebsd fraction','NumberTitle','on');
 
 
 
-return
+
 %% NEW STEP 2: Simultanesouly apply the aspect ratio and shape factor
 % criteria to the unrecrystallised fraction
 aR_unrcrx = aspectRatio(grains_unrcrx);
