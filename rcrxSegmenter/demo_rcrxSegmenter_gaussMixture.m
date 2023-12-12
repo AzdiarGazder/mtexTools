@@ -172,8 +172,8 @@ set(figH,'Name','Recovered ebsd fraction','NumberTitle','on');
 
 
 
-%% STEP 3: Apply the size criterion to the recrystallised fraction
-% Define a variable for the grain size
+%% STEP 3: Simultanesouly apply the size, paris and GOS criteria to the 
+% recrystallised fraction
 grainSize_rcrx = grains_rcrx.grainSize;
 p_rcrx = paris(grains_rcrx);
 GOS_rcrx = grains_rcrx.prop.GOS./degree;
