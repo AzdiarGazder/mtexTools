@@ -10,8 +10,8 @@ clc; clear all; clear hidden; close all
 % Australia, 2008
 
 % The axis-angle representation for the common twin modes in α-titanium 
-% with c = 0.4683 nm and a = 0.2950 nm is stated as:
-CS = crystalSymmetry('6/mmm', [0.295 0.295 0.4683], 'X||a*', 'Y||b', 'Z||c');
+% with a = 0.2950 nm and c = 0.4683 nm is stated as:
+CS = crystalSymmetry('6/mmm', [0.295 0.295 0.4683], 'X||a', 'Y||b*', 'Z||c*');
 
 angleList = [84.98; 34.99; 64.45; 57.26].*degree;
 axisList = [-1 2 -1 0;...

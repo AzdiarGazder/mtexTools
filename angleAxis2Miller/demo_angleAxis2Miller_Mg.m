@@ -1,7 +1,7 @@
 clc; clear all; clear hidden; close all
 
 % This demonstration describes how to define twins in MTEX using 
-% α-titanium as an example.
+% magnesium as an example.
 
 
 % In Table 1 of Reference (1): 
@@ -11,8 +11,8 @@ clc; clear all; clear hidden; close all
 % https://doi.org/10.1038/s41598-023-30880-w
 
 % The axis-angle representation for the common twin modes in magnesium 
-% with c = 0.52 nm and a = 0.32 nm is stated as:
-CS = crystalSymmetry('6/mmm', [0.32 0.32 0.52], 'X||a*', 'Y||b', 'Z||c');
+% with a = 0.32 nm and c = 0.52 nm is stated as:
+CS = crystalSymmetry('6/mmm', [0.32 0.32 0.52], 'X||a', 'Y||b*', 'Z||c*');
 
 angleList = [86; 56; 38; 30; 38; 30; 48; 56; 56; 64].*degree;
 axisList = [1 -2 1 0;...
