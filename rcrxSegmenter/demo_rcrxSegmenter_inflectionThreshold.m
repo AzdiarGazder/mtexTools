@@ -1,5 +1,5 @@
 %% Demonstration description:
-% This script demonstrates how to apply the inflection and threshold 
+% his script demonstrates the application of the inflection and threshold 
 % algorithms to automatically segment and quantify the deformed, recovered, 
 % newly nucleated and growing grain fractions of a partially 
 % recrystallised EBSD map.

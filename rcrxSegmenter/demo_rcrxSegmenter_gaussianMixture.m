@@ -1,5 +1,5 @@
 %% Demonstration description:
-% This script demonstrates how to apply the Gaussian mixture model 
+% This script demonstrates the application of the Gaussian mixture model 
 % algorithm to automatically cluster, segment and quantify the deformed, 
 % recovered, newly nucleated and growing grain fractions of a partially 
 % recrystallised EBSD map. 
