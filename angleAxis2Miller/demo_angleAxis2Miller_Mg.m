@@ -37,3 +37,4 @@ mori.opt.types = {'E'; 'C'; 'CE1'; 'CE2'; 'EC1'; 'EC2'; 'ECE1a'; 'ECE1b'; 'ECE2a
 
 % Calculate the K1, K2, eta1 and eta2 values based on the defined twins
 mori = angleAxis2Miller(mori)
+
