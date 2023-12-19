@@ -12,7 +12,7 @@ clc; clear all; clear hidden; close all
 
 % The axis-angle representation for the common twin modes in magnesium 
 % with a = 0.32 nm and c = 0.52 nm is stated as:
-CS = crystalSymmetry('6/mmm', [0.32 0.32 0.52], 'X||a', 'Y||b*', 'Z||c*');
+CS = crystalSymmetry('6/mmm', [0.317 0.317 0.514], 'X||a', 'Y||b*', 'Z||c*');
 
 angleList = [86; 56; 38; 30; 38; 30; 48; 56; 56; 64].*degree;
 axisList = [1 -2 1 0;...
