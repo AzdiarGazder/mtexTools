@@ -36,12 +36,12 @@ for ii = 1:length(outMori)
 
     % Return the mori based on the calculated closest rational parallel
     % planes and directions
-    calcMori = orientation.map(outMori.opt.K1(ii),...
+    fitMori = orientation.map(outMori.opt.K1(ii),...
         outMori.opt.K2(ii),...
         outMori.opt.eta1(ii),...
         outMori.opt.eta2(ii));
     % Calculate the error between the input and calculated moris
-    err = angle(inMori(ii),calcMori);
+    err = angle(inMori(ii),fitMori);
 
     % Display the output
     disp(' ');
@@ -60,8 +60,8 @@ for ii = 1:length(outMori)
 
     disp(' ');
 
-    disp(['Misorientation angle  = ', num2str(angle(calcMori)/degree)])
-    ax = char(char(round(axis(calcMori)),'cell'));
+    disp(['Misorientation angle  = ', num2str(angle(fitMori)/degree)])
+    ax = char(char(round(axis(fitMori)),'cell'));
     disp(['Misorientation axis   = ',ax]);
     disp('----')
 end
