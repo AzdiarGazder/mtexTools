@@ -38,8 +38,10 @@ SS = specimenSymmetry('orthorhombic');
 o1Alpha = orientation.byEuler([0 45 0].*degree,CS,SS);  % Goss
 o2Alpha = orientation.byEuler([90 45 0].*degree,CS,SS); % Rt-Goss
 fAlpha = fibre(o1Alpha,o2Alpha,CS,SS,'full');
-oriAlpha = orientation(fAlpha,CS,SS,'points',19) % list of fibre orientations at intervals of delta_phi1 = 10 degree
-
+oriAlpha = orientation(fAlpha,CS,SS,'points',73) % list of fibre orientations at intervals of delta_phi1
+% ...,'points', 73) =  5 deg intervals of delta_phi1
+% ...,'points', 37) = 10 deg intervals of delta_phi1
+% ...,'points', 19) = 20 deg intervals of delta_phi1
 
 %% Define the preferences for plotting crystallographic texture
 % define the pole figures to display
