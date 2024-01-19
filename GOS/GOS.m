@@ -10,7 +10,7 @@ function gos = GOS(ebsd,grains,varargin)
 %
 %% Acknowledgements: 
 % Dr. Rüdiger Killian
-% For the commands to compute the grain-based KOS at:
+% For the commands to compute the grain-based GOS at:
 % https://groups.google.com/g/mtexmail/c/x1oFYjh0Des
 %
 %% Syntax:
