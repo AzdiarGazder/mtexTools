@@ -50,7 +50,7 @@ ebsd.CSList = CS;
 % %-----------------
 
 
-kanm = GAM(ebsd,'threshold',10*degree);
+kanm = KANM(ebsd,'threshold',10*degree);
 figure
 plot(ebsd,kanm./degree)
 hold all
