@@ -162,6 +162,8 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 ## K
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**kamSegmenter**](https://github.com/AzdiarGazder/mtexTools/tree/main/kamSegmenter): This script demonstrates how to automatically segment and quantify the area fractions of granular bainite and polygonal ferrite in EBSD maps of steel grades using the critical kernel average misorientation (KAM) criterion.
 
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**KANM**](https://github.com/AzdiarGazder/mtexTools/tree/main/KANM): By modifying MTEX's in-built KAM script, this function calculates the kernel average neighbour misorientation. The n-neighbour kernal average misorientation is averaged to return a single value per grain.
+
 
 
 ## L
