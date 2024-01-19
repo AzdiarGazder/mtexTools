@@ -117,7 +117,7 @@ tempGAM = accumarray(grainId,kam,[],@nanmean);
 
 %% Commands by Azdiar Gazder to re-assign the GAM value to map pixels
 % gam = nan(size(ebsd.grainId));
-% for ii = 1:max(eindex)
+% for ii = 1:max(grainId)
 % gam(ebsd.grainId==ii) = tempGAM(ii);
 % end
 % Do the same more efficiently without a loop

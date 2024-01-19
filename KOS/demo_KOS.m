@@ -50,16 +50,16 @@ ebsd.CSList = CS;
 % %-----------------
 
 
-kanm = KANM(ebsd,'threshold',10*degree);
+kos = KOS(ebsd,'threshold',10*degree);
 figure
-plot(ebsd,kanm./degree)
+plot(ebsd,kos./degree)
 hold all
 plot(grains.boundary)
 
 
-kanm = KANM(ebsd,'threshold',10*degree,'order',3);
+kos = KOS(ebsd,'threshold',10*degree,'order',3);
 figure
-plot(ebsd,kanm./degree)
+plot(ebsd,kos./degree)
 hold all
 plot(grains.boundary)
 
