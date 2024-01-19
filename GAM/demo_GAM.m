@@ -55,5 +55,5 @@ figure
 plot(ebsd,gam./degree)
 hold all
 plot(grains.boundary)
-return
 
+return

@@ -53,8 +53,23 @@ function gam = GAM(ebsd,varargin)
 [~,~,I_FD] = spatialDecomposition([ebsd.prop.x(:), ebsd.prop.y(:)],ebsd.unitCell,'unitCell');
 A_D = I_FD.' * I_FD;
 
-% extract adjacent pairs
+% extract all adjacent pairs surrounding a pixel
 [Dl, Dr] = find(A_D);
+
+% row indices of neighbouring pixels
+matchingRows = find(Dl == Dr + 1);
+Dl = Dl(matchingRows); Dr = Dr(matchingRows);
+% calculate the row indices for Dl and Dr based on the row-size of the ebsd
+% variable
+rowDl = ceil(Dl / size(ebsd.gridify, 1));
+rowDr = ceil(Dr / size(ebsd.gridify, 1));
+% find the rows in Dl and Dr where the pixel positions do not share the 
+% same row of the ebsd variable
+invalidRows = rowDl ~= rowDr;
+% get the row indices where the condition is true
+[rowIdx, ~] = find(invalidRows);
+% delete them from the calculation
+Dl(rowIdx) = []; Dr(rowIdx) = [];
 
 % take only ordered pairs of same, indexed phase 
 use = Dl > Dr & ebsd.phaseId(Dl) == ebsd.phaseId(Dr) & ebsd.isIndexed(Dl);
@@ -88,14 +103,14 @@ end
 % compute kernel average misorientation
 kam = sparse(Dl(ind),Dr(ind),omega(ind)+0.00001,length(ebsd),length(ebsd));
 kam = kam+kam';
-kam = reshape(full(sum(kam,2)./sum(kam>0,2)),size(ebsd));
+kam = reshape(full(sum(kam,2)./sum(kam>0,2)),size(ebsd)); % mean
 %%
 
 
 
 %% Commands by Rüdiger Killian to calculate the grain-based GAM
-[~,~,eindex] = unique(ebsd.grainId);
-tempGAM = accumarray(eindex,kam,[],@nanmean);
+[~,~,grainId] = unique(ebsd.grainId);
+tempGAM = accumarray(grainId,kam,[],@nanmean);
 %%
 
 
@@ -106,6 +121,8 @@ tempGAM = accumarray(eindex,kam,[],@nanmean);
 % gam(ebsd.grainId==ii) = tempGAM(ii);
 % end
 % Do the same more efficiently without a loop
-gam = NaN(size(ebsd.grainId));
-mask = ebsd.grainId <= max(eindex);
+gam = nan(size(ebsd.grainId));
+mask = ebsd.grainId <= max(grainId);
 gam(mask) = tempGAM(ebsd.grainId(mask));
+
+end
