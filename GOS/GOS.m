@@ -16,7 +16,6 @@ function gos = GOS(ebsd,grains,varargin)
 %% Syntax:
 % plot(ebsd,ebsd.GOS./degree)
 %
-% % ignore misorientation angles > threshold
 % gos = GOS(ebsd,grains);
 % plot(ebsd,gos./degree)
 %
@@ -24,9 +23,6 @@ function gos = GOS(ebsd,grains,varargin)
 % ebsd   - @EBSD
 % grains - @grain2d
 %
-%
-% See also
-% grain2d.GOS
 
 
 % compute the grain reference orientation deviation by iterating over all 
