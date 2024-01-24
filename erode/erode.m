@@ -43,13 +43,21 @@ stepSize = calcStepSize(inebsd);
 
 % gridify the ebsd map data
 gebsd = gridify(inebsd);
+% For upto MTEX v5.10.0
 xMap = stepSize.*floor(gebsd.prop.x./stepSize);
 yMap = stepSize.*floor(gebsd.prop.y./stepSize);
+% % For MTEX v6.0.0 
+% xMap = stepSize.*floor(gebsd.x./stepSize);
+% yMap = stepSize.*floor(gebsd.y./stepSize);
 
 % gridify the ebsd data of the grain of interest
 ggrain = gridify(gebsd(ingrain));
+% For upto MTEX v5.10.0
 xGrain = stepSize.*floor(ggrain.prop.x./stepSize);
 yGrain = stepSize.*floor(ggrain.prop.y./stepSize);
+% % For MTEX v6.0.0 
+% xGrain = stepSize.*floor(ggrain.x./stepSize);
+% yGrain = stepSize.*floor(ggrain.y./stepSize);
 
 % binarise the gridded ebsd data of the grain
 grainMap = ebsd2binary(ggrain,'ones');
