@@ -16,15 +16,15 @@ function kacm = KACM(ebsd,varargin)
 % https://groups.google.com/g/mtexmail/c/x1oFYjh0Des
 %
 %% Syntax:
-% plot(ebsd,ebsd.KOS./degree)
+% plot(ebsd,ebsd.KACM./degree)
 %
 % % ignore misorientation angles > threshold
-% kos = KOS(ebsd,'order',3,'threshold',10*degree);
-% plot(ebsd,kos./degree)
+% kacm = KACM(ebsd,'order',3,'threshold',10*degree);
+% plot(ebsd,kacm./degree)
 %
 % % ignore grain boundary misorientations
 % [grains, ebsd.grainId] = calcGrains(ebsd)
-% plot(ebsd, ebsd.KOS./degree)
+% plot(ebsd, ebsd.KACM./degree)
 %
 %% Input:
 % ebsd - @EBSD
@@ -63,7 +63,7 @@ if n > 1
     end
     clear A_D2
     % extract adjacent pairs
-    [rDl, rDr] = find(AA_DD);
+    [rDl,~] = find(AA_DD);
 
 
     % delete
@@ -110,7 +110,7 @@ else
   ind = omega < get_option(varargin,'threshold',10*degree);
 end
 
-% compute kernel average misorientation
+% compute kernel average center misorientation
 kacm = sparse(Dl(ind),Dr(ind),omega(ind)+0.00001,length(ebsd),length(ebsd));
 kacm = kacm+kacm';
 
@@ -118,6 +118,6 @@ if check_option(varargin,'max')
   kacm = reshape(full(max(kacm,[],2)),size(ebsd));
 elseif check_option(varargin,'min')
   kacm = reshape(full(min(kacm,[],2)),size(ebsd));
-else
+else % mean
   kacm = reshape(full(sum(kacm,2)./sum(kacm>0,2)),size(ebsd));
 end
