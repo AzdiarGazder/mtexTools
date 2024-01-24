@@ -162,6 +162,8 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 
 ## K
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**KACM**](https://github.com/AzdiarGazder/mtexTools/tree/main/KACM): By modifying MTEX's in-built KAM script, this function calculates the kernel average center misorientation (KACM). KACM is equivalent to KAM for first nearest-neighbours. When the kernel is larger than the first nearest-neighbors, then KACM is calculated by averaging the misorientations between the center point of the kernel and the points at the perimeter of the kernel. 
+
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**kamSegmenter**](https://github.com/AzdiarGazder/mtexTools/tree/main/kamSegmenter): This script demonstrates how to automatically segment and quantify the area fractions of granular bainite and polygonal ferrite in EBSD maps of steel grades using the critical kernel average misorientation (KAM) criterion.
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**KOS**](https://github.com/AzdiarGazder/mtexTools/tree/main/KOS): By modifying MTEX's in-built KAM script, this function calculates the kernel orientation spread (KOS). The KOS is similar to GOS but done within a user-defined kernel. The n-neighbour kernal average misorientation is averaged to return a single value per grain.
