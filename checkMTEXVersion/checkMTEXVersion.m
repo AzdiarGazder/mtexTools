@@ -20,8 +20,10 @@ curVerParts = getVersionParts(curVersion);
 % compare chkVerParts against curVerParts
 if curVerParts(1) ~= chkVerParts(1)     % major version
     flagVersion = curVerParts(1) < chkVerParts(1);
+
 elseif curVerParts(2) ~= chkVerParts(2) % minor version
     flagVersion = curVerParts(2) < chkVerParts(2);
+
 else                                    % revision version
     flagVersion = curVerParts(3) < chkVerParts(3);
 end
