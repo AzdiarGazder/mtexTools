@@ -43,13 +43,9 @@ kam = KAM(ebsd,varargin{:});
 % within each grain
 KOS = grainMean(ebsd, kam);
 
-
-
 %% Commands by Rüdiger Killian to calculate the grain-based GAM
 [~,~,grainId] = unique(ebsd.grainId);
 %%
-
-
 
 %% Commands by Azdiar Gazder to re-assign the KOS value to map pixels
 % kos = nan(size(ebsd.grainId));
