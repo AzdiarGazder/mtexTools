@@ -51,13 +51,16 @@ function gam = GAM(ebsd,varargin)
 %
 % compute adjacent measurements
 [~,~,I_FD] = spatialDecomposition([ebsd.prop.x(:), ebsd.prop.y(:)],ebsd.unitCell,'unitCell');
-A_D = I_FD.' * I_FD;
+% A_D = I_FD.' * I_FD; % Method 1
+A_D = I_FD.' * I_FD == 1; % Method 2
 
 % extract all adjacent pairs surrounding a pixel
-[Dl, Dr] = find(A_D);
+% [Dl, Dr] = find(A_D); % Method 1
+[Dl,Dr] = find(triu(A_D,1)); % Method 2
 
 % row indices of neighbouring pixels
-matchingRows = find(Dl == Dr + 1);
+% matchingRows = find(Dl == Dr + 1); % Method 1
+matchingRows = find(Dl == Dr - 1); % Method 2
 Dl = Dl(matchingRows); Dr = Dr(matchingRows);
 % calculate the row indices for Dl and Dr based on the row-size of the ebsd
 % variable
@@ -72,7 +75,8 @@ invalidRows = rowDl ~= rowDr;
 Dl(rowIdx) = []; Dr(rowIdx) = [];
 
 % take only ordered pairs of same, indexed phase 
-use = Dl > Dr & ebsd.phaseId(Dl) == ebsd.phaseId(Dr) & ebsd.isIndexed(Dl);
+% use = Dl > Dr & ebsd.phaseId(Dl) == ebsd.phaseId(Dr) & ebsd.isIndexed(Dl);  % Method 1
+use = ebsd.phaseId(Dl) == ebsd.phaseId(Dr) & ebsd.isIndexed(Dl);  % Method 2
 Dl = Dl(use); Dr = Dr(use);
 phaseId = ebsd.phaseId(Dl);
 
