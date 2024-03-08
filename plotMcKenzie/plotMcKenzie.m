@@ -38,6 +38,7 @@ if numMatch == 1
     % Define n - number of random orientations
     ori1 = orientation.rand(n,CS);
     ori2 = orientation.rand(n,CS);
+
 elseif numMatch == 2
     CS1 = varargin{col(1)};
     CS2 = varargin{col(2)};
@@ -46,6 +47,7 @@ elseif numMatch == 2
     % Define n - number of random orientations
     ori1 = orientation.rand(n,CS1);
     ori2 = orientation.rand(n,CS2);
+
 elseif numMatch > 2
     error('A maximum of two crystal symmetries are allowed.');
 end
@@ -67,7 +69,7 @@ binCenters = binEdges(1:end-1) + binWidth/2;
 % Calculate the probability distribution function (PDF)
 pdf = counts ./ (sum(counts) * binWidth);
 
-disp('boo3')
+
 figH = figure;
 % Plot MTEX's default McKenzie distribution while scaling its y-axis data
 % to the number of orientations
@@ -77,14 +79,17 @@ elseif numMatch == 2
     h1 = plotAngleDistribution(CS1,CS2,'numBins',numBins);
 end
 hold all;
+
 % Plot the misorientation histogram based on the user defined number of
 % bins
 h2 = bar(binCenters,pdf);
 hold all;
+
 % Scale MTEX's default McKenzie distribution to the data
 h1.YData = (h1.YData./sum(h1.YData));
 scaleFactor = max(h2.YData)/max(h1.YData);
 h1.YData = h1.YData.* scaleFactor;
+
 hold off;
 xlabel('Misorientation angle (°)')
 ylabel('Normalised freq.');
