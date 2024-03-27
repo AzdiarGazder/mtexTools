@@ -124,6 +124,8 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**fibreOrientations**](https://github.com/AzdiarGazder/mtexTools/tree/main/fibreOrientations): This script demonstrates how to obtain and plot orientations from a crystallographic fibre.
 
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**findElement**](https://github.com/AzdiarGazder/mtexTools/tree/main/findElement): This function finds the location of elements in "array1" within "array2" irrespective of data type. The location of common elements may be expressed as indices or subscripts.
+
 
 
 ## G
