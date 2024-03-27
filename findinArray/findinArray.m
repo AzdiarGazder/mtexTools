@@ -1,4 +1,4 @@
-function varargout = findElement(in1,in2,varargin)
+function varargout = findinArray(in1,in2,varargin)
 %% Function description:
 % This function finds the location of elements in array1 within array2 
 % irrespective of data type. The location of common elements may be 
