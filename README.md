@@ -124,7 +124,9 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**fibreOrientations**](https://github.com/AzdiarGazder/mtexTools/tree/main/fibreOrientations): This script demonstrates how to obtain and plot orientations from a crystallographic fibre.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**findinArray**](https://github.com/AzdiarGazder/mtexTools/tree/main/findinArray): This function finds the location of elements in "array1" within "array2" irrespective of data type. The location of common elements may be expressed as indices or subscripts.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**findinArray**](https://github.com/AzdiarGazder/mtexTools/tree/main/findinArray): This function finds the location of elements in "array1" within "array2" irrespective of data type. The location of common elements may be expressed as indices, subscripts, or a logical array.
+
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**findinVarargin**](https://github.com/AzdiarGazder/mtexTools/tree/main/findinVarargin): This function finds the location of an element within varargin. The location may be expressed as indices, subscripts, or a logical array.
 
 
 
@@ -138,6 +140,7 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**grainGrowth_phaseField**](https://github.com/AzdiarGazder/mtexTools/tree/main/grainGrowth_phaseField): This phase-field simulation script demonstrates 2D grain growth using the Allen-Cahn equation for non-conserved order parameters based on a continuum field model by Fan and Chen.
 
 - ![Static Badge](https://img.shields.io/badge/T-FAAE11) ![Static Badge](https://img.shields.io/badge/C-00FF00) [**grainSizeTools**](https://github.com/AzdiarGazder/mtexTools/tree/main/grainSizeTools): GrainSizeTools is a free, open-source, cross-platform script written in Python and maintained by Dr Marco A. Lopez-Sanchez. This toolbox replicates the data analysis and plots in GrainSizeTools for a MATLAB and MTEX -based environmment by providing tools for: (1) describing and visualising grain size populations, and (2) applying stereology methods to approximate the 3D distribution of grain sizes from thin sections.
+
 
 
 ## H
