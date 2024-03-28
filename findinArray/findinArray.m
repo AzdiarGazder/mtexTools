@@ -2,7 +2,7 @@ function varargout = findinArray(in1,in2,varargin)
 %% Function description:
 % This function finds the location of elements in array1 within array2 
 % irrespective of data type. The location of common elements may be 
-% expressed as indices or subscripts.
+% expressed as indices, subscripts, or a logical array.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2024, azdiaratuowdotedudotau
@@ -20,25 +20,31 @@ function varargout = findinArray(in1,in2,varargin)
 %                    performed
 %
 %% Output:
-%  varargout       - @double, indices or subscripts of common elements
+%  varargout       - @double, indices or subscripts or logical array of 
+%                    common elements
 %
 %% Options:
-%  'index' or 'ind'        - returns indices
-%  'subscript' or 'sub'    - returns subscripts (rows and columns)
+%  'index'         - returns indices
+%  'subscript'     - returns subscripts (rows and columns)
+%  'logical'       - returns logical array (1 = match; 0 = no match)
 %
 
 
-if check_option(varargin,{'index','ind'})
+if check_option(varargin,{'index'})
     warning('Default: Returning indices');
-    flagType = false;
+    flagType = 'index';
 
-elseif check_option(varargin,{'subscript','sub'})
+elseif check_option(varargin,{'subscript'})
     warning('Default: Returning subscripts (rows and columns)');
-    flagType = true;
+    flagType = 'subscript';
+
+elseif check_option(varargin, {'logical'})
+    warning('Default: Returning logical array');
+    flagType = 'logical';
 
 else
     warning('Default: Returning indices');
-    flagType = false;
+    flagType = 'index';
 end
 
 
@@ -49,17 +55,21 @@ array2 = array2Cell(in2);
 % Find common elements
 C = intersect(array1,array2);
 
-% Find indices of common elements in B
+% Find indices of common elements in array2
 idx = find(ismember(array2,C));
 
 
-if flagType == true
+if isequal(flagType, 'subscript')
     [row,col] = ind2sub(size(array2),idx);
-    temp = sortrows([row,col],1);
+    temp = sortrows([row(:),col(:)],1);
     varargout{1} = temp(:,1);
     varargout{2} = temp(:,2);
 
-else
+elseif isequal(flagType, 'logical')
+    logicalArray = ismember(1:numel(array2), idx);
+    varargout{1} = reshape(logicalArray, size(array2));
+
+elseif isequal(flagType, 'index')
     varargout{1} = idx;
 end
 
