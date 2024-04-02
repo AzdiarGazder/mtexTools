@@ -153,7 +153,7 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**idealOrientations**](https://github.com/AzdiarGazder/mtexTools/tree/main/idealOrientations): This script demonstrates how to plot user-defined pole figures and orientation distribution function sections of common ideal orientations for bcc, fcc and hcp materials.
  
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**imageResize**](https://github.com/AzdiarGazder/mtexTools/tree/main/imageResize): This function interactively resizes an image. This function may be used in conjunction with ebsd map data to correct for drift during map acquisition.
+- ![Static Badge](https://img.shields.io/badge/D-0000FF) [**imageResize**](https://github.com/AzdiarGazder/mtexTools/tree/main/imageResize): This demonstration interactively resizes an image. When adapted as a function, it may be used in conjunction with ebsd map data to correct for drift during map acquisition.
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**imageTransform**](https://github.com/AzdiarGazder/mtexTools/tree/main/imageTransform): This function interactively projectives or affine transforms an image. This function may be used in conjunction with ebsd map data to correct for drift during map acquisition.
 
@@ -244,6 +244,9 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**stitch**](https://github.com/AzdiarGazder/mtexTools/tree/main/stitch): This function stitches, combines or merges two ebsd maps together into one map by defining a user-specified position and offset/overlay for map 2 relative to map 1.
 
 
+
+## W
+- ![Static Badge](https://img.shields.io/badge/D-0000FF) [**warpGrid**](https://github.com/AzdiarGazder/mtexTools/tree/main/warpGrid): This demonstration interactively warps a grid of X and Y co-ordinates. When adapted as a function, it may be used in conjunction with ebsd map data to correct for drift during map acquisition.
 
 
 

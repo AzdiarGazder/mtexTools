@@ -1,7 +1,8 @@
 function imageResize
-%% Function description:
-% Interactively resize an image. This function may be used in conjunction
-% with ebsd map data to correct for drift during map acquisition.
+%% Demonstration description:
+% This demonstration interactively resizes an image. When adapted as a 
+% function, it may be used in conjunction with ebsd map data to correct 
+% for drift during map acquisition.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2023, azdiaratuowdotedudotau
