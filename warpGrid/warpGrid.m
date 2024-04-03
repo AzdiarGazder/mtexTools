@@ -4,6 +4,11 @@ function warpGrid
 % When adapted as a function, it may be used in conjunction with ebsd map 
 % data to correct for drift during map acquisition.
 %
+% Use the first mouse left-click to select a corner, then a second mouse 
+% left-click to select its new location.
+% 
+% Use two mouse right-clicks to exit the script.
+%
 %% Author:
 % Dr. Azdiar Gazder, 2024, azdiaratuowdotedudotau
 %
