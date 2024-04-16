@@ -176,6 +176,10 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 
 ## L
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**loadEBSD_crc**](https://github.com/AzdiarGazder/mtexTools/tree/main/loadEBSD_crc): Replaces MTEX's default "loadEBSD_crc.m" file located in the "~\mtex\interfaces" folder to include the automatic loading of energy dispersive x-ray spectroscopy (EDS) elemental data stored within a *.crc and *.cpr file when combined EBSD+EDS mapping is undertaken. The EDS elemental data comprises total counts per pixel without any peak deconvolution and background removal undertaken. The elemental values are returned within the 'ebsd.prop' structure variable.
+
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**loadEDS_csv**](https://github.com/AzdiarGazder/mtexTools/tree/main/loadEDS_csv): Automatically loads all energy dispersive x-ray spectroscopy (EDS) elemental data (counts per pixel) stored within individual *.csv files when combined EBSD+EDS mapping is undertaken. The *.csv files may comprise user defined "TruMap" or "QuantMap" data exported from the Oxford Instruments Aztec software suite. The elemental values are returned within the 'ebsd.prop' structure variable.
+
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**lineProfile**](https://github.com/AzdiarGazder/mtexTools/tree/main/lineProfile): This function interactively plots an EBSD map property (numeric, logical, or misorientation) profile along a user specified line or linear fiducial.
 
 
