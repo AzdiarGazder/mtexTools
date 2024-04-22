@@ -90,7 +90,7 @@ if isa(indata,'EBSD')
         disp('---')
         disp('Calculating discrete ODF volume fractions...');
         % calculate the ODF volume fraction (v) to use as the weight (wt)
-        wt = calcODFvolFraction(odf);
+        wt = calcODFVolumeFraction(odf);
         % make single column arrays
         ori = ori(:);
         wt = wt(:);
@@ -231,55 +231,5 @@ disp (['Variation in cup height  [Delta h = ((h0 + h90) / 2) - h45]  = ', num2st
 disp (['Average cup height       [Avg h   = (h0 + 2*h45 + h90) / 4]  = ', num2str(avgh)]);
 disp (['Total percentage earing  [(Delta h / Avg h) * 100]           = ',num2str(pctEaring),' %']);
 
-
-end
-
-
-
-
-
-function v = calcODFvolFraction(odf)
-% Initialise variables
-fg = odf.opt.intensity;
-
-% Define odf extents
-[maxRho,maxTheta,maxSec] = fundamentalRegionEuler(odf.SRight,odf.SLeft);
-
-% Define the dimensions of the odf grid
-x = linspace(0,maxTheta,size(fg,2));
-y = linspace(0,maxRho,size(fg,1));
-z = linspace(0,maxSec,size(fg,3));
-
-% Create a meshgrid
-[phi1, Phi, phi2] = meshgrid(x, y, z);
-dphi1 = max(diff(phi1(:)),[],'all');
-dPhi = max(diff(Phi(:)),[],'all');
-dphi2 = max(diff(phi2(:)),[],'all');
-
-
-% Initialise the grid of multiplier fractions with 1
-multFrac = ones(size(phi1));
-
-% Update the corner values of the grid of multiplier fractions with 1/8
-multFrac([1 end], [1 end], [1 end]) = 1/8;
-
-% Update the edge values of the grid of multiplier fractions with 1/4
-multFrac([1 end], [1 end], 2:end-1) = 1/4;
-multFrac([1 end], 2:end-1, [1 end]) = 1/4;
-multFrac(2:end-1, [1 end], [1 end]) = 1/4;
-
-% Update the end faces of the grid of multiplier fractions with 1/2
-multFrac([1 end], 2:end-1, 2:end-1) = 1/2;
-multFrac(2:end-1, [1 end], 2:end-1) = 1/2;
-multFrac(2:end-1, 2:end-1, [1 end]) = 1/2;
-
-% CHECK
-% scatter3(phi1(:),Phi(:),phi2(:),50,multFrac(:),'filled');
-
-% Calculate the ODF volume fraction
-v = 1/((pi()^2)) .* multFrac .* odf.opt.intensity .* (cos(Phi -(dPhi/2)) - cos(Phi + (dPhi/2))) .* sin(Phi) .* (dphi1 * dphi2);
-
-% Normalise the volume fraction
-v = v ./ sum(v(:));
 
 end

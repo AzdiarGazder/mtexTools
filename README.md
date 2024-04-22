@@ -83,6 +83,8 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcODFIntensity**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcODFIntensity): This function returns the ODF intensity (f(g)) in user-defined steps using Bunge's notation to the variable 'odf.opt.intensity'.
 
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcODFVolumeFraction**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcODFVolumeFraction): Returns the volume fraction of a discrete ODF using Bunge's notation.
+
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcSpacing**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcSpacing): This function calculates the interplanar spacing for a given set of Miller indices specifying the lattice plane. The Bravis lattice of the Miller indices is automatically identified.
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcStepSize**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcStepSize): This function calculates the step size of the ebsd map. This function can also be used in conjunction with the regrid.m script.
