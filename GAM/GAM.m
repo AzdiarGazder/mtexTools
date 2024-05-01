@@ -113,20 +113,14 @@ kam = reshape(full(sum(kam,2)./sum(kam>0,2)),size(ebsd)); % mean
 
 
 %% Commands by Rüdiger Killian to calculate the grain-based GAM
-[~,~,grainId] = unique(ebsd.grainId);
-tempGAM = accumarray(grainId,kam,[],@nanmean);
+[~,~,gId] = unique(ebsd.grainId);
+tempGAM = accumarray(gId,kam,[],@nanmean);
 %%
 
 
 
-%% Commands by Azdiar Gazder to re-assign the GAM value to map pixels
-% gam = nan(size(ebsd.grainId));
-% for ii = 1:max(grainId)
-% gam(ebsd.grainId==ii) = tempGAM(ii);
-% end
-% Do the same more efficiently without a loop
+%% Commands by Azdiar Gazder to re-assign the GAM value to map pixels without a loop
 gam = nan(size(ebsd.grainId));
-mask = ebsd.grainId <= max(grainId);
-gam(mask) = tempGAM(ebsd.grainId(mask));
+gam(:) = tempGAM(gId);
 
 end
