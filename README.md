@@ -169,7 +169,7 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 
 ## K
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**KACM**](https://github.com/AzdiarGazder/mtexTools/tree/main/KACM): By modifying MTEX's in-built KAM script, this function calculates the kernel average center misorientation (KACM). When the kernel is defined with first nearest-neighbours, KACM is equivalent. When the kernel is larger than the first nearest-neighbors, then KACM is calculated by averaging the misorientations between the center point of the kernel and the points at the perimeter of the kernel. 
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**KACM**](https://github.com/AzdiarGazder/mtexTools/tree/main/KACM): By modifying MTEX's in-built KAM script, this function calculates the kernel average center misorientation (KACM). When the kernel is defined as first nearest-neighbours, KACM is equivalent to KAM. When the kernel is defined as second or larger than the second nearest-neighbors, then KACM is calculated by averaging the misorientations between the center point of the kernel and the points at the perimeter of the kernel.
 
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**kamSegmenter**](https://github.com/AzdiarGazder/mtexTools/tree/main/kamSegmenter): This script demonstrates how to automatically segment and quantify the area fractions of granular bainite and polygonal ferrite in EBSD maps of steel grades using the critical kernel average misorientation (KAM) criterion.
 
