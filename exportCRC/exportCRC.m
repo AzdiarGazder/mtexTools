@@ -32,13 +32,13 @@ function exportCRC(ebsd,pfName,varargin)
 % Re-number any strange phase numbers (*.ang file error)
 ebsd.phaseMap = (0:(length(ebsd.phaseMap)-1))';
 
-%% Re-grid the ebsd grid
+%% Re-define the ebsd variable
 % Done to ensure no rounding-off errors in grid values.
 % This step is especially necessary when converting from hexagonal to
 % square grid types
 ebsd = EBSD(ebsd);
-% stepSize = calcStepSize(ebsd);
-% ebsd = regrid(ebsd,stepSize);
+
+
 
 %% Process *.cpr data
 if isfield(ebsd.opt,'cprInfo')
@@ -54,7 +54,7 @@ elseif ~isfield(ebsd.opt,'cprInfo') && isfield(ebsd.prop,'bc') && isfield(ebsd.p
     flagCPRInfo = false;
     % Since the structure containing the cpr data is missing, information
     % for an equivalent CPR file data needs to be generated
-    cprStruct = getCPRInfo(ebsd,'flagOIFormat',flagOIFormat,'flagCPRInfo',flagCPRInfo);
+    cprStruct = getCPRInformation(ebsd,'flagOIFormat',flagOIFormat,'flagCPRInfo',flagCPRInfo);
 
 else
     % In this case, the input map is from another vendor
@@ -62,7 +62,7 @@ else
     flagCPRInfo = false;
     % Since the structure containing the cpr data is missing, information
     % for an equivalent CPR file data needs to be generated
-    cprStruct = getCPRInfo(ebsd,'flagOIFormat',flagOIFormat,'flagCPRInfo',flagCPRInfo);
+    cprStruct = getCPRInformation(ebsd,'flagOIFormat',flagOIFormat,'flagCPRInfo',flagCPRInfo);
 
 end
 % Find the first level field names of the structure
@@ -95,12 +95,8 @@ end
 % do not have a correspondence in the regular grid are set to NaN.
 % However, this causes an issue with OI Channel-5 as the software does not
 % work with NaNs in the map data.
-% METHOD 1: Interpolate NaNs (default OI method)
-% ebsd.prop.phi1 = interpolateNaNs(ebsd.rotations.phi1);
-% ebsd.prop.Phi = interpolateNaNs(ebsd.rotations.Phi);
-% ebsd.prop.phi2 = interpolateNaNs(ebsd.rotations.phi2);
 
-% METHOD 2: Replace NaNs with zero (default MTEX method)
+% METHOD 2: Replace NaNs with zero using the default MTEX method
 ebsd.prop.phi1 = ebsd.rotations.phi1;
 ebsd.prop.Phi = ebsd.rotations.Phi;
 ebsd.prop.phi2 = ebsd.rotations.phi2;
@@ -110,23 +106,25 @@ ebsd.prop.Phi(isnan(ebsd.prop.Phi)) = 0;
 ebsd.prop.phi2(isnan(ebsd.prop.phi2)) = 0;
 
 if isfield(ebsd.prop,'fit')
-    %     ebsd.prop.fit = interpolateNaNs(ebsd.prop.fit);
     ebsd.prop.fit(isnan(ebsd.prop.fit)) = 0;
 end
+if isfield(ebsd.prop,'bc')
+    ebsd.prop.bc(isnan(ebsd.prop.bc)) = 0;
+end
+if isfield(ebsd.prop,'bs')
+
+    ebsd.prop.bs(isnan(ebsd.prop.bs)) = 0;
+end
 if isfield(ebsd.prop,'iq')
-    %     ebsd.prop.iq = interpolateNaNs(ebsd.prop.iq);
     ebsd.prop.iq(isnan(ebsd.prop.iq)) = 0;
 end
 if isfield(ebsd.prop,'imagequality')
-    %     ebsd.prop.imagequality = interpolateNaNs(ebsd.prop.imagequality);
     ebsd.prop.imagequality(isnan(ebsd.prop.imagequality)) = 0;
 end
 if isfield(ebsd.prop,'ci')
-    %     ebsd.prop.ci = interpolateNaNs(ebsd.prop.ci);
     ebsd.prop.ci(isnan(ebsd.prop.ci)) = 0;
 end
 if isfield(ebsd.prop,'confidenceindex')
-    %     ebsd.prop.confidenceindex = interpolateNaNs(ebsd.prop.confidenceindex);
     ebsd.prop.confidenceindex(isnan(ebsd.prop.confidenceindex)) = 0;
 end
 %%
@@ -143,78 +141,75 @@ end
 % classType = {'int8' 'single' 'single' 'single' 'single' 'int8' 'int8' 'int8' 'int8' 'single' 'single' ... 'single'};
 % byteLength = [1 4 4 4 4 1 1 1 1 4 4 ... 4];
 
-% In case the ebsd variable only contains indexed data, use the gridified
-% version of ebsd variable
-ebsdGrid = ebsd.gridify;
 
 % Transpose row & column data first
 % Then flip column data from left-to-right
 %% C1 = phaseIndex
-grid.phase = fliplr(ebsdGrid.phase.');
+grid.phase = fliplr(ebsd.phase.');
 
 %% C2 = Euler1
-grid.phi1 = fliplr(ebsdGrid.prop.phi1.');
+grid.phi1 = fliplr(ebsd.prop.phi1.');
 
 %% C3 = Euler2
-grid.Phi = fliplr(ebsdGrid.prop.Phi.');
+grid.Phi = fliplr(ebsd.prop.Phi.');
 
 %% C4 = Euler3
-grid.phi2 = fliplr(ebsdGrid.prop.phi2.');
+grid.phi2 = fliplr(ebsd.prop.phi2.');
 
 %% C5 = MAD
-if flagOIFormat && isfield(ebsdGrid.prop,'mad')
-    grid.mad = fliplr(ebsdGrid.prop.mad.');
-elseif isfield(ebsdGrid.prop,'fit')
-    grid.mad = fliplr(ebsdGrid.prop.fit.');
+if flagOIFormat && isfield(ebsd.prop,'mad')
+    grid.mad = fliplr(ebsd.prop.mad.');
+elseif isfield(ebsd.prop,'fit')
+    grid.mad = fliplr(ebsd.prop.fit.');
 else
-    grid.mad = zeros(size(fliplr(ebsdGrid.isIndexed.')));
+    grid.mad = zeros(size(fliplr(ebsd.isIndexed.')));
 end
 
 %% C6 = BC
-if flagOIFormat && isfield(ebsdGrid.prop,'bc')
-    grid.bc = fliplr(ebsdGrid.prop.bc.');
-elseif isfield(ebsdGrid.prop,'iq')
-    iq = round(255 * mat2gray(ebsdGrid.prop.iq));
+if flagOIFormat && isfield(ebsd.prop,'bc')
+    grid.bc = fliplr(ebsd.prop.bc.');
+elseif isfield(ebsd.prop,'iq')
+    iq = round(255 * mat2gray(ebsd.prop.iq));
     grid.bc = fliplr(iq.');
-elseif isfield(ebsdGrid.prop,'imagequality')
-    imagequality = round(255 * mat2gray(ebsdGrid.prop.imagequality));
+elseif isfield(ebsd.prop,'imagequality')
+    imagequality = round(255 * mat2gray(ebsd.prop.imagequality));
     grid.bc = fliplr(imagequality.');
 else
-    grid.bc = zeros(size(fliplr(ebsdGrid.isIndexed.')));
+    grid.bc = zeros(size(fliplr(ebsd.isIndexed.')));
 end
 
 %% C7 = BS
-if flagOIFormat && isfield(ebsdGrid.prop,'bs')
-    grid.bs = fliplr(ebsdGrid.prop.bs.');
+if flagOIFormat && isfield(ebsd.prop,'bs')
+    grid.bs = fliplr(ebsd.prop.bs.');
 elseif isfield(ebsdGrid.prop,'ci')
-    ci = round(255 * mat2gray(ebsdGrid.prop.ci));
+    ci = round(255 * mat2gray(ebsd.prop.ci));
     grid.bs = fliplr(ci.');
-elseif isfield(ebsdGrid.prop,'confidenceindex')
-    confidenceindex = round(255 * mat2gray(ebsdGrid.prop.confidenceindex));
+elseif isfield(ebsd.prop,'confidenceindex')
+    confidenceindex = round(255 * mat2gray(ebsd.prop.confidenceindex));
     grid.bs = fliplr(confidenceindex.');
 else
-    grid.bs = zeros(size(fliplr(ebsdGrid.isIndexed.')));
+    grid.bs = zeros(size(fliplr(ebsd.isIndexed.')));
 end
 
 %% C8 = Number of bands
-if flagOIFormat && isfield(ebsdGrid.prop,'bands')
-    grid.bands = fliplr(ebsdGrid.prop.bands.');
+if flagOIFormat && isfield(ebsd.prop,'bands')
+    grid.bands = fliplr(ebsd.prop.bands.');
 else
-    numBands = 6 * ones(size(ebsdGrid.isIndexed)); % assign the OI minimum of 6 bands to indexed points
-    numBands(ebsdGrid.isIndexed == 0) = 1; % assign zero bands to zero solution points
+    numBands = 6 * ones(size(ebsd.isIndexed)); % assign the OI minimum of 6 bands to indexed points
+    numBands(ebsd.isIndexed == 0) = 1; % assign zero bands to zero solution points
     grid.bands = fliplr(numBands.');
 end
 
 %% C9 = Error
-if flagOIFormat && isfield(ebsdGrid.prop,'error')
-    grid.error = fliplr(ebsdGrid.prop.error.');
+if flagOIFormat && isfield(ebsd.prop,'error')
+    grid.error = fliplr(ebsd.prop.error.');
 else
-    grid.error = zeros(size(fliplr(ebsdGrid.isIndexed.')));
+    grid.error = zeros(size(fliplr(ebsd.isIndexed.')));
 end
 
 %% C10 = is or is not indexed
 % As per OI convention: 0 = indexed, 1 = zero solution
-grid.isIndexed = fliplr(double(~ebsdGrid.isIndexed).');
+grid.isIndexed = fliplr(double(~ebsd.isIndexed).');
 
 
 
@@ -317,40 +312,6 @@ disp('Done!')
 end
 %%
 
-
-% %% Calculate the ebsd map step size
-% function stepSize = calcStepSize(inebsd)
-%
-% xx = [inebsd.unitCell(:,1);inebsd.unitCell(1,1)]; % repeat the 1st x co-ordinate to close the unit pixel shape
-% yy = [inebsd.unitCell(:,2);inebsd.unitCell(1,2)]; % repeat the 1st y co-ordinate to close the unit pixel shape
-% unitPixelArea = polyarea(xx,yy);
-% if size(inebsd.unitCell,1) == 6 % hexGrid
-%   stepSize = sqrt(unitPixelArea/sind(60));
-% else % squareGrid
-%   stepSize = sqrt(unitPixelArea);
-% end
-% end
-
-% %% Regrid the ebsd data
-% function outebsd = regrid(inebsd,stepSize)
-% % Re-calculating the grid values as multiples of the calculated step size
-% % this step mitigates any rounding-off errors during subsequent gridding
-% % operations
-% outebsd = inebsd;
-% outebsd.prop.x = stepSize.*floor(outebsd.prop.x./stepSize);
-% outebsd.prop.y = stepSize.*floor(outebsd.prop.y./stepSize);
-% end
-
-% %% Interpolate NaNs
-% % From https://au.mathworks.com/matlabcentral/answers/34346-interpolating-nan-s
-% function out = interpolateNaNs(in)
-% in_notNaN = ~isnan(in);
-% inLength = (1:numel(in)).';
-% pp = interp1(inLength(in_notNaN),in(in_notNaN),'linear','pp');
-% out = fnval(pp,inLength);
-% % plot(inLength,in,'ko',inLength,out,'b-');
-% % box on; grid on;
-% end
 
 
 %% MIT License

@@ -1,4 +1,4 @@
-function cprInfo = getCPRInfo(ebsd,varargin)
+function cprInfo = getCPRInformation(ebsd,varargin)
 
 flagOIFormat = get_option(varargin,'flagOIFormat',true);
 flagCPRInfo = get_option(varargin,'flagCPRInfo',true);
