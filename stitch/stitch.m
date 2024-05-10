@@ -234,7 +234,7 @@ if any(strcmpi(varargin,'north')) ||...
             end
 
         elseif ~isempty(varargin) && check_option(varargin,'south')
-            pixelShift = get_option(varargin,'north',[0,0]);
+            pixelShift = get_option(varargin,'south',[0,0]);
             arraySize(pixelShift);
             inebsd2 = inebsd2 + [(0-pixelShift(1,1)), (bounds1(4)-pixelShift(1,2))];
 
