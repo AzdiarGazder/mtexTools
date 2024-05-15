@@ -31,7 +31,6 @@ function kos = KOS(ebsd,varargin)
 % threshold - ignore misorientation angles larger then threshold
 % order     - consider neighbors of order n
 % max       - instead of the mean, return the maximum misorientation angle
-% min       - instead of the mean, return the minimum misorientation angle
 %
 % See also
 % grain2d.GOS
@@ -44,17 +43,13 @@ kam = KAM(ebsd,varargin{:});
 KOS = grainMean(ebsd, kam);
 
 %% Commands by Rüdiger Killian to calculate the grain-based GAM
-[~,~,grainId] = unique(ebsd.grainId);
+[~,~,gId] = unique(ebsd.grainId);
 %%
 
-%% Commands by Azdiar Gazder to re-assign the KOS value to map pixels
-% kos = nan(size(ebsd.grainId));
-% for ii = 1:max(grainId)
-% kos(ebsd.grainId==ii) = KOS(ii);
-% end
-% Do the same more efficiently without a loop
+
+
+%% Commands by Azdiar Gazder to re-assign the KOS value to map pixels without a loop
 kos = nan(size(ebsd.grainId));
-mask = ebsd.grainId <= max(grainId);
-kos(mask) = KOS(ebsd.grainId(mask));
+kos(:) = KOS(gId);
 
 end

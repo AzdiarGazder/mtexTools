@@ -14,10 +14,8 @@ function gos = GOS(ebsd,grains,varargin)
 % https://groups.google.com/g/mtexmail/c/x1oFYjh0Des
 %
 %% Syntax:
-% plot(ebsd,ebsd.GOS./degree)
-%
 % gos = GOS(ebsd,grains);
-% plot(ebsd,gos./degree)
+% plot(ebsd,gos./degree);
 %
 %% Input:
 % ebsd   - @EBSD
@@ -47,19 +45,13 @@ GOS = grainMean(ebsd, grod);
 
 
 %% Commands by Rüdiger Killian to calculate the grain-based GAM
-[~,~,grainId] = unique(ebsd.grainId);
+[~,~,gId] = unique(ebsd.grainId);
 %%
 
 
 
-%% Commands by Azdiar Gazder to re-assign the KOS value to map pixels
-% gos = nan(size(ebsd.grainId));
-% for ii = 1:max(grainId)
-% gos(ebsd.grainId==ii) = GOS(ii);
-% end
-% Do the same more efficiently without a loop
+%% Commands by Azdiar Gazder to re-assign the GOS value to map pixels without a loop
 gos = nan(size(ebsd.grainId));
-mask = ebsd.grainId <= max(grainId);
-gos(mask) = GOS(ebsd.grainId(mask));
+gos(:) = GOS(gId);
 
 end

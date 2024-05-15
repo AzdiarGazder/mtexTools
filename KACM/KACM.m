@@ -1,11 +1,11 @@
 function kacm = KACM(ebsd,varargin)
 %% Function description:
 % By modifying MTEX's in-built KAM script, this function calculates the 
-% kernel average center misorientation (KACM). KACM is equivalent to KAM
-% for first nearest-neighbours. When the kernel is larger than the first 
-% nearest-neighbors, then KACM is calculated by averaging the 
-% misorientations between the center point of the kernel and the points
-% at the perimeter of the kernel. 
+% kernel average center misorientation (KACM). When the kernel is defined 
+% as first nearest-neighbours, KACM is equivalent to KAM. When the kernel 
+% is defined as second or larger than the second nearest-neighbors, then 
+% KACM is calculated by averaging the misorientations between the center 
+% point of the kernel and the points at the perimeter of the kernel. 
 %
 %% Modified by:
 % Dr. Azdiar Gazder, 2024, azdiaratuowdotedudotau
