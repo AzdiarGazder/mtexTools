@@ -48,7 +48,7 @@ gebsd = gridify(inebsd);
 % define the ebsd map size (Y-axis = rows ; X-axis = columns)
 mapSize_Y = size(gebsd,1); mapSize_X = size(gebsd,2);
 % check for ebsd & gebsd map size match
-if (mapSize_Y*mapSize_X) ~= size(inebsd,1)
+if (mapSize_Y*mapSize_X) < size(inebsd,1)
     error(sprintf('\nNon-indexed pixels missing from the ebsd variable.'));
     return;
 end
