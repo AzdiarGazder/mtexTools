@@ -137,6 +137,10 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**gBFraction**](https://github.com/AzdiarGazder/mtexTools/tree/main/gBFraction): This function calculates the fraction of indexed boundary segments that are below and above user-specified threshold angle(s) for each grain.
 
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**getXLine**](https://github.com/AzdiarGazder/mtexTools/tree/main/getXLine): This function lets you select a vertical polyline in the current axes of figure FIG using the mouse. Coordinates of the polyline are returned in X and Y. Once the initial X-coordinate is selected, all subsequent points will have the same X-coordinate, restricting the polyline to be vertical.
+
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**getYLine**](https://github.com/AzdiarGazder/mtexTools/tree/main/getYLine): This function lets you select a horizontal polyline in the current axes of figure FIG using the mouse. Coordinates of the polyline are returned in X and Y. Once the initial Y-coordinate is selected, all subsequent points will have the same Y-coordinate, restricting the polyline to be horizontal.
+
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**GOS**](https://github.com/AzdiarGazder/mtexTools/tree/main/GOS): The grain orientation spread (GOS) is the average of the angular deviation between the orientation of each pixel within a grain and the average orientation of the grain. The averaging returns a single value per grain.
 
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**grainGrowth_phaseField**](https://github.com/AzdiarGazder/mtexTools/tree/main/grainGrowth_phaseField): This phase-field simulation script demonstrates 2D grain growth using the Allen-Cahn equation for non-conserved order parameters based on a continuum field model by Fan and Chen.
