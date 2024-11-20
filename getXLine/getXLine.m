@@ -1,6 +1,6 @@
 function varargout = getXLine(varargin)
 %GETXLINE Select vertical polyline with mouse.
-%   [X,Y] = GETXLINE(FIG) lets you select a vertical polyline 
+%   [X,Y] = GETXLINE(FIG) enables users to select a vertical polyline 
 %   in the current axes of figure FIG using the mouse. Coordinates of 
 %   the polyline are returned in X and Y. Once the initial X-coordinate 
 %   is selected, all subsequent points will have the same X-coordinate, 

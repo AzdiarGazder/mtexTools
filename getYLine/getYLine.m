@@ -1,6 +1,6 @@
 function varargout = getYLine(varargin)
 %GETYLINE Select horizontal polyline with mouse.
-%   [X,Y] = GETYLINE(FIG) lets you select a horizontal polyline 
+%   [X,Y] = GETYLINE(FIG) enables users to select a horizontal polyline 
 %   in the current axes of figure FIG using the mouse. Coordinates of 
 %   the polyline are returned in X and Y. Once the initial Y-coordinate 
 %   is selected, all subsequent points will have the same Y-coordinate, 
