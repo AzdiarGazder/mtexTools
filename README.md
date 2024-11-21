@@ -83,7 +83,9 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcODFIntensity**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcODFIntensity): This function returns the ODF intensity (f(g)) in user-defined steps using Bunge's notation to the variable 'odf.opt.intensity'.
 
-- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcODFVolumeFraction**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcODFVolumeFraction): Returns the volume fraction of a discrete ODF using Bunge's notation.
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcODFVolumeFraction**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcODFVolumeFraction): This function returns the volume fraction of a discrete ODF using Bunge's notation.
+
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcScreenSize**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcScreenSize): This function calculates the screen size for all detected screens on the system in various units such as pixels, inches, centimeters, normalized units, points, or characters. It accounts for system scaling factors specific to different platforms and can either include or exclude the taskbar size from the screen area. The returned screen size can be specified in different units depending on user input.
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcSpacing**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcSpacing): This function calculates the interplanar spacing for a given set of Miller indices specifying the lattice plane. The Bravis lattice of the Miller indices is automatically identified.
 
