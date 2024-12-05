@@ -34,8 +34,8 @@ function outebsd = align(inebsd,varargin)
 numPixels = get_option(varargin,'pixels',15);
 
 
-% grid ebsd map data
-% While MTex's default "gridify.m" can be used here, the command creates 
+% Grid ebsd map data
+% While MTex's default "gridify.m" can be used here, the command creates
 % Nan pixels.
 % It is recommended to use the modified "gridify2.m" instead.
 [gebsd,~] = gridify2(inebsd);
@@ -63,50 +63,51 @@ while true
     if size(xy1,1) == 2; break; end % exit after 2 points have been inputted by the user
 end
 
-% prevent further clicks by the user
+% Prevent further clicks by the user
 disableDefaultInteractivity(ax);
 
-% check for start and end y-coordinates
-% ensure the end y-coordinate is always larger than the start y-coordinate
+% Check for start and end y-coordinates
+% Ensure the end y-coordinate is always larger than the start y-coordinate
 xy1 = sortrows(xy1,2);
 
-% check for xy coordinates within the map bounds
+% Check for xy coordinates within the map bounds
 xy1((xy1(:,1)<=gebsd.xmin),1) = gebsd.xmin;
 xy1((xy1(:,1)>=gebsd.xmax),1) = gebsd.xmax;
 xy1((xy1(:,2)<=gebsd.ymin),2) = gebsd.ymin;
 xy1((xy1(:,2)>=gebsd.ymax),2) = gebsd.ymax;
 
-% calculate the closest multiple of xy values based on the map step size
+% Calculate the closest multiple of xy values based on the map step size
 stepSize = calcStepSize(inebsd);
 xy1 = stepSize.*round(xy1./stepSize);
 
-% plot the fiducial line
+% Plot the fiducial line
 line(xy1(:,1),xy1(:,2),'color',[1 0 0 0.5],'linewidth',5)
 hold all
 
-% calculate the equation of the fiducial line
+% Calculate the equation of the fiducial line
 deltaY = xy1(2,2)-xy1(1,2);
 deltaX = xy1(2,1)-xy1(1,1);
 slope = deltaY/deltaX;
 perpSlope = -1/slope;
 intercept = xy1(1,2)-(xy1(1,1)*slope);
 
-% define the start & end row indices of the fiducial line
+% Define the start & end row indices of the fiducial line
 startRowIdx = double(uint16(xy1(1,2)/stepSize));
 endRowIdx = double(uint16(xy1(2,2)/stepSize));
 
-% define the half width for the line profile
+% Define the half width for the line profile
 halfWidth = numPixels*stepSize;
 
-% define the array containing the pixel shifts
+% Define the array containing the pixel shifts
 pixelShift = zeros(fliplr(size(xy1(1,2):stepSize:xy1(2,2))));
 
 for yy = xy1(1,2):stepSize:xy1(2,2)
-    % calculate the x-position on the line profile
+    % Calculate the x-position on the line profile
     xx = (yy-intercept)/slope;
-    left = xx-halfWidth;
-    right = xx+halfWidth;
-    % check for left & right -most line profile coordinates within the map
+    left = xx - halfWidth;
+    right = xx + halfWidth;
+    
+    % Check for left & right -most line profile coordinates within the map
     % bounds
     if left <= gebsd.xmin
         left = gebsd.xmin;
@@ -116,26 +117,32 @@ for yy = xy1(1,2):stepSize:xy1(2,2)
         right = gebsd.xmax;
         left = gebsd.xmax-halfWidth; %gebsd.xmax-(2*halfWidth);
     end
-    % define the start and end coordinates of the line profile
+    
+    % Define the start and end coordinates of the line profile
     xy2 = [left, yy;...
         right, yy];
-    % draw the line from which the line profile information is sought
+    
+    % Draw the line from which the line profile information is sought
     line(xy2(:,1),xy2(:,2),'color',[0.5 0.5 0.5 0.5],'linewidth',2.5);
     hold all;
-    % get the line profile information
+    
+    % Get the line profile information
     [gebsdLine2,~] = spatialProfile(gebsd,xy2);
-    % find the minimum band contrast value along the line profile
-    % this corresponds to the linear boundary feature
+    
+    % Find the minimum band contrast value along the line profile
+    % This corresponds to the linear boundary feature
     [~,minIdx] = min(gebsdLine2.bc);
-    % calculate current row index
+    
+    % Calculate current row index
     currentRowIdx = double(uint16(yy/stepSize))+1;
-    % calculate the number of pixels to shift the column data from the
+    
+    % Calculate the number of pixels to shift the column data from the
     % center of the line profile
     arrayIdx = currentRowIdx-startRowIdx;
     midIdx = ceil(size(gebsdLine2.bc,1)/2);
     pixelShift(arrayIdx,1) = midIdx-minIdx;
 
-    % circularly shift columns left or right for each of the map elements 
+    % Circularly shift columns left or right for each of the map elements
     % row-wise rotations
     gebsd.rotations(currentRowIdx,:) = circshift(gebsd.rotations(currentRowIdx,:),...
         [0,pixelShift(arrayIdx,1)]);
@@ -173,7 +180,7 @@ gebsd.phaseId = reshape((gebsd.phase+1),[numel(gebsd.phase),1]);
 % 'Band contrast map: Aligned along user-selected linear feature',...
 % 'NumberTitle','on');
 
-% un-gridify the ebsd data
+% Un-gridify the ebsd data
 outebsd = EBSD(gebsd);
 
 close all
