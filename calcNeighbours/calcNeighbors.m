@@ -1,7 +1,7 @@
 function [neighbors] = calcNeighbors(grainId, pairs, varargin)
 %% Function description:
-% This function calculates the user-defined order of neighbours of a given 
-% grain Id using grain pairs.
+% Calculate the user-defined order of neighbours of a given grain Id using 
+% grain pairs.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2024, azdiaratuowdotedudotau
