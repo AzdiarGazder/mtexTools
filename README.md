@@ -81,6 +81,8 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcModelTexture**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcModelTexture): This function returns a model ODF based on a user specified number of ideal orientations used as seeds.
 
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcNeighbors**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcNeighbors): This function calculates the user-defined order of neighbours of a given grain Id using grain pairs.
+
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcODFIntensity**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcODFIntensity): This function returns the ODF intensity (f(g)) in user-defined steps using Bunge's notation to the variable 'odf.opt.intensity'.
 
 - ![Static Badge](https://img.shields.io/badge/F-FF0000) [**calcODFVolumeFraction**](https://github.com/AzdiarGazder/mtexTools/tree/main/calcODFVolumeFraction): This function returns the volume fraction of a discrete ODF using Bunge's notation.
