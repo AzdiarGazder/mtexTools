@@ -57,8 +57,14 @@ else
     end
 end
 
-% Sort the grain Ids of the neighbours in ascending order
-neighbors = sort(neighbors);
+% Check if no neighbours were found for the requested order
+if isempty(neighbors)
+    neighbors = [];  % Return empty if no neighbours found
+else
+    % Sort the grain Ids of the neighbours in ascending order
+    neighbors = sort(neighbors);
+end
+
 end
 
 
