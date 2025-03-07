@@ -12,8 +12,8 @@ function ebsd = jitterCorrect(ebsd)
 % because the pixels are not sampled or positioned as intended. Thus, the
 % jitter error is more commonly associated with temporal or spatial 
 % inconsistencies. 
-% In the case of band contrast values, the jitter error also causes 
-% pixel-level variations in grayscale intensity.
+% In the case of band contrast and band slope values, the jitter error 
+% also causes pixel-level variations in grayscale intensity.
 %
 %% Author:
 % Dr. Azdiar Gazder, 2025, azdiaratuowdotedudotau
