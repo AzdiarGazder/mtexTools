@@ -9,12 +9,14 @@
 *.mlx
 *.pdf
 *.png
+*.sub
 *.Tex
 *.tex
 *.tiff
 *.txt
 /.test/
 /.private/
+/edxScripts/
 /mtexStatistics/
 
 
