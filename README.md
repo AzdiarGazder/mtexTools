@@ -174,6 +174,8 @@ Labels: ![Static Badge](https://img.shields.io/badge/F-FF0000) = function;  ![St
 ## J
 - ![Static Badge](https://img.shields.io/badge/D-0000FF) [**jeolOI2Mtex**](https://github.com/AzdiarGazder/mtexTools/tree/main/jeolOI2Mtex): A set of three scripts to be run successively that enables novice users to find the settings needed to successfully and routinely import thair ebsd map data (collected using a combination of a JEOL scanning electron microscope (SEM) and Oxford Instruments (OI) EBSD(+EDS) system) into MTEX. This tool enables users to plot the ebsd orientation + spatial data and crystallographic texture in Mtex in formats that exactly match the output from OI Channel-5 and Aztec Crystal.
 
+- ![Static Badge](https://img.shields.io/badge/F-FF0000) [**jitterCorrect**](https://github.com/AzdiarGazder/mtexTools/tree/main/jitterCorrect): This function automatically removes jitter error from EBSD maps caused by charging of the sample during map acquisition. Here jitter refers to the small, random variations or noise in the horizontal positioning of indexed ebsd pixels during map acquisition. 
+
 
 
 ## K
