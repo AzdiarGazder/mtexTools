@@ -40,21 +40,34 @@ function ebsd = jitterCorrect(ebsd)
 % Get the number of phases in the ebsd map
 numPhases = length(ebsd.CSList) - 1;
 % Binary table with all combinations for a given number of variables
-x = 0: (2^numPhases - 1);
-combo = flipud(dec2bin(x', numPhases) == '0');
-% Get the rows whose sum is 2 (i.e. - keep rows with only 2 phase combinations)
-combo = combo(sum(combo,2)==2,:);
+combo = binaryTable(numPhases);
+% Get the rows whose sum is <= 2 (i.e. - keep rows with only 1 and 2 phase combinations)
+combo = combo((sum(combo,2) >= 1 & sum(combo,2) <= 2),:);
 % Replace the ones with (column number + 1)
 % (column number + 1) is used because the first indexed phase is
 % ebsd.CSList{2}
 combo = combo .* ((1:size(combo,2)) + 1);
 % Delete the zeros in each row
-combo = arrayfun(@(ii) combo(ii, combo(ii,:) ~= 0), (1:size(combo,1))', 'UniformOutput', false);
+combo = arrayfun(@(xx) combo(xx, combo(xx,:) ~= 0), (1:size(combo,1))', 'UniformOutput', false);
+% Duplicate the element in cells with one element
+% Identify cells with one element
+idx = cellfun(@(xx) numel(xx)==1, combo);
+% For those cells, duplicate the single element
+combo(idx) = cellfun(@(xx) [xx xx], combo(idx), 'UniformOutput', false);
+% Convert to a double array
 combo = sortrows(cell2mat(combo));
 
 
-disp('Calculating grain boundary combinations...');
+%% Calculate grains
+disp('Calculating grains...');
 [grains,ebsd.grainId,ebsd.mis2mean] = calcGrains(ebsd,'angle',2*degree,'unitCell');
+disp('Done!');
+disp('-----');
+%%
+
+
+%% Calculate grain boundaries
+disp('Calculating all grain boundary combinations...');
 sz = zeros(size(combo,1),1);
 for ii = 1:size(combo,1)
     gB = grains.boundary(ebsd.CSList{combo(ii,1)}.mineral,ebsd.CSList{combo(ii,2)}.mineral);
@@ -65,16 +78,18 @@ sz = sz(:);
 combo = combo(id,:);
 disp('Done!');
 disp('-----');
+%%
 
 
+%% Perform jitter correction
 disp('*****');
 for ii = 1:size(combo,1)
 
     disp(['Performing jitter correction: Pass ',num2str(ii),' / ',num2str(size(combo,1))]) ;
 
-    %% Calculate grains
-    disp('- Calculating grains');
-    [grains,ebsd.grainId,ebsd.mis2mean] = calcGrains(ebsd,'angle',2*degree,'unitCell');
+    %     %% Calculate grains
+    %     disp('- Calculating grains');
+    %     [grains,ebsd.grainId,ebsd.mis2mean] = calcGrains(ebsd,'angle',2*degree,'unitCell');
 
     %     disp('Done!');
     %     disp('-----');
@@ -108,7 +123,7 @@ for ii = 1:size(combo,1)
     % In this dataset, they comprise horizontal boundary segments
     lA1 = azimuthalAngle == 0*degree;
     gB_0degree = gB(lA1);
-    azimuthalAngle_0degree = azimuthalAngle(lA1);
+    %     azimuthalAngle_0degree = azimuthalAngle(lA1);
 
     %     % Plot all grain boundary segments with azmuthal angle = 0 degrees
     %     figH = figure;
@@ -120,7 +135,7 @@ for ii = 1:size(combo,1)
     % Find the pixel Ids corresponding to all horizontal boundary segments
     % with azimuthal angle = 0 degrees
     pixelId = gB_0degree.ebsdId;
-    sz = size(pixelId);
+    %     sz = size(pixelId);
     pixelId = pixelId(:);
 
     % Find the repeated pixelIds in the array
