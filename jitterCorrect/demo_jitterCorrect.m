@@ -12,8 +12,8 @@ setMTEXpref('maxSO3Bandwidth',96);
 
 %% Import the dataset
 disp('Importing the ebsd dataset...');
-% fname = '80CR_850C_625C_192h_1.ctf';
-fName = 'SS316L_recycledPowder_2.ctf';
+% fName = '80CR_850C_625C_192h_1.ctf';
+% fName = 'SS316L_recycledPowder_2.ctf';
 ebsd = EBSD.load(fName,'interface','ctf',...
     'convertEuler2SpatialReferenceFrame');
 
