@@ -1,4 +1,4 @@
-function ebsd = jitterCorrect(ebsd)
+function ebsd = jitterCorrect(ebsd,varargin)
 %% Function description:
 % This function automatically removes jitter error from EBSD maps caused
 % by charging of the sample during map acquisition.
@@ -33,6 +33,9 @@ function ebsd = jitterCorrect(ebsd)
 %%
 
 
+gBAngle = get_option(varargin,'angle',0.5*degree);
+
+
 % Get the number of phases in the ebsd map
 numPhases = length(ebsd.CSList) - 1;
 % Binary table with all combinations for a given number of variables
@@ -56,7 +59,7 @@ combo = sortrows(cell2mat(combo));
 
 %% Calculate grains
 disp('Calculating grains...');
-[grains,ebsd.grainId,ebsd.mis2mean] = calcGrains(ebsd,'angle',2*degree,'unitCell');
+[grains,ebsd.grainId,ebsd.mis2mean] = calcGrains(ebsd,'angle',gBAngle,'unitCell');
 disp('Done!');
 disp('-----');
 %%

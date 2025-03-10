@@ -12,15 +12,17 @@ setMTEXpref('maxSO3Bandwidth',96);
 
 %% Import the dataset
 disp('Importing the ebsd dataset...');
-ebsd = EBSD.load('80CR_850C_625C_192h_1.ctf','interface','ctf',...
+% fname = '80CR_850C_625C_192h_1.ctf';
+fName = 'SS316L_recycledPowder_2.ctf';
+ebsd = EBSD.load(fName,'interface','ctf',...
     'convertEuler2SpatialReferenceFrame');
 
-% Rename the phases
-ebsd.CSList{2}.mineral = 'fcc';
-ebsd.CSList{3}.mineral = 'bcc';
-ebsd.CSList{4}.mineral = 'hcp';
-ebsd.CSList{5}.mineral = 'sigma';
-ebsd.CSList{6}.mineral = 'CoFeV';
+% % Rename the phases
+% ebsd.CSList{2}.mineral = 'fcc';
+% ebsd.CSList{3}.mineral = 'bcc';
+% ebsd.CSList{4}.mineral = 'hcp';
+% ebsd.CSList{5}.mineral = 'sigma';
+% ebsd.CSList{6}.mineral = 'CoFeV';
 
 % Plot the ebsd phase map with the jitter error
 figH = figure;
@@ -30,11 +32,13 @@ set(figH,'Name','Phase map: With jitter error (Uncorrected)','NumberTitle','on')
 % Plot the band contrast map with the jitter error
 figH = figure;
 plot(ebsd,ebsd.bc);
+colormap(gray);
 set(figH,'Name','Band contrast map: With jitter error (Uncorrected)','NumberTitle','on');
 
 % Plot the band slope map with the jitter error
 figH = figure;
 plot(ebsd,ebsd.bs);
+colormap(parula);
 set(figH,'Name','Band slope map: With jitter error (Uncorrected)','NumberTitle','on');
 
 drawnow;
@@ -44,7 +48,9 @@ disp('-----');
 
 
 %% Jitter correct the ebsd map
-ebsd = jitterCorrect(ebsd);
+tic
+ebsd = jitterCorrect(ebsd,'angle',0.5*degree);
+toc
 
 % Plot the ebsd phase map without jitter error
 figH = figure;
@@ -54,11 +60,13 @@ set(figH,'Name','Phase map: Without jitter error (Corrected)','NumberTitle','on'
 % Plot the band contrast map without the jitter error
 figH = figure;
 plot(ebsd,ebsd.bc);
+colormap(gray);
 set(figH,'Name','Band contrast map: Without jitter error (Corrected)','NumberTitle','on');
 
 % Plot the band slope map without the jitter error
 figH = figure;
 plot(ebsd,ebsd.bs);
+colormap(parula);
 set(figH,'Name','Band slope map: With jitter error (Corrected)','NumberTitle','on');
 %%
 
@@ -67,7 +75,8 @@ set(figH,'Name','Band slope map: With jitter error (Corrected)','NumberTitle','o
 disp('Saving the corrected ebsd dataset...');
 gebsd = gridify(ebsd);
 currentFolder = pwd;
-pfName = [currentFolder,'\jitterCorrected1.ctf'];
+fName = [fName(1:end-4),'_jC.ctf'];
+pfName = [currentFolder,'\',fName];
 export_ctf(gebsd,pfName);
 disp('-----');
 %%
