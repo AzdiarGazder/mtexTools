@@ -1,4 +1,4 @@
-function ebsd = jitterCorrect(ebsd)
+function ebsd = jitterCorrect_original(ebsd)
 %% Function description:
 % This function automatically removes jitter error from EBSD maps caused 
 % by charging of the sample during map acquisition.
@@ -74,7 +74,7 @@ for ii = 1:size(combo,1)
     sz(ii) = size(gB,1);
 end
 sz = sz(:);
-[~,id] = sort(sz);
+[~,id] = sort(sz,'descend');
 combo = combo(id,:);
 disp('Done!');
 disp('-----');
