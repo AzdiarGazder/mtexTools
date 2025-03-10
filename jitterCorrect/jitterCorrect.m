@@ -157,10 +157,23 @@ disp('Averaging BC and BS values of jitter error pixels...');
 [Dl, Dr] = findNeighbours(ebsd,'type','vertical');
 
 % Calculate the band contrast and slope for all pixels at once
-tbBandContrast = arrayfun(@(id) ebsd(Dl(Dr == id)).bc, uniquePixelId, 'UniformOutput', false);
-tbBandSlope = arrayfun(@(id) ebsd(Dl(Dr == id)).bs, uniquePixelId, 'UniformOutput', false);
+% The following 2 commands work but they are slow
+% tbBandContrast = arrayfun(@(id) ebsd(Dl(Dr == id)).bc, uniquePixelId, 'UniformOutput', false);
+% tbBandSlope = arrayfun(@(id) ebsd(Dl(Dr == id)).bs, uniquePixelId, 'UniformOutput', false);
 
-% Vectorise the calculation of the mean values while ignoring NaNs
+% Convert Dr values to group indices relative to uniquePixelId
+[~, grpIdx] = ismember(Dr, uniquePixelId);
+% Filter out elements where Dr was not found in uniquePixelId
+validIdx = grpIdx > 0;
+grpIdx_valid = grpIdx(validIdx);
+Dl_valid   = Dl(validIdx);
+% Group the indices from Dl according to the groups in grpIdx
+groupedDl = accumarray(grpIdx_valid(:), Dl_valid(:), [numel(uniquePixelId), 1], @(x){x}, {[]});
+% For each group, extract ebsd.bc and ebsd.bs
+tbBandContrast = cellfun(@(inds) [ebsd(inds).bc], groupedDl, 'UniformOutput', false);
+tbBandSlope = cellfun(@(inds) [ebsd(inds).bs], groupedDl, 'UniformOutput', false);
+
+% Calculate the mean values while ignoring NaNs
 bcMean = cellfun(@(bc) sum(bc, 'omitnan') / max(sum(~isnan(bc)), 1), tbBandContrast);
 bsMean = cellfun(@(bs) sum(bs, 'omitnan') / max(sum(~isnan(bs)), 1), tbBandSlope);
 
