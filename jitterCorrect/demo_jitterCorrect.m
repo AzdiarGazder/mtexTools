@@ -69,7 +69,7 @@ gebsd = gridify(ebsd);
 currentFolder = pwd;
 pfName = [currentFolder,'\jitterCorrected1.ctf'];
 export_ctf(gebsd,pfName);
-disp('*****');
+disp('-----');
 %%
 
 

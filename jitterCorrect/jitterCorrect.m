@@ -27,10 +27,6 @@ function ebsd = jitterCorrect(ebsd)
 %% Output:
 % ebsd - @EBSD
 %
-% Figures comprising:
-% - Map: The grain boundary segments as a function of azimuthal angle
-% - Map: The grain boundary segments with azmuthal angle = 0 degrees
-%
 %% Options:
 %  none
 %
@@ -86,11 +82,10 @@ disp('-----');
 
 
 %% Perform jitter correction
-disp('*****');
+disp('Identifying the jitter error pixels...');
+
 pixelId = cell(size(combo,1),1);
 for ii = 1:size(combo,1)
-
-    disp(['Identifying the jitter error pixels: Pass ',num2str(ii),' / ',num2str(size(combo,1))]) ;
 
     % Get one grain boundary combination
     gB = gB_all{ii};
@@ -130,6 +125,8 @@ for ii = 1:size(combo,1)
     temp_pixelId = temp_pixelId(lA2);
 
     pixelId{ii,1} = temp_pixelId;
+
+    progress(ii, size(combo,1));
 end
 
 pixelId = cell2mat(pixelId);
@@ -143,7 +140,7 @@ disp('-----');
 
 %% Assign zero solutions (not indexed) to the pixel Ids comprising the
 % jitter error
-disp('- Assigning zero solutions to the jitter error pixels');
+disp('Assigning zero solutions to jitter error pixels...');
 ebsd(uniquePixelId).phaseId = 1;
 disp('Done!');
 disp('-----');
@@ -152,7 +149,7 @@ disp('-----');
 
 %% Correct the band contrast and band slope values of the pixel Ids
 % comprising the jitter error
-disp('- Averaging BC and BS values of the jitter error pixels');
+disp('Averaging BC and BS values of jitter error pixels...');
 % Find the indices of pixels to the top and bottom of a pixel of interest
 [Dl, Dr] = findNeighbours(ebsd,'type','vertical');
 
@@ -172,5 +169,4 @@ disp('Done!');
 disp('-----');
 %%
 
-% end
-disp('*****')
+end
